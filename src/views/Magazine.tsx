@@ -36,7 +36,7 @@ const Magazine = () => {
             {/* Editorial Header */}
             <header className="pt-[120px] pb-12 md:pt-[160px] md:pb-20 px-6">
                 <div className="max-w-7xl mx-auto text-center">
-                    <span className="text-[#e7406e] font-display text-lg tracking-wide uppercase mb-4 block">Số Báo Điện Tử</span>
+                    <span className="text-[#1a1a1a] font-display text-lg tracking-wide uppercase mb-4 block">Số Báo Điện Tử</span>
                     <h1 className="font-display text-4xl md:text-5xl lg:text-7xl mb-6">
                         <span className="text-[#1a1a1a]">Bulsan Beauty </span>
                         <span className="text-[#1a1a1a]">Magazine</span>
