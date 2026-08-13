@@ -8,13 +8,13 @@ const Privacy = () => {
 
             <div className="flex-1 bg-gradient-to-br from-pink-50 via-white to-rose-50">
                 {/* Hero Section */}
-                <div className="bg-gradient-to-r from-[#f01a33] to-[#e91e63] text-white pt-32 pb-16">
+                <div className="bg-gradient-to-r from-[#1a1a1a] to-[#333333] text-white pt-32 pb-16">
                     <div className="max-w-4xl mx-auto px-6">
                         <h1 className="text-4xl md:text-5xl font-display font-bold mb-4">
                             Chính Sách Bảo Mật
                         </h1>
                         <p className="text-white/90 font-body text-lg">
-                            Cập nhật lần cuối: 29 Tháng 12, 2025
+                            Cập nhật lần cuối: 13 Tháng 8, 2026
                         </p>
                     </div>
                 </div>
