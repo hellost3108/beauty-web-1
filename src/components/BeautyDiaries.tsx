@@ -4,21 +4,21 @@ import { RateReviewModal } from '@/components/RateReviewModal';
 const reviews = [
     {
         id: 1,
-        text: "Minimal packaging, maximum results. My skin looks healthier and more radiant within days.",
+        text: "Bao bì đẹp, hiệu quả tức thì. Làn da khỏe mạnh và rạng rỡ hơn chỉ sau vài ngày.",
         author: "Alkin Yadev",
         role: "Verified user",
         image: "/assets/anh150x150.png",
     },
     {
         id: 2,
-        text: "Elegant, lightweight, and effective. Blushora is now a staple in my routine.",
+        text: "Sang trọng, nhẹ nhàng và hiệu quả. Bulsan giờ đã trở thành một phần không thể thiếu trong quy trình chăm sóc da của tôi.",
         author: "Jimmy Sharma",
         role: "Verified user",
         image: "/assets/anh150x150 2.png",
     },
     {
         id: 3,
-        text: "Effortless glow, beautiful textures, and truly premium quality. Blushora feels luxurious and performs even better.",
+        text: "Làn da rạng rỡ tự nhiên, bảng thành phần tuyệt vời và chất lượng cao cấp thực sự. Bulsan mang lại cảm giác sang trọng và hiệu quả còn tốt hơn thế nữa.",
         author: "Gulfan Ivy",
         role: "Verified user",
         image: "/assets/anh150x150 3.png",
@@ -34,7 +34,7 @@ const BeautyDiaries = () => {
                 <div className="relative mb-16">
                     <div className="text-center">
                         <h2 className="font-display text-3xl md:text-4xl text-[#1a1a1a]">
-                            The Beauty <span className="text-[#f01a33]">Diaries</span>
+                            Đánh giá <span className="text-[#f01a33]">khách hàng</span>
                         </h2>
                     </div>
                     <div className="absolute right-0 top-1/2 -translate-y-1/2 hidden md:block">

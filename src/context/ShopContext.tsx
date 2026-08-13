@@ -41,7 +41,7 @@ export const ShopProvider = ({ children }: { children: ReactNode }) => {
                 // Sanitize images in cart: Keep if it's already a placeholder, else replace
                 const sanitizedCart = parsedCart.map((item: Product) => ({
                     ...item,
-                    image: item.image && item.image.startsWith('/assets/placeholder') ? item.image : "/assets/placeholder-400x500.png"
+                    image: item.image && (item.image.startsWith('/assets/placeholder') || item.image.startsWith('/assets/sanpham')) ? item.image : "/assets/sanpham400x500.png"
                 }));
                 setCart(sanitizedCart);
             } catch (e) {
@@ -55,7 +55,7 @@ export const ShopProvider = ({ children }: { children: ReactNode }) => {
                 // Sanitize images in wishlist
                 const sanitizedWishlist = parsedWishlist.map((item: Product) => ({
                     ...item,
-                    image: item.image && item.image.startsWith('/assets/placeholder') ? item.image : "/assets/placeholder-400x500.png"
+                    image: item.image && (item.image.startsWith('/assets/placeholder') || item.image.startsWith('/assets/sanpham')) ? item.image : "/assets/sanpham400x500.png"
                 }));
                 setWishlist(sanitizedWishlist);
             } catch (e) {
@@ -125,8 +125,8 @@ export const ShopProvider = ({ children }: { children: ReactNode }) => {
 
     return (
         <ShopContext.Provider value={{
-            cart: cart.map(item => ({ ...item, image: item.image && item.image.startsWith('/assets/placeholder') ? item.image : "/assets/placeholder-400x500.png" })),
-            wishlist: wishlist.map(item => ({ ...item, image: item.image && item.image.startsWith('/assets/placeholder') ? item.image : "/assets/placeholder-400x500.png" })),
+            cart: cart.map(item => ({ ...item, image: item.image && (item.image.startsWith('/assets/placeholder') || item.image.startsWith('/assets/sanpham')) ? item.image : "/assets/sanpham400x500.png" })),
+            wishlist: wishlist.map(item => ({ ...item, image: item.image && (item.image.startsWith('/assets/placeholder') || item.image.startsWith('/assets/sanpham')) ? item.image : "/assets/sanpham400x500.png" })),
             addToCart,
             removeFromCart,
             removeOneFromCart,
