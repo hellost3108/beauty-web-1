@@ -23,13 +23,13 @@ const Blog = () => {
                 </div>
 
                 <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
-                    <span className="text-[#e7406e] font-display text-lg tracking-wide uppercase mb-4 block">Our Journal</span>
+                    <span className="text-[#e7406e] font-display text-lg tracking-wide uppercase mb-4 block">Nhật Ký Của Chúng Tôi</span>
                     <h1 className="font-display text-4xl md:text-5xl lg:text-6xl mb-6">
-                        <span className="text-[#1a1a1a]">The Beauty </span>
-                        <span className="text-[#f01a33]">Edit</span>
+                        <span className="text-[#1a1a1a]">Góc </span>
+                        <span className="text-[#f01a33]">Làm Đẹp</span>
                     </h1>
                     <p className="font-body text-[#666666] text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
-                        Expert advice, skincare guides, and beauty stories to help you glow from the inside out.
+                        Lời khuyên từ chuyên gia, hướng dẫn chăm sóc da và những câu chuyện làm đẹp giúp bạn toả sáng từ bên trong.
                     </p>
                 </div>
             </section>
@@ -72,7 +72,7 @@ const Blog = () => {
                                         className="inline-flex items-center gap-2 text-[#1a1a1a] font-medium hover:text-[#f01a33] transition-colors mt-auto group/link"
                                     >
                                         <span className="relative">
-                                            Read More
+                                            Đọc Thêm
                                             <span className="absolute bottom-0 left-0 w-0 h-px bg-[#f01a33] transition-all duration-300 group-hover/link:w-full"></span>
                                         </span>
                                         <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover/link:translate-x-1 text-[#f01a33]" />

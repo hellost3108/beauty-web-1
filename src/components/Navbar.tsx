@@ -11,19 +11,19 @@ const Navbar = () => {
   const { cart, wishlist } = useShop();
 
   const collectionCategories = [
-    { name: 'Skin Care', image: "/assets/placeholder-300x300.png" },
-    { name: 'Hair Care', image: "/assets/placeholder-300x300.png" },
-    { name: 'Body', image: "/assets/placeholder-300x300.png" },
-    { name: 'Wellness & Tool', image: "/assets/placeholder-300x300.png" },
-    { name: 'Gift Sets', image: "/assets/placeholder-300x300.png" },
+    { name: 'Chăm Sóc Da', image: "/assets/placeholder-300x300.png" },
+    { name: 'Chăm Sóc Tóc', image: "/assets/placeholder-300x300.png" },
+    { name: 'Cơ Thể', image: "/assets/placeholder-300x300.png" },
+    { name: 'Sức Khỏe & Dụng Cụ', image: "/assets/placeholder-300x300.png" },
+    { name: 'Bộ Quà Tặng', image: "/assets/placeholder-300x300.png" },
   ];
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-border/50 w-full">
       <div className="w-full px-6 md:px-12 py-4">
         <div className="flex items-center justify-between">
-          {/* Tablet Spacer for Centering */}
-          <div className="flex-1 hidden md:block lg:hidden" />
+          {/* Mobile/Tablet Spacer for Centering */}
+          <div className="flex-1 block lg:hidden" />
 
           {/* Desktop Navigation - Left */}
           <div className="hidden lg:flex items-center gap-8 flex-1">
@@ -33,7 +33,7 @@ const Navbar = () => {
               onMouseLeave={() => setIsCollectionHover(false)}
             >
               <Link href="/collection" className="font-body text-sm text-foreground hover:text-primary transition-colors">
-                Collection
+                Bộ Sưu Tập
               </Link>
 
               {/* Mega Menu Dropdown */}
@@ -67,23 +67,23 @@ const Navbar = () => {
             </div>
 
             <Link href="/shop" className="font-body text-sm text-foreground hover:text-primary transition-colors">
-              Shop
+              Cửa Hàng
             </Link>
             <Link href="/about" className="font-body text-sm text-foreground hover:text-primary transition-colors">
-              About
+              Giới Thiệu
             </Link>
             <Link href="/blog" className="font-body text-sm text-foreground hover:text-primary transition-colors">
               Blog
             </Link>
             <Link href="/magazine" className="font-body text-sm text-foreground hover:text-primary transition-colors">
-              Magazine
+              Tạp Chí
             </Link>
           </div>
 
           {/* Logo - Center */}
           <div className="flex-1 flex justify-center" id="navbar-logo-container">
             <Link href="/" className="hover:opacity-80 transition-opacity">
-              <img src="/assets/logo.png" alt="Blushora" className="w-28 md:w-36 h-auto object-contain" />
+              <img src="/assets/logo.png" alt="Bulsan Beauty" className="h-10 md:h-12 w-auto object-contain" />
             </Link>
           </div>
 
@@ -104,7 +104,7 @@ const Navbar = () => {
                 <div className="relative">
                   <input
                     type="text"
-                    placeholder="Search products..."
+                    placeholder="Tìm kiếm sản phẩm..."
                     className="w-full pl-4 pr-10 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-[#f01a33] text-sm"
                     autoFocus
                   />
@@ -138,7 +138,7 @@ const Navbar = () => {
                     onClick={() => setIsAccountOpen(false)}
                     className="block px-4 py-3 text-sm font-body text-gray-700 hover:bg-gradient-to-r hover:from-[#f01a33] hover:to-[#e91e63] hover:text-white transition-all duration-200"
                   >
-                    Login
+                    Đăng Nhập
                   </Link>
                   <div className="border-t border-gray-200" />
                   <Link
@@ -146,7 +146,7 @@ const Navbar = () => {
                     onClick={() => setIsAccountOpen(false)}
                     className="block px-4 py-3 text-sm font-body text-gray-700 hover:bg-gradient-to-r hover:from-[#f01a33] hover:to-[#e91e63] hover:text-white transition-all duration-200"
                   >
-                    Sign Up
+                    Đăng Ký
                   </Link>
                 </div>
               )}
@@ -178,26 +178,26 @@ const Navbar = () => {
               <div className="relative mb-2">
                 <input
                   type="text"
-                  placeholder="Search products..."
+                  placeholder="Tìm kiếm sản phẩm..."
                   className="w-full pl-10 pr-4 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-[#f01a33] text-sm"
                 />
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
               </div>
 
               <Link href="/collection" className="font-body text-foreground hover:text-primary transition-colors py-2" onClick={() => setIsMenuOpen(false)}>
-                Collection
+                Bộ Sưu Tập
               </Link>
               <Link href="/shop" className="font-body text-foreground hover:text-primary transition-colors py-2" onClick={() => setIsMenuOpen(false)}>
-                Shop
+                Cửa Hàng
               </Link>
               <Link href="/about" className="font-body text-foreground hover:text-primary transition-colors py-2" onClick={() => setIsMenuOpen(false)}>
-                About
+                Giới Thiệu
               </Link>
               <Link href="/blog" className="font-body text-foreground hover:text-primary transition-colors py-2" onClick={() => setIsMenuOpen(false)}>
                 Blog
               </Link>
               <Link href="/magazine" className="font-body text-foreground hover:text-primary transition-colors py-2" onClick={() => setIsMenuOpen(false)}>
-                Magazine
+                Tạp Chí
               </Link>
               <div className="flex items-center justify-between pt-4 border-t border-border/50">
                 <div className="flex items-center gap-6">

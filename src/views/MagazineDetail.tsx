@@ -35,7 +35,7 @@ const MagazineDetail = () => {
                     className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[#999] hover:text-[#f01a33] mb-12 transition-colors font-body"
                 >
                     <ArrowLeft className="w-3 h-3" />
-                    Back to Magazine
+                    Quay Lại Magazine
                 </Link>
 
                 <div className="mb-8">
@@ -52,17 +52,17 @@ const MagazineDetail = () => {
 
                 <div className="flex items-center justify-center gap-8 border-y border-gray-100 py-6 max-w-3xl mx-auto">
                     <div className="text-left">
-                        <span className="block text-[10px] text-[#999] uppercase tracking-widest font-bold mb-1 font-body">Words By</span>
+                        <span className="block text-[10px] text-[#999] uppercase tracking-widest font-bold mb-1 font-body">Bài Viết Bởi</span>
                         <span className="font-display text-lg text-[#1a1a1a]">{post.author}</span>
                     </div>
                     <div className="w-px h-8 bg-gray-200" />
                     <div className="text-left">
-                        <span className="block text-[10px] text-[#999] uppercase tracking-widest font-bold mb-1 font-body">Published</span>
+                        <span className="block text-[10px] text-[#999] uppercase tracking-widest font-bold mb-1 font-body">Ngày Đăng</span>
                         <span className="font-display text-lg text-[#1a1a1a]">{post.date}</span>
                     </div>
                     <div className="w-px h-8 bg-gray-200" />
                     <div className="text-left">
-                        <span className="block text-[10px] text-[#999] uppercase tracking-widest font-bold mb-1 font-body">Read Time</span>
+                        <span className="block text-[10px] text-[#999] uppercase tracking-widest font-bold mb-1 font-body">Thời Gian Đọc</span>
                         <span className="font-display text-lg text-[#1a1a1a]">{post.readTime}</span>
                     </div>
                 </div>
@@ -82,7 +82,7 @@ const MagazineDetail = () => {
                 {/* Social Share - Sticky Sidebar */}
                 <aside className="lg:col-span-1 hidden lg:flex flex-col items-center sticky top-32 h-fit space-y-8">
                     <div className="w-px h-12 bg-gray-200"></div>
-                    <span className="text-[10px] font-bold uppercase tracking-widest [writing-mode:vertical-rl] rotate-180 text-[#999] font-body">Share this story</span>
+                    <span className="text-[10px] font-bold uppercase tracking-widest [writing-mode:vertical-rl] rotate-180 text-[#999] font-body">Chia Sẻ Bài Viết</span>
                     <button className="p-3 rounded-full hover:bg-gray-50 text-[#666] hover:text-[#f01a33] transition-colors"><Twitter className="w-4 h-4" /></button>
                     <button className="p-3 rounded-full hover:bg-gray-50 text-[#666] hover:text-[#f01a33] transition-colors"><Facebook className="w-4 h-4" /></button>
                     <button className="p-3 rounded-full hover:bg-gray-50 text-[#666] hover:text-[#f01a33] transition-colors"><Linkedin className="w-4 h-4" /></button>
@@ -109,7 +109,7 @@ const MagazineDetail = () => {
                                 <User className="w-6 h-6" />
                             </div>
                             <div>
-                                <span className="block font-bold text-sm text-[#1a1a1a] font-body">Written by {post.author}</span>
+                                <span className="block font-bold text-sm text-[#1a1a1a] font-body">Viết bởi {post.author}</span>
                                 <span className="text-xs text-[#666] uppercase tracking-wider font-body">{post.role}</span>
                             </div>
                         </div>
@@ -119,7 +119,7 @@ const MagazineDetail = () => {
                 {/* Right Sidebar - Related/Shop */}
                 <aside className="lg:col-span-3 block mt-12 lg:mt-0 sticky top-32 h-fit">
                     <div className="bg-[#fcfcfc] p-6 rounded-[24px] border border-gray-100 text-center w-full max-w-sm mx-auto lg:max-w-none">
-                        <h4 className="font-display text-xl mb-4 text-[#1a1a1a]">Shop The Look</h4>
+                        <h4 className="font-display text-xl mb-4 text-[#1a1a1a]">Mua Sắm Phong Cách Này</h4>
                         <div className="aspect-square bg-white mb-4 overflow-hidden rounded-[16px]">
                             {/* Placeholder product image */}
                             <img src="/assets/placeholder-400x500.png" className="w-full h-full object-cover hover:scale-110 transition-transform duration-500" />
@@ -135,7 +135,7 @@ const MagazineDetail = () => {
                             })}
                             className="w-full bg-[#1a1a1a] text-white py-2 text-[10px] font-bold uppercase tracking-widest hover:bg-[#f01a33] transition-colors rounded-lg font-body"
                         >
-                            Add to Cart
+                            Thêm Vào Giỏ
                         </button>
                     </div>
                 </aside>

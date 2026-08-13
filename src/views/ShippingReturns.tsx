@@ -6,40 +6,40 @@ const ShippingReturns = () => {
         <div className="min-h-screen bg-white">
             <Navbar />
             <div className="pt-24 pb-16 px-6 md:px-12 max-w-4xl mx-auto">
-                <h1 className="font-display text-4xl mb-12 text-[#1a1a1a] text-center">Shipping & Returns</h1>
+                <h1 className="font-display text-4xl mb-12 text-[#1a1a1a] text-center">Vận Chuyển & Đổi Trả</h1>
 
                 <div className="space-y-12">
                     {/* Shipping Section */}
                     <section className="space-y-4">
-                        <h2 className="font-display text-2xl text-[#1a1a1a] border-b border-gray-200 pb-2">Shipping Policy</h2>
+                        <h2 className="font-display text-2xl text-[#1a1a1a] border-b border-gray-200 pb-2">Chính Sách Vận Chuyển</h2>
                         <div className="space-y-4 text-[#666666] font-body">
                             <p>
-                                <strong>Processing Time:</strong> All orders are processed within 1-2 business days. Orders are not shipped or delivered on weekends or holidays.
+                                <strong>Thời Gian Xử Lý:</strong> Tất cả đơn hàng được xử lý trong vòng 1-2 ngày làm việc. Đơn hàng không được giao hoặc vận chuyển vào cuối tuần hoặc ngày lễ.
                             </p>
                             <p>
-                                <strong>Shipping Rates:</strong> We offer a flat rate shipping fee of Rs. 100 on all orders below Rs. 999. Orders above Rs. 999 qualify for free standard shipping.
+                                <strong>Phí Vận Chuyển:</strong> Chúng tôi áp dụng phí vận chuyển đồng giá 30.000₫ cho đơn hàng dưới 500.000₫. Đơn hàng từ 500.000₫ trở lên được miễn phí vận chuyển tiêu chuẩn.
                             </p>
                             <p>
-                                <strong>Delivery Estimates:</strong> Standard shipping typically takes 3-5 business days depending on your location. Expedited shipping options are available at checkout.
+                                <strong>Thời Gian Giao Hàng Dự Kiến:</strong> Vận chuyển tiêu chuẩn thường mất 3-5 ngày làm việc tuỳ khu vực. Bạn có thể chọn hình thức giao hàng nhanh ngay tại bước thanh toán.
                             </p>
                         </div>
                     </section>
 
                     {/* Returns Section */}
                     <section className="space-y-4">
-                        <h2 className="font-display text-2xl text-[#1a1a1a] border-b border-gray-200 pb-2">Return & Refund Policy</h2>
+                        <h2 className="font-display text-2xl text-[#1a1a1a] border-b border-gray-200 pb-2">Chính Sách Đổi Trả & Hoàn Tiền</h2>
                         <div className="space-y-4 text-[#666666] font-body">
                             <p>
-                                We want you to be completely satisfied with your purchase. If you are not unhappy with your order, we are here to help.
+                                Chúng tôi mong muốn bạn hoàn toàn hài lòng với sản phẩm đã mua. Nếu bạn chưa hài lòng với đơn hàng của mình, chúng tôi luôn sẵn sàng hỗ trợ.
                             </p>
                             <p>
-                                <strong>Returns:</strong> You have 30 days to return an item from the date you received it. To be eligible for a return, your item must be unused, in the same condition that you received it, and in the original packaging.
+                                <strong>Đổi Trả:</strong> Bạn có 30 ngày để trả lại sản phẩm kể từ ngày nhận hàng. Để đủ điều kiện đổi trả, sản phẩm phải chưa qua sử dụng, còn nguyên trạng như khi nhận và còn nguyên bao bì gốc.
                             </p>
                             <p>
-                                <strong>Refunds:</strong> Once we receive your item, we will inspect it and notify you that we have received your returned item. We will immediately notify you on the status of your refund after inspecting the item. If your return is approved, we will initiate a refund to your credit card (or original method of payment).
+                                <strong>Hoàn Tiền:</strong> Sau khi nhận được sản phẩm trả lại, chúng tôi sẽ kiểm tra và thông báo cho bạn. Chúng tôi sẽ báo ngay tình trạng hoàn tiền sau khi kiểm tra xong sản phẩm. Nếu yêu cầu đổi trả được chấp thuận, chúng tôi sẽ tiến hành hoàn tiền vào thẻ tín dụng (hoặc phương thức thanh toán ban đầu) của bạn.
                             </p>
                             <p>
-                                <strong>Shipping Costs:</strong> You will be responsible for paying for your own shipping costs for returning your item. Shipping costs are non-refundable.
+                                <strong>Phí Vận Chuyển Trả Hàng:</strong> Bạn sẽ chịu trách nhiệm thanh toán phí vận chuyển khi trả lại sản phẩm. Phí vận chuyển sẽ không được hoàn lại.
                             </p>
                         </div>
                     </section>
