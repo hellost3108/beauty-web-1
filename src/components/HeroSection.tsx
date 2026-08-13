@@ -17,14 +17,14 @@ const slides = [
     headline: { part1: "Timeless Beauty, ", part2: "Captured" },
     subheadline: "Elevate your routine with our premium collection designed for the modern muse.",
     // Placeholder 1
-    image: "/assets/placeholder-1920x1080.png",
+    image: "/assets/anh2.png",
   },
   {
     id: 3,
     headline: { part1: "Radiance in ", part2: "Every Drop" },
     subheadline: "Pure, potent, and perfect for your skin. Discover the essence of true beauty.",
     // Placeholder 2
-    image: "/assets/placeholder-1920x1080.png",
+    image: "/assets/placeholder-anh3.png",
   }
 ];
 
