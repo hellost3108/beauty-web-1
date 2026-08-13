@@ -17,7 +17,7 @@ const ShippingReturns = () => {
                                 <strong>Thời Gian Xử Lý:</strong> Tất cả đơn hàng được xử lý trong vòng 1-2 ngày làm việc. Đơn hàng không được giao hoặc vận chuyển vào cuối tuần hoặc ngày lễ.
                             </p>
                             <p>
-                                <strong>Phí Vận Chuyển:</strong> Chúng tôi áp dụng phí vận chuyển đồng giá Rs. 100 cho đơn hàng dưới Rs. 999. Đơn hàng từ Rs. 999 trở lên được miễn phí vận chuyển tiêu chuẩn.
+                                <strong>Phí Vận Chuyển:</strong> Chúng tôi áp dụng phí vận chuyển đồng giá 30.000₫ cho đơn hàng dưới 500.000₫. Đơn hàng từ 500.000₫ trở lên được miễn phí vận chuyển tiêu chuẩn.
                             </p>
                             <p>
                                 <strong>Thời Gian Giao Hàng Dự Kiến:</strong> Vận chuyển tiêu chuẩn thường mất 3-5 ngày làm việc tuỳ khu vực. Bạn có thể chọn hình thức giao hàng nhanh ngay tại bước thanh toán.
