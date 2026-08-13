@@ -22,8 +22,8 @@ const Navbar = () => {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-border/50 w-full">
       <div className="w-full px-6 md:px-12 py-4">
         <div className="flex items-center justify-between">
-          {/* Tablet Spacer for Centering */}
-          <div className="flex-1 hidden md:block lg:hidden" />
+          {/* Mobile/Tablet Spacer for Centering */}
+          <div className="flex-1 block lg:hidden" />
 
           {/* Desktop Navigation - Left */}
           <div className="hidden lg:flex items-center gap-8 flex-1">
