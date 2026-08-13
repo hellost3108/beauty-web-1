@@ -8,7 +8,7 @@ export const magazinePosts = [
         role: "Ban Biên Tập",
         date: "10 Tháng 8, 2026",
         category: "Thương Hiệu",
-        image: "/assets/placeholder-800x600.png",
+        image: "/assets/magazine-placeholder.jpg",
         readTime: "3 phút đọc",
         content: `
             <p class="drop-cap">Trong hành trình tìm kiếm những thương hiệu làm đẹp chất lượng từ Hàn Quốc để mang đến cho khách hàng, BNBG là một trong những cái tên Bulsan Beauty đã chọn lựa và giới thiệu tới cộng đồng.</p>
@@ -29,7 +29,7 @@ export const magazinePosts = [
         role: "Ban Biên Tập",
         date: "08 Tháng 8, 2026",
         category: "Thương Hiệu",
-        image: "/assets/placeholder-800x600.png",
+        image: "/assets/magazine-placeholder.jpg",
         readTime: "3 phút đọc",
         content: `
             <p>Wonjin là một thương hiệu quen thuộc với những ai theo dõi xu hướng skincare Hàn Quốc, gắn liền với triết lý chăm sóc da bài bản, chú trọng từng bước trong quy trình dưỡng da.</p>
@@ -50,7 +50,7 @@ export const magazinePosts = [
         role: "Ban Biên Tập",
         date: "05 Tháng 8, 2026",
         category: "Thương Hiệu",
-        image: "/assets/placeholder-800x600.png",
+        image: "/assets/magazine-placeholder.jpg",
         readTime: "3 phút đọc",
         content: `
             <p>TIAM là một trong những thương hiệu K-beauty được nhắc đến nhiều trong những năm gần đây, đặc biệt gắn liền với các sản phẩm chăm sóc da tập trung vào việc làm sáng và đều màu da.</p>
@@ -71,7 +71,7 @@ export const magazinePosts = [
         role: "Ban Biên Tập",
         date: "01 Tháng 8, 2026",
         category: "Thương Hiệu",
-        image: "/assets/placeholder-800x600.png",
+        image: "/assets/magazine-placeholder.jpg",
         readTime: "3 phút đọc",
         content: `
             <p>Angel Liquid là cái tên được nhiều tín đồ làm đẹp Hàn Quốc nhắc đến khi nói về hành trình theo đuổi làn da căng bóng, mịn màng theo phong cách "glass skin".</p>
