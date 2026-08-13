@@ -63,19 +63,19 @@ const ivyMode = localFont({
 });
 
 const inter = Inter({
-  subsets: ["latin"],
+  subsets: ["latin", "vietnamese"],
   variable: "--font-body",
 });
 
 const poppins = Poppins({
-  subsets: ["latin"],
+  subsets: ["latin", "vietnamese"],
   weight: ["400", "500", "600", "700"],
   variable: "--font-button",
 });
 
 export const metadata: Metadata = {
-  title: "Blushora | Premium Beauty & Skincare",
-  description: "Discover the best in beauty and skincare with Blushora.",
+  title: "Bulsan Beauty | Mỹ Phẩm & Chăm Sóc Da Cao Cấp",
+  description: "Khám phá những sản phẩm làm đẹp và chăm sóc da tốt nhất cùng Bulsan Beauty.",
   icons: {
     icon: "/favicon.png",
   }
@@ -87,7 +87,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${ivyMode.variable} ${inter.variable} ${poppins.variable}`}>
+    <html lang="vi" className={`${ivyMode.variable} ${inter.variable} ${poppins.variable}`}>
       <body className="antialiased" suppressHydrationWarning>
         <Providers>{children}</Providers>
       </body>

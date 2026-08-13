@@ -9,7 +9,7 @@ const Footer = () => {
 
           {/* STORE Column */}
           <div className="space-y-3">
-            <h4 className="font-display text-xl md:text-2xl text-[#1a1a1a] tracking-tight">STORE</h4>
+            <h4 className="font-display text-xl md:text-2xl text-[#1a1a1a] tracking-tight">CỬA HÀNG</h4>
             <ul className="space-y-2">
               <li className="flex items-start gap-4">
                 <MapPin className="w-5 h-5 text-[#999999] shrink-0 mt-0.5" />
@@ -17,14 +17,14 @@ const Footer = () => {
               </li>
               <li className="flex items-start gap-4">
                 <Clock className="w-5 h-5 text-[#999999] shrink-0 mt-0.5" />
-                <span className="font-body text-sm text-[#888888]">09:00 am - 05:00 pm</span>
+                <span className="font-body text-sm text-[#888888]">09:00 - 17:00</span>
               </li>
             </ul>
           </div>
 
           {/* REACH US Column */}
           <div className="space-y-3">
-            <h4 className="font-display text-xl md:text-2xl text-[#1a1a1a] tracking-tight">REACH US</h4>
+            <h4 className="font-display text-xl md:text-2xl text-[#1a1a1a] tracking-tight">LIÊN HỆ</h4>
             <ul className="space-y-2">
               <li className="flex items-center gap-4">
                 <Phone className="w-5 h-5 text-[#999999] shrink-0" />
@@ -41,31 +41,31 @@ const Footer = () => {
 
           {/* INFO Column */}
           <div className="space-y-3">
-            <h4 className="font-display text-xl md:text-2xl text-[#1a1a1a] tracking-tight">INFO</h4>
+            <h4 className="font-display text-xl md:text-2xl text-[#1a1a1a] tracking-tight">THÔNG TIN</h4>
             <ul className="space-y-2">
               <li>
                 <Link href="/contact" className="font-body text-sm text-[#888888] hover:text-[#f01a33] transition-colors">
-                  Contact
+                  Liên Hệ
                 </Link>
               </li>
               <li>
                 <Link href="/shipping-returns" className="font-body text-sm text-[#888888] hover:text-[#f01a33] transition-colors">
-                  Shipping & Returns
+                  Vận Chuyển & Đổi Trả
                 </Link>
               </li>
               <li>
                 <Link href="/faq" className="font-body text-sm text-[#888888] hover:text-[#f01a33] transition-colors">
-                  FAQ
+                  Câu Hỏi Thường Gặp
                 </Link>
               </li>
               <li>
                 <Link href="/privacy" className="font-body text-sm text-[#888888] hover:text-[#f01a33] transition-colors">
-                  Privacy Policy
+                  Chính Sách Bảo Mật
                 </Link>
               </li>
               <li>
                 <Link href="/terms" className="font-body text-sm text-[#888888] hover:text-[#f01a33] transition-colors">
-                  Terms of Service
+                  Điều Khoản Dịch Vụ
                 </Link>
               </li>
             </ul>
@@ -73,7 +73,7 @@ const Footer = () => {
 
           {/* SHARE WITH US Column */}
           <div className="space-y-3">
-            <h4 className="font-display text-xl md:text-2xl text-[#1a1a1a] tracking-tight">SHARE WITH US</h4>
+            <h4 className="font-display text-xl md:text-2xl text-[#1a1a1a] tracking-tight">KẾT NỐI VỚI CHÚNG TÔI</h4>
             <div className="flex gap-4">
               <div className="w-10 h-10 rounded-full border border-[#e5e5e5] flex items-center justify-center text-[#1a1a1a] hover:bg-[#f01a33] hover:text-white hover:border-[#f01a33] transition-all duration-300 cursor-pointer">
                 <Instagram className="w-5 h-5" />
@@ -92,7 +92,7 @@ const Footer = () => {
         {/* Bottom bar */}
         <div className="pt-4 border-t border-[#f0f0f0] flex justify-center items-center">
           <p className="font-body text-sm text-[#999999]">
-            © Copyright 2025 Blushora Cosmetics. All rights reserved.
+            © Bản quyền 2025 Bulsan Beauty. Đã đăng ký bản quyền.
           </p>
         </div>
       </div>

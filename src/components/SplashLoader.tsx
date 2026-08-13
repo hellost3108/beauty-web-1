@@ -82,12 +82,12 @@ const SplashLoader: React.FC<SplashLoaderProps> = ({ onComplete }) => {
                         )}
                     />
 
-                    {/* Blushora Logo - Stays visible until replaced by Navbar logo */}
+                    {/* Bulsan Beauty Logo - Stays visible until replaced by Navbar logo */}
                     <img
-                        src="/assets/logo.png"
-                        alt="Blushora"
+                        src="/assets/logo-full.png"
+                        alt="Bulsan Beauty"
                         className={cn(
-                            "w-28 md:w-36 object-contain transition-opacity duration-300 ease-in-out",
+                            "w-40 md:w-52 object-contain transition-opacity duration-300 ease-in-out",
                             stage === 'initial' ? "opacity-0" : "opacity-100"
                         )}
                     />
