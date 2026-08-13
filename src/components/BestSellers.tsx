@@ -3,21 +3,21 @@ import ProductCard from './ProductCard';
 const bestSellers = [
   {
     id: 5,
-    image: "/assets/placeholder-400x500.png",
+    image: "/assets/anh400x500 1.png",
     name: 'Silk Skin Foundation',
     description: 'Lightweight, buildable coverage with a natural finish',
     price: '$52',
   },
   {
     id: 6,
-    image: "/assets/placeholder-400x500.png",
+    image: "/assets/anh400x500 2.png",
     name: 'Nude Palette Collection',
     description: 'Twelve essential shades from matte to shimmer',
     price: '$48',
   },
   {
     id: 7,
-    image: "/assets/placeholder-400x500.png",
+    image: "/assets/anh400x500 3.png",
     name: 'Glass Skin Primer',
     description: 'Blur and smooth for a flawless, luminous base',
     price: '$42',
