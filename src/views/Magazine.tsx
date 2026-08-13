@@ -21,8 +21,8 @@ const Magazine = () => {
 
         // Success toast
         toast({
-            title: "Successfully Subscribed! 🎉",
-            description: "Thank you for subscribing to our newsletter.",
+            title: "Đăng Ký Thành Công! 🎉",
+            description: "Cảm ơn bạn đã đăng ký nhận bản tin của chúng tôi.",
         });
 
         // Clear the email input
@@ -36,17 +36,17 @@ const Magazine = () => {
             {/* Editorial Header */}
             <header className="pt-[120px] pb-12 md:pt-[160px] md:pb-20 px-6">
                 <div className="max-w-7xl mx-auto text-center">
-                    <span className="text-[#e7406e] font-display text-lg tracking-wide uppercase mb-4 block">The Digital Issue</span>
+                    <span className="text-[#e7406e] font-display text-lg tracking-wide uppercase mb-4 block">Số Báo Điện Tử</span>
                     <h1 className="font-display text-4xl md:text-5xl lg:text-7xl mb-6">
-                        <span className="text-[#1a1a1a]">BlushOra </span>
+                        <span className="text-[#1a1a1a]">Bulsan Beauty </span>
                         <span className="text-[#f01a33]">Magazine</span>
                     </h1>
                     <div className="flex justify-center gap-8 text-sm uppercase tracking-widest font-body font-medium text-[#666]">
-                        <span>Beauty</span>
+                        <span>Làm Đẹp</span>
                         <span className="text-[#f01a33]">•</span>
-                        <span>Culture</span>
+                        <span>Văn Hoá</span>
                         <span className="text-[#f01a33]">•</span>
-                        <span>Lifestyle</span>
+                        <span>Phong Cách Sống</span>
                     </div>
                 </div>
             </header>
@@ -75,7 +75,7 @@ const Magazine = () => {
                                     {featuredPost.subtitle}
                                 </p>
                                 <div className="flex items-center gap-4 text-xs font-bold uppercase tracking-widest text-[#999] font-body">
-                                    <span>By {featuredPost.author}</span>
+                                    <span>Bởi {featuredPost.author}</span>
                                     <span>—</span>
                                     <div className="flex items-center gap-1.5">
                                         <Clock className="w-3.5 h-3.5" />
@@ -90,7 +90,7 @@ const Magazine = () => {
                     <div className="lg:col-span-4 lg:sticky lg:top-32 flex flex-col gap-12 lg:pl-8 h-fit">
                         <div>
                             <span className="inline-block text-xs font-display font-bold uppercase tracking-wider text-[#1a1a1a] mb-8 border-b-2 border-[#f01a33] pb-2">
-                                Trending Stories
+                                Bài Viết Nổi Bật
                             </span>
                             <div className="flex flex-col gap-10">
                                 {sidePosts.map((post) => (
@@ -119,12 +119,12 @@ const Magazine = () => {
                         </div>
 
                         <div className="bg-[#fcfcfc] p-8 border border-gray-100 rounded-[24px] text-center">
-                            <h3 className="font-display text-2xl mb-2 text-[#1a1a1a]">The Newsletter</h3>
-                            <p className="font-body text-sm text-[#666] mb-6">Weekly beauty edits, straight to your inbox.</p>
+                            <h3 className="font-display text-2xl mb-2 text-[#1a1a1a]">Bản Tin</h3>
+                            <p className="font-body text-sm text-[#666] mb-6">Tuyển chọn làm đẹp hàng tuần, gửi thẳng đến hộp thư của bạn.</p>
                             <form onSubmit={handleSubscribe}>
                                 <input
                                     type="email"
-                                    placeholder="Your email address"
+                                    placeholder="Địa chỉ email của bạn"
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
                                     className="w-full bg-white border border-gray-200 p-3 text-sm text-[#1a1a1a] placeholder:text-gray-400 mb-4 focus:outline-none focus:border-[#f01a33] transition-colors rounded-lg"
@@ -133,7 +133,7 @@ const Magazine = () => {
                                     type="submit"
                                     className="w-full bg-[#1a1a1a] text-white font-bold uppercase text-xs tracking-widest py-3 hover:bg-[#f01a33] transition-colors rounded-lg"
                                 >
-                                    Subscribe
+                                    Đăng Ký
                                 </button>
                             </form>
                         </div>
@@ -141,10 +141,11 @@ const Magazine = () => {
                 </section>
 
                 {/* In Focus Section */}
+                {focusPosts.length > 0 && (
                 <section className="mb-24">
                     <div className="text-center mb-16">
-                        <span className="text-[#e7406e] font-display text-sm tracking-wide uppercase mb-2 block">Editor's Picks</span>
-                        <h2 className="font-display text-4xl md:text-5xl text-[#1a1a1a]">In Focus</h2>
+                        <span className="text-[#e7406e] font-display text-sm tracking-wide uppercase mb-2 block">Lựa Chọn Của Biên Tập Viên</span>
+                        <h2 className="font-display text-4xl md:text-5xl text-[#1a1a1a]">Tiêu Điểm</h2>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-16">
@@ -178,43 +179,46 @@ const Magazine = () => {
                         ))}
                     </div>
                 </section>
+                )}
 
                 {/* Grid Layout for remaining posts */}
-                <section>
-                    <div className="flex items-end justify-between mb-12 border-b border-gray-100 pb-4">
-                        <h2 className="font-display text-3xl md:text-4xl text-[#1a1a1a]">Latest Stories</h2>
-                        <Link href="#" className="flex items-center gap-2 text-[#f01a33] font-medium hover:opacity-80 transition-opacity">
-                            View Archive <ArrowUpRight className="w-4 h-4" />
-                        </Link>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-16">
-                        {gridPosts.map((post) => (
-                            <Link key={post.id} href={`/magazine/${post.id}`} className="group block">
-                                <div className="mb-6 bg-[#fcfcfc] rounded-[2px] overflow-hidden aspect-[3/2] border border-gray-100">
-                                    <img
-                                        src={post.image}
-                                        alt={post.title}
-                                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                                    />
-                                </div>
-                                <div className="flex justify-between items-start mb-4">
-                                    <span className="text-xs font-bold uppercase tracking-wider text-[#e7406e] font-body">{post.category}</span>
-                                </div>
-                                <h3 className="font-display text-2xl mb-4 group-hover:text-[#f01a33] transition-colors leading-tight">
-                                    {post.title}
-                                </h3>
-                                <p className="font-body text-[#666] mb-6 line-clamp-3 leading-relaxed">
-                                    {post.excerpt}
-                                </p>
-                                <div className="flex items-center gap-2 text-[10px] uppercase tracking-widest font-bold text-[#999] font-body">
-                                    <Clock className="w-3 h-3" />
-                                    <span>{post.readTime}</span>
-                                </div>
+                {gridPosts.length > 0 && (
+                    <section>
+                        <div className="flex items-end justify-between mb-12 border-b border-gray-100 pb-4">
+                            <h2 className="font-display text-3xl md:text-4xl text-[#1a1a1a]">Bài Viết Mới Nhất</h2>
+                            <Link href="#" className="flex items-center gap-2 text-[#f01a33] font-medium hover:opacity-80 transition-opacity">
+                                Xem Lưu Trữ <ArrowUpRight className="w-4 h-4" />
                             </Link>
-                        ))}
-                    </div>
-                </section>
+                        </div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-16">
+                            {gridPosts.map((post) => (
+                                <Link key={post.id} href={`/magazine/${post.id}`} className="group block">
+                                    <div className="mb-6 bg-[#fcfcfc] rounded-[2px] overflow-hidden aspect-[3/2] border border-gray-100">
+                                        <img
+                                            src={post.image}
+                                            alt={post.title}
+                                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                        />
+                                    </div>
+                                    <div className="flex justify-between items-start mb-4">
+                                        <span className="text-xs font-bold uppercase tracking-wider text-[#e7406e] font-body">{post.category}</span>
+                                    </div>
+                                    <h3 className="font-display text-2xl mb-4 group-hover:text-[#f01a33] transition-colors leading-tight">
+                                        {post.title}
+                                    </h3>
+                                    <p className="font-body text-[#666] mb-6 line-clamp-3 leading-relaxed">
+                                        {post.excerpt}
+                                    </p>
+                                    <div className="flex items-center gap-2 text-[10px] uppercase tracking-widest font-bold text-[#999] font-body">
+                                        <Clock className="w-3 h-3" />
+                                        <span>{post.readTime}</span>
+                                    </div>
+                                </Link>
+                            ))}
+                        </div>
+                    </section>
+                )}
             </main>
 
             <Footer />
