@@ -10,11 +10,11 @@ const Terms = () => {
                 {/* Hero Section */}
                 <div className="bg-gradient-to-r from-[#f01a33] to-[#e91e63] text-white pt-32 pb-16">
                     <div className="max-w-4xl mx-auto px-6">
-                        <h1 className="text-4xl md:text-5xl font-heading font-bold mb-4">
-                            Terms of Service
+                        <h1 className="text-4xl md:text-5xl font-display font-bold mb-4">
+                            Điều Khoản Dịch Vụ
                         </h1>
                         <p className="text-white/90 font-body text-lg">
-                            Last updated: December 29, 2025
+                            Cập nhật lần cuối: 29 Tháng 12, 2025
                         </p>
                     </div>
                 </div>
@@ -24,158 +24,162 @@ const Terms = () => {
                     <div className="bg-white rounded-2xl shadow-lg p-8 md:p-12 space-y-8">
 
                         <section>
-                            <h2 className="text-2xl font-heading font-bold text-gray-900 mb-4">
-                                1. Agreement to Terms
+                            <h2 className="text-2xl font-display font-bold text-gray-900 mb-4">
+                                1. Đồng Ý Với Điều Khoản
                             </h2>
                             <p className="text-gray-700 font-body leading-relaxed">
-                                By accessing and using Blushora's website and services, you accept and agree to be bound by the
-                                terms and provision of this agreement. If you do not agree to abide by the above, please do not
-                                use this service.
+                                Khi truy cập và sử dụng website cùng các dịch vụ của Bulsan Beauty, bạn chấp nhận và đồng ý tuân
+                                theo các điều khoản và quy định của thoả thuận này. Nếu bạn không đồng ý tuân thủ những điều trên,
+                                vui lòng không sử dụng dịch vụ này.
                             </p>
                         </section>
 
                         <section>
-                            <h2 className="text-2xl font-heading font-bold text-gray-900 mb-4">
-                                2. Use License
+                            <h2 className="text-2xl font-display font-bold text-gray-900 mb-4">
+                                2. Giấy Phép Sử Dụng
                             </h2>
                             <p className="text-gray-700 font-body leading-relaxed mb-3">
-                                Permission is granted to temporarily access the materials (information or software) on Blushora's
-                                website for personal, non-commercial transitory viewing only. This is the grant of a license, not
-                                a transfer of title, and under this license you may not:
+                                Bạn được cấp quyền truy cập tạm thời vào các tài liệu (thông tin hoặc phần mềm) trên website của
+                                Bulsan Beauty chỉ nhằm mục đích xem cá nhân, không mang tính thương mại. Đây là việc cấp giấy phép,
+                                không phải chuyển nhượng quyền sở hữu, và theo giấy phép này bạn không được:
                             </p>
                             <ul className="list-disc list-inside space-y-2 text-gray-700 font-body ml-4">
-                                <li>Modify or copy the materials</li>
-                                <li>Use the materials for any commercial purpose or public display</li>
-                                <li>Attempt to decompile or reverse engineer any software on Blushora's website</li>
-                                <li>Remove any copyright or proprietary notations from the materials</li>
-                                <li>Transfer the materials to another person or "mirror" the materials on any other server</li>
+                                <li>Chỉnh sửa hoặc sao chép tài liệu</li>
+                                <li>Sử dụng tài liệu cho bất kỳ mục đích thương mại hoặc trưng bày công khai nào</li>
+                                <li>Cố gắng dịch ngược hoặc phân tích mã nguồn bất kỳ phần mềm nào trên website của Bulsan Beauty</li>
+                                <li>Xoá bỏ bất kỳ thông báo bản quyền hoặc quyền sở hữu nào khỏi tài liệu</li>
+                                <li>Chuyển giao tài liệu cho người khác hoặc "sao lưu" (mirror) tài liệu trên bất kỳ máy chủ nào khác</li>
                             </ul>
                         </section>
 
                         <section>
-                            <h2 className="text-2xl font-heading font-bold text-gray-900 mb-4">
-                                3. Product Information and Pricing
+                            <h2 className="text-2xl font-display font-bold text-gray-900 mb-4">
+                                3. Thông Tin Sản Phẩm Và Giá Cả
                             </h2>
                             <p className="text-gray-700 font-body leading-relaxed">
-                                We strive to provide accurate product descriptions and pricing. However, we do not warrant that
-                                product descriptions, pricing, or other content is accurate, complete, reliable, current, or
-                                error-free. We reserve the right to correct any errors, inaccuracies, or omissions and to change
-                                or update information at any time without prior notice.
+                                Chúng tôi luôn nỗ lực cung cấp mô tả sản phẩm và giá cả chính xác. Tuy nhiên, chúng tôi không đảm
+                                bảo rằng mô tả sản phẩm, giá cả hoặc nội dung khác luôn chính xác, đầy đủ, đáng tin cậy, cập nhật
+                                hoặc không có sai sót. Chúng tôi có quyền chỉnh sửa bất kỳ lỗi, sai sót nào và thay đổi hoặc cập
+                                nhật thông tin bất cứ lúc nào mà không cần báo trước.
                             </p>
                         </section>
 
                         <section>
-                            <h2 className="text-2xl font-heading font-bold text-gray-900 mb-4">
-                                4. Orders and Payment
+                            <h2 className="text-2xl font-display font-bold text-gray-900 mb-4">
+                                4. Đặt Hàng Và Thanh Toán
                             </h2>
                             <p className="text-gray-700 font-body leading-relaxed mb-3">
-                                By placing an order, you warrant that:
+                                Khi đặt hàng, bạn cam kết rằng:
                             </p>
                             <ul className="list-disc list-inside space-y-2 text-gray-700 font-body ml-4">
-                                <li>You are legally capable of entering into binding contracts</li>
-                                <li>You are at least 18 years of age</li>
-                                <li>All information you provide is accurate and complete</li>
-                                <li>You have the authority to use the payment method provided</li>
+                                <li>Bạn có đủ năng lực pháp lý để tham gia các giao dịch ràng buộc</li>
+                                <li>Bạn từ 18 tuổi trở lên</li>
+                                <li>Mọi thông tin bạn cung cấp là chính xác và đầy đủ</li>
+                                <li>Bạn có quyền sử dụng phương thức thanh toán đã cung cấp</li>
                             </ul>
                             <p className="text-gray-700 font-body leading-relaxed mt-3">
-                                We reserve the right to refuse or cancel any order for any reason, including limitations on
-                                quantities available for purchase, inaccuracies in product or pricing information, or problems
-                                identified by our fraud detection systems.
+                                Chúng tôi có quyền từ chối hoặc huỷ bất kỳ đơn hàng nào vì bất kỳ lý do gì, bao gồm giới hạn số
+                                lượng có thể mua, sai sót trong thông tin sản phẩm hoặc giá cả, hoặc các vấn đề được phát hiện
+                                bởi hệ thống phát hiện gian lận của chúng tôi.
                             </p>
                         </section>
 
                         <section>
-                            <h2 className="text-2xl font-heading font-bold text-gray-900 mb-4">
-                                5. Shipping and Delivery
+                            <h2 className="text-2xl font-display font-bold text-gray-900 mb-4">
+                                5. Vận Chuyển Và Giao Hàng
                             </h2>
                             <p className="text-gray-700 font-body leading-relaxed">
-                                We will make every effort to deliver products within the estimated timeframes. However, delays
-                                may occasionally occur. We are not liable for any delays in shipments. Title and risk of loss
-                                pass to you upon our delivery to the carrier.
+                                Chúng tôi sẽ nỗ lực hết sức để giao hàng trong thời gian dự kiến. Tuy nhiên, đôi khi có thể xảy ra
+                                chậm trễ. Chúng tôi không chịu trách nhiệm đối với các sự chậm trễ trong quá trình vận chuyển.
+                                Quyền sở hữu và rủi ro mất mát được chuyển giao cho bạn ngay khi chúng tôi bàn giao hàng cho đơn
+                                vị vận chuyển.
                             </p>
                         </section>
 
                         <section>
-                            <h2 className="text-2xl font-heading font-bold text-gray-900 mb-4">
-                                6. Returns and Refunds
+                            <h2 className="text-2xl font-display font-bold text-gray-900 mb-4">
+                                6. Đổi Trả Và Hoàn Tiền
                             </h2>
                             <p className="text-gray-700 font-body leading-relaxed">
-                                We want you to be completely satisfied with your purchase. If you're not happy with your order,
-                                you may return unopened products within 30 days of delivery for a full refund. Opened beauty
-                                products cannot be returned due to health and safety regulations. Please refer to our Returns
-                                Policy for complete details.
+                                Chúng tôi mong muốn bạn hoàn toàn hài lòng với sản phẩm đã mua. Nếu bạn chưa hài lòng với đơn hàng
+                                của mình, bạn có thể trả lại sản phẩm chưa mở trong vòng 30 ngày kể từ ngày giao hàng để được
+                                hoàn tiền toàn bộ. Các sản phẩm làm đẹp đã mở không thể được trả lại do quy định về sức khoẻ và an
+                                toàn. Vui lòng tham khảo Chính Sách Đổi Trả của chúng tôi để biết chi tiết đầy đủ.
                             </p>
                         </section>
 
                         <section>
-                            <h2 className="text-2xl font-heading font-bold text-gray-900 mb-4">
-                                7. User Accounts
+                            <h2 className="text-2xl font-display font-bold text-gray-900 mb-4">
+                                7. Tài Khoản Người Dùng
                             </h2>
                             <p className="text-gray-700 font-body leading-relaxed">
-                                When you create an account with us, you must provide accurate, complete, and current information.
-                                You are responsible for safeguarding your password and for all activities that occur under your
-                                account. You agree to notify us immediately of any unauthorized use of your account.
+                                Khi tạo tài khoản với chúng tôi, bạn phải cung cấp thông tin chính xác, đầy đủ và cập nhật. Bạn có
+                                trách nhiệm bảo mật mật khẩu của mình và chịu trách nhiệm cho mọi hoạt động diễn ra dưới tài khoản
+                                của bạn. Bạn đồng ý thông báo ngay cho chúng tôi nếu phát hiện bất kỳ hành vi sử dụng trái phép
+                                tài khoản của mình.
                             </p>
                         </section>
 
                         <section>
-                            <h2 className="text-2xl font-heading font-bold text-gray-900 mb-4">
-                                8. Intellectual Property
+                            <h2 className="text-2xl font-display font-bold text-gray-900 mb-4">
+                                8. Sở Hữu Trí Tuệ
                             </h2>
                             <p className="text-gray-700 font-body leading-relaxed">
-                                The service and its original content, features, and functionality are and will remain the exclusive
-                                property of Blushora and its licensors. The service is protected by copyright, trademark, and other
-                                laws. Our trademarks may not be used in connection with any product or service without our prior
-                                written consent.
+                                Dịch vụ cùng nội dung, tính năng và chức năng gốc của nó là và sẽ luôn thuộc quyền sở hữu độc
+                                quyền của Bulsan Beauty và các bên cấp phép liên quan. Dịch vụ được bảo vệ bởi luật bản quyền,
+                                nhãn hiệu và các luật khác. Nhãn hiệu của chúng tôi không được sử dụng liên quan đến bất kỳ sản
+                                phẩm hoặc dịch vụ nào nếu không có sự đồng ý bằng văn bản từ chúng tôi.
                             </p>
                         </section>
 
                         <section>
-                            <h2 className="text-2xl font-heading font-bold text-gray-900 mb-4">
-                                9. Limitation of Liability
+                            <h2 className="text-2xl font-display font-bold text-gray-900 mb-4">
+                                9. Giới Hạn Trách Nhiệm
                             </h2>
                             <p className="text-gray-700 font-body leading-relaxed">
-                                In no event shall Blushora, nor its directors, employees, partners, agents, suppliers, or affiliates,
-                                be liable for any indirect, incidental, special, consequential, or punitive damages, including without
-                                limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from your
-                                access to or use of or inability to access or use the service.
+                                Trong mọi trường hợp, Bulsan Beauty cũng như ban giám đốc, nhân viên, đối tác, đại lý, nhà cung
+                                cấp hoặc các bên liên kết sẽ không chịu trách nhiệm cho bất kỳ thiệt hại gián tiếp, ngẫu nhiên,
+                                đặc biệt, hệ quả hoặc mang tính trừng phạt nào, bao gồm nhưng không giới hạn ở mất lợi nhuận, dữ
+                                liệu, quyền sử dụng, uy tín hoặc các tổn thất vô hình khác, phát sinh từ việc bạn truy cập, sử
+                                dụng hoặc không thể truy cập, sử dụng dịch vụ.
                             </p>
                         </section>
 
                         <section>
-                            <h2 className="text-2xl font-heading font-bold text-gray-900 mb-4">
-                                10. Governing Law
+                            <h2 className="text-2xl font-display font-bold text-gray-900 mb-4">
+                                10. Luật Áp Dụng
                             </h2>
                             <p className="text-gray-700 font-body leading-relaxed">
-                                These Terms shall be governed and construed in accordance with the laws of the jurisdiction in which
-                                Blushora operates, without regard to its conflict of law provisions. Our failure to enforce any right
-                                or provision of these Terms will not be considered a waiver of those rights.
+                                Các Điều Khoản này sẽ được điều chỉnh và giải thích theo pháp luật của khu vực pháp lý nơi Bulsan
+                                Beauty hoạt động, không phụ thuộc vào các quy định về xung đột pháp luật. Việc chúng tôi không
+                                thực thi bất kỳ quyền hoặc điều khoản nào trong Điều Khoản này sẽ không được xem là từ bỏ các
+                                quyền đó.
                             </p>
                         </section>
 
                         <section>
-                            <h2 className="text-2xl font-heading font-bold text-gray-900 mb-4">
-                                11. Changes to Terms
+                            <h2 className="text-2xl font-display font-bold text-gray-900 mb-4">
+                                11. Thay Đổi Điều Khoản
                             </h2>
                             <p className="text-gray-700 font-body leading-relaxed">
-                                We reserve the right to modify or replace these Terms at any time. If a revision is material, we will
-                                provide at least 30 days' notice prior to any new terms taking effect. What constitutes a material
-                                change will be determined at our sole discretion.
+                                Chúng tôi có quyền chỉnh sửa hoặc thay thế các Điều Khoản này bất cứ lúc nào. Nếu có thay đổi quan
+                                trọng, chúng tôi sẽ thông báo trước ít nhất 30 ngày trước khi các điều khoản mới có hiệu lực. Việc
+                                xác định thế nào là thay đổi quan trọng sẽ do chúng tôi toàn quyền quyết định.
                             </p>
                         </section>
 
                         <section>
-                            <h2 className="text-2xl font-heading font-bold text-gray-900 mb-4">
-                                12. Contact Information
+                            <h2 className="text-2xl font-display font-bold text-gray-900 mb-4">
+                                12. Thông Tin Liên Hệ
                             </h2>
                             <p className="text-gray-700 font-body leading-relaxed">
-                                If you have any questions about these Terms, please contact us:
+                                Nếu bạn có bất kỳ câu hỏi nào về các Điều Khoản này, vui lòng liên hệ với chúng tôi:
                             </p>
                             <div className="mt-4 p-4 bg-pink-50 rounded-lg">
                                 <p className="text-gray-700 font-body">
-                                    <strong>Email:</strong> legal@blushora.com<br />
-                                    <strong>Phone:</strong> +1 (555) 123-4567<br />
-                                    <strong>Address:</strong> 123 Beauty Lane, Glow City, GC 12345
+                                    <strong>Email:</strong> metquatroiquaday@bulsangroup.com<br />
+                                    <strong>Điện thoại:</strong> + 1234000<br />
+                                    <strong>Địa chỉ:</strong> 347 Nguyễn Trọng Tuyển, Phường Tân Sơn Hoà, Quận Tân Bình
                                 </p>
                             </div>
                         </section>
