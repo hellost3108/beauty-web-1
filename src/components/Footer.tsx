@@ -13,11 +13,11 @@ const Footer = () => {
             <ul className="space-y-2">
               <li className="flex items-start gap-4">
                 <MapPin className="w-5 h-5 text-[#999999] shrink-0 mt-0.5" />
-                <span className="font-body text-sm text-[#888888]">Mumbai, MH, India</span>
+                <span className="font-body text-sm text-[#888888]">347 Nguyễn Trọng Tuyển, Phường Tân Sơn Hoà, Quận Tân Bình</span>
               </li>
               <li className="flex items-start gap-4">
                 <Clock className="w-5 h-5 text-[#999999] shrink-0 mt-0.5" />
-                <span className="font-body text-sm text-[#888888]">09:00 - 17:00</span>
+                <span className="font-body text-sm text-[#888888]">08:30 - 18:30</span>
               </li>
             </ul>
           </div>
@@ -33,7 +33,7 @@ const Footer = () => {
               <li className="flex items-center gap-4">
                 <Mail className="w-5 h-5 text-[#999999] shrink-0" />
                 <span className="font-body text-sm text-[#888888] hover:text-[#f01a33] transition-colors cursor-pointer">
-                  johndoe@example.com
+                  metquatroiquaday@bulsangroup.com
                 </span>
               </li>
             </ul>
