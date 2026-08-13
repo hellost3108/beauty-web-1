@@ -39,7 +39,7 @@ const Magazine = () => {
                     <span className="text-[#e7406e] font-display text-lg tracking-wide uppercase mb-4 block">Số Báo Điện Tử</span>
                     <h1 className="font-display text-4xl md:text-5xl lg:text-7xl mb-6">
                         <span className="text-[#1a1a1a]">Bulsan Beauty </span>
-                        <span className="text-[#f01a33]">Magazine</span>
+                        <span className="text-[#1a1a1a]">Magazine</span>
                     </h1>
                     <div className="flex justify-center gap-8 text-sm uppercase tracking-widest font-body font-medium text-[#666]">
                         <span>Làm Đẹp</span>
