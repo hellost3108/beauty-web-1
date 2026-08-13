@@ -24,7 +24,7 @@ const slides = [
     headline: { part1: "Radiance in ", part2: "Every Drop" },
     subheadline: "Pure, potent, and perfect for your skin. Discover the essence of true beauty.",
     // Placeholder 2
-    image: "/assets/placeholder-anh3.png",
+    image: "/assets/anh3.png",
   }
 ];
 
