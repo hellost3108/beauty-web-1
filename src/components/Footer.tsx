@@ -28,7 +28,7 @@ const Footer = () => {
             <ul className="space-y-2">
               <li className="flex items-center gap-4">
                 <Phone className="w-5 h-5 text-[#999999] shrink-0" />
-                <span className="font-body text-sm text-[#888888]">+ 1234567890</span>
+                <span className="font-body text-sm text-[#888888]">+ 1234000</span>
               </li>
               <li className="flex items-center gap-4">
                 <Mail className="w-5 h-5 text-[#999999] shrink-0" />
