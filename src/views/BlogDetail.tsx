@@ -64,7 +64,7 @@ const BlogDetail = () => {
                     className="inline-flex items-center gap-2 text-[#666666] hover:text-[#e7406e] mb-8 transition-colors"
                 >
                     <ArrowLeft className="w-4 h-4" />
-                    Back to Blog
+                    Quay Lại Blog
                 </Link>
 
                 <div
@@ -77,8 +77,8 @@ const BlogDetail = () => {
             <section className="bg-[#fcfcfc] py-16 md:py-24">
                 <div className="max-w-7xl mx-auto px-6">
                     <h2 className="font-display text-3xl mb-12 text-center">
-                        <span className="text-[#1a1a1a]">Read </span>
-                        <span className="text-[#f01a33]">Next</span>
+                        <span className="text-[#1a1a1a]">Đọc </span>
+                        <span className="text-[#f01a33]">Tiếp Theo</span>
                     </h2>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                         {blogPosts
