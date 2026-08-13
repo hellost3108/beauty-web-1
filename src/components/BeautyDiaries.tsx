@@ -7,21 +7,21 @@ const reviews = [
         text: "Minimal packaging, maximum results. My skin looks healthier and more radiant within days.",
         author: "Alkin Yadev",
         role: "Verified user",
-        image: "/assets/placeholder-150x150.png",
+        image: "/assets/anh150x150.png",
     },
     {
         id: 2,
         text: "Elegant, lightweight, and effective. Blushora is now a staple in my routine.",
         author: "Jimmy Sharma",
         role: "Verified user",
-        image: "/assets/placeholder-150x150.png",
+        image: "/assets/anh150x150 2.png",
     },
     {
         id: 3,
         text: "Effortless glow, beautiful textures, and truly premium quality. Blushora feels luxurious and performs even better.",
         author: "Gulfan Ivy",
         role: "Verified user",
-        image: "/assets/placeholder-150x150.png",
+        image: "/assets/anh150x150 3.png",
     },
 ];
 
