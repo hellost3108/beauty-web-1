@@ -10,7 +10,7 @@ const slides = [
     headline: { part1: "Your Signature ", part2: "Glow Starts Here" },
     subheadline: "Blushora delivers smooth hydration and a naturally radiant complexion — every single day.",
     // Use the static path from public/assets
-    image: "/assets/1920x1080.png",
+    image: "/assets/anh1.png",
   },
   {
     id: 2,
