@@ -4,22 +4,22 @@ import { Button } from '@/components/ui/button';
 const testimonials = [
     {
         name: 'Alkin Yadav',
-        role: 'Verified user',
-        quote: 'Minimal packaging, maximum results. My skin looks healthier and more radiant within days.',
+        role: 'Người dùng đã xác minh',
+        quote: 'Bao bì tối giản, hiệu quả tối đa. Làn da tôi trông khoẻ khoắn và rạng rỡ hơn chỉ sau vài ngày.',
         stars: 5,
         avatar: '/assets/placeholder-150x150.png'
     },
     {
         name: 'Jimmy Sharma',
-        role: 'Verified user',
-        quote: 'Elegant, lightweight, and effective. Blushora is now a staple in my routine.',
+        role: 'Người dùng đã xác minh',
+        quote: 'Thanh lịch, nhẹ nhàng và hiệu quả. Melalogy giờ là sản phẩm không thể thiếu trong chu trình chăm sóc da của tôi.',
         stars: 4,
         avatar: '/assets/placeholder-150x150.png'
     },
     {
         name: 'Gulfan Ivy',
-        role: 'Verified user',
-        quote: 'Effortless glow, beautiful textures, and truly premium quality. Blushora feels luxurious and performs even better.',
+        role: 'Người dùng đã xác minh',
+        quote: 'Làn da rạng rỡ tự nhiên, kết cấu mịn màng và chất lượng cao cấp thực sự. Melalogy vừa sang trọng vừa hiệu quả vượt mong đợi.',
         stars: 4,
         avatar: '/assets/placeholder-150x150.png'
     }
@@ -32,8 +32,8 @@ const TestimonialsSection = () => {
                 {/* Section Title */}
                 <div className="text-center mb-16">
                     <h2 className="font-display text-3xl md:text-4xl leading-none tracking-tight">
-                        <span className="text-[#1a1a1a]">Loved by </span>
-                        <span className="text-[#f01a33]">Thousands</span>
+                        <span className="text-[#1a1a1a]">Được </span>
+                        <span className="text-[#f01a33]">Hàng Nghìn Người Tin Dùng</span>
                     </h2>
                 </div>
 
@@ -75,7 +75,7 @@ const TestimonialsSection = () => {
 
                 {/* View All Button */}
                 <div className="flex justify-center">
-                   
+
                 </div>
             </div>
         </section>
