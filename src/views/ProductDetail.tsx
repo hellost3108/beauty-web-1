@@ -23,12 +23,14 @@ const ProductDetail = () => {
     const { addToCart, addToWishlist, isInWishlist } = useShop();
 
     const productDetails = allProducts.find(p => p.id === Number(id));
+    const [activeImage, setActiveImage] = useState<string | undefined>(productDetails?.images?.[0]);
 
     useEffect(() => {
         if (!productDetails) {
             router.push('/collection');
         }
         window.scrollTo(0, 0);
+        setActiveImage(productDetails?.images?.[0]);
     }, [productDetails, router]);
 
     if (!productDetails) return null;
@@ -88,11 +90,24 @@ const ProductDetail = () => {
                                     Bán Chạy Nhất
                                 </div>
                                 <img
-                                    src={productDetails.image}
+                                    src={activeImage || productDetails.image}
                                     alt={productDetails.name}
                                     className="w-full h-full object-cover"
                                 />
                             </div>
+                            {productDetails.images && productDetails.images.length > 1 && (
+                                <div className="grid grid-cols-3 gap-4">
+                                    {productDetails.images.map((img, idx) => (
+                                        <button
+                                            key={idx}
+                                            onClick={() => setActiveImage(img)}
+                                            className={`aspect-square bg-[#f9f8f7] rounded-[12px] overflow-hidden border-2 transition-all ${activeImage === img ? 'border-[#f01a33]' : 'border-transparent hover:border-gray-200'}`}
+                                        >
+                                            <img src={img} alt={`${productDetails.name} ${idx + 1}`} className="w-full h-full object-cover" />
+                                        </button>
+                                    ))}
+                                </div>
+                            )}
                         </div>
 
                         {/* Right: Details */}
