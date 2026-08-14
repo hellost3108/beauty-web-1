@@ -74,8 +74,8 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Bulsan Beauty | Mỹ Phẩm & Chăm Sóc Da Cao Cấp",
-  description: "Khám phá những sản phẩm làm đẹp và chăm sóc da tốt nhất cùng Bulsan Beauty.",
+  title: "Melalogy | Mỹ Phẩm & Chăm Sóc Da Cao Cấp",
+  description: "Khám phá những sản phẩm làm đẹp và chăm sóc da tốt nhất cùng Melalogy.",
   icons: {
     icon: "/favicon.png",
   }

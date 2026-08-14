@@ -28,7 +28,7 @@ const Terms = () => {
                                 1. Đồng Ý Với Điều Khoản
                             </h2>
                             <p className="text-gray-700 font-body leading-relaxed">
-                                Khi truy cập và sử dụng website cùng các dịch vụ của Bulsan Beauty, bạn chấp nhận và đồng ý tuân
+                                Khi truy cập và sử dụng website cùng các dịch vụ của Melalogy, bạn chấp nhận và đồng ý tuân
                                 theo các điều khoản và quy định của thoả thuận này. Nếu bạn không đồng ý tuân thủ những điều trên,
                                 vui lòng không sử dụng dịch vụ này.
                             </p>
@@ -40,13 +40,13 @@ const Terms = () => {
                             </h2>
                             <p className="text-gray-700 font-body leading-relaxed mb-3">
                                 Bạn được cấp quyền truy cập tạm thời vào các tài liệu (thông tin hoặc phần mềm) trên website của
-                                Bulsan Beauty chỉ nhằm mục đích xem cá nhân, không mang tính thương mại. Đây là việc cấp giấy phép,
+                                Melalogy chỉ nhằm mục đích xem cá nhân, không mang tính thương mại. Đây là việc cấp giấy phép,
                                 không phải chuyển nhượng quyền sở hữu, và theo giấy phép này bạn không được:
                             </p>
                             <ul className="list-disc list-inside space-y-2 text-gray-700 font-body ml-4">
                                 <li>Chỉnh sửa hoặc sao chép tài liệu</li>
                                 <li>Sử dụng tài liệu cho bất kỳ mục đích thương mại hoặc trưng bày công khai nào</li>
-                                <li>Cố gắng dịch ngược hoặc phân tích mã nguồn bất kỳ phần mềm nào trên website của Bulsan Beauty</li>
+                                <li>Cố gắng dịch ngược hoặc phân tích mã nguồn bất kỳ phần mềm nào trên website của Melalogy</li>
                                 <li>Xoá bỏ bất kỳ thông báo bản quyền hoặc quyền sở hữu nào khỏi tài liệu</li>
                                 <li>Chuyển giao tài liệu cho người khác hoặc "sao lưu" (mirror) tài liệu trên bất kỳ máy chủ nào khác</li>
                             </ul>
@@ -126,7 +126,7 @@ const Terms = () => {
                             </h2>
                             <p className="text-gray-700 font-body leading-relaxed">
                                 Dịch vụ cùng nội dung, tính năng và chức năng gốc của nó là và sẽ luôn thuộc quyền sở hữu độc
-                                quyền của Bulsan Beauty và các bên cấp phép liên quan. Dịch vụ được bảo vệ bởi luật bản quyền,
+                                quyền của Melalogy và các bên cấp phép liên quan. Dịch vụ được bảo vệ bởi luật bản quyền,
                                 nhãn hiệu và các luật khác. Nhãn hiệu của chúng tôi không được sử dụng liên quan đến bất kỳ sản
                                 phẩm hoặc dịch vụ nào nếu không có sự đồng ý bằng văn bản từ chúng tôi.
                             </p>
@@ -137,7 +137,7 @@ const Terms = () => {
                                 9. Giới Hạn Trách Nhiệm
                             </h2>
                             <p className="text-gray-700 font-body leading-relaxed">
-                                Trong mọi trường hợp, Bulsan Beauty cũng như ban giám đốc, nhân viên, đối tác, đại lý, nhà cung
+                                Trong mọi trường hợp, Melalogy cũng như ban giám đốc, nhân viên, đối tác, đại lý, nhà cung
                                 cấp hoặc các bên liên kết sẽ không chịu trách nhiệm cho bất kỳ thiệt hại gián tiếp, ngẫu nhiên,
                                 đặc biệt, hệ quả hoặc mang tính trừng phạt nào, bao gồm nhưng không giới hạn ở mất lợi nhuận, dữ
                                 liệu, quyền sử dụng, uy tín hoặc các tổn thất vô hình khác, phát sinh từ việc bạn truy cập, sử
@@ -150,8 +150,8 @@ const Terms = () => {
                                 10. Luật Áp Dụng
                             </h2>
                             <p className="text-gray-700 font-body leading-relaxed">
-                                Các Điều Khoản này sẽ được điều chỉnh và giải thích theo pháp luật của khu vực pháp lý nơi Bulsan
-                                Beauty hoạt động, không phụ thuộc vào các quy định về xung đột pháp luật. Việc chúng tôi không
+                                Các Điều Khoản này sẽ được điều chỉnh và giải thích theo pháp luật của khu vực pháp lý nơi Melalogy
+                                hoạt động, không phụ thuộc vào các quy định về xung đột pháp luật. Việc chúng tôi không
                                 thực thi bất kỳ quyền hoặc điều khoản nào trong Điều Khoản này sẽ không được xem là từ bỏ các
                                 quyền đó.
                             </p>
@@ -177,7 +177,7 @@ const Terms = () => {
                             </p>
                             <div className="mt-4 p-4 bg-pink-50 rounded-lg">
                                 <p className="text-gray-700 font-body">
-                                    <strong>Email:</strong> metquatroiquaday@bulsangroup.com<br />
+                                    <strong>Email:</strong> metquatroiquaday@melalogy.com<br />
                                     <strong>Điện thoại:</strong> + 1234000<br />
                                     <strong>Địa chỉ:</strong> 347 Nguyễn Trọng Tuyển, Phường Tân Sơn Hoà, Quận Tân Bình
                                 </p>

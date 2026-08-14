@@ -28,7 +28,7 @@ const Privacy = () => {
                                 1. Giới Thiệu
                             </h2>
                             <p className="text-gray-700 font-body leading-relaxed">
-                                Chào mừng bạn đến với Bulsan Beauty. Chúng tôi tôn trọng quyền riêng tư của bạn và cam kết bảo vệ
+                                Chào mừng bạn đến với Melalogy. Chúng tôi tôn trọng quyền riêng tư của bạn và cam kết bảo vệ
                                 dữ liệu cá nhân của bạn. Chính sách bảo mật này sẽ giải thích cách chúng tôi quản lý dữ liệu cá nhân
                                 của bạn khi bạn truy cập website, cũng như thông tin về quyền riêng tư và cách pháp luật bảo vệ bạn.
                             </p>
@@ -136,7 +136,7 @@ const Privacy = () => {
                             </p>
                             <div className="mt-4 p-4 bg-pink-50 rounded-lg">
                                 <p className="text-gray-700 font-body">
-                                    <strong>Email:</strong> metquatroiquaday@bulsangroup.com<br />
+                                    <strong>Email:</strong> metquatroiquaday@melalogy.com<br />
                                     <strong>Điện thoại:</strong> + 1234000<br />
                                     <strong>Địa chỉ:</strong> 347 Nguyễn Trọng Tuyển, Phường Tân Sơn Hoà, Quận Tân Bình
                                 </p>

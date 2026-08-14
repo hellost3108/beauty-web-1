@@ -33,7 +33,7 @@ const Footer = () => {
               <li className="flex items-center gap-4">
                 <Mail className="w-5 h-5 text-[#999999] shrink-0" />
                 <span className="font-body text-sm text-[#888888] hover:text-[#f01a33] transition-colors cursor-pointer">
-                  metquatroiquaday@bulsangroup.com
+                  metquatroiquaday@melalogy.com
                 </span>
               </li>
             </ul>
@@ -92,7 +92,7 @@ const Footer = () => {
         {/* Bottom bar */}
         <div className="pt-4 border-t border-[#f0f0f0] flex justify-center items-center">
           <p className="font-body text-sm text-[#999999]">
-            © Bản quyền 2025 Bulsan Beauty. Đã đăng ký bản quyền.
+            © Bản quyền 2025 Melalogy. Đã đăng ký bản quyền.
           </p>
         </div>
       </div>
