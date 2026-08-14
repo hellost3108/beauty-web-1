@@ -47,7 +47,7 @@
 
     /* Typography */
     /* --font-display and --font-body are provided via layout.tsx */
-    --font-brand: "IvyMode", serif;
+    --font-brand: var(--font-display), serif;
     --font-button: "Poppins", sans-serif;
 
     /* Shadows */

@@ -73,8 +73,8 @@ export default {
         },
       },
       fontFamily: {
-        display: ["IvyMode", "serif"],
-        brand: ["IvyMode", "serif"],
+        display: ["var(--font-display)", "serif"],
+        brand: ["var(--font-display)", "serif"],
         body: ["Inter", "sans-serif"],
         button: ["Poppins", "sans-serif"],
       },
