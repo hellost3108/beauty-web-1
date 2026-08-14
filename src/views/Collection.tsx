@@ -24,27 +24,27 @@ const categories = ['Chăm Sóc Da', 'Chăm Sóc Tóc', 'Cơ Thể', 'Sức Kh�
 
 // Sample products data with enriched attributes
 const allProducts = [
-    { id: 1, image: "/assets/placeholder-400x500.png", name: 'Serum Dưỡng Sáng Da', price: '1,199', oldPrice: '1,299', category: 'Chăm Sóc Da', skinType: 'All', rawPrice: 1199 },
-    { id: 2, image: "/assets/placeholder-400x500.png", name: 'Dầu Dưỡng Rạng Rỡ', price: '1,199', oldPrice: '1,299', category: 'Chăm Sóc Da', skinType: 'Da Khô', rawPrice: 1199 },
-    { id: 3, image: "/assets/placeholder-400x500.png", name: 'Mặt Nạ Ủ Tóc Mượt', price: '1,199', oldPrice: '1,299', category: 'Chăm Sóc Tóc', skinType: 'Da Thường', rawPrice: 1199 },
-    { id: 4, image: "/assets/placeholder-400x500.png", name: 'Xịt Phồng Tóc', price: '1,199', oldPrice: '1,299', category: 'Chăm Sóc Tóc', skinType: 'All', rawPrice: 1199 },
-    { id: 5, image: "/assets/placeholder-400x500.png", name: 'Tẩy Da Chết Toàn Thân', price: '1,499', oldPrice: '1,699', category: 'Cơ Thể', skinType: 'Da Nhạy Cảm', rawPrice: 1499 },
-    { id: 6, image: "/assets/placeholder-400x500.png", name: 'Bơ Shea Dưỡng Da', price: '999', oldPrice: '1,299', category: 'Cơ Thể', skinType: 'Da Khô', rawPrice: 999 },
-    { id: 7, image: "/assets/placeholder-400x500.png", name: 'Trà Thảo Mộc', price: '599', oldPrice: '799', category: 'Sức Khỏe & Dụng Cụ', skinType: 'All', rawPrice: 599 },
-    { id: 8, image: "/assets/placeholder-400x500.png", name: 'Bộ Quà Tặng Cao Cấp', price: '2,999', oldPrice: '3,499', category: 'Bộ Quà Tặng', skinType: 'All', rawPrice: 2999 },
-    { id: 9, image: "/assets/placeholder-400x500.png", name: 'Kem Dưỡng Đêm', price: '1,899', oldPrice: '2,099', category: 'Chăm Sóc Da', skinType: 'Da Khô', rawPrice: 1899 },
-    { id: 10, image: "/assets/placeholder-400x500.png", name: 'Dầu Gội', price: '899', oldPrice: '1,099', category: 'Chăm Sóc Tóc', skinType: 'Da Dầu', rawPrice: 899 },
+    { id: 1, image: "/assets/placeholder-400x500.png", name: 'Serum Dưỡng Sáng Da', price: '360.000', oldPrice: '390.000', category: 'Chăm Sóc Da', skinType: 'All', rawPrice: 360000 },
+    { id: 2, image: "/assets/placeholder-400x500.png", name: 'Dầu Dưỡng Rạng Rỡ', price: '360.000', oldPrice: '390.000', category: 'Chăm Sóc Da', skinType: 'Da Khô', rawPrice: 360000 },
+    { id: 3, image: "/assets/placeholder-400x500.png", name: 'Mặt Nạ Ủ Tóc Mượt', price: '360.000', oldPrice: '390.000', category: 'Chăm Sóc Tóc', skinType: 'Da Thường', rawPrice: 360000 },
+    { id: 4, image: "/assets/placeholder-400x500.png", name: 'Xịt Phồng Tóc', price: '360.000', oldPrice: '390.000', category: 'Chăm Sóc Tóc', skinType: 'All', rawPrice: 360000 },
+    { id: 5, image: "/assets/placeholder-400x500.png", name: 'Tẩy Da Chết Toàn Thân', price: '450.000', oldPrice: '510.000', category: 'Cơ Thể', skinType: 'Da Nhạy Cảm', rawPrice: 450000 },
+    { id: 6, image: "/assets/placeholder-400x500.png", name: 'Bơ Shea Dưỡng Da', price: '300.000', oldPrice: '390.000', category: 'Cơ Thể', skinType: 'Da Khô', rawPrice: 300000 },
+    { id: 7, image: "/assets/placeholder-400x500.png", name: 'Trà Thảo Mộc', price: '180.000', oldPrice: '240.000', category: 'Sức Khỏe & Dụng Cụ', skinType: 'All', rawPrice: 180000 },
+    { id: 8, image: "/assets/placeholder-400x500.png", name: 'Bộ Quà Tặng Cao Cấp', price: '900.000', oldPrice: '1.050.000', category: 'Bộ Quà Tặng', skinType: 'All', rawPrice: 900000 },
+    { id: 9, image: "/assets/placeholder-400x500.png", name: 'Kem Dưỡng Đêm', price: '570.000', oldPrice: '630.000', category: 'Chăm Sóc Da', skinType: 'Da Khô', rawPrice: 570000 },
+    { id: 10, image: "/assets/placeholder-400x500.png", name: 'Dầu Gội', price: '270.000', oldPrice: '330.000', category: 'Chăm Sóc Tóc', skinType: 'Da Dầu', rawPrice: 270000 },
     // New Products
-    { id: 11, image: "/assets/placeholder-400x500.png", name: 'Xịt Khoáng Cấp Ẩm', price: '899', oldPrice: '1,099', category: 'Chăm Sóc Da', skinType: 'Da Thường', rawPrice: 899 },
-    { id: 12, image: "/assets/placeholder-400x500.png", name: 'Kem Chống Lão Hoá', price: '2,499', oldPrice: '2,999', category: 'Chăm Sóc Da', skinType: 'Da Lão Hoá', rawPrice: 2499 },
-    { id: 13, image: "/assets/placeholder-400x500.png", name: 'Kem Định Hình Tóc Xoăn', price: '1,299', oldPrice: '1,499', category: 'Chăm Sóc Tóc', skinType: 'All', rawPrice: 1299 },
-    { id: 14, image: "/assets/placeholder-400x500.png", name: 'Tẩy Tế Bào Chết Da Đầu', price: '1,599', oldPrice: '1,899', category: 'Chăm Sóc Tóc', skinType: 'Da Dầu', rawPrice: 1599 },
-    { id: 15, image: "/assets/placeholder-400x500.png", name: 'Sữa Tắm Hoa Oải Hương', price: '799', oldPrice: '999', category: 'Cơ Thể', skinType: 'All', rawPrice: 799 },
-    { id: 16, image: "/assets/placeholder-400x500.png", name: 'Bộ 3 Kem Dưỡng Tay', price: '1,199', oldPrice: '1,499', category: 'Cơ Thể', skinType: 'Da Khô', rawPrice: 1199 },
-    { id: 17, image: "/assets/placeholder-400x500.png", name: 'Bột Superfood', price: '1,999', oldPrice: '2,499', category: 'Sức Khỏe & Dụng Cụ', skinType: 'All', rawPrice: 1999 },
-    { id: 18, image: "/assets/placeholder-400x500.png", name: 'Nến Thơm Thư Giãn', price: '1,299', oldPrice: '1,599', category: 'Sức Khỏe & Dụng Cụ', skinType: 'All', rawPrice: 1299 },
-    { id: 19, image: "/assets/placeholder-400x500.png", name: 'Bộ Kit Mini Thiết Yếu', price: '2,499', oldPrice: '2,999', category: 'Bộ Quà Tặng', skinType: 'All', rawPrice: 2499 },
-    { id: 20, image: "/assets/placeholder-400x500.png", name: 'Combo Spa Trọn Gói', price: '4,999', oldPrice: '5,999', category: 'Bộ Quà Tặng', skinType: 'All', rawPrice: 4999 },
+    { id: 11, image: "/assets/placeholder-400x500.png", name: 'Xịt Khoáng Cấp Ẩm', price: '270.000', oldPrice: '330.000', category: 'Chăm Sóc Da', skinType: 'Da Thường', rawPrice: 270000 },
+    { id: 12, image: "/assets/placeholder-400x500.png", name: 'Kem Chống Lão Hoá', price: '750.000', oldPrice: '900.000', category: 'Chăm Sóc Da', skinType: 'Da Lão Hoá', rawPrice: 750000 },
+    { id: 13, image: "/assets/placeholder-400x500.png", name: 'Kem Định Hình Tóc Xoăn', price: '390.000', oldPrice: '450.000', category: 'Chăm Sóc Tóc', skinType: 'All', rawPrice: 390000 },
+    { id: 14, image: "/assets/placeholder-400x500.png", name: 'Tẩy Tế Bào Chết Da Đầu', price: '480.000', oldPrice: '570.000', category: 'Chăm Sóc Tóc', skinType: 'Da Dầu', rawPrice: 480000 },
+    { id: 15, image: "/assets/placeholder-400x500.png", name: 'Sữa Tắm Hoa Oải Hương', price: '240.000', oldPrice: '300.000', category: 'Cơ Thể', skinType: 'All', rawPrice: 240000 },
+    { id: 16, image: "/assets/placeholder-400x500.png", name: 'Bộ 3 Kem Dưỡng Tay', price: '360.000', oldPrice: '450.000', category: 'Cơ Thể', skinType: 'Da Khô', rawPrice: 360000 },
+    { id: 17, image: "/assets/placeholder-400x500.png", name: 'Bột Superfood', price: '600.000', oldPrice: '750.000', category: 'Sức Khỏe & Dụng Cụ', skinType: 'All', rawPrice: 600000 },
+    { id: 18, image: "/assets/placeholder-400x500.png", name: 'Nến Thơm Thư Giãn', price: '390.000', oldPrice: '480.000', category: 'Sức Khỏe & Dụng Cụ', skinType: 'All', rawPrice: 390000 },
+    { id: 19, image: "/assets/placeholder-400x500.png", name: 'Bộ Kit Mini Thiết Yếu', price: '750.000', oldPrice: '900.000', category: 'Bộ Quà Tặng', skinType: 'All', rawPrice: 750000 },
+    { id: 20, image: "/assets/placeholder-400x500.png", name: 'Combo Spa Trọn Gói', price: '1.500.000', oldPrice: '1.800.000', category: 'Bộ Quà Tặng', skinType: 'All', rawPrice: 1500000 },
 ];
 
 const Collection = () => {
@@ -71,9 +71,9 @@ const Collection = () => {
 
                 // Price Range Filter
                 if (priceRangeFilter !== 'All') {
-                    if (priceRangeFilter === 'Dưới 1000' && product.rawPrice >= 1000) return false;
-                    if (priceRangeFilter === '1000-2000' && (product.rawPrice < 1000 || product.rawPrice > 2000)) return false;
-                    if (priceRangeFilter === 'Trên 2000' && product.rawPrice <= 2000) return false;
+                    if (priceRangeFilter === 'Dưới 500k' && product.rawPrice >= 500000) return false;
+                    if (priceRangeFilter === '500k-1tr' && (product.rawPrice < 500000 || product.rawPrice > 1000000)) return false;
+                    if (priceRangeFilter === 'Trên 1tr' && product.rawPrice <= 1000000) return false;
                 }
 
                 return true;
@@ -210,9 +210,9 @@ const Collection = () => {
                             <DropdownMenuContent align="end" className="font-body">
                                 <DropdownMenuRadioGroup value={priceRangeFilter} onValueChange={setPriceRangeFilter}>
                                     <DropdownMenuRadioItem value="All">Tất Cả Mức Giá</DropdownMenuRadioItem>
-                                    <DropdownMenuRadioItem value="Dưới 1000">Dưới Rs. 1000</DropdownMenuRadioItem>
-                                    <DropdownMenuRadioItem value="1000-2000">Rs. 1000 - 2000</DropdownMenuRadioItem>
-                                    <DropdownMenuRadioItem value="Trên 2000">Trên Rs. 2000</DropdownMenuRadioItem>
+                                    <DropdownMenuRadioItem value="Dưới 500k">Dưới 500.000₫</DropdownMenuRadioItem>
+                                    <DropdownMenuRadioItem value="500k-1tr">500.000₫ - 1.000.000₫</DropdownMenuRadioItem>
+                                    <DropdownMenuRadioItem value="Trên 1tr">Trên 1.000.000₫</DropdownMenuRadioItem>
                                 </DropdownMenuRadioGroup>
                             </DropdownMenuContent>
                         </DropdownMenu>
@@ -300,8 +300,8 @@ const Collection = () => {
                                     {/* Info Section */}
                                     <div className="flex flex-col items-center text-center p-6 pt-4 space-y-2">
                                         <div className="flex items-center gap-2">
-                                            <span className="font-display text-xl font-bold text-[#1a1a1a]">Rs. {product.price}</span>
-                                            <span className="font-display text-xs text-[#999999] line-through">Rs. {product.oldPrice}</span>
+                                            <span className="font-display text-xl font-bold text-[#1a1a1a]">{product.price}₫</span>
+                                            <span className="font-display text-xs text-[#999999] line-through">{product.oldPrice}₫</span>
                                         </div>
                                         <p className="font-display text-lg italic text-[#1a1a1a] opacity-90">
                                             {product.name}
@@ -354,8 +354,8 @@ const Collection = () => {
                             </div>
 
                             <div className="flex items-baseline gap-3 mb-4">
-                                <span className="text-[#f01a33] font-display text-2xl font-bold">Rs. {quickViewProduct?.price}</span>
-                                <span className="text-gray-400 text-sm line-through">Rs. {quickViewProduct?.oldPrice}</span>
+                                <span className="text-[#f01a33] font-display text-2xl font-bold">{quickViewProduct?.price}₫</span>
+                                <span className="text-gray-400 text-sm line-through">{quickViewProduct?.oldPrice}₫</span>
                             </div>
 
                             <p className="font-body text-[#666666] text-sm leading-relaxed mb-8">
