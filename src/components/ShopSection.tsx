@@ -61,7 +61,7 @@ const ShopSection = () => {
 
                 <div className="w-full px-6 md:px-10 lg:px-16 xl:px-24 text-center py-12">
                     <h2 className="font-display text-3xl md:text-4xl font-semibold text-[#1a1a1a]">
-                        <span className="text-[#f01a33]">CỬA HÀNG</span> MELALOGY
+                        <span className="text-[#f01a33]">CỬA HÀNG</span>
                     </h2>
                     <p className="font-body text-[#666666] text-sm md:text-base max-w-xl mx-auto mt-4 leading-relaxed">
                         4 công thức mặt nạ hydrogel Energy Shot — chọn phiên bản phù hợp với làn da của bạn.
