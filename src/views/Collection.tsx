@@ -20,62 +20,63 @@ import { ChevronDown, SlidersHorizontal, Minus, Plus, Heart, Star } from 'lucide
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { cn } from '@/lib/utils';
 
-const categories = ['Chăm Sóc Da', 'Chăm Sóc Tóc', 'Cơ Thể', 'Sức Khỏe & Dụng Cụ', 'Bộ Quà Tặng'];
+const categories = ['Tất Cả', 'Cấp Ẩm', 'Phục Hồi', 'Làm Sáng', 'Rạng Rỡ'];
 
-// Sample products data with enriched attributes
+// Melalogy Energy Shot Hydrogel Mask lineup
 const allProducts = [
-    { id: 1, image: "/assets/placeholder-400x500.png", name: 'Serum Dưỡng Sáng Da', price: '360.000', oldPrice: '390.000', category: 'Chăm Sóc Da', skinType: 'All', rawPrice: 360000 },
-    { id: 2, image: "/assets/placeholder-400x500.png", name: 'Dầu Dưỡng Rạng Rỡ', price: '360.000', oldPrice: '390.000', category: 'Chăm Sóc Da', skinType: 'Da Khô', rawPrice: 360000 },
-    { id: 3, image: "/assets/placeholder-400x500.png", name: 'Mặt Nạ Ủ Tóc Mượt', price: '360.000', oldPrice: '390.000', category: 'Chăm Sóc Tóc', skinType: 'Da Thường', rawPrice: 360000 },
-    { id: 4, image: "/assets/placeholder-400x500.png", name: 'Xịt Phồng Tóc', price: '360.000', oldPrice: '390.000', category: 'Chăm Sóc Tóc', skinType: 'All', rawPrice: 360000 },
-    { id: 5, image: "/assets/placeholder-400x500.png", name: 'Tẩy Da Chết Toàn Thân', price: '450.000', oldPrice: '510.000', category: 'Cơ Thể', skinType: 'Da Nhạy Cảm', rawPrice: 450000 },
-    { id: 6, image: "/assets/placeholder-400x500.png", name: 'Bơ Shea Dưỡng Da', price: '300.000', oldPrice: '390.000', category: 'Cơ Thể', skinType: 'Da Khô', rawPrice: 300000 },
-    { id: 7, image: "/assets/placeholder-400x500.png", name: 'Trà Thảo Mộc', price: '180.000', oldPrice: '240.000', category: 'Sức Khỏe & Dụng Cụ', skinType: 'All', rawPrice: 180000 },
-    { id: 8, image: "/assets/placeholder-400x500.png", name: 'Bộ Quà Tặng Cao Cấp', price: '900.000', oldPrice: '1.050.000', category: 'Bộ Quà Tặng', skinType: 'All', rawPrice: 900000 },
-    { id: 9, image: "/assets/placeholder-400x500.png", name: 'Kem Dưỡng Đêm', price: '570.000', oldPrice: '630.000', category: 'Chăm Sóc Da', skinType: 'Da Khô', rawPrice: 570000 },
-    { id: 10, image: "/assets/placeholder-400x500.png", name: 'Dầu Gội', price: '270.000', oldPrice: '330.000', category: 'Chăm Sóc Tóc', skinType: 'Da Dầu', rawPrice: 270000 },
-    // New Products
-    { id: 11, image: "/assets/placeholder-400x500.png", name: 'Xịt Khoáng Cấp Ẩm', price: '270.000', oldPrice: '330.000', category: 'Chăm Sóc Da', skinType: 'Da Thường', rawPrice: 270000 },
-    { id: 12, image: "/assets/placeholder-400x500.png", name: 'Kem Chống Lão Hoá', price: '750.000', oldPrice: '900.000', category: 'Chăm Sóc Da', skinType: 'Da Lão Hoá', rawPrice: 750000 },
-    { id: 13, image: "/assets/placeholder-400x500.png", name: 'Kem Định Hình Tóc Xoăn', price: '390.000', oldPrice: '450.000', category: 'Chăm Sóc Tóc', skinType: 'All', rawPrice: 390000 },
-    { id: 14, image: "/assets/placeholder-400x500.png", name: 'Tẩy Tế Bào Chết Da Đầu', price: '480.000', oldPrice: '570.000', category: 'Chăm Sóc Tóc', skinType: 'Da Dầu', rawPrice: 480000 },
-    { id: 15, image: "/assets/placeholder-400x500.png", name: 'Sữa Tắm Hoa Oải Hương', price: '240.000', oldPrice: '300.000', category: 'Cơ Thể', skinType: 'All', rawPrice: 240000 },
-    { id: 16, image: "/assets/placeholder-400x500.png", name: 'Bộ 3 Kem Dưỡng Tay', price: '360.000', oldPrice: '450.000', category: 'Cơ Thể', skinType: 'Da Khô', rawPrice: 360000 },
-    { id: 17, image: "/assets/placeholder-400x500.png", name: 'Bột Superfood', price: '600.000', oldPrice: '750.000', category: 'Sức Khỏe & Dụng Cụ', skinType: 'All', rawPrice: 600000 },
-    { id: 18, image: "/assets/placeholder-400x500.png", name: 'Nến Thơm Thư Giãn', price: '390.000', oldPrice: '480.000', category: 'Sức Khỏe & Dụng Cụ', skinType: 'All', rawPrice: 390000 },
-    { id: 19, image: "/assets/placeholder-400x500.png", name: 'Bộ Kit Mini Thiết Yếu', price: '750.000', oldPrice: '900.000', category: 'Bộ Quà Tặng', skinType: 'All', rawPrice: 750000 },
-    { id: 20, image: "/assets/placeholder-400x500.png", name: 'Combo Spa Trọn Gói', price: '1.500.000', oldPrice: '1.800.000', category: 'Bộ Quà Tặng', skinType: 'All', rawPrice: 1500000 },
+    {
+        id: 1,
+        image: "/assets/mask-hydrating-blue.png",
+        name: 'Mặt Nạ Hydrogel Energy Shot - Cấp Ẩm',
+        price: '79.000',
+        category: 'Cấp Ẩm',
+        rawPrice: 79000,
+        description: 'Mặt nạ hydrogel cấp ẩm tức thì với Hyaluronic Acid và Ceramide NP, giúp phục hồi hàng rào bảo vệ da và duy trì độ ẩm sâu suốt nhiều giờ.',
+    },
+    {
+        id: 2,
+        image: "/assets/mask-recovery-green.png",
+        name: 'Mặt Nạ Hydrogel Energy Shot - Phục Hồi',
+        price: '79.000',
+        category: 'Phục Hồi',
+        rawPrice: 79000,
+        description: 'Mặt nạ hydrogel phục hồi với Madecassic Acid và chiết xuất rau má (Centella Asiatica), làm dịu da nhạy cảm, kích ứng và hỗ trợ tái tạo da.',
+    },
+    {
+        id: 3,
+        image: "/assets/mask-brightening-yellow.png",
+        name: 'Mặt Nạ Hydrogel Energy Shot - Làm Sáng',
+        price: '79.000',
+        category: 'Làm Sáng',
+        rawPrice: 79000,
+        description: 'Mặt nạ hydrogel làm sáng da với Niacinamide và chiết xuất cám gạo (Oryza Sativa Bran Extract), giúp đều màu da và mang lại vẻ rạng rỡ tự nhiên.',
+    },
+    {
+        id: 4,
+        image: "/assets/mask-radiance-purple.png",
+        name: 'Mặt Nạ Hydrogel Energy Shot - Rạng Rỡ',
+        price: '79.000',
+        category: 'Rạng Rỡ',
+        rawPrice: 79000,
+        description: 'Mặt nạ hydrogel trẻ hoá với Sodium DNA và Acetyl Hexapeptide-8, hỗ trợ săn chắc da và cải thiện độ đàn hồi.',
+    },
 ];
 
 const Collection = () => {
-    const [activeCategory, setActiveCategory] = useState('Chăm Sóc Da');
+    const [activeCategory, setActiveCategory] = useState('Tất Cả');
     const [visibleProducts, setVisibleProducts] = useState(8);
     const { addToCart, addToWishlist, isInWishlist } = useShop();
     const router = useRouter();
 
     // Filters States
     const [sortBy, setSortBy] = useState('featured');
-    const [skinTypeFilter, setSkinTypeFilter] = useState('All');
-    const [priceRangeFilter, setPriceRangeFilter] = useState('All');
     const [quickViewProduct, setQuickViewProduct] = useState<any>(null);
     const [quickViewQuantity, setQuickViewQuantity] = useState(1);
 
     const filteredProducts = useMemo(() => {
         return allProducts
             .filter(product => {
-                // Category Filter
-                if (activeCategory !== 'All' && product.category !== activeCategory) return false;
-
-                // Skin Type Filter
-                if (skinTypeFilter !== 'All' && product.skinType !== 'All' && product.skinType !== skinTypeFilter) return false;
-
-                // Price Range Filter
-                if (priceRangeFilter !== 'All') {
-                    if (priceRangeFilter === 'Dưới 500k' && product.rawPrice >= 500000) return false;
-                    if (priceRangeFilter === '500k-1tr' && (product.rawPrice < 500000 || product.rawPrice > 1000000)) return false;
-                    if (priceRangeFilter === 'Trên 1tr' && product.rawPrice <= 1000000) return false;
-                }
-
+                if (activeCategory !== 'Tất Cả' && product.category !== activeCategory) return false;
                 return true;
             })
             .sort((a, b) => {
@@ -83,7 +84,7 @@ const Collection = () => {
                 if (sortBy === 'price-high-low') return b.rawPrice - a.rawPrice;
                 return 0; // 'featured' or default
             });
-    }, [activeCategory, skinTypeFilter, priceRangeFilter, sortBy]);
+    }, [activeCategory, sortBy]);
 
     const handleLoadMore = () => {
         setVisibleProducts(prev => prev + 8);
@@ -91,8 +92,7 @@ const Collection = () => {
 
     const resetFilters = () => {
         setSortBy('featured');
-        setSkinTypeFilter('All');
-        setPriceRangeFilter('All');
+        setActiveCategory('Tất Cả');
     };
 
     const handleShare = (product: any) => {
@@ -109,7 +109,7 @@ const Collection = () => {
                     Bộ Sưu Tập <span className="text-[#f01a33]">Của Chúng Tôi</span>
                 </h1>
                 <p className="font-body text-[#666666] text-sm md:text-base max-w-2xl mx-auto px-6 leading-relaxed">
-                    Khám phá những bộ sưu tập được tuyển chọn kỹ lưỡng, mỗi bộ sưu tập lấy cảm hứng từ sự chuyển mình của các mùa và vẻ đẹp vượt thời gian của thiên nhiên.
+                    Dòng mặt nạ hydrogel Energy Shot của Melalogy — mỗi phiên bản được nghiên cứu cho một nhu cầu chăm sóc da riêng biệt.
                 </p>
             </div>
 
@@ -174,48 +174,6 @@ const Collection = () => {
                                 </DropdownMenuRadioGroup>
                             </DropdownMenuContent>
                         </DropdownMenu>
-
-                        {/* Skin Type */}
-                        <DropdownMenu modal={false}>
-                            <DropdownMenuTrigger asChild>
-                                <button className={`flex items-center gap-2 px-5 py-2.5 bg-white border rounded-lg transition-colors duration-300 font-body whitespace-nowrap shrink-0 ${skinTypeFilter !== 'All' ? 'border-[#f01a33] bg-[#f01a33]/5 text-[#f01a33]' : 'border-[#d1d5db] hover:border-[#9ca3af]'}`}>
-                                    <span className="text-base text-inherit">
-                                        {skinTypeFilter === 'All' ? 'Loại Da' : skinTypeFilter}
-                                    </span>
-                                    <ChevronDown className={`w-4 h-4 ${skinTypeFilter !== 'All' ? 'text-[#f01a33]' : 'text-[#666666]'}`} />
-                                </button>
-                            </DropdownMenuTrigger>
-                            <DropdownMenuContent align="end" className="font-body">
-                                <DropdownMenuRadioGroup value={skinTypeFilter} onValueChange={setSkinTypeFilter}>
-                                    <DropdownMenuRadioItem value="All">Tất Cả Loại Da</DropdownMenuRadioItem>
-                                    <DropdownMenuRadioItem value="Da Khô">Da Khô</DropdownMenuRadioItem>
-                                    <DropdownMenuRadioItem value="Da Dầu">Da Dầu</DropdownMenuRadioItem>
-                                    <DropdownMenuRadioItem value="Da Hỗn Hợp">Da Hỗn Hợp</DropdownMenuRadioItem>
-                                    <DropdownMenuRadioItem value="Da Nhạy Cảm">Da Nhạy Cảm</DropdownMenuRadioItem>
-                                    <DropdownMenuRadioItem value="Da Thường">Da Thường</DropdownMenuRadioItem>
-                                </DropdownMenuRadioGroup>
-                            </DropdownMenuContent>
-                        </DropdownMenu>
-
-                        {/* Price Range */}
-                        <DropdownMenu modal={false}>
-                            <DropdownMenuTrigger asChild>
-                                <button className={`flex items-center gap-2 px-5 py-2.5 bg-white border rounded-lg transition-colors duration-300 font-body whitespace-nowrap shrink-0 ${priceRangeFilter !== 'All' ? 'border-[#f01a33] bg-[#f01a33]/5 text-[#f01a33]' : 'border-[#d1d5db] hover:border-[#9ca3af]'}`}>
-                                    <span className="text-base text-inherit">
-                                        {priceRangeFilter === 'All' ? 'Khoảng Giá' : priceRangeFilter}
-                                    </span>
-                                    <ChevronDown className={`w-4 h-4 ${priceRangeFilter !== 'All' ? 'text-[#f01a33]' : 'text-[#666666]'}`} />
-                                </button>
-                            </DropdownMenuTrigger>
-                            <DropdownMenuContent align="end" className="font-body">
-                                <DropdownMenuRadioGroup value={priceRangeFilter} onValueChange={setPriceRangeFilter}>
-                                    <DropdownMenuRadioItem value="All">Tất Cả Mức Giá</DropdownMenuRadioItem>
-                                    <DropdownMenuRadioItem value="Dưới 500k">Dưới 500.000₫</DropdownMenuRadioItem>
-                                    <DropdownMenuRadioItem value="500k-1tr">500.000₫ - 1.000.000₫</DropdownMenuRadioItem>
-                                    <DropdownMenuRadioItem value="Trên 1tr">Trên 1.000.000₫</DropdownMenuRadioItem>
-                                </DropdownMenuRadioGroup>
-                            </DropdownMenuContent>
-                        </DropdownMenu>
                     </div>
                 </div>
             </section>
@@ -233,11 +191,6 @@ const Collection = () => {
                                 >
                                     {/* Image Section */}
                                     <div className="relative w-full aspect-square overflow-hidden bg-[#f9f8f7]">
-                                        {/* Sale Badge */}
-                                        <div className="absolute top-4 left-4 z-20 bg-[#f01a33] text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">
-                                            Giảm Giá
-                                        </div>
-
                                         <img
                                             src={product.image}
                                             alt={product.name}
@@ -299,10 +252,7 @@ const Collection = () => {
 
                                     {/* Info Section */}
                                     <div className="flex flex-col items-center text-center p-6 pt-4 space-y-2">
-                                        <div className="flex items-center gap-2">
-                                            <span className="font-display text-xl font-bold text-[#1a1a1a]">{product.price}₫</span>
-                                            <span className="font-display text-xs text-[#999999] line-through">{product.oldPrice}₫</span>
-                                        </div>
+                                        <span className="font-display text-xl font-bold text-[#1a1a1a]">{product.price}₫</span>
                                         <p className="font-display text-lg italic text-[#1a1a1a] opacity-90">
                                             {product.name}
                                         </p>
@@ -355,11 +305,10 @@ const Collection = () => {
 
                             <div className="flex items-baseline gap-3 mb-4">
                                 <span className="text-[#f01a33] font-display text-2xl font-bold">{quickViewProduct?.price}₫</span>
-                                <span className="text-gray-400 text-sm line-through">{quickViewProduct?.oldPrice}₫</span>
                             </div>
 
                             <p className="font-body text-[#666666] text-sm leading-relaxed mb-8">
-                                Sự kết hợp mạnh mẽ giữa thảo dược Ayurvedic và khoa học hiện đại, được thiết kế để làm sáng làn da xỉn màu. Với chiết xuất nghệ tây và hyaluronic acid, loại serum mỏng nhẹ này thẩm thấu sâu để cấp ẩm, làm sáng da và phục hồi vẻ rạng rỡ tự nhiên qua từng đêm.
+                                {quickViewProduct?.description}
                             </p>
 
                             {/* Quantity */}
@@ -443,15 +392,10 @@ const Collection = () => {
 
                         {/* Right: Image */}
                         <div className="relative bg-[#ebe7e5] h-[400px] md:h-auto">
-                            <div className="absolute top-6 left-6 z-10">
-                                <span className="border border-[#f01a33] text-[#f01a33] px-4 pt-1 pb-2 rounded-lg text-sm font-display inline-flex items-center justify-center leading-none">
-                                    Bán Chạy Nhất
-                                </span>
-                            </div>
                             <img
                                 src={quickViewProduct?.image}
                                 alt={quickViewProduct?.name}
-                                className="w-full h-full object-cover p-8 md:p-12 mix-blend-multiply"
+                                className="w-full h-full object-cover p-8 md:p-12"
                             />
                         </div>
                     </div>
