@@ -18,7 +18,7 @@ export const dynamic = 'force-dynamic';
 const Checkout = () => {
     const { cart, clearCart } = useShop();
     const router = useRouter();
-    const [paymentMethod, setPaymentMethod] = useState<'card' | 'paypal' | 'netbanking'>('card');
+    const [paymentMethod, setPaymentMethod] = useState<'card' | 'bank_transfer' | 'cod'>('card');
     const [isLoading, setIsLoading] = useState(false);
     const [discountCode, setDiscountCode] = useState('');
     const [discountAmount, setDiscountAmount] = useState(0);
@@ -29,10 +29,12 @@ const Checkout = () => {
         cardName: ''
     });
 
-    const isFormValid = formData.cardNumber.trim().length > 0 && 
-                       formData.expiry.trim().length > 0 && 
-                       formData.cvc.trim().length > 0 && 
-                       formData.cardName.trim().length > 0;
+    const isFormValid = paymentMethod !== 'card' || (
+        formData.cardNumber.trim().length > 0 &&
+        formData.expiry.trim().length > 0 &&
+        formData.cvc.trim().length > 0 &&
+        formData.cardName.trim().length > 0
+    );
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { id, value } = e.target;
@@ -43,10 +45,10 @@ const Checkout = () => {
         if (discountCode.toUpperCase() === 'SAVE10') {
             const discount = subtotal * 0.10;
             setDiscountAmount(discount);
-            toast.success("Discount code applied successfully!");
+            toast.success("Áp dụng mã giảm giá thành công!");
         } else {
             setDiscountAmount(0);
-            toast.error("Invalid discount code");
+            toast.error("Mã giảm giá không hợp lệ");
         }
     };
 
@@ -65,26 +67,23 @@ const Checkout = () => {
 
     const cartItems = Object.values(groupedItems);
 
-    // Calculate subtotal
-    // Calculate subtotal
+    // Calculate subtotal (uses rawPrice — a numeric VND amount, not the "79.000" display string)
     const subtotal = cartItems.reduce((acc, item) => {
-        const price = parseFloat(String(item.price).replace(/,/g, ''));
-        return acc + (isNaN(price) ? 0 : price) * item.quantity;
+        return acc + (item.rawPrice ?? 0) * item.quantity;
     }, 0);
 
-    const shipping = 0; // Free shipping as per design
-    const tax = 8.56; // Mock tax to match image
+    const shipping = 0; // Free shipping
 
-    const total = subtotal + shipping + tax - discountAmount;
+    const total = subtotal + shipping - discountAmount;
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        
+
         setIsLoading(true);
         setTimeout(() => {
             setIsLoading(false);
             clearCart();
-            toast.success("Order placed successfully!");
+            toast.success("Đặt hàng thành công!");
             router.push('/');
         }, 2000);
     };
@@ -97,11 +96,11 @@ const Checkout = () => {
 
                 {/* Breadcrumb */}
                 <div className="flex items-center gap-2 text-sm text-gray-500 mb-8 font-medium">
-                    <Link href="/cart" className="hover:text-[#f01a33]">Cart</Link>
+                    <Link href="/cart" className="hover:text-[#f01a33]">Giỏ Hàng</Link>
                     <ChevronRight className="w-4 h-4" />
-                    <span className="hover:text-[#f01a33] cursor-pointer">Shipping</span>
+                    <span className="hover:text-[#f01a33] cursor-pointer">Vận Chuyển</span>
                     <ChevronRight className="w-4 h-4" />
-                    <span className="text-[#f01a33] font-bold">Payment</span>
+                    <span className="text-[#f01a33] font-bold">Thanh Toán</span>
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
@@ -109,8 +108,8 @@ const Checkout = () => {
                     {/* LEFT COLUMN: Payment Details */}
                     <div className="lg:col-span-7 space-y-8">
                         <div>
-                            <h1 className="text-3xl font-bold text-[#1a1a1a]">Payment Details</h1>
-                            <p className="text-gray-500 mt-2">Complete your purchase securely.</p>
+                            <h1 className="text-3xl font-bold text-[#1a1a1a]">Chi Tiết Thanh Toán</h1>
+                            <p className="text-gray-500 mt-2">Hoàn tất đơn hàng của bạn một cách an toàn.</p>
                         </div>
 
                         <form id="payment-form" onSubmit={handleSubmit} className="space-y-8">
@@ -133,42 +132,43 @@ const Checkout = () => {
                                         </div>
                                     )}
                                     <CreditCard className="w-6 h-6" />
-                                    <span className="text-sm">Card</span>
+                                    <span className="text-sm">Thẻ</span>
                                 </button>
 
                                 <button
                                     type="button"
-                                    onClick={() => setPaymentMethod('paypal')}
+                                    onClick={() => setPaymentMethod('bank_transfer')}
                                     className={cn(
                                         "flex flex-col items-center justify-center gap-3 p-4 border rounded-xl transition-all",
-                                        paymentMethod === 'paypal'
-                                            ? "border-[#f01a33] bg-[#f01a33]/5 text-[#f01a33] font-medium ring-1 ring-[#f01a33]"
-                                            : "border-gray-200 hover:border-red-200 text-gray-600"
-                                    )}
-                                >
-                                    <Wallet className="w-6 h-6" />
-                                    <span className="text-sm">PayPal</span>
-                                </button>
-
-                                <button
-                                    type="button"
-                                    onClick={() => setPaymentMethod('netbanking')}
-                                    className={cn(
-                                        "flex flex-col items-center justify-center gap-3 p-4 border rounded-xl transition-all",
-                                        paymentMethod === 'netbanking'
+                                        paymentMethod === 'bank_transfer'
                                             ? "border-[#f01a33] bg-[#f01a33]/5 text-[#f01a33] font-medium ring-1 ring-[#f01a33]"
                                             : "border-gray-200 hover:border-red-200 text-gray-600"
                                     )}
                                 >
                                     <Building2 className="w-6 h-6" />
-                                    <span className="text-sm">Net Banking</span>
+                                    <span className="text-sm">Chuyển Khoản</span>
+                                </button>
+
+                                <button
+                                    type="button"
+                                    onClick={() => setPaymentMethod('cod')}
+                                    className={cn(
+                                        "flex flex-col items-center justify-center gap-3 p-4 border rounded-xl transition-all",
+                                        paymentMethod === 'cod'
+                                            ? "border-[#f01a33] bg-[#f01a33]/5 text-[#f01a33] font-medium ring-1 ring-[#f01a33]"
+                                            : "border-gray-200 hover:border-red-200 text-gray-600"
+                                    )}
+                                >
+                                    <Wallet className="w-6 h-6" />
+                                    <span className="text-sm">COD</span>
                                 </button>
                             </div>
 
                             {/* Card Details Form */}
+                            {paymentMethod === 'card' && (
                             <div className="space-y-6">
                                 <div className="space-y-2">
-                                    <Label htmlFor="cardNumber" className="text-sm font-semibold text-gray-700">Card Number</Label>
+                                    <Label htmlFor="cardNumber" className="text-sm font-semibold text-gray-700">Số Thẻ</Label>
                                     <div className="relative">
                                         <CreditCard className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
                                         <Input
@@ -185,7 +185,7 @@ const Checkout = () => {
 
                                 <div className="grid grid-cols-2 gap-6">
                                     <div className="space-y-2">
-                                        <Label htmlFor="expiry" className="text-sm font-semibold text-gray-700">Expiry Date</Label>
+                                        <Label htmlFor="expiry" className="text-sm font-semibold text-gray-700">Ngày Hết Hạn</Label>
                                         <Input
                                             id="expiry"
                                             placeholder="MM / YY"
@@ -212,10 +212,10 @@ const Checkout = () => {
                                 </div>
 
                                 <div className="space-y-2">
-                                    <Label htmlFor="cardName" className="text-sm font-semibold text-gray-700">Cardholder Name</Label>
+                                    <Label htmlFor="cardName" className="text-sm font-semibold text-gray-700">Tên Chủ Thẻ</Label>
                                     <Input
                                         id="cardName"
-                                        placeholder="Full name as on card"
+                                        placeholder="Họ tên như trên thẻ"
                                         className="bg-gray-50 border-gray-200 h-12"
                                         value={formData.cardName}
                                         onChange={handleInputChange}
@@ -229,19 +229,32 @@ const Checkout = () => {
                                         htmlFor="billing"
                                         className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-gray-700"
                                     >
-                                        Billing address same as shipping
+                                        Địa chỉ thanh toán giống địa chỉ giao hàng
                                     </label>
                                 </div>
                             </div>
+                            )}
+
+                            {paymentMethod === 'bank_transfer' && (
+                                <div className="bg-gray-50 border border-gray-200 rounded-xl p-6 text-sm text-gray-600 leading-relaxed">
+                                    Thông tin tài khoản để chuyển khoản sẽ được gửi đến email của bạn ngay sau khi đặt hàng. Đơn hàng sẽ được xử lý khi chúng tôi xác nhận đã nhận thanh toán.
+                                </div>
+                            )}
+
+                            {paymentMethod === 'cod' && (
+                                <div className="bg-gray-50 border border-gray-200 rounded-xl p-6 text-sm text-gray-600 leading-relaxed">
+                                    Bạn sẽ thanh toán trực tiếp cho nhân viên giao hàng khi nhận được đơn hàng.
+                                </div>
+                            )}
                         </form>
 
                         {/* Security Badges */}
                         <div className="flex items-center gap-6 pt-6 mt-6 border-t border-dashed border-gray-200">
                             <div className="flex items-center gap-2 text-gray-500 font-semibold text-xs grayscale opacity-70">
-                                <ShieldCheck className="w-5 h-5" /> Norton Secured
+                                <ShieldCheck className="w-5 h-5" /> Bảo Mật Norton
                             </div>
                             <div className="flex items-center gap-2 text-gray-500 font-semibold text-xs grayscale opacity-70">
-                                <Lock className="w-4 h-4" /> SSL Encrypted
+                                <Lock className="w-4 h-4" /> Mã Hoá SSL
                             </div>
                         </div>
 
@@ -252,7 +265,7 @@ const Checkout = () => {
                     {/* RIGHT COLUMN: Order Summary */}
                     <div className="lg:col-span-5">
                         <div className="bg-white p-6 md:p-8 rounded-2xl shadow-[0_5px_30px_rgba(0,0,0,0.05)] border border-gray-100 sticky top-32">
-                            <h2 className="text-xl font-bold mb-6 text-[#1a1a1a]">Order Summary</h2>
+                            <h2 className="text-xl font-bold mb-6 text-[#1a1a1a]">Tóm Tắt Đơn Hàng</h2>
 
                             <div className="space-y-6 mb-8">
                                 {cartItems.length > 0 ? cartItems.map((item, index) => (
@@ -262,14 +275,14 @@ const Checkout = () => {
                                         </div>
                                         <div className="flex-1">
                                             <h4 className="font-bold text-sm text-gray-900">{item.name}</h4>
-                                            <p className="text-xs text-gray-500 mt-1">Qty {item.quantity}</p>
+                                            <p className="text-xs text-gray-500 mt-1">SL: {item.quantity}</p>
                                         </div>
                                         <div className="font-medium text-sm text-gray-900">
-                                            Rs. {(parseFloat(String(item.price).replace(/,/g, '')) * item.quantity).toLocaleString()}
+                                            {((item.rawPrice ?? 0) * item.quantity).toLocaleString('vi-VN')}đ
                                         </div>
                                     </div>
                                 )) : (
-                                    <div className="text-center py-4 text-gray-500">Your cart is empty</div>
+                                    <div className="text-center py-4 text-gray-500">Giỏ hàng của bạn đang trống</div>
                                 )}
                             </div>
 
@@ -279,11 +292,11 @@ const Checkout = () => {
                                     onClick={() => setDiscountCode('SAVE10')}
                                     className="bg-[#f01a33]/5 border border-[#f01a33]/20 rounded-lg p-3 mb-3 flex items-center gap-2 cursor-pointer hover:bg-[#f01a33]/10 transition-colors"
                                 >
-                                    <span className="text-xs font-medium text-[#f01a33]">Use code <strong className="font-bold">SAVE10</strong> for 10% off! (Click to use)</span>
+                                    <span className="text-xs font-medium text-[#f01a33]">Dùng mã <strong className="font-bold">SAVE10</strong> để giảm 10%! (Bấm để dùng)</span>
                                 </div>
                                 <div className="flex gap-3">
                                     <Input
-                                        placeholder="Gift card or discount code"
+                                        placeholder="Mã giảm giá hoặc thẻ quà tặng"
                                         className="bg-gray-50 border-gray-200 focus-visible:ring-[#f01a33]"
                                         value={discountCode}
                                         onChange={(e) => setDiscountCode(e.target.value)}
@@ -293,7 +306,7 @@ const Checkout = () => {
                                         className="bg-white border-gray-200 hover:bg-gray-50 text-gray-700 shadow-sm"
                                         onClick={handleApplyDiscount}
                                     >
-                                        Apply
+                                        Áp Dụng
                                     </Button>
                                 </div>
                             </div>
@@ -301,33 +314,29 @@ const Checkout = () => {
                             {/* Breakdown */}
                             <div className="space-y-3 mb-6 border-b border-gray-100 pb-6 text-sm">
                                 <div className="flex justify-between">
-                                    <span className="text-gray-500">Subtotal</span>
-                                    <span className="font-medium text-gray-900">Rs. {subtotal.toLocaleString()}</span>
+                                    <span className="text-gray-500">Tạm tính</span>
+                                    <span className="font-medium text-gray-900">{subtotal.toLocaleString('vi-VN')}đ</span>
                                 </div>
                                 <div className="flex justify-between">
-                                    <span className="text-gray-500">Shipping</span>
-                                    <span className="font-medium text-green-600">Free</span>
-                                </div>
-                                <div className="flex justify-between">
-                                    <span className="text-gray-500">Estimated Tax</span>
-                                    <span className="font-medium text-gray-900">Rs. {tax.toLocaleString()}</span>
+                                    <span className="text-gray-500">Phí vận chuyển</span>
+                                    <span className="font-medium text-green-600">Miễn phí</span>
                                 </div>
                                 {discountAmount > 0 && (
                                     <div className="flex justify-between text-green-600">
-                                        <span>Discount (10%)</span>
-                                        <span className="font-medium">-Rs. {discountAmount.toLocaleString()}</span>
+                                        <span>Giảm giá (10%)</span>
+                                        <span className="font-medium">-{discountAmount.toLocaleString('vi-VN')}đ</span>
                                     </div>
                                 )}
                             </div>
 
                             <div className="flex justify-between items-center mb-8">
-                                <span className="text-lg font-bold text-gray-900">Total</span>
+                                <span className="text-lg font-bold text-gray-900">Tổng Cộng</span>
                                 <div className="flex flex-col items-end">
                                     {discountAmount > 0 && (
-                                        <span className="text-sm text-gray-400 line-through text-right w-full">Rs. {(total + discountAmount).toLocaleString()}</span>
+                                        <span className="text-sm text-gray-400 line-through text-right w-full">{(total + discountAmount).toLocaleString('vi-VN')}đ</span>
                                     )}
                                     <div className="flex items-baseline gap-1">
-                                        <span className="text-2xl font-bold text-[#f01a33]">Rs. {total.toLocaleString()}</span>
+                                        <span className="text-2xl font-bold text-[#f01a33]">{total.toLocaleString('vi-VN')}đ</span>
                                     </div>
                                 </div>
                             </div>
@@ -338,11 +347,11 @@ const Checkout = () => {
                                 className="w-full bg-[#f01a33] hover:bg-[#d41830] text-white py-6 rounded-lg font-bold shadow-lg shadow-red-900/10 flex items-center justify-center gap-2"
                             >
                                 <Lock className="w-4 h-4" />
-                                {isLoading ? 'Processing...' : `Pay Rs. ${total.toLocaleString()}`}
+                                {isLoading ? 'Đang xử lý...' : `Thanh Toán ${total.toLocaleString('vi-VN')}đ`}
                             </Button>
 
                             <p className="text-[10px] text-gray-400 text-center mt-4 leading-tight">
-                                By placing this order, you agree to the <Link href="/terms" className="underline">Terms of Service</Link> and <Link href="/privacy" className="underline">Privacy Policy</Link>.
+                                Khi đặt hàng, bạn đồng ý với <Link href="/terms" className="underline">Điều Khoản Dịch Vụ</Link> và <Link href="/privacy" className="underline">Chính Sách Bảo Mật</Link> của chúng tôi.
                             </p>
                         </div>
                     </div>
