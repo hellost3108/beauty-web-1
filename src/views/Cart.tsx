@@ -6,9 +6,10 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { useShop, Product } from '@/context/ShopContext';
 import { Button } from '@/components/ui/button';
-import { Trash2, Minus, Plus, Lock, ShieldCheck, Truck, ArrowRight, Star, ChevronDown, ChevronRight, Heart } from 'lucide-react';
+import { Trash2, Minus, Plus, Lock, ShieldCheck, Truck, ArrowRight, Star, ChevronRight, Heart } from 'lucide-react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { cn } from '@/lib/utils';
+import { allProducts } from '@/data/productsData';
 
 export const dynamic = 'force-dynamic';
 
@@ -20,19 +21,6 @@ const Cart = () => {
     const { cart, removeFromCart, addToCart, removeOneFromCart, addToWishlist, isInWishlist } = useShop();
     const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
     const [quantity, setQuantity] = useState(1);
-    const [discountCode, setDiscountCode] = useState('');
-    const [discountAmount, setDiscountAmount] = useState(0);
-
-    const handleApplyDiscount = () => {
-        if (discountCode.toUpperCase() === 'SAVE10') {
-            const discount = subtotal * 0.10;
-            setDiscountAmount(discount);
-            toast.success("Discount code applied successfully!");
-        } else {
-            setDiscountAmount(0);
-            toast.error("Invalid discount code");
-        }
-    };
 
     // Group items to handle quantities
     const groupedItems = cart.reduce((acc, item) => {
@@ -45,37 +33,16 @@ const Cart = () => {
 
     const cartItems = Object.values(groupedItems);
 
-    // Calculated subtotal
+    // Calculated subtotal (uses rawPrice — a numeric VND amount, not the "79.000" display string)
     const subtotal = cartItems.reduce((acc, item) => {
-        const price = parseFloat(String(item.price).replace(/[^0-9.]/g, ''));
-        return acc + (isNaN(price) ? 0 : price) * item.quantity;
+        return acc + (item.rawPrice ?? 0) * item.quantity;
     }, 0);
 
-    const shipping = 0; // Calculated at checkout
-    const tax = 0;
-    const total = subtotal + shipping + tax - discountAmount;
+    const total = subtotal;
 
-    // Mock recommended products for "You might also like"
-    const recommendedProducts = [
-        {
-            id: 101,
-            name: "Hydra Mist",
-            price: "899",
-            image: "/assets/placeholder-400x500.png"
-        },
-        {
-            id: 102,
-            name: "Blush Palette",
-            price: "1,299",
-            image: "/assets/placeholder-400x500.png"
-        },
-        {
-            id: 103,
-            name: "Kohl Liner",
-            price: "450",
-            image: "/assets/placeholder-400x500.png"
-        }
-    ];
+    // Recommended products: the other real masks not already in the cart
+    const cartIds = new Set(cartItems.map(item => item.id));
+    const recommendedProducts = allProducts.filter(p => !cartIds.has(p.id)).slice(0, 3);
 
     return (
         <div className="min-h-screen bg-white font-sans text-[#1a1a1a]">
@@ -84,7 +51,7 @@ const Cart = () => {
             <div className="pt-32 pb-20 px-6 md:px-12 lg:px-24 max-w-[1440px] mx-auto">
                 {/* Header */}
                 <h1 className="font-display text-3xl md:text-4xl leading-tight mb-12 flex items-baseline gap-3">
-                    Your Bag <span className="text-[#999999] text-xl font-body">({cart.length} Items)</span>
+                    Giỏ Hàng <span className="text-[#999999] text-xl font-body">({cart.length} sản phẩm)</span>
                 </h1>
 
                 {cart.length === 0 ? (
@@ -92,10 +59,10 @@ const Cart = () => {
                         <div className="w-24 h-24 bg-gray-50 rounded-full flex items-center justify-center mb-4">
                             <Truck className="w-10 h-10 text-gray-300" />
                         </div>
-                        <p className="text-gray-500 text-lg font-body">Your bag is currently empty.</p>
-                        <Link href="/shop">
+                        <p className="text-gray-500 text-lg font-body">Giỏ hàng của bạn đang trống.</p>
+                        <Link href="/collection">
                             <Button className="bg-[#f01a33] hover:bg-[#d6182d] text-white px-10 py-6 rounded-xl text-lg transition-transform hover:scale-105">
-                                Continue Shopping
+                                Tiếp Tục Mua Sắm
                             </Button>
                         </Link>
                     </div>
@@ -130,10 +97,10 @@ const Cart = () => {
                                                         >
                                                             {item.name}
                                                         </h3>
-                                                        <p className="text-[#999999] text-sm mt-1 font-body">30ml | Hydrating Formula</p>
+                                                        <p className="text-[#999999] text-sm mt-1 font-body">{item.subtitle ?? '35g / 1.23oz'}</p>
                                                     </div>
                                                     <div className="text-xl font-display font-bold text-[#f01a33] text-right">
-                                                        Rs. {(parseFloat(String(item.price).replace(/[^0-9.]/g, '')) * item.quantity).toLocaleString()}
+                                                        {((item.rawPrice ?? 0) * item.quantity).toLocaleString('vi-VN')}đ
                                                     </div>
                                                 </div>
 
@@ -172,7 +139,7 @@ const Cart = () => {
                                                         className="flex items-center text-[#999999] hover:text-[#f01a33] text-sm transition-all gap-2 px-4 py-2 hover:bg-red-50 rounded-lg group/remove"
                                                     >
                                                         <Trash2 className="w-4 h-4 group-hover/remove:scale-110 transition-transform" />
-                                                        <span className="font-semibold uppercase tracking-wider text-[11px]">Remove</span>
+                                                        <span className="font-semibold uppercase tracking-wider text-[11px]">Xoá</span>
                                                     </button>
                                                 </div>
                                             </div>
@@ -182,12 +149,13 @@ const Cart = () => {
                             </div>
 
                             {/* You might also like */}
+                            {recommendedProducts.length > 0 && (
                             <div className="pt-8">
-                                <h3 className="font-display text-2xl text-[#1a1a1a] mb-8">Refill Your Routine</h3>
+                                <h3 className="font-display text-2xl text-[#1a1a1a] mb-8">Có Thể Bạn Sẽ Thích</h3>
                                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
                                     {recommendedProducts.map((product) => (
                                         <div key={product.id} className="group flex flex-col gap-4">
-                                            <div 
+                                            <div
                                                 className="aspect-[4/5] bg-[#fdfaf5] rounded-[24px] overflow-hidden relative cursor-pointer"
                                                 onClick={() => setSelectedProduct(product)}
                                             >
@@ -200,7 +168,7 @@ const Cart = () => {
                                                     onClick={(e) => {
                                                         e.stopPropagation();
                                                         addToCart(product);
-                                                        toast.success(`${product.name} added to bag`);
+                                                        toast.success(`Đã thêm ${product.name} vào giỏ`);
                                                     }}
                                                     className="absolute bottom-4 right-4 w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-xl hover:bg-[#f01a33] hover:text-white transition-all duration-300 transform translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100"
                                                 >
@@ -210,56 +178,44 @@ const Cart = () => {
                                             <div className="flex justify-between items-center px-2">
                                                 <div>
                                                     <h4 className="font-display text-lg text-[#1a1a1a]">{product.name}</h4>
-                                                    <p className="text-[#f01a33] font-bold">Rs. {product.price}</p>
+                                                    <p className="text-[#f01a33] font-bold">{product.price}đ</p>
                                                 </div>
                                             </div>
                                         </div>
                                     ))}
                                 </div>
                             </div>
+                            )}
                         </div>
 
                         {/* Right Column: Order Summary */}
                         <div className="xl:col-span-4">
                             <div className="bg-white p-6 md:p-10 rounded-[30px] border border-[#f5f5f5] shadow-[0_20px_50px_rgba(0,0,0,0.03)] lg:sticky lg:top-32 h-fit">
-                                <h3 className="font-display text-2xl text-[#1a1a1a] mb-8">Order Summary</h3>
+                                <h3 className="font-display text-2xl text-[#1a1a1a] mb-8">Tóm Tắt Đơn Hàng</h3>
 
                                 <div className="space-y-5 mb-8">
                                     <div className="flex justify-between items-center text-[15px]">
-                                        <span className="text-[#666666] font-body">Subtotal</span>
-                                        <span className="font-display font-bold text-[#1a1a1a]">Rs. {subtotal.toLocaleString()}</span>
+                                        <span className="text-[#666666] font-body">Tạm tính</span>
+                                        <span className="font-display font-bold text-[#1a1a1a]">{subtotal.toLocaleString('vi-VN')}đ</span>
                                     </div>
                                     <div className="flex justify-between items-center text-[15px]">
-                                        <span className="text-[#666666] font-body">Shipping estimate</span>
-                                        <span className="text-[10px] font-bold text-[#10b981] bg-[#ecfdf5] px-3 py-1 rounded-md">Calculated at checkout</span>
+                                        <span className="text-[#666666] font-body">Phí vận chuyển</span>
+                                        <span className="text-[10px] font-bold text-[#10b981] bg-[#ecfdf5] px-3 py-1 rounded-md">Tính khi thanh toán</span>
                                     </div>
-                                    <div className="flex justify-between items-center text-[15px]">
-                                        <span className="text-[#666666] font-body">Tax estimate</span>
-                                        <span className="font-display font-bold text-[#1a1a1a]">Rs. 0</span>
-                                    </div>
-                                    {discountAmount > 0 && (
-                                        <div className="flex justify-between items-center text-[15px] text-[#22c55e]">
-                                            <span className="font-body">Discount (10%)</span>
-                                            <span className="font-display font-bold">-Rs. {discountAmount.toLocaleString()}</span>
-                                        </div>
-                                    )}
                                 </div>
 
                                 <div className="border-t border-[#f5f5f5] pt-8 mb-8">
                                     <div className="flex justify-between items-center">
-                                        <h4 className="font-display text-xl text-[#1a1a1a] font-bold">Order Total</h4>
+                                        <h4 className="font-display text-xl text-[#1a1a1a] font-bold">Tổng Cộng</h4>
                                         <div className="text-right">
-                                            {discountAmount > 0 && (
-                                                <span className="text-sm text-[#999999] line-through block mb-1">Rs. {(total + discountAmount).toLocaleString()}</span>
-                                            )}
-                                            <span className="font-display text-3xl font-bold text-[#1a1a1a]">Rs. {total.toLocaleString()}</span>
+                                            <span className="font-display text-3xl font-bold text-[#1a1a1a]">{total.toLocaleString('vi-VN')}đ</span>
                                         </div>
                                     </div>
                                 </div>
 
                                 <Link href="/checkout" className="block mb-10">
                                     <Button className="w-full bg-[#f01a33] hover:bg-[#d6182d] text-white py-8 rounded-[12px] text-sm font-bold tracking-wide uppercase transition-all shadow-lg shadow-[#f01a33]/20 flex items-center justify-center gap-3">
-                                        PROCEED TO CHECKOUT <ArrowRight className="w-4 h-4" />
+                                        TIẾN HÀNH THANH TOÁN <ArrowRight className="w-4 h-4" />
                                     </Button>
                                 </Link>
 
@@ -267,15 +223,15 @@ const Cart = () => {
                                 <div className="grid grid-cols-3 gap-2 px-2">
                                     <div className="flex flex-col items-center gap-2">
                                         <Lock className="w-5 h-5 text-[#999999]" />
-                                        <span className="text-[9px] font-medium text-[#999999] uppercase tracking-wider text-center">Secure</span>
+                                        <span className="text-[9px] font-medium text-[#999999] uppercase tracking-wider text-center">Bảo Mật</span>
                                     </div>
                                     <div className="flex flex-col items-center gap-2">
                                         <ShieldCheck className="w-5 h-5 text-[#999999]" />
-                                        <span className="text-[9px] font-medium text-[#999999] uppercase tracking-wider text-center">Authentic</span>
+                                        <span className="text-[9px] font-medium text-[#999999] uppercase tracking-wider text-center">Chính Hãng</span>
                                     </div>
                                     <div className="flex flex-col items-center gap-2">
                                         <Truck className="w-5 h-5 text-[#999999]" />
-                                        <span className="text-[9px] font-medium text-[#999999] uppercase tracking-wider text-center">Fast</span>
+                                        <span className="text-[9px] font-medium text-[#999999] uppercase tracking-wider text-center">Giao Nhanh</span>
                                     </div>
                                 </div>
                             </div>
@@ -301,18 +257,17 @@ const Cart = () => {
                                     {selectedProduct?.name}
                                 </h1>
                                 <div className="flex items-center gap-1 border border-[#f01a33] rounded-full px-3 py-1 mt-2">
-                                    <span className="text-xs font-bold text-[#f01a33]">4.2</span>
+                                    <span className="text-xs font-bold text-[#f01a33]">4.8</span>
                                     <Star className="w-3 h-3 text-[#f01a33] fill-[#f01a33]" />
                                 </div>
                             </div>
 
                             <div className="flex items-baseline gap-3 mb-6">
-                                <span className="text-[#f01a33] font-display text-3xl font-bold">Rs. {selectedProduct?.price}</span>
-                                <span className="text-gray-300 text-lg line-through font-light">Rs. {selectedProduct?.oldPrice}</span>
+                                <span className="text-[#f01a33] font-display text-3xl font-bold">{selectedProduct?.price}đ</span>
                             </div>
 
                             <p className="font-body text-[#666666] text-sm leading-relaxed mb-8 max-w-[400px]">
-                                Experience the pinnacle of luxury skincare with our meticulously crafted {selectedProduct?.name}. Formulated with rare botanicals and clinically proven actives, it delivers visible transformation and a sensory journey like no other.
+                                {selectedProduct?.description ?? `Mặt nạ hydrogel Energy Shot ${selectedProduct?.name} từ Melalogy.`}
                             </p>
 
                             {/* Quantity */}
@@ -345,11 +300,11 @@ const Cart = () => {
                                         }
                                         setSelectedProduct(null);
                                         setQuantity(1);
-                                        toast.success("Added to bag");
+                                        toast.success("Đã thêm vào giỏ hàng");
                                     }}
                                     className="flex-1 bg-[#f01a33] hover:bg-[#d6182d] text-white rounded-[12px] h-14 text-base font-semibold shadow-lg shadow-[#f01a33]/20"
                                 >
-                                    Buy Now
+                                    Mua Ngay
                                 </Button>
                                 <Button
                                     onClick={() => {
@@ -363,7 +318,7 @@ const Cart = () => {
                                     }}
                                     className="flex-1 bg-white hover:bg-[#fff5f5] text-[#f01a33] border border-[#f01a33] rounded-[12px] h-14 text-base font-semibold"
                                 >
-                                    Add to Cart
+                                    Thêm Vào Giỏ
                                 </Button>
                                 <Button
                                     onClick={() => {
@@ -382,7 +337,7 @@ const Cart = () => {
                             </div>
 
                             <Link href={`/product/${selectedProduct?.id}`} className="group inline-flex items-center gap-2 text-[#f01a33] text-sm font-medium border border-[#f01a33]/30 px-6 py-2.5 rounded-full w-fit hover:bg-[#f01a33]/5 transition-all">
-                                <span>View full detail</span>
+                                <span>Xem chi tiết</span>
                                 <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                             </Link>
                         </div>
@@ -391,7 +346,7 @@ const Cart = () => {
                         <div className="relative bg-[#f8f5f2] h-[400px] md:h-auto flex items-center justify-center p-12">
                             <div className="absolute top-8 left-8 z-10">
                                 <span className="border border-[#f01a33] text-[#f01a33] px-5 py-1.5 rounded-full text-xs font-display uppercase tracking-wider font-semibold">
-                                    BEST SELLER
+                                    BÁN CHẠY
                                 </span>
                             </div>
                             <img

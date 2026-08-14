@@ -8,6 +8,10 @@ export type Product = {
     price: string;
     oldPrice?: string;
     image: string;
+    rawPrice?: number;
+    subtitle?: string;
+    description?: string;
+    category?: string;
 };
 
 type ShopContextType = {
@@ -37,27 +41,15 @@ export const ShopProvider = ({ children }: { children: ReactNode }) => {
         
         if (savedCart) {
             try {
-                const parsedCart = JSON.parse(savedCart);
-                // Sanitize images in cart: Keep if it's already a placeholder, else replace
-                const sanitizedCart = parsedCart.map((item: Product) => ({
-                    ...item,
-                    image: item.image && (item.image.startsWith('/assets/placeholder') || item.image.startsWith('/assets/sanpham')) ? item.image : "/assets/sanpham400x500.png"
-                }));
-                setCart(sanitizedCart);
+                setCart(JSON.parse(savedCart));
             } catch (e) {
                 console.error("Failed to parse cart from localStorage", e);
             }
         }
-        
+
         if (savedWishlist) {
             try {
-                const parsedWishlist = JSON.parse(savedWishlist);
-                // Sanitize images in wishlist
-                const sanitizedWishlist = parsedWishlist.map((item: Product) => ({
-                    ...item,
-                    image: item.image && (item.image.startsWith('/assets/placeholder') || item.image.startsWith('/assets/sanpham')) ? item.image : "/assets/sanpham400x500.png"
-                }));
-                setWishlist(sanitizedWishlist);
+                setWishlist(JSON.parse(savedWishlist));
             } catch (e) {
                 console.error("Failed to parse wishlist from localStorage", e);
             }
@@ -82,12 +74,12 @@ export const ShopProvider = ({ children }: { children: ReactNode }) => {
     const addToCart = (product: Product) => {
         setCart(prev => [...prev, product]);
         setWishlist(prev => prev.filter(item => item.id !== product.id));
-        toast.success(`Added ${product.name} to cart`);
+        toast.success(`Đã thêm ${product.name} vào giỏ hàng`);
     };
 
     const removeFromCart = (productId: number) => {
         setCart(prev => prev.filter(item => item.id !== productId));
-        toast.success('Removed from cart');
+        toast.success('Đã xoá khỏi giỏ hàng');
     };
 
     const removeOneFromCart = (productId: number) => {
@@ -112,12 +104,12 @@ export const ShopProvider = ({ children }: { children: ReactNode }) => {
             return;
         }
         setWishlist(prev => [...prev, product]);
-        toast.success(`Added ${product.name} to wishlist`);
+        toast.success(`Đã thêm ${product.name} vào yêu thích`);
     };
 
     const removeFromWishlist = (productId: number) => {
         setWishlist(prev => prev.filter(item => item.id !== productId));
-        toast.success('Removed from wishlist');
+        toast.success('Đã xoá khỏi danh sách yêu thích');
     };
 
     const isInWishlist = (productId: number) => wishlist.some(item => item.id === productId);
@@ -125,8 +117,8 @@ export const ShopProvider = ({ children }: { children: ReactNode }) => {
 
     return (
         <ShopContext.Provider value={{
-            cart: cart.map(item => ({ ...item, image: item.image && (item.image.startsWith('/assets/placeholder') || item.image.startsWith('/assets/sanpham')) ? item.image : "/assets/sanpham400x500.png" })),
-            wishlist: wishlist.map(item => ({ ...item, image: item.image && (item.image.startsWith('/assets/placeholder') || item.image.startsWith('/assets/sanpham')) ? item.image : "/assets/sanpham400x500.png" })),
+            cart,
+            wishlist,
             addToCart,
             removeFromCart,
             removeOneFromCart,
