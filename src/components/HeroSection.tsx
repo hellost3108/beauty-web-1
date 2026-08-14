@@ -7,24 +7,39 @@ import { Button } from '@/components/ui/button';
 const slides = [
   {
     id: 1,
-    headline: { part1: "Your Signature ", part2: "Glow Starts Here" },
-    subheadline: "Blushora delivers smooth hydration and a naturally radiant complexion — every single day.",
-    // Use the static path from public/assets
-    image: "/assets/anh1.png",
+    headline: { part1: "Khoa Học Của ", part2: "Melanin" },
+    subheadline: "Melalogy mang đến vẻ đẹp bắt nguồn từ khoa học — cấp ẩm sâu và phục hồi làn da mỗi ngày.",
+    image: "/assets/skincare-mask-application.jpg",
   },
   {
     id: 2,
-    headline: { part1: "Timeless Beauty, ", part2: "Captured" },
-    subheadline: "Elevate your routine with our premium collection designed for the modern muse.",
-    // Placeholder 1
-    image: "/assets/anh2.png",
+    headline: { part1: "Cấp Ẩm ", part2: "Chuyên Sâu" },
+    subheadline: "Hydrating Energy Shot với Hyaluronic Acid và Ceramide NP, phục hồi hàng rào bảo vệ da.",
+    image: "/assets/mask-hydrating-blue.png",
   },
   {
     id: 3,
-    headline: { part1: "Radiance in ", part2: "Every Drop" },
-    subheadline: "Pure, potent, and perfect for your skin. Discover the essence of true beauty.",
-    // Placeholder 2
-    image: "/assets/anh3.png",
+    headline: { part1: "Phục Hồi & ", part2: "Làm Dịu Da" },
+    subheadline: "Recovery Energy Shot với Madecassic Acid và chiết xuất rau má, dịu làn da nhạy cảm.",
+    image: "/assets/mask-recovery-green-hero.png",
+  },
+  {
+    id: 4,
+    headline: { part1: "Làm Sáng & ", part2: "Đều Màu Da" },
+    subheadline: "Brightening Energy Shot với Niacinamide và cám gạo, mang lại vẻ rạng rỡ tự nhiên.",
+    image: "/assets/mask-brightening-yellow.png",
+  },
+  {
+    id: 5,
+    headline: { part1: "Săn Chắc & ", part2: "Trẻ Hoá Da" },
+    subheadline: "Radiance Energy Shot với Sodium DNA và Acetyl Hexapeptide-8, cải thiện độ đàn hồi.",
+    image: "/assets/mask-radiance-purple.png",
+  },
+  {
+    id: 6,
+    headline: { part1: "4 Công Thức, ", part2: "1 Mục Tiêu Rạng Rỡ" },
+    subheadline: "Cấp ẩm, phục hồi, làm sáng, tái tạo — chọn mặt nạ phù hợp nhất với làn da của bạn.",
+    image: "/assets/skincare-face-lifestyle.jpg",
   }
 ];
 
@@ -40,11 +55,8 @@ const HeroSection = () => {
 
       const next = (currentSlide + 1) % slides.length;
 
-      // Alternating directions: 0→1 (Down), 1→2 (Up), 2→0 (Down)
-      let dir: 'up' | 'down' = 'down';
-      if (currentSlide === 0 && next === 1) dir = 'down';
-      else if (currentSlide === 1 && next === 2) dir = 'up';
-      else if (currentSlide === 2 && next === 0) dir = 'down';
+      // Alternate direction every transition
+      const dir: 'up' | 'down' = currentSlide % 2 === 0 ? 'down' : 'up';
 
       setDirection(dir);
       setCurrentSlide(next);
@@ -168,7 +180,7 @@ const HeroSection = () => {
                 <div className="mt-4 z-20">
                   <Button asChild className="relative bg-[#f01a33] text-white px-8 py-3 md:px-10 md:py-4 text-sm md:text-base font-medium rounded-[12px] h-auto font-display tracking-tight overflow-hidden group shadow-[0_12px_40px_-10px_rgba(240,26,51,0.35)] hover:shadow-xl transition-shadow duration-500">
                     <Link href="/collection">
-                      <span className="relative z-10 group-hover:text-[#f01a33] transition-colors duration-700">Explore More</span>
+                      <span className="relative z-10 group-hover:text-[#f01a33] transition-colors duration-700">Khám Phá Ngay</span>
                       <div className="absolute bottom-0 right-0 w-full h-0 bg-white group-hover:h-full transition-all duration-700 ease-liquid" style={{ transformOrigin: 'bottom right' }} />
                     </Link>
                   </Button>
