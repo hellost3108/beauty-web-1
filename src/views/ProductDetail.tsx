@@ -117,7 +117,7 @@ const ProductDetail = () => {
                             </div>
 
                             <div className="flex items-end gap-3">
-                                <span className="font-display text-3xl font-bold text-[#f01a33]">{productDetails.price}<span className="font-body">₫</span></span>
+                                <span className="font-display text-3xl font-bold text-[#f01a33]">{productDetails.price}đ</span>
                             </div>
 
                             <p className="font-body text-[#666666] leading-relaxed">
@@ -212,7 +212,7 @@ const ProductDetail = () => {
                         <AccordionItem value="shipping" className="border-b border-gray-200">
                             <AccordionTrigger className="font-display text-xl py-4 hover:text-[#f01a33] hover:no-underline">Vận Chuyển & Đổi Trả</AccordionTrigger>
                             <AccordionContent className="text-gray-600 leading-relaxed pb-6">
-                                Miễn phí vận chuyển cho đơn hàng từ 500.000₫. Chấp nhận đổi trả trong vòng 7 ngày kể từ ngày nhận hàng nếu sản phẩm chưa sử dụng và còn nguyên bao bì.
+                                Miễn phí vận chuyển cho đơn hàng từ 500.000đ. Chấp nhận đổi trả trong vòng 7 ngày kể từ ngày nhận hàng nếu sản phẩm chưa sử dụng và còn nguyên bao bì.
                             </AccordionContent>
                         </AccordionItem>
                     </Accordion>
@@ -287,7 +287,7 @@ const ProductDetail = () => {
                                     className="flex flex-col items-center text-center p-6 pt-4 space-y-2"
                                     onClick={() => setQuickViewProduct(product)}
                                 >
-                                    <span className="font-display text-xl font-bold text-[#1a1a1a]">{product.price}<span className="font-body">₫</span></span>
+                                    <span className="font-display text-xl font-bold text-[#1a1a1a]">{product.price}đ</span>
                                     <p className="font-display text-lg italic text-[#1a1a1a] opacity-90 group-hover:text-[#f01a33] transition-colors">
                                         {product.name}
                                     </p>
@@ -323,7 +323,7 @@ const ProductDetail = () => {
                             </div>
 
                             <div className="flex items-baseline gap-3 mb-4">
-                                <span className="text-[#f01a33] font-display text-2xl font-bold">{quickViewProduct?.price}<span className="font-body">₫</span></span>
+                                <span className="text-[#f01a33] font-display text-2xl font-bold">{quickViewProduct?.price}đ</span>
                             </div>
 
                             <p className="font-body text-[#666666] text-sm leading-relaxed mb-8">
