@@ -20,35 +20,35 @@ import { ChevronDown, SlidersHorizontal, Minus, Plus, Heart, Star } from 'lucide
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { cn } from '@/lib/utils';
 
-const categories = ['Skincare', 'Haircare', 'Body', 'Wellness & Tool', 'Gift Sets'];
+const categories = ['Chăm Sóc Da', 'Chăm Sóc Tóc', 'Cơ Thể', 'Sức Khỏe & Dụng Cụ', 'Bộ Quà Tặng'];
 
 // Sample products data with enriched attributes
 const allProducts = [
-    { id: 1, image: "/assets/placeholder-400x500.png", name: 'Glow Skin Serum', price: '1,199', oldPrice: '1,299', category: 'Skincare', skinType: 'All', rawPrice: 1199 },
-    { id: 2, image: "/assets/placeholder-400x500.png", name: 'Radiance Oil', price: '1,199', oldPrice: '1,299', category: 'Skincare', skinType: 'Dry', rawPrice: 1199 },
-    { id: 3, image: "/assets/placeholder-400x500.png", name: 'Silk Hair Mask', price: '1,199', oldPrice: '1,299', category: 'Haircare', skinType: 'Normal', rawPrice: 1199 },
-    { id: 4, image: "/assets/placeholder-400x500.png", name: 'Volume Boost', price: '1,199', oldPrice: '1,299', category: 'Haircare', skinType: 'All', rawPrice: 1199 },
-    { id: 5, image: "/assets/placeholder-400x500.png", name: 'Body Polish', price: '1,499', oldPrice: '1,699', category: 'Body', skinType: 'Sensitive', rawPrice: 1499 },
-    { id: 6, image: "/assets/placeholder-400x500.png", name: 'Shea Butter', price: '999', oldPrice: '1,299', category: 'Body', skinType: 'Dry', rawPrice: 999 },
-    { id: 7, image: "/assets/placeholder-400x500.png", name: 'Herbal Tea', price: '599', oldPrice: '799', category: 'Wellness & Tool', skinType: 'All', rawPrice: 599 },
-    { id: 8, image: "/assets/placeholder-400x500.png", name: 'Luxury Gift Set', price: '2,999', oldPrice: '3,499', category: 'Gift Sets', skinType: 'All', rawPrice: 2999 },
-    { id: 9, image: "/assets/placeholder-400x500.png", name: 'Night Cream', price: '1,899', oldPrice: '2,099', category: 'Skincare', skinType: 'Dry', rawPrice: 1899 },
-    { id: 10, image: "/assets/placeholder-400x500.png", name: 'Shampoo', price: '899', oldPrice: '1,099', category: 'Haircare', skinType: 'Oily', rawPrice: 899 },
+    { id: 1, image: "/assets/placeholder-400x500.png", name: 'Serum Dưỡng Sáng Da', price: '1,199', oldPrice: '1,299', category: 'Chăm Sóc Da', skinType: 'All', rawPrice: 1199 },
+    { id: 2, image: "/assets/placeholder-400x500.png", name: 'Dầu Dưỡng Rạng Rỡ', price: '1,199', oldPrice: '1,299', category: 'Chăm Sóc Da', skinType: 'Da Khô', rawPrice: 1199 },
+    { id: 3, image: "/assets/placeholder-400x500.png", name: 'Mặt Nạ Ủ Tóc Mượt', price: '1,199', oldPrice: '1,299', category: 'Chăm Sóc Tóc', skinType: 'Da Thường', rawPrice: 1199 },
+    { id: 4, image: "/assets/placeholder-400x500.png", name: 'Xịt Phồng Tóc', price: '1,199', oldPrice: '1,299', category: 'Chăm Sóc Tóc', skinType: 'All', rawPrice: 1199 },
+    { id: 5, image: "/assets/placeholder-400x500.png", name: 'Tẩy Da Chết Toàn Thân', price: '1,499', oldPrice: '1,699', category: 'Cơ Thể', skinType: 'Da Nhạy Cảm', rawPrice: 1499 },
+    { id: 6, image: "/assets/placeholder-400x500.png", name: 'Bơ Shea Dưỡng Da', price: '999', oldPrice: '1,299', category: 'Cơ Thể', skinType: 'Da Khô', rawPrice: 999 },
+    { id: 7, image: "/assets/placeholder-400x500.png", name: 'Trà Thảo Mộc', price: '599', oldPrice: '799', category: 'Sức Khỏe & Dụng Cụ', skinType: 'All', rawPrice: 599 },
+    { id: 8, image: "/assets/placeholder-400x500.png", name: 'Bộ Quà Tặng Cao Cấp', price: '2,999', oldPrice: '3,499', category: 'Bộ Quà Tặng', skinType: 'All', rawPrice: 2999 },
+    { id: 9, image: "/assets/placeholder-400x500.png", name: 'Kem Dưỡng Đêm', price: '1,899', oldPrice: '2,099', category: 'Chăm Sóc Da', skinType: 'Da Khô', rawPrice: 1899 },
+    { id: 10, image: "/assets/placeholder-400x500.png", name: 'Dầu Gội', price: '899', oldPrice: '1,099', category: 'Chăm Sóc Tóc', skinType: 'Da Dầu', rawPrice: 899 },
     // New Products
-    { id: 11, image: "/assets/placeholder-400x500.png", name: 'Hydrating Mist', price: '899', oldPrice: '1,099', category: 'Skincare', skinType: 'Normal', rawPrice: 899 },
-    { id: 12, image: "/assets/placeholder-400x500.png", name: 'Anti-Aging Cream', price: '2,499', oldPrice: '2,999', category: 'Skincare', skinType: 'Mature', rawPrice: 2499 },
-    { id: 13, image: "/assets/placeholder-400x500.png", name: 'Curl Defining Cream', price: '1,299', oldPrice: '1,499', category: 'Haircare', skinType: 'All', rawPrice: 1299 },
-    { id: 14, image: "/assets/placeholder-400x500.png", name: 'Scalp Scrub', price: '1,599', oldPrice: '1,899', category: 'Haircare', skinType: 'Oily', rawPrice: 1599 },
-    { id: 15, image: "/assets/placeholder-400x500.png", name: 'Lavender Body Wash', price: '799', oldPrice: '999', category: 'Body', skinType: 'All', rawPrice: 799 },
-    { id: 16, image: "/assets/placeholder-400x500.png", name: 'Hand Cream Trio', price: '1,199', oldPrice: '1,499', category: 'Body', skinType: 'Dry', rawPrice: 1199 },
-    { id: 17, image: "/assets/placeholder-400x500.png", name: 'Superfood Powder', price: '1,999', oldPrice: '2,499', category: 'Wellness & Tool', skinType: 'All', rawPrice: 1999 },
-    { id: 18, image: "/assets/placeholder-400x500.png", name: 'Calming Candles', price: '1,299', oldPrice: '1,599', category: 'Wellness & Tool', skinType: 'All', rawPrice: 1299 },
-    { id: 19, image: "/assets/placeholder-400x500.png", name: 'Mini Essentials Kit', price: '2,499', oldPrice: '2,999', category: 'Gift Sets', skinType: 'All', rawPrice: 2499 },
-    { id: 20, image: "/assets/placeholder-400x500.png", name: 'Ultimate Spa Bundle', price: '4,999', oldPrice: '5,999', category: 'Gift Sets', skinType: 'All', rawPrice: 4999 },
+    { id: 11, image: "/assets/placeholder-400x500.png", name: 'Xịt Khoáng Cấp Ẩm', price: '899', oldPrice: '1,099', category: 'Chăm Sóc Da', skinType: 'Da Thường', rawPrice: 899 },
+    { id: 12, image: "/assets/placeholder-400x500.png", name: 'Kem Chống Lão Hoá', price: '2,499', oldPrice: '2,999', category: 'Chăm Sóc Da', skinType: 'Da Lão Hoá', rawPrice: 2499 },
+    { id: 13, image: "/assets/placeholder-400x500.png", name: 'Kem Định Hình Tóc Xoăn', price: '1,299', oldPrice: '1,499', category: 'Chăm Sóc Tóc', skinType: 'All', rawPrice: 1299 },
+    { id: 14, image: "/assets/placeholder-400x500.png", name: 'Tẩy Tế Bào Chết Da Đầu', price: '1,599', oldPrice: '1,899', category: 'Chăm Sóc Tóc', skinType: 'Da Dầu', rawPrice: 1599 },
+    { id: 15, image: "/assets/placeholder-400x500.png", name: 'Sữa Tắm Hoa Oải Hương', price: '799', oldPrice: '999', category: 'Cơ Thể', skinType: 'All', rawPrice: 799 },
+    { id: 16, image: "/assets/placeholder-400x500.png", name: 'Bộ 3 Kem Dưỡng Tay', price: '1,199', oldPrice: '1,499', category: 'Cơ Thể', skinType: 'Da Khô', rawPrice: 1199 },
+    { id: 17, image: "/assets/placeholder-400x500.png", name: 'Bột Superfood', price: '1,999', oldPrice: '2,499', category: 'Sức Khỏe & Dụng Cụ', skinType: 'All', rawPrice: 1999 },
+    { id: 18, image: "/assets/placeholder-400x500.png", name: 'Nến Thơm Thư Giãn', price: '1,299', oldPrice: '1,599', category: 'Sức Khỏe & Dụng Cụ', skinType: 'All', rawPrice: 1299 },
+    { id: 19, image: "/assets/placeholder-400x500.png", name: 'Bộ Kit Mini Thiết Yếu', price: '2,499', oldPrice: '2,999', category: 'Bộ Quà Tặng', skinType: 'All', rawPrice: 2499 },
+    { id: 20, image: "/assets/placeholder-400x500.png", name: 'Combo Spa Trọn Gói', price: '4,999', oldPrice: '5,999', category: 'Bộ Quà Tặng', skinType: 'All', rawPrice: 4999 },
 ];
 
 const Collection = () => {
-    const [activeCategory, setActiveCategory] = useState('Skincare');
+    const [activeCategory, setActiveCategory] = useState('Chăm Sóc Da');
     const [visibleProducts, setVisibleProducts] = useState(8);
     const { addToCart, addToWishlist, isInWishlist } = useShop();
     const router = useRouter();
@@ -71,9 +71,9 @@ const Collection = () => {
 
                 // Price Range Filter
                 if (priceRangeFilter !== 'All') {
-                    if (priceRangeFilter === 'Under 1000' && product.rawPrice >= 1000) return false;
+                    if (priceRangeFilter === 'Dưới 1000' && product.rawPrice >= 1000) return false;
                     if (priceRangeFilter === '1000-2000' && (product.rawPrice < 1000 || product.rawPrice > 2000)) return false;
-                    if (priceRangeFilter === 'Above 2000' && product.rawPrice <= 2000) return false;
+                    if (priceRangeFilter === 'Trên 2000' && product.rawPrice <= 2000) return false;
                 }
 
                 return true;
@@ -106,10 +106,10 @@ const Collection = () => {
             {/* Page Header */}
             <div className="pt-32 pb-8 text-center bg-white">
                 <h1 className="font-display text-4xl md:text-5xl text-[#1a1a1a] mb-4">
-                    Our <span className="text-[#f01a33]">Collection</span>
+                    Bộ Sưu Tập <span className="text-[#f01a33]">Của Chúng Tôi</span>
                 </h1>
                 <p className="font-body text-[#666666] text-sm md:text-base max-w-2xl mx-auto px-6 leading-relaxed">
-                    Discover our carefully curated collections, each inspired by the changing seasons and the timeless beauty of nature.
+                    Khám phá những bộ sưu tập được tuyển chọn kỹ lưỡng, mỗi bộ sưu tập lấy cảm hứng từ sự chuyển mình của các mùa và vẻ đẹp vượt thời gian của thiên nhiên.
                 </p>
             </div>
 
@@ -141,15 +141,15 @@ const Collection = () => {
                         <DropdownMenu modal={false}>
                             <DropdownMenuTrigger asChild>
                                 <button className="flex items-center gap-2 px-5 py-2.5 bg-white border border-[#d1d5db] rounded-lg hover:border-[#9ca3af] transition-colors duration-300 font-body whitespace-nowrap shrink-0">
-                                    <span className="text-base text-[#666666]">Filter</span>
+                                    <span className="text-base text-[#666666]">Bộ Lọc</span>
                                     <SlidersHorizontal className="w-4 h-4 text-[#666666]" />
                                 </button>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent align="start" className="w-48 font-body">
-                                <DropdownMenuLabel>Filter Options</DropdownMenuLabel>
+                                <DropdownMenuLabel>Tuỳ Chọn Lọc</DropdownMenuLabel>
                                 <DropdownMenuSeparator />
                                 <DropdownMenuItem onClick={resetFilters}>
-                                    Reset All Filters
+                                    Đặt Lại Bộ Lọc
                                 </DropdownMenuItem>
                             </DropdownMenuContent>
                         </DropdownMenu>
@@ -159,18 +159,18 @@ const Collection = () => {
                             <DropdownMenuTrigger asChild>
                                 <button className="flex items-center gap-2 px-5 py-2.5 bg-white border border-[#d1d5db] rounded-lg hover:border-[#9ca3af] transition-colors duration-300 font-body whitespace-nowrap shrink-0">
                                     <span className="text-base text-[#666666]">
-                                        {sortBy === 'featured' ? 'Sort By: Featured' :
-                                            sortBy === 'price-low-high' ? 'Sort By: Price Low to High' :
-                                                'Sort By: Price High to Low'}
+                                        {sortBy === 'featured' ? 'Sắp Xếp: Nổi Bật' :
+                                            sortBy === 'price-low-high' ? 'Sắp Xếp: Giá Tăng Dần' :
+                                                'Sắp Xếp: Giá Giảm Dần'}
                                     </span>
                                     <ChevronDown className="w-4 h-4 text-[#666666]" />
                                 </button>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent align="end" className="font-body">
                                 <DropdownMenuRadioGroup value={sortBy} onValueChange={setSortBy}>
-                                    <DropdownMenuRadioItem value="featured">Featured</DropdownMenuRadioItem>
-                                    <DropdownMenuRadioItem value="price-low-high">Price: Low to High</DropdownMenuRadioItem>
-                                    <DropdownMenuRadioItem value="price-high-low">Price: High to Low</DropdownMenuRadioItem>
+                                    <DropdownMenuRadioItem value="featured">Nổi Bật</DropdownMenuRadioItem>
+                                    <DropdownMenuRadioItem value="price-low-high">Giá: Tăng Dần</DropdownMenuRadioItem>
+                                    <DropdownMenuRadioItem value="price-high-low">Giá: Giảm Dần</DropdownMenuRadioItem>
                                 </DropdownMenuRadioGroup>
                             </DropdownMenuContent>
                         </DropdownMenu>
@@ -180,19 +180,19 @@ const Collection = () => {
                             <DropdownMenuTrigger asChild>
                                 <button className={`flex items-center gap-2 px-5 py-2.5 bg-white border rounded-lg transition-colors duration-300 font-body whitespace-nowrap shrink-0 ${skinTypeFilter !== 'All' ? 'border-[#f01a33] bg-[#f01a33]/5 text-[#f01a33]' : 'border-[#d1d5db] hover:border-[#9ca3af]'}`}>
                                     <span className="text-base text-inherit">
-                                        {skinTypeFilter === 'All' ? 'Skin Type' : skinTypeFilter}
+                                        {skinTypeFilter === 'All' ? 'Loại Da' : skinTypeFilter}
                                     </span>
                                     <ChevronDown className={`w-4 h-4 ${skinTypeFilter !== 'All' ? 'text-[#f01a33]' : 'text-[#666666]'}`} />
                                 </button>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent align="end" className="font-body">
                                 <DropdownMenuRadioGroup value={skinTypeFilter} onValueChange={setSkinTypeFilter}>
-                                    <DropdownMenuRadioItem value="All">All Types</DropdownMenuRadioItem>
-                                    <DropdownMenuRadioItem value="Dry">Dry Skin</DropdownMenuRadioItem>
-                                    <DropdownMenuRadioItem value="Oily">Oily Skin</DropdownMenuRadioItem>
-                                    <DropdownMenuRadioItem value="Combination">Combination</DropdownMenuRadioItem>
-                                    <DropdownMenuRadioItem value="Sensitive">Sensitive</DropdownMenuRadioItem>
-                                    <DropdownMenuRadioItem value="Normal">Normal</DropdownMenuRadioItem>
+                                    <DropdownMenuRadioItem value="All">Tất Cả Loại Da</DropdownMenuRadioItem>
+                                    <DropdownMenuRadioItem value="Da Khô">Da Khô</DropdownMenuRadioItem>
+                                    <DropdownMenuRadioItem value="Da Dầu">Da Dầu</DropdownMenuRadioItem>
+                                    <DropdownMenuRadioItem value="Da Hỗn Hợp">Da Hỗn Hợp</DropdownMenuRadioItem>
+                                    <DropdownMenuRadioItem value="Da Nhạy Cảm">Da Nhạy Cảm</DropdownMenuRadioItem>
+                                    <DropdownMenuRadioItem value="Da Thường">Da Thường</DropdownMenuRadioItem>
                                 </DropdownMenuRadioGroup>
                             </DropdownMenuContent>
                         </DropdownMenu>
@@ -202,17 +202,17 @@ const Collection = () => {
                             <DropdownMenuTrigger asChild>
                                 <button className={`flex items-center gap-2 px-5 py-2.5 bg-white border rounded-lg transition-colors duration-300 font-body whitespace-nowrap shrink-0 ${priceRangeFilter !== 'All' ? 'border-[#f01a33] bg-[#f01a33]/5 text-[#f01a33]' : 'border-[#d1d5db] hover:border-[#9ca3af]'}`}>
                                     <span className="text-base text-inherit">
-                                        {priceRangeFilter === 'All' ? 'Price Range' : priceRangeFilter}
+                                        {priceRangeFilter === 'All' ? 'Khoảng Giá' : priceRangeFilter}
                                     </span>
                                     <ChevronDown className={`w-4 h-4 ${priceRangeFilter !== 'All' ? 'text-[#f01a33]' : 'text-[#666666]'}`} />
                                 </button>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent align="end" className="font-body">
                                 <DropdownMenuRadioGroup value={priceRangeFilter} onValueChange={setPriceRangeFilter}>
-                                    <DropdownMenuRadioItem value="All">All Prices</DropdownMenuRadioItem>
-                                    <DropdownMenuRadioItem value="Under 1000">Under Rs. 1000</DropdownMenuRadioItem>
+                                    <DropdownMenuRadioItem value="All">Tất Cả Mức Giá</DropdownMenuRadioItem>
+                                    <DropdownMenuRadioItem value="Dưới 1000">Dưới Rs. 1000</DropdownMenuRadioItem>
                                     <DropdownMenuRadioItem value="1000-2000">Rs. 1000 - 2000</DropdownMenuRadioItem>
-                                    <DropdownMenuRadioItem value="Above 2000">Above Rs. 2000</DropdownMenuRadioItem>
+                                    <DropdownMenuRadioItem value="Trên 2000">Trên Rs. 2000</DropdownMenuRadioItem>
                                 </DropdownMenuRadioGroup>
                             </DropdownMenuContent>
                         </DropdownMenu>
@@ -235,7 +235,7 @@ const Collection = () => {
                                     <div className="relative w-full aspect-square overflow-hidden bg-[#f9f8f7]">
                                         {/* Sale Badge */}
                                         <div className="absolute top-4 left-4 z-20 bg-[#f01a33] text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">
-                                            Sale
+                                            Giảm Giá
                                         </div>
 
                                         <img
@@ -288,7 +288,7 @@ const Collection = () => {
                                                     }}
                                                     className="relative w-full bg-[#f01a33] text-white py-3 rounded-[12px] font-display font-semibold text-sm overflow-hidden group/btn shadow-lg hover:shadow-xl transition-shadow duration-500"
                                                 >
-                                                    <span className="relative z-10 group-hover/btn:text-[#f01a33] transition-colors duration-700">Add to Cart</span>
+                                                    <span className="relative z-10 group-hover/btn:text-[#f01a33] transition-colors duration-700">Thêm Vào Giỏ</span>
                                                     {/* White fill animation from bottom-right rising upward */}
                                                     <div className="absolute bottom-0 right-0 w-full h-0 bg-white group-hover/btn:h-full transition-all duration-700 ease-liquid"
                                                         style={{ transformOrigin: 'bottom right' }} />
@@ -311,7 +311,7 @@ const Collection = () => {
                             ))
                         ) : (
                             <div className="col-span-full text-center py-20 text-gray-500 font-display text-xl">
-                                No products found in this category.
+                                Không tìm thấy sản phẩm nào trong danh mục này.
                             </div>
                         )}
                     </div>
@@ -323,7 +323,7 @@ const Collection = () => {
                                 onClick={handleLoadMore}
                                 className="relative bg-[#f01a33] text-white px-16 py-3 text-base font-medium rounded-[12px] h-auto overflow-hidden group shadow-xl hover:shadow-2xl transition-shadow duration-500"
                             >
-                                <span className="relative z-10 group-hover:text-[#f01a33] transition-colors duration-700">Load More</span>
+                                <span className="relative z-10 group-hover:text-[#f01a33] transition-colors duration-700">Xem Thêm</span>
                                 <div className="absolute bottom-0 right-0 w-full h-0 bg-white group-hover:h-full transition-all duration-700 ease-liquid" style={{ transformOrigin: 'bottom right' }} />
                             </Button>
                         </div>
@@ -338,8 +338,8 @@ const Collection = () => {
             {/* Quick View Modal */}
             <Dialog open={!!quickViewProduct} onOpenChange={(open) => !open && setQuickViewProduct(null)}>
                 <DialogContent className="max-w-4xl max-h-[90vh] p-0 overflow-y-auto bg-[#fdfcfc] border-none rounded-[30px] gap-0">
-                    <DialogTitle className="sr-only">Quick View</DialogTitle>
-                    <DialogDescription className="sr-only">Quick view details</DialogDescription>
+                    <DialogTitle className="sr-only">Xem Nhanh</DialogTitle>
+                    <DialogDescription className="sr-only">Chi tiết xem nhanh</DialogDescription>
                     <div className="flex flex-col-reverse md:grid md:grid-cols-2">
                         {/* Left: Content */}
                         <div className="p-8 md:p-12 flex flex-col justify-center">
@@ -359,7 +359,7 @@ const Collection = () => {
                             </div>
 
                             <p className="font-body text-[#666666] text-sm leading-relaxed mb-8">
-                                A potent blend of Ayurvedic herbs and modern science designed to illuminate dull skin. Infused with saffron and hyaluronic acid, this lightweight serum deeply penetrates to hydrate, brighten, and restore your natural radiance overnight.
+                                Sự kết hợp mạnh mẽ giữa thảo dược Ayurvedic và khoa học hiện đại, được thiết kế để làm sáng làn da xỉn màu. Với chiết xuất nghệ tây và hyaluronic acid, loại serum mỏng nhẹ này thẩm thấu sâu để cấp ẩm, làm sáng da và phục hồi vẻ rạng rỡ tự nhiên qua từng đêm.
                             </p>
 
                             {/* Quantity */}
@@ -395,7 +395,7 @@ const Collection = () => {
                                     }}
                                     className="flex-1 bg-[#f01a33] text-white rounded-[10px] py-6 shadow-lg shadow-[#f01a33]/20 text-base font-normal relative overflow-hidden group/btn"
                                 >
-                                    <span className="relative z-10 group-hover/btn:text-[#f01a33] transition-colors duration-700">Buy Now</span>
+                                    <span className="relative z-10 group-hover/btn:text-[#f01a33] transition-colors duration-700">Mua Ngay</span>
                                     <div className="absolute bottom-0 right-0 w-full h-0 bg-white group-hover/btn:h-full transition-all duration-700 ease-liquid" style={{ transformOrigin: 'bottom right' }} />
                                 </Button>
                                 <Button
@@ -410,7 +410,7 @@ const Collection = () => {
                                     }}
                                     className="flex-1 bg-white hover:bg-[#fff5f5] text-[#f01a33] border border-[#f01a33] rounded-[10px] py-6 text-base font-normal"
                                 >
-                                    Add to Cart
+                                    Thêm Vào Giỏ
                                 </Button>
                                 <Button
                                     onClick={() => {
@@ -436,7 +436,7 @@ const Collection = () => {
                                 }}
                                 className="inline-flex items-center gap-2 text-[#f01a33] text-sm sm:text-base border border-[#f01a33]/30 px-6 py-2 rounded-full w-fit hover:bg-[#f01a33]/5 transition-colors cursor-pointer"
                             >
-                                <span>View full detail</span>
+                                <span>Xem Chi Tiết Đầy Đủ</span>
                                 <ChevronDown className="w-4 h-4 -rotate-90" />
                             </button>
                         </div>
@@ -445,7 +445,7 @@ const Collection = () => {
                         <div className="relative bg-[#ebe7e5] h-[400px] md:h-auto">
                             <div className="absolute top-6 left-6 z-10">
                                 <span className="border border-[#f01a33] text-[#f01a33] px-4 pt-1 pb-2 rounded-lg text-sm font-display inline-flex items-center justify-center leading-none">
-                                    Best Seller
+                                    Bán Chạy Nhất
                                 </span>
                             </div>
                             <img
