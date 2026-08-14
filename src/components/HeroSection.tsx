@@ -153,12 +153,8 @@ const HeroSection = () => {
 
       {/* Text Section - Animates separately */}
       <div className="hero-text-section relative w-full h-[30vh] flex flex-col items-center justify-center text-center px-4 overflow-hidden bg-white py-8">
-        {/* Background Frame (Static) */}
-        <div className="absolute inset-0 z-0 pointer-events-none">
-          <img src="/assets/frame.png" alt="" className="w-full h-full object-cover opacity-100 scale-110" />
-          <div className="absolute inset-0 bg-white/40" />
-          <div className="absolute inset-0 bg-gradient-to-r from-white via-transparent to-white opacity-60" />
-        </div>
+        {/* Background (Static) */}
+        <div className="absolute inset-0 z-0 pointer-events-none bg-[radial-gradient(ellipse_at_center,_#fff5f6_0%,_#ffffff_70%)]" />
 
         {/* Text Content - Animated */}
         <div className="relative w-full h-full flex items-center justify-center">

@@ -14,11 +14,11 @@ const BeautyTransformation = () => {
             </div>
 
             {/* Right Image Section */}
-            <div className="h-[50vh] xl:h-full xl:flex-1 relative">
+            <div className="h-[50vh] xl:h-full xl:flex-1 relative bg-[#f3eff8] flex items-center justify-center p-10 md:p-16">
                 <img
                     src="/assets/mask-radiance-purple.png"
                     alt="Mặt nạ hydrogel Energy Shot Melalogy"
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-contain drop-shadow-xl"
                 />
             </div>
 
