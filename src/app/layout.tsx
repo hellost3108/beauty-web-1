@@ -1,65 +1,14 @@
 import type { Metadata } from "next";
-import { Inter, Poppins } from "next/font/google";
-import localFont from "next/font/local";
+import { Inter, Playfair_Display, Poppins } from "next/font/google";
 import "./globals.css";
 import Providers from "@/components/Providers";
 
-const ivyMode = localFont({
-  src: [
-    {
-      path: "../../public/fonts/fonnts.com-IvyMode_Thin.otf",
-      weight: "100",
-      style: "normal",
-    },
-    {
-      path: "../../public/fonts/fonnts.com-IvyMode_Thin_Italic.otf",
-      weight: "100",
-      style: "italic",
-    },
-    {
-      path: "../../public/fonts/fonnts.com-IvyMode_Light.otf",
-      weight: "300",
-      style: "normal",
-    },
-    {
-      path: "../../public/fonts/fonnts.com-IvyMode_Light_Italic.otf",
-      weight: "300",
-      style: "italic",
-    },
-    {
-      path: "../../public/fonts/fonnts.com-IvyMode_Regular.otf",
-      weight: "400",
-      style: "normal",
-    },
-    {
-      path: "../../public/fonts/fonnts.com-IvyMode_Italic.otf",
-      weight: "400",
-      style: "italic",
-    },
-    {
-      path: "../../public/fonts/fonnts.com-IvyMode_SemiBold.otf",
-      weight: "600",
-      style: "normal",
-    },
-    {
-      path: "../../public/fonts/fonnts.com-IvyMode_SemiBold_Italic.otf",
-      weight: "600",
-      style: "italic",
-    },
-    {
-      path: "../../public/fonts/fonnts.com-IvyMode_Bold.otf",
-      weight: "700",
-      style: "normal",
-    },
-    {
-      path: "../../public/fonts/fonnts.com-IvyMode_Bold_Italic.otf",
-      weight: "700",
-      style: "italic",
-    },
-  ],
+const playfairDisplay = Playfair_Display({
+  subsets: ["latin", "vietnamese"],
+  weight: ["400", "500", "600", "700", "800", "900"],
+  style: ["normal", "italic"],
   variable: "--font-display",
   display: "swap",
-  preload: false,
 });
 
 const inter = Inter({
@@ -87,7 +36,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="vi" className={`${ivyMode.variable} ${inter.variable} ${poppins.variable}`}>
+    <html lang="vi" className={`${playfairDisplay.variable} ${inter.variable} ${poppins.variable}`}>
       <body className="antialiased" suppressHydrationWarning>
         <Providers>{children}</Providers>
       </body>
