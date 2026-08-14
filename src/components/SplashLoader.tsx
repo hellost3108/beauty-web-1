@@ -76,16 +76,16 @@ const SplashLoader: React.FC<SplashLoaderProps> = ({ onComplete }) => {
                     {/* Circle Border - Drops in then Fades out slowly during pull */}
                     <div
                         className={cn(
-                            "absolute inset-0 border-[3px] border-[#f01a33] rounded-full transition-all duration-700 ease-out",
+                            "absolute inset-0 border-[3px] border-[#1B5E5E] rounded-full transition-all duration-700 ease-out",
                             stage === 'initial' || stage === 'text' ? "-translate-y-full opacity-0" :
                                 (stage === 'pull' || stage === 'finish') ? "translate-y-0 opacity-0" : "translate-y-0 opacity-100"
                         )}
                     />
 
-                    {/* Bulsan Beauty Logo - Stays visible until replaced by Navbar logo */}
+                    {/* Melalogy Logo - Stays visible until replaced by Navbar logo */}
                     <img
                         src="/assets/logo-full.png"
-                        alt="Bulsan Beauty"
+                        alt="Melalogy"
                         className={cn(
                             "w-40 md:w-52 object-contain transition-opacity duration-300 ease-in-out",
                             stage === 'initial' ? "opacity-0" : "opacity-100"
@@ -95,7 +95,7 @@ const SplashLoader: React.FC<SplashLoaderProps> = ({ onComplete }) => {
                     {/* Vertical Line - Attached to bottom of circle */}
                     <div
                         className={cn(
-                            "absolute top-full left-1/2 -translate-x-1/2 w-[3px] bg-[#f01a33] origin-top transition-all ease-in-out",
+                            "absolute top-full left-1/2 -translate-x-1/2 w-[3px] bg-[#1B5E5E] origin-top transition-all ease-in-out",
                             stage === 'line' ? "h-[50vh]" :
                                 stage === 'pull' ? "h-[50vh] opacity-0" : "h-0 opacity-0"
                         )}

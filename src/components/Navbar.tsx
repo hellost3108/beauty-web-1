@@ -83,7 +83,7 @@ const Navbar = () => {
           {/* Logo - Center */}
           <div className="flex-1 flex justify-center" id="navbar-logo-container">
             <Link href="/" className="hover:opacity-80 transition-opacity">
-              <img src="/assets/logo.png" alt="Bulsan Beauty" className="h-10 md:h-12 w-auto object-contain" />
+              <img src="/assets/logo.png" alt="Melalogy" className="w-32 md:w-40 h-auto object-contain" />
             </Link>
           </div>
 
