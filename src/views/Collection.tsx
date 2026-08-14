@@ -213,7 +213,7 @@ const Collection = () => {
 
                                     {/* Info Section */}
                                     <div className="flex flex-col items-center text-center p-6 pt-4 space-y-2">
-                                        <span className="font-display text-xl font-bold text-[#1a1a1a]">{product.price}<span className="font-body">₫</span></span>
+                                        <span className="font-display text-xl font-bold text-[#1a1a1a]">{product.price}đ</span>
                                         <p className="font-display text-lg italic text-[#1a1a1a] opacity-90">
                                             {product.name}
                                         </p>
@@ -265,7 +265,7 @@ const Collection = () => {
                             </div>
 
                             <div className="flex items-baseline gap-3 mb-4">
-                                <span className="text-[#f01a33] font-display text-2xl font-bold">{quickViewProduct?.price}<span className="font-body">₫</span></span>
+                                <span className="text-[#f01a33] font-display text-2xl font-bold">{quickViewProduct?.price}đ</span>
                             </div>
 
                             <p className="font-body text-[#666666] text-sm leading-relaxed mb-8">
