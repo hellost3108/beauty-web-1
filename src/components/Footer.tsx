@@ -97,7 +97,7 @@ const Footer = () => {
         {/* Bottom bar */}
         <div className="pt-4 border-t border-[#f0f0f0] flex justify-center items-center">
           <p className="font-body text-sm text-[#999999]">
-            © Bản quyền 2025 Melalogy. Đã đăng ký bản quyền.
+            © Bản quyền 2026 Melalogy. Đã đăng ký bản quyền.
           </p>
         </div>
       </div>
