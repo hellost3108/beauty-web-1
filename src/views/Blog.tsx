@@ -15,12 +15,8 @@ const Blog = () => {
 
             {/* Hero Section */}
             <section className="relative w-full pt-[120px] pb-12 md:pt-[160px] md:pb-20 overflow-hidden">
-                {/* Background Frame */}
-                <div className="absolute inset-0 z-0 pointer-events-none">
-                    <img src="/assets/frame.png" alt="" className="w-full h-full object-cover opacity-100 scale-110" />
-                    <div className="absolute inset-0 bg-white/40" />
-                    <div className="absolute inset-0 bg-gradient-to-r from-white via-transparent to-white opacity-60" />
-                </div>
+                {/* Background */}
+                <div className="absolute inset-0 z-0 pointer-events-none bg-[radial-gradient(ellipse_at_center,_#fff5f6_0%,_#ffffff_70%)]" />
 
                 <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
                     <span className="text-[#e7406e] font-display text-lg tracking-wide uppercase mb-4 block">Nhật Ký Của Chúng Tôi</span>

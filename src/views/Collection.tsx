@@ -1,6 +1,6 @@
 "use client";
-import { useState, useMemo } from 'react';
-import { useRouter } from 'next/navigation';
+import { useState, useMemo, useEffect } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -24,10 +24,18 @@ import { allProducts } from '@/data/productsData';
 const categories = ['Tất Cả', 'Cấp Ẩm', 'Phục Hồi', 'Làm Sáng', 'Rạng Rỡ'];
 
 const Collection = () => {
+    const searchParams = useSearchParams();
     const [activeCategory, setActiveCategory] = useState('Tất Cả');
     const [visibleProducts, setVisibleProducts] = useState(8);
     const { addToCart, addToWishlist, isInWishlist } = useShop();
     const router = useRouter();
+
+    useEffect(() => {
+        const categoryParam = searchParams.get('category');
+        if (categoryParam && categories.includes(categoryParam)) {
+            setActiveCategory(categoryParam);
+        }
+    }, [searchParams]);
 
     // Filters States
     const [sortBy, setSortBy] = useState('featured');
