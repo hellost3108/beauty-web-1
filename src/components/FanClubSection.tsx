@@ -32,14 +32,8 @@ const FanClubSection = () => {
 
     return (
         <section className="relative w-full bg-white pt-12 pb-12 lg:pb-24">
-            {/* Background Image */}
-            <div className="absolute inset-0 z-0">
-                <img
-                    src="/assets/frame.png"
-                    alt=""
-                    className="w-full h-full object-cover opacity-60"
-                />
-            </div>
+            {/* Background */}
+            <div className="absolute inset-0 z-0 bg-[radial-gradient(ellipse_at_center,_#fff5f6_0%,_#ffffff_70%)]" />
 
             <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
                 {/* Title */}

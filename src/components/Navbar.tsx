@@ -11,11 +11,10 @@ const Navbar = () => {
   const { cart, wishlist } = useShop();
 
   const collectionCategories = [
-    { name: 'Chăm Sóc Da', image: "/assets/placeholder-300x300.png" },
-    { name: 'Chăm Sóc Tóc', image: "/assets/placeholder-300x300.png" },
-    { name: 'Cơ Thể', image: "/assets/placeholder-300x300.png" },
-    { name: 'Sức Khỏe & Dụng Cụ', image: "/assets/placeholder-300x300.png" },
-    { name: 'Bộ Quà Tặng', image: "/assets/placeholder-300x300.png" },
+    { name: 'Cấp Ẩm', image: "/assets/mask-hydrating-blue.png" },
+    { name: 'Phục Hồi', image: "/assets/mask-recovery-green.png" },
+    { name: 'Làm Sáng', image: "/assets/mask-brightening-yellow.png" },
+    { name: 'Rạng Rỡ', image: "/assets/mask-radiance-purple.png" },
   ];
 
   return (
@@ -43,7 +42,7 @@ const Navbar = () => {
                   : 'opacity-0 -translate-y-2 invisible pointer-events-none'
                   }`}
               >
-                <div className="bg-white rounded-[24px] shadow-2xl border border-gray-100 p-8 w-[800px] grid grid-cols-5 gap-6">
+                <div className="bg-white rounded-[24px] shadow-2xl border border-gray-100 p-8 w-[640px] grid grid-cols-4 gap-6">
                   {collectionCategories.map((cat, index) => (
                     <Link
                       key={index}
