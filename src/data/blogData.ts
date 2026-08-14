@@ -2,19 +2,19 @@ export const blogPosts = [
     {
         id: 1,
         title: "BNBG – Gương Mặt Mới Trong Làng Làm Đẹp Hàn Quốc",
-        excerpt: "BNBG là một trong những thương hiệu làm đẹp Hàn Quốc mà Bulsan Beauty tuyển chọn mang về. Cùng điểm qua vì sao cái tên này đáng để bạn khám phá.",
-        author: "Đội Ngũ Bulsan Beauty",
+        excerpt: "BNBG là một trong những thương hiệu làm đẹp Hàn Quốc mà Melalogy tuyển chọn mang về. Cùng điểm qua vì sao cái tên này đáng để bạn khám phá.",
+        author: "Đội Ngũ Melalogy",
         date: "13 Tháng 8, 2026",
         category: "Thương Hiệu",
         image: "/assets/magazine-placeholder.jpg",
         content: `
-            <p>Trong hành trình tìm kiếm những thương hiệu làm đẹp chất lượng từ Hàn Quốc để mang đến cho khách hàng, BNBG là một trong những cái tên Bulsan Beauty đã chọn lựa và giới thiệu tới cộng đồng.</p>
+            <p>Trong hành trình tìm kiếm những thương hiệu làm đẹp chất lượng từ Hàn Quốc để mang đến cho khách hàng, BNBG là một trong những cái tên Melalogy đã chọn lựa và giới thiệu tới cộng đồng.</p>
 
             <h3>Vì Sao Đáng Chú Ý</h3>
             <p>Thị trường mỹ phẩm Hàn Quốc vốn nổi tiếng với tốc độ đổi mới nhanh và sự chỉn chu trong từng khâu phát triển sản phẩm. BNBG là một phần của làn sóng thương hiệu trẻ, mang tinh thần đó, hướng đến những khách hàng yêu thích trải nghiệm làm đẹp mới mẻ nhưng vẫn chú trọng chất lượng.</p>
 
             <h3>Tìm Hiểu Thêm</h3>
-            <p>Bulsan Beauty sẽ tiếp tục cập nhật thêm thông tin chi tiết về các dòng sản phẩm của BNBG trong thời gian tới. Hãy theo dõi để không bỏ lỡ những sản phẩm mới nhất.</p>
+            <p>Melalogy sẽ tiếp tục cập nhật thêm thông tin chi tiết về các dòng sản phẩm của BNBG trong thời gian tới. Hãy theo dõi để không bỏ lỡ những sản phẩm mới nhất.</p>
         `
     },
     {
@@ -47,8 +47,8 @@ export const blogPosts = [
     {
         id: 3,
         title: "Wonjin – Tinh Hoa Chăm Sóc Da Chuẩn Phòng Khám Hàn Quốc",
-        excerpt: "Wonjin là thương hiệu chăm sóc da được nhiều tín đồ làm đẹp Hàn Quốc tin dùng, nay đã có mặt trong bộ sưu tập của Bulsan Beauty.",
-        author: "Đội Ngũ Bulsan Beauty",
+        excerpt: "Wonjin là thương hiệu chăm sóc da được nhiều tín đồ làm đẹp Hàn Quốc tin dùng, nay đã có mặt trong bộ sưu tập của Melalogy.",
+        author: "Đội Ngũ Melalogy",
         date: "03 Tháng 8, 2026",
         category: "Thương Hiệu",
         image: "/assets/magazine-placeholder.jpg",
@@ -58,8 +58,8 @@ export const blogPosts = [
             <h3>Triết Lý Thương Hiệu</h3>
             <p>Điểm thu hút của Wonjin nằm ở cách tiếp cận chăm sóc da nghiêm túc, tập trung vào việc phục hồi và cân bằng làn da như một quy trình liền mạch, thay vì chỉ dừng lại ở một vài sản phẩm rời rạc.</p>
 
-            <h3>Có Gì Tại Bulsan Beauty</h3>
-            <p>Bulsan Beauty đang giới thiệu Wonjin đến khách hàng Việt Nam như một phần trong danh mục các thương hiệu Hàn Quốc được tuyển chọn kỹ lưỡng. Ghé thăm chuyên mục Shop để khám phá thêm.</p>
+            <h3>Có Gì Tại Melalogy</h3>
+            <p>Melalogy đang giới thiệu Wonjin đến khách hàng Việt Nam như một phần trong danh mục các thương hiệu Hàn Quốc được tuyển chọn kỹ lưỡng. Ghé thăm chuyên mục Shop để khám phá thêm.</p>
         `
     },
     {
@@ -89,8 +89,8 @@ export const blogPosts = [
     {
         id: 5,
         title: "Angel Liquid – Bí Quyết Dưỡng Da Trong Suốt Kiểu Hàn",
-        excerpt: "Angel Liquid là sản phẩm quen thuộc với những tín đồ theo đuổi làn da căng bóng kiểu Hàn Quốc, nay có mặt trong danh mục của Bulsan Beauty.",
-        author: "Đội Ngũ Bulsan Beauty",
+        excerpt: "Angel Liquid là sản phẩm quen thuộc với những tín đồ theo đuổi làn da căng bóng kiểu Hàn Quốc, nay có mặt trong danh mục của Melalogy.",
+        author: "Đội Ngũ Melalogy",
         date: "24 Tháng 7, 2026",
         category: "Thương Hiệu",
         image: "/assets/magazine-placeholder.jpg",
@@ -100,8 +100,8 @@ export const blogPosts = [
             <h3>Vì Sao Được Yêu Thích</h3>
             <p>Được biết đến như một bước dưỡng ẩm quan trọng trong quy trình skincare nhiều lớp kiểu Hàn, Angel Liquid gắn liền với trải nghiệm chăm sóc da nhẹ nhàng nhưng hiệu quả mà nhiều người tìm kiếm.</p>
 
-            <h3>Có Tại Bulsan Beauty</h3>
-            <p>Bulsan Beauty hiện đang giới thiệu Angel Liquid đến khách hàng như một phần trong bộ sưu tập các sản phẩm làm đẹp Hàn Quốc được tuyển chọn. Thông tin chi tiết về sản phẩm sẽ được cập nhật sớm.</p>
+            <h3>Có Tại Melalogy</h3>
+            <p>Melalogy hiện đang giới thiệu Angel Liquid đến khách hàng như một phần trong bộ sưu tập các sản phẩm làm đẹp Hàn Quốc được tuyển chọn. Thông tin chi tiết về sản phẩm sẽ được cập nhật sớm.</p>
         `
     },
     {
@@ -131,19 +131,19 @@ export const blogPosts = [
     {
         id: 7,
         title: "APerire – Thương Hiệu Làm Đẹp Đáng Khám Phá",
-        excerpt: "APerire là cái tên mới trong danh mục thương hiệu mà Bulsan Beauty giới thiệu, hứa hẹn mang đến trải nghiệm làm đẹp đáng để khám phá.",
-        author: "Đội Ngũ Bulsan Beauty",
+        excerpt: "APerire là cái tên mới trong danh mục thương hiệu mà Melalogy giới thiệu, hứa hẹn mang đến trải nghiệm làm đẹp đáng để khám phá.",
+        author: "Đội Ngũ Melalogy",
         date: "12 Tháng 7, 2026",
         category: "Thương Hiệu",
         image: "/assets/magazine-placeholder.jpg",
         content: `
-            <p>APerire là một trong những thương hiệu mới nhất được Bulsan Beauty lựa chọn để giới thiệu tới cộng đồng yêu làm đẹp tại Việt Nam.</p>
+            <p>APerire là một trong những thương hiệu mới nhất được Melalogy lựa chọn để giới thiệu tới cộng đồng yêu làm đẹp tại Việt Nam.</p>
 
             <h3>Định Hướng Thương Hiệu</h3>
-            <p>Cũng như các thương hiệu khác trong danh mục tuyển chọn của Bulsan Beauty, APerire được đưa vào với tiêu chí chất lượng và trải nghiệm sử dụng thực tế lên hàng đầu.</p>
+            <p>Cũng như các thương hiệu khác trong danh mục tuyển chọn của Melalogy, APerire được đưa vào với tiêu chí chất lượng và trải nghiệm sử dụng thực tế lên hàng đầu.</p>
 
             <h3>Cập Nhật Sắp Tới</h3>
-            <p>Thông tin chi tiết về các dòng sản phẩm của APerire sẽ được Bulsan Beauty cập nhật trong thời gian tới. Hãy theo dõi để không bỏ lỡ.</p>
+            <p>Thông tin chi tiết về các dòng sản phẩm của APerire sẽ được Melalogy cập nhật trong thời gian tới. Hãy theo dõi để không bỏ lỡ.</p>
         `
     },
     {

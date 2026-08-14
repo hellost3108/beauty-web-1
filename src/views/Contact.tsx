@@ -34,7 +34,7 @@ const Contact = () => {
                             </div>
                             <div>
                                 <h3 className="font-bold text-[#1a1a1a]">Email</h3>
-                                <p className="text-[#666666]">metquatroiquaday@bulsangroup.com</p>
+                                <p className="text-[#666666]">metquatroiquaday@melalogy.com</p>
                             </div>
                             <div>
                                 <h3 className="font-bold text-[#1a1a1a]">Điện Thoại</h3>
