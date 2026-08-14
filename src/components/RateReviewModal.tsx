@@ -23,7 +23,7 @@ export function RateReviewModal() {
 
     const handleSubmit = () => {
         console.log("Submitted:", { rating, feedback });
-        toast.success("Thank you for your feedback!");
+        toast.success("Cảm ơn bạn đã gửi đánh giá!");
         // Reset and close
         setRating(0);
         setFeedback("");
@@ -36,16 +36,16 @@ export function RateReviewModal() {
                 <Button
                     className="rounded-full bg-[#fceef2] text-[#e7406e] hover:bg-[#e7406e] hover:text-white border px-6 transition-all shadow-sm font-display"
                 >
-                    Rate & Review
+                    Đánh Giá
                 </Button>
             </DialogTrigger>
             <DialogContent className="sm:max-w-md rounded-[20px] p-6 bg-white">
                 <DialogHeader className="mb-4">
                     <DialogTitle className="text-xl font-bold flex justify-between items-center text-[#1a1a1a] font-display">
-                        Rate Our App!
+                        Đánh Giá Sản Phẩm!
                     </DialogTitle>
                     <DialogDescription className="text-gray-500 mt-2 font-body">
-                        Help us improve our tool to best suit your needs by rating us here!
+                        Giúp chúng tôi cải thiện sản phẩm tốt hơn bằng cách đánh giá tại đây!
                     </DialogDescription>
                 </DialogHeader>
 
@@ -69,10 +69,10 @@ export function RateReviewModal() {
 
                 <div className="space-y-3 mb-6">
                     <label className="text-sm font-semibold text-[#1a1a1a] font-display">
-                        Can you tell us more?
+                        Bạn có muốn chia sẻ thêm không?
                     </label>
                     <Textarea
-                        placeholder="Add feedback"
+                        placeholder="Nhập nhận xét của bạn"
                         value={feedback}
                         onChange={(e) => setFeedback(e.target.value)}
                         className="min-h-[100px] rounded-xl border-gray-200 resize-none focus:border-[#e7406e] focus:ring-[#e7406e] font-body"
@@ -85,14 +85,14 @@ export function RateReviewModal() {
                             variant="outline"
                             className="w-full rounded-xl border-gray-200 text-gray-700 hover:bg-gray-50 hover:text-gray-900 h-11 font-display"
                         >
-                            Cancel
+                            Huỷ
                         </Button>
                     </DialogClose>
                     <Button
                         onClick={handleSubmit}
                         className="w-full rounded-xl bg-[#e7406e] hover:bg-[#d63060] text-white h-11 shadow-md hover:shadow-lg transition-all font-display"
                     >
-                        Submit
+                        Gửi
                     </Button>
                 </DialogFooter>
             </DialogContent>

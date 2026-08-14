@@ -19,48 +19,9 @@ import {
 import { ChevronDown, SlidersHorizontal, Minus, Plus, Heart, Star } from 'lucide-react';
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { cn } from '@/lib/utils';
+import { allProducts } from '@/data/productsData';
 
 const categories = ['Tất Cả', 'Cấp Ẩm', 'Phục Hồi', 'Làm Sáng', 'Rạng Rỡ'];
-
-// Melalogy Energy Shot Hydrogel Mask lineup
-const allProducts = [
-    {
-        id: 1,
-        image: "/assets/mask-hydrating-blue.png",
-        name: 'Mặt Nạ Hydrogel Energy Shot - Cấp Ẩm',
-        price: '79.000',
-        category: 'Cấp Ẩm',
-        rawPrice: 79000,
-        description: 'Mặt nạ hydrogel cấp ẩm tức thì với Hyaluronic Acid và Ceramide NP, giúp phục hồi hàng rào bảo vệ da và duy trì độ ẩm sâu suốt nhiều giờ.',
-    },
-    {
-        id: 2,
-        image: "/assets/mask-recovery-green.png",
-        name: 'Mặt Nạ Hydrogel Energy Shot - Phục Hồi',
-        price: '79.000',
-        category: 'Phục Hồi',
-        rawPrice: 79000,
-        description: 'Mặt nạ hydrogel phục hồi với Madecassic Acid và chiết xuất rau má (Centella Asiatica), làm dịu da nhạy cảm, kích ứng và hỗ trợ tái tạo da.',
-    },
-    {
-        id: 3,
-        image: "/assets/mask-brightening-yellow.png",
-        name: 'Mặt Nạ Hydrogel Energy Shot - Làm Sáng',
-        price: '79.000',
-        category: 'Làm Sáng',
-        rawPrice: 79000,
-        description: 'Mặt nạ hydrogel làm sáng da với Niacinamide và chiết xuất cám gạo (Oryza Sativa Bran Extract), giúp đều màu da và mang lại vẻ rạng rỡ tự nhiên.',
-    },
-    {
-        id: 4,
-        image: "/assets/mask-radiance-purple.png",
-        name: 'Mặt Nạ Hydrogel Energy Shot - Rạng Rỡ',
-        price: '79.000',
-        category: 'Rạng Rỡ',
-        rawPrice: 79000,
-        description: 'Mặt nạ hydrogel trẻ hoá với Sodium DNA và Acetyl Hexapeptide-8, hỗ trợ săn chắc da và cải thiện độ đàn hồi.',
-    },
-];
 
 const Collection = () => {
     const [activeCategory, setActiveCategory] = useState('Tất Cả');
@@ -252,7 +213,7 @@ const Collection = () => {
 
                                     {/* Info Section */}
                                     <div className="flex flex-col items-center text-center p-6 pt-4 space-y-2">
-                                        <span className="font-display text-xl font-bold text-[#1a1a1a]">{product.price}₫</span>
+                                        <span className="font-display text-xl font-bold text-[#1a1a1a]">{product.price}<span className="font-body">₫</span></span>
                                         <p className="font-display text-lg italic text-[#1a1a1a] opacity-90">
                                             {product.name}
                                         </p>
@@ -304,7 +265,7 @@ const Collection = () => {
                             </div>
 
                             <div className="flex items-baseline gap-3 mb-4">
-                                <span className="text-[#f01a33] font-display text-2xl font-bold">{quickViewProduct?.price}₫</span>
+                                <span className="text-[#f01a33] font-display text-2xl font-bold">{quickViewProduct?.price}<span className="font-body">₫</span></span>
                             </div>
 
                             <p className="font-body text-[#666666] text-sm leading-relaxed mb-8">
