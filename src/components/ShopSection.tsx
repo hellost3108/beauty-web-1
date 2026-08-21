@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from 'react';
 import { Button } from '@/components/ui/button';
-import { ChevronDown, Star, Minus, Plus, Heart, Share2 } from 'lucide-react';
+import { ArrowDownRight, ChevronDown, Star, Minus, Plus, Heart, Share2 } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
@@ -48,29 +48,92 @@ const ShopSection = () => {
     }, [activeCategory, sortBy]);
 
     return (
-        <div className="w-full bg-white">
+        <div className="w-full bg-[#f4f2ee]">
             {/* Hero */}
-            <section className="relative w-full">
-                <div className="w-full h-[25vh] sm:h-[35vh] md:h-[40vh] lg:h-[50vh] relative overflow-hidden">
-                    <img
-                        src="/assets/skincare-mask-application.jpg"
-                        alt="Cửa hàng Melalogy"
-                        className="w-full h-full object-cover object-center"
-                    />
-                </div>
+            <section className="relative w-full px-3 pb-3 pt-3 md:px-5 md:pb-5">
+                <div className="mx-auto grid max-w-[1600px] overflow-hidden rounded-[28px] bg-[#191816] text-white lg:min-h-[650px] lg:grid-cols-[0.78fr_1.22fr] lg:rounded-[38px]">
+                    <div className="flex flex-col justify-between px-6 py-9 sm:px-10 sm:py-12 lg:px-14 lg:py-16 xl:px-20">
+                        <div className="flex items-center justify-between border-b border-white/15 pb-5 font-body text-[10px] font-semibold uppercase tracking-[0.2em] text-white/45">
+                            <span className="flex items-center gap-2">
+                                <span className="h-1.5 w-1.5 rounded-full bg-[#f01a33]" />
+                                Melalogy Store
+                            </span>
+                            <span>Energy Shot / 01—04</span>
+                        </div>
 
-                <div className="w-full px-6 md:px-10 lg:px-16 xl:px-24 text-center py-12">
-                    <h2 className="font-display text-3xl md:text-4xl font-semibold text-[#1a1a1a]">
-                        <span className="text-[#f01a33]">CỬA HÀNG</span>
-                    </h2>
-                    <p className="font-body text-[#666666] text-sm md:text-base max-w-xl mx-auto mt-4 leading-relaxed">
-                        4 công thức mặt nạ hydrogel Energy Shot — chọn phiên bản phù hợp với làn da của bạn.
-                    </p>
+                        <div className="py-14 lg:py-10">
+                            <p className="mb-5 font-body text-[11px] font-semibold uppercase tracking-[0.22em] text-[#ff5a6d]">
+                                Chọn theo tín hiệu làn da
+                            </p>
+                            <h1 className="max-w-2xl font-display text-[clamp(3rem,5.5vw,6.5rem)] leading-[0.94] tracking-[-0.05em]">
+                                Đúng Energy Shot. <span className="text-[#ff5a6d]">Đúng điều da cần.</span>
+                            </h1>
+                            <p className="mt-7 max-w-lg font-body text-sm leading-7 text-white/60 md:text-base">
+                                Bốn công thức hydrogel tập trung cho cấp ẩm, phục hồi, làm sáng và duy trì vẻ rạng rỡ của làn da.
+                            </p>
+
+                            <a
+                                href="#shop-products"
+                                className="group mt-8 inline-flex items-center gap-3 rounded-full bg-[#f01a33] px-6 py-3.5 font-body text-sm font-semibold text-white transition-[background-color,transform] duration-300 hover:-translate-y-0.5 hover:bg-[#d9152b]"
+                            >
+                                Chọn công thức của bạn
+                                <ArrowDownRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:translate-y-0.5" />
+                            </a>
+                        </div>
+
+                        <div className="grid grid-cols-2 gap-4 border-t border-white/15 pt-5 font-body">
+                            <div>
+                                <strong className="block text-lg font-semibold">04 công thức</strong>
+                                <span className="text-[10px] uppercase tracking-[0.14em] text-white/40">Theo nhu cầu da</span>
+                            </div>
+                            <div>
+                                <strong className="block text-lg font-semibold">Hydrogel</strong>
+                                <span className="text-[10px] uppercase tracking-[0.14em] text-white/40">Ôm sát bề mặt da</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="relative overflow-hidden bg-[#eeebe6] p-4 sm:p-6 md:p-8 lg:p-10">
+                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_18%,rgba(95,190,226,0.2),transparent_28%),radial-gradient(circle_at_88%_82%,rgba(161,123,194,0.22),transparent_30%)]" />
+                        <div className="absolute inset-0 opacity-30 [background-image:linear-gradient(rgba(20,18,16,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(20,18,16,0.06)_1px,transparent_1px)] [background-size:48px_48px]" />
+
+                        <div className="relative grid h-full grid-cols-2 gap-3 sm:gap-4 md:grid-cols-4 lg:items-center">
+                            {allProducts.map((product, index) => {
+                                const cardStyles = [
+                                    'md:translate-y-8 md:-rotate-[1.5deg]',
+                                    'md:-translate-y-5 md:rotate-1',
+                                    'md:translate-y-5 md:-rotate-1',
+                                    'md:-translate-y-8 md:rotate-[1.5deg]',
+                                ];
+                                const accents = ['#3b96bd', '#648c38', '#b08a0b', '#8262a0'];
+
+                                return (
+                                    <Link
+                                        key={product.id}
+                                        href={`/product/${product.id}`}
+                                        className={`group flex min-w-0 flex-col rounded-[20px] border border-white/75 bg-white/72 p-2 shadow-[0_28px_70px_-45px_rgba(20,18,16,0.8)] backdrop-blur-md transition-[transform,box-shadow] duration-500 hover:!translate-y-0 hover:!rotate-0 hover:shadow-[0_35px_75px_-38px_rgba(20,18,16,0.55)] ${cardStyles[index]}`}
+                                    >
+                                        <div className="aspect-[0.9] overflow-hidden rounded-[14px] bg-white/70">
+                                            <img
+                                                src={product.image}
+                                                alt={product.name}
+                                                className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.025]"
+                                            />
+                                        </div>
+                                        <div className="flex items-center justify-between gap-2 px-1 pb-1 pt-3 font-body text-[9px] font-semibold uppercase tracking-[0.1em] text-black/58">
+                                            <span className="truncate">{product.category}</span>
+                                            <span className="h-1.5 w-1.5 shrink-0 rounded-full" style={{ backgroundColor: accents[index] }} />
+                                        </div>
+                                    </Link>
+                                );
+                            })}
+                        </div>
+                    </div>
                 </div>
             </section>
 
             {/* Category Tabs */}
-            <section className="border-y border-[#e5e5e5] bg-white">
+            <section id="shop-products" className="scroll-mt-28 border-y border-[#e5e5e5] bg-white">
                 <div className="w-full mx-auto px-6 md:px-10 lg:px-16 xl:px-24">
                     <div className="flex flex-nowrap overflow-x-auto justify-start md:justify-center gap-6 md:gap-12 py-6 px-4 md:px-0 scrollbar-hide">
                         {categories.map((category) => (
