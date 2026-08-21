@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ArrowUpRight, FlaskConical, Sparkles } from "lucide-react";
 
 const slides = [
-  { id: 1, kicker: "Skin science, made sensorial", headline: { part1: "Khoa Học Của ", part2: "Melanin" }, subheadline: "Chăm sóc làn da bằng công thức hydrogel cô đặc, được thiết kế để cấp ẩm sâu và phục hồi hàng rào bảo vệ da.", image: "/assets/skincare-mask-application.jpg" },
+  { id: 1, kicker: "Every skin state has a signal", headline: { part1: "Lắng Nghe ", part2: "Tín Hiệu Làn Da" }, subheadline: "Khi làn da lên tiếng bằng khô căng, nhạy cảm hay xỉn màu, Energy Shot giúp bạn chọn đúng công thức thay vì thêm nhiều bước.", image: "/assets/skincare-mask-application.jpg" },
   { id: 2, kicker: "Hydrating Energy Shot", headline: { part1: "Cấp Ẩm ", part2: "Chuyên Sâu" }, subheadline: "Hyaluronic Acid và Ceramide NP đưa độ ẩm trở lại, giúp bề mặt da căng mượt và khỏe khoắn hơn.", image: "/assets/mask-hydrating-blue.png" },
   { id: 3, kicker: "Recovery Energy Shot", headline: { part1: "Phục Hồi & ", part2: "Làm Dịu" }, subheadline: "Madecassic Acid và rau má hỗ trợ làm dịu cảm giác khó chịu, phù hợp với làn da nhạy cảm.", image: "/assets/mask-recovery-green-hero.png" },
   { id: 4, kicker: "Brightening Energy Shot", headline: { part1: "Rạng Rỡ ", part2: "Tự Nhiên" }, subheadline: "Niacinamide và cám gạo giúp bề mặt da trông đều màu, trong trẻo và tràn đầy sức sống.", image: "/assets/mask-brightening-yellow.png" },
@@ -39,7 +39,7 @@ const HeroSection = () => {
               <Link href="/collection" className="group inline-flex min-h-14 items-center justify-center gap-3 rounded-full bg-[#f52334] px-7 text-sm font-semibold text-white transition duration-300 hover:-translate-y-1 hover:bg-white hover:text-[#171414]">
                 Khám phá bộ sưu tập <ArrowUpRight className="h-4 w-4 transition-transform group-hover:rotate-45" />
               </Link>
-              <Link href="/about" className="inline-flex min-h-14 items-center justify-center rounded-full border border-white/25 px-7 text-sm font-semibold text-white transition duration-300 hover:border-white hover:bg-white/10">Câu chuyện thương hiệu</Link>
+              <Link href="/about" className="inline-flex min-h-14 items-center justify-center rounded-full border border-white/25 px-7 text-sm font-semibold text-white transition duration-300 hover:border-white hover:bg-white/10">Triết lý Energy Shot</Link>
             </div>
           </div>
 
