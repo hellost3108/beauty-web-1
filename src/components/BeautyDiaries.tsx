@@ -1,27 +1,30 @@
-import { Star, CheckCircle2 } from 'lucide-react';
+import { Star } from 'lucide-react';
 import { RateReviewModal } from '@/components/RateReviewModal';
 
 const reviews = [
     {
         id: 1,
-        text: "Bao bì đẹp, hiệu quả tức thì. Làn da khỏe mạnh và rạng rỡ hơn chỉ sau vài ngày.",
-        author: "Alkin Yadev",
-        role: "Người dùng đã xác minh",
-        image: "/assets/anh150x150.png",
+        text: "Mặt nạ mát, ôm da tốt và không bị trượt. Mình thích cảm giác mềm ẩm sau khi tháo mặt nạ.",
+        author: "Gia Hân",
+        role: "Khách hàng tại TP. Hồ Chí Minh",
+        initials: "GH",
+        avatarTone: "#f7d9d9",
     },
     {
         id: 2,
-        text: "Sang trọng, nhẹ nhàng và hiệu quả. Melalogy giờ đã trở thành một phần không thể thiếu trong quy trình chăm sóc da của tôi.",
-        author: "Jimmy Sharma",
-        role: "Người dùng đã xác minh",
-        image: "/assets/anh150x150 2.png",
+        text: "Mỗi màu ứng với một nhu cầu nên rất dễ chọn. Chu trình chăm da của mình gọn hơn mà vẫn có khoảng thư giãn riêng.",
+        author: "Thanh Trúc",
+        role: "Khách hàng tại Cần Thơ",
+        initials: "TT",
+        avatarTone: "#e8e1f3",
     },
     {
         id: 3,
-        text: "Làn da rạng rỡ tự nhiên, bảng thành phần tuyệt vời và chất lượng cao cấp thực sự. Melalogy mang lại cảm giác sang trọng và hiệu quả còn tốt hơn thế nữa.",
-        author: "Gulfan Ivy",
-        role: "Người dùng đã xác minh",
-        image: "/assets/anh150x150 3.png",
+        text: "Thiết kế đẹp nhưng không cầu kỳ, hướng dẫn cũng rõ ràng. Loại cấp ẩm hợp với mình trong những ngày ngồi điều hòa nhiều.",
+        author: "Khánh Linh",
+        role: "Khách hàng tại Hà Nội",
+        initials: "KL",
+        avatarTone: "#dfeee8",
     },
 ];
 
@@ -67,23 +70,18 @@ const BeautyDiaries = () => {
 
                             {/* Author Info */}
                             <div className="flex items-center gap-4">
-                                <div className="w-12 h-12 rounded-full overflow-hidden bg-gray-100">
-                                    <img
-                                        src={review.image}
-                                        alt={review.author}
-                                        className="w-full h-full object-cover"
-                                    />
+                                <div
+                                    aria-hidden="true"
+                                    className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full font-body text-xs font-semibold tracking-[0.08em] text-[#1a1a1a]"
+                                    style={{ backgroundColor: review.avatarTone }}
+                                >
+                                    {review.initials}
                                 </div>
                                 <div className="flex flex-col">
                                     <span className="font-display font-semibold text-[#1a1a1a] text-base">
                                         {review.author}
                                     </span>
-                                    <div className="flex items-center gap-1.5">
-                                        <CheckCircle2 className="w-3 h-3 text-[#22c55e]" />
-                                        <span className="font-body text-xs text-[#888888]">
-                                            {review.role}
-                                        </span>
-                                    </div>
+                                    <span className="font-body text-xs text-[#888888]">{review.role}</span>
                                 </div>
                             </div>
                         </div>
