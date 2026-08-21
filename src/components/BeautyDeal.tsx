@@ -32,7 +32,7 @@ const BeautyDeal = () => {
                         Vì Sao Chọn <span className="text-[#f01a33]">Melalogy</span>
                     </h2>
                     <p className="font-body text-[#666666] text-sm md:text-base max-w-xl md:ml-auto leading-relaxed">
-                        Khoa học của Melanin — chăm sóc làn da bằng những gì da bạn thực sự cần.
+                        Mỗi trạng thái da có một tín hiệu riêng. Melalogy giúp bạn nhận ra và chọn đúng công thức cần thiết.
                     </p>
                 </div>
 
