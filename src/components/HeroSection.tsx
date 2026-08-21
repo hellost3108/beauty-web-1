@@ -188,7 +188,7 @@ const HeroSection = () => {
       </div>
 
       {/* Image Section - Animates separately, responsive height */}
-      <div className="hero-image-section relative w-full h-[60vh] md:h-[70vh] lg:h-screen overflow-hidden bg-[#f7f3f2]">
+      <div className="hero-image-section relative w-full h-[50vh] md:h-[60vh] lg:h-[65vh] max-h-[600px] overflow-hidden bg-[#f7f3f2]">
         {slides.map((slide, index) => (
           <div
             key={`image-${slide.id}`}
@@ -197,6 +197,10 @@ const HeroSection = () => {
             <img
               src={slide.image}
               alt={slide.headline.part2}
+              width={1920}
+              height={1080}
+              fetchPriority={index === 0 ? "high" : "auto"}
+              decoding="async"
               className="w-full h-full object-cover object-[center_20%] md:object-center block"
             />
           </div>
