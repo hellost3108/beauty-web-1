@@ -5,7 +5,7 @@ const BeautyTransformation = () => {
   return (
     <section className="overflow-hidden bg-[#191816] py-20 text-white md:py-28 xl:py-32">
       <div className="mx-auto grid max-w-[1440px] gap-14 px-5 md:px-10 lg:grid-cols-12 lg:items-center lg:gap-10 xl:px-14">
-        <div className="lg:col-span-5 lg:pr-8">
+        <div data-reveal="left" className="lg:col-span-5 lg:pr-8">
           <div className="mb-6 flex items-center gap-3 font-body text-[11px] font-semibold uppercase tracking-[0.22em] text-[#ff5a6d]">
             <span className="h-px w-8 bg-current" />
             Từ tín hiệu đến công thức
@@ -45,19 +45,21 @@ const BeautyTransformation = () => {
         </div>
 
         <div className="grid min-h-[760px] grid-cols-1 gap-3 sm:min-h-[560px] sm:grid-cols-5 sm:gap-5 lg:col-span-7 lg:min-h-[680px]">
-          <figure className="relative min-h-[440px] overflow-hidden rounded-[24px] bg-[#d9cec3] sm:col-span-3 sm:min-h-0">
+          <figure data-reveal="scale" data-reveal-delay="90" className="relative min-h-[440px] overflow-hidden rounded-[24px] bg-[#d9cec3] sm:col-span-3 sm:min-h-0">
             <img
+              data-parallax="0.035"
               src="/assets/skincare-mask-application.jpg"
               alt="Người dùng ứng dụng mặt nạ hydrogel Melalogy"
-              className="h-full w-full object-cover transition-transform duration-1000 ease-out hover:scale-[1.02]"
+              className="h-[108%] w-full -translate-y-[4%] object-cover transition-transform duration-1000 ease-out hover:scale-[1.02]"
             />
             <figcaption className="absolute bottom-4 left-4 rounded-full border border-white/40 bg-black/25 px-3 py-1.5 font-body text-[10px] font-medium uppercase tracking-[0.13em] text-white backdrop-blur-md">
               Chăm sóc tại nhà
             </figcaption>
           </figure>
 
-          <figure className="relative min-h-[300px] overflow-hidden rounded-[24px] bg-[#eee8f3] p-2 sm:col-span-2 sm:min-h-0 sm:p-5">
+          <figure data-reveal="scale" data-reveal-delay="210" className="relative min-h-[300px] overflow-hidden rounded-[24px] bg-[#eee8f3] p-2 sm:col-span-2 sm:min-h-0 sm:p-5">
             <img
+              data-parallax="0.025"
               src="/assets/mask-radiance-purple.png"
               alt="Mặt nạ hydrogel Energy Shot Rạng Rỡ của Melalogy"
               className="h-full w-full object-contain transition-transform duration-1000 ease-out hover:scale-[1.025]"

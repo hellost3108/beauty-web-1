@@ -6,7 +6,7 @@ const DiscoverNext = () => {
         <section className="py-24 bg-white">
             <div className="w-full px-6 md:px-16 lg:px-24 xl:px-32">
                 {/* Section Title */}
-                <div className="text-center mb-16 space-y-4">
+                <div data-reveal="up" className="text-center mb-16 space-y-4">
                     <h2 className="font-display text-3xl md:text-4xl leading-none tracking-tight">
                         <span className="text-[#1a1a1a]">Khám Phá </span>
                         <span className="text-[#f01a33]">Thêm</span>
@@ -19,12 +19,13 @@ const DiscoverNext = () => {
                 {/* Grid Content */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16">
                     {/* Full Collection */}
-                    <div className="flex flex-col items-center group">
+                    <div data-reveal="left" className="flex flex-col items-center group">
                         <div className="relative w-full aspect-[16/10] rounded-[24px] overflow-hidden shadow-lg mb-8">
                             <img
+                                data-parallax="0.035"
                                 src="/assets/mask-hydrating-blue.png"
                                 alt="Bộ sưu tập Energy Shot"
-                                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                className="w-full h-[108%] -translate-y-[4%] object-cover transition-transform duration-700 group-hover:scale-105"
                             />
                         </div>
                         <h3 className="font-display text-2xl md:text-[1.75rem] text-[#1a1a1a] mb-6">
@@ -39,12 +40,13 @@ const DiscoverNext = () => {
                     </div>
 
                     {/* From Our Blogs */}
-                    <div className="flex flex-col items-center group">
+                    <div data-reveal="right" data-reveal-delay="130" className="flex flex-col items-center group">
                         <div className="relative w-full aspect-[16/10] rounded-[24px] overflow-hidden shadow-lg mb-8">
                             <img
+                                data-parallax="0.035"
                                 src="/assets/skincare-face-lifestyle.jpg"
                                 alt="Blog chăm sóc da Melalogy"
-                                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                className="w-full h-[108%] -translate-y-[4%] object-cover transition-transform duration-700 group-hover:scale-105"
                             />
                         </div>
                         <h3 className="font-display text-2xl md:text-[1.75rem] text-[#1a1a1a] mb-6">
