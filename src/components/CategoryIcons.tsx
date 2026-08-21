@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { useShop } from '@/context/ShopContext';
 import { toast } from 'sonner';
-import { Star, ChevronDown, Minus, Plus, Share2, Heart } from 'lucide-react';
+import { ArrowUpRight, Star, ChevronDown, Minus, Plus, Heart } from 'lucide-react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { cn } from '@/lib/utils';
 import { allProducts } from '@/data/productsData';
@@ -16,10 +16,6 @@ const CategoryIcons = () => {
   const { addToCart, addToWishlist, isInWishlist } = useShop();
   const [selectedProduct, setSelectedProduct] = useState<typeof allProducts[0] | null>(null);
   const [quantity, setQuantity] = useState(1);
-
-  const handleShare = (e: React.MouseEvent) => {
-    e.stopPropagation();
-  };
 
   const handleWishlist = (product: typeof allProducts[0], e: React.MouseEvent) => {
     e.stopPropagation();
@@ -32,104 +28,116 @@ const CategoryIcons = () => {
   };
 
   return (
-    <section className="relative py-10 md:py-16 overflow-hidden bg-white">
-      {/* Soft Pink Smoky Background */}
-      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-        <img
-          src="/assets/loved.png"
-          alt=""
-          className="w-full h-full object-cover opacity-100"
-        />
-        <div className="absolute inset-0 bg-white/10" />
-      </div>
-
-      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12">
-        {/* Section Title */}
-        <div className="text-center mb-12 md:mb-16">
-          <h2 className="font-display text-3xl md:text-4xl leading-none tracking-tight">
-            <span className="text-[#1a1a1a]">Bộ Sưu Tập </span>
-            <span className="text-[#f01a33]">Energy Shot</span>
-          </h2>
-          <p className="font-body text-[#666666] text-sm md:text-base mt-4 max-w-xl mx-auto leading-relaxed">
-            4 công thức mặt nạ hydrogel — mỗi loại giải quyết một nhu cầu riêng của làn da bạn.
+    <section className="border-y border-black/[0.07] bg-[#f4f2ee] py-20 md:py-28">
+      <div className="mx-auto max-w-[1440px] px-5 md:px-10 xl:px-14">
+        <div className="mb-12 grid gap-7 border-b border-black/10 pb-10 md:mb-14 md:grid-cols-12 md:items-end md:pb-12">
+          <div className="md:col-span-7">
+            <div className="mb-5 flex items-center gap-3 font-body text-[11px] font-semibold uppercase tracking-[0.22em] text-[#f01a33]">
+              <span className="h-px w-8 bg-current" />
+              Chăm sóc theo nhu cầu da
+            </div>
+            <h2 className="font-display text-[clamp(2.5rem,5vw,5.25rem)] leading-[0.98] tracking-[-0.045em] text-[#191816]">
+              Energy Shot <span className="text-[#f01a33]">Hydrogel</span>
+            </h2>
+          </div>
+          <p className="max-w-xl font-body text-sm leading-7 text-black/60 md:col-span-5 md:justify-self-end md:text-base">
+            Bốn công thức tập trung vào bốn nhu cầu thiết yếu: cấp ẩm, phục hồi, làm sáng và duy trì vẻ rạng rỡ của làn da.
           </p>
         </div>
 
-        {/* Product Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 mb-12">
-          {allProducts.map((product) => (
-            <div
-              key={product.id}
-              className="flex flex-col group bg-[#f9f8f7] rounded-[20px] border border-black/5 overflow-hidden shadow-sm hover:shadow-lg transition-all duration-500"
-            >
-              {/* Image Section */}
-              <div
-                className="relative w-full aspect-square overflow-hidden bg-[#f9f8f7] cursor-pointer"
-                onClick={() => setSelectedProduct(product)}
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-4">
+          {allProducts.map((product, index) => {
+            const tones = [
+              { surface: '#eaf6fb', accent: '#207da7' },
+              { surface: '#f0f6e8', accent: '#4b762e' },
+              { surface: '#fff7d9', accent: '#9a7600' },
+              { surface: '#f1ebf7', accent: '#745493' },
+            ][index];
+
+            return (
+              <article
+                key={product.id}
+                className="group flex flex-col rounded-[24px] border border-black/[0.07] bg-white p-2.5 shadow-[0_18px_45px_-42px_rgba(20,18,16,0.8)] transition-[transform,box-shadow] duration-500 ease-out hover:-translate-y-1 hover:shadow-[0_30px_65px_-42px_rgba(20,18,16,0.45)]"
               >
-                <div className="absolute top-4 left-4 z-20 bg-[#f01a33] text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">
-                  {product.category}
-                </div>
-
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                />
-
-                <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 pointer-events-none">
-                  <div className="absolute top-4 right-4 flex flex-col gap-2 translate-x-16 group-hover:translate-x-0 transition-transform duration-500 ease-out pointer-events-auto">
-                    <button
-                      onClick={(e) => handleWishlist(product, e)}
-                      className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 shadow-md ${isInWishlist(product.id) ? 'bg-[#f01a33] text-white' : 'bg-white hover:bg-[#f01a33] hover:text-white'}`}
-                    >
-                      <Heart className={`w-5 h-5 ${isInWishlist(product.id) ? 'fill-current' : ''}`} />
-                    </button>
-
-                    <button
-                      onClick={handleShare}
-                      className="w-10 h-10 bg-white rounded-full flex items-center justify-center hover:bg-[#f01a33] hover:text-white transition-all duration-300 shadow-md"
-                    >
-                      <Share2 className="w-5 h-5" />
-                    </button>
-                  </div>
-
-                  <div className="absolute bottom-0 left-0 right-0 p-4 pointer-events-auto">
-                    <button
-                      onClick={(e) => handleAddToCart(product, e)}
-                      className="relative w-full bg-[#f01a33] text-white py-3 rounded-[12px] font-display font-semibold text-sm overflow-hidden group/btn shadow-lg hover:shadow-xl transition-shadow duration-500"
-                    >
-                      <span className="relative z-10 group-hover/btn:text-[#f01a33] transition-colors duration-700">Thêm Vào Giỏ</span>
-                      <div className="absolute bottom-0 right-0 w-full h-0 bg-white group-hover/btn:h-full transition-all duration-700 ease-liquid"
-                        style={{ transformOrigin: 'bottom right' }} />
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              {/* Info Section */}
-              <div className="flex flex-col items-center text-center p-6 pt-4 space-y-2">
-                <span className="font-display text-xl font-bold text-[#1a1a1a]">{product.price}đ</span>
-                <button
+                <div
+                  className="relative aspect-square cursor-pointer overflow-hidden rounded-[18px]"
+                  style={{ backgroundColor: tones.surface }}
                   onClick={() => setSelectedProduct(product)}
-                  className="font-display text-lg italic text-[#1a1a1a] opacity-90 hover:text-[#f01a33] transition-colors"
                 >
-                  {product.name}
-                </button>
-              </div>
-            </div>
-          ))}
+                  <div className="absolute left-3 top-3 z-20 flex items-center gap-2 rounded-full border border-white/70 bg-white/85 px-3 py-1.5 font-body text-[10px] font-semibold uppercase tracking-[0.12em] text-black/75 backdrop-blur-md">
+                    <span className="h-1.5 w-1.5 rounded-full" style={{ backgroundColor: tones.accent }} />
+                    {product.category}
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={(e) => handleWishlist(product, e)}
+                    aria-label={`Thêm ${product.name} vào danh sách yêu thích`}
+                    className={`absolute right-3 top-3 z-20 grid h-9 w-9 place-items-center rounded-full border border-white/70 backdrop-blur-md transition-colors ${
+                      isInWishlist(product.id)
+                        ? 'bg-[#f01a33] text-white'
+                        : 'bg-white/85 text-black/70 hover:bg-white hover:text-[#f01a33]'
+                    }`}
+                  >
+                    <Heart className={`h-4 w-4 ${isInWishlist(product.id) ? 'fill-current' : ''}`} />
+                  </button>
+
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.025]"
+                  />
+                </div>
+
+                <div className="flex flex-1 flex-col px-3 pb-3 pt-5">
+                  <div className="mb-3 flex items-baseline justify-between gap-3">
+                    <span className="font-body text-[11px] font-semibold uppercase tracking-[0.16em]" style={{ color: tones.accent }}>
+                      {product.subtitle}
+                    </span>
+                    <span className="shrink-0 font-body text-sm font-semibold text-[#191816]">{product.price}đ</span>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setSelectedProduct(product)}
+                    className="mb-3 text-left font-display text-[1.35rem] leading-[1.16] tracking-[-0.025em] text-[#191816] transition-colors hover:text-[#f01a33]"
+                  >
+                    {product.name}
+                  </button>
+                  <p className="mb-6 line-clamp-2 font-body text-xs leading-5 text-black/52">
+                    {product.description}
+                  </p>
+
+                  <div className="mt-auto grid grid-cols-[1fr_auto] gap-2">
+                    <button
+                      type="button"
+                      onClick={(e) => handleAddToCart(product, e)}
+                      className="rounded-full bg-[#191816] px-4 py-2.5 font-body text-xs font-semibold text-white transition-colors hover:bg-[#f01a33]"
+                    >
+                      Thêm vào giỏ
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setSelectedProduct(product)}
+                      aria-label={`Xem nhanh ${product.name}`}
+                      className="grid h-10 w-10 place-items-center rounded-full border border-black/15 text-[#191816] transition-colors hover:border-[#f01a33] hover:text-[#f01a33]"
+                    >
+                      <ArrowUpRight className="h-4 w-4" />
+                    </button>
+                  </div>
+                </div>
+              </article>
+            );
+          })}
         </div>
 
-        {/* View All Action */}
-        <div className="flex justify-center mt-8">
-          <Button asChild className="relative bg-[#f01a33] text-white px-24 py-4 text-[1rem] rounded-[16px] h-auto font-body font-medium overflow-hidden group shadow-[0_12px_40px_-10px_rgba(240,26,51,0.35)] hover:shadow-xl transition-shadow duration-500">
-            <Link href="/collection">
-              <span className="relative z-10 group-hover:text-[#f01a33] transition-colors duration-700">Xem Tất Cả</span>
-              <div className="absolute bottom-0 right-0 w-full h-0 bg-white group-hover:h-full transition-all duration-700 ease-liquid"
-                style={{ transformOrigin: 'bottom right' }} />
-            </Link>
-          </Button>
+        <div className="mt-10 flex justify-center md:mt-12">
+          <Link
+            href="/collection"
+            className="group inline-flex items-center gap-3 border-b border-black/25 pb-2 font-body text-sm font-semibold text-[#191816] transition-colors hover:border-[#f01a33] hover:text-[#f01a33]"
+          >
+            Xem toàn bộ bộ sưu tập
+            <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+          </Link>
         </div>
       </div>
 

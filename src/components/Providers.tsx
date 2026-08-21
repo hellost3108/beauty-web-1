@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useCallback, useState } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -12,6 +12,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
   const [queryClient] = useState(() => new QueryClient());
 
   const [isLoading, setIsLoading] = useState(true);
+  const finishLoading = useCallback(() => setIsLoading(false), []);
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -19,7 +20,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
         <TooltipProvider>
           <Toaster />
           <Sonner />
-          {isLoading && <SplashLoader onComplete={() => setIsLoading(false)} />}
+          {isLoading && <SplashLoader onComplete={finishLoading} />}
           {children}
         </TooltipProvider>
       </ShopProvider>
