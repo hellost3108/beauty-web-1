@@ -30,7 +30,7 @@ const TestimonialsSection = () => {
         <section className="py-24 bg-[#fff8f9]">
             <div className="w-full px-6 md:px-10 lg:px-24 xl:px-32">
                 {/* Section Title */}
-                <div className="text-center mb-16">
+                <div data-reveal="up" className="text-center mb-16">
                     <h2 className="font-display text-3xl md:text-4xl leading-none tracking-tight">
                         <span className="text-[#1a1a1a]">Được </span>
                         <span className="text-[#f01a33]">Hàng Nghìn Người Tin Dùng</span>
@@ -40,7 +40,12 @@ const TestimonialsSection = () => {
                 {/* Testimonials Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-12 mb-16">
                     {testimonials.map((t, i) => (
-                        <div key={i} className={`bg-white p-8 md:p-10 rounded-[20px] shadow-sm flex flex-col justify-between h-full ${i === 2 ? 'md:col-span-2 lg:col-span-1' : ''}`}>
+                        <div
+                            key={i}
+                            data-reveal="scale"
+                            data-reveal-delay={String(i * 120)}
+                            className={`bg-white p-8 md:p-10 rounded-[20px] shadow-sm flex flex-col justify-between h-full ${i === 2 ? 'md:col-span-2 lg:col-span-1' : ''}`}
+                        >
                             <div className="space-y-6">
                                 {/* Stars */}
                                 <div className="flex gap-1">

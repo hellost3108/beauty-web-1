@@ -7,6 +7,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ShopProvider } from "@/context/ShopContext";
 import SplashLoader from "@/components/SplashLoader";
+import ScrollMotion from "@/components/ScrollMotion";
 
 export default function Providers({ children }: { children: React.ReactNode }) {
   const [queryClient] = useState(() => new QueryClient());
@@ -20,6 +21,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
         <TooltipProvider>
           <Toaster />
           <Sonner />
+          <ScrollMotion />
           {isLoading && <SplashLoader onComplete={finishLoading} />}
           {children}
         </TooltipProvider>

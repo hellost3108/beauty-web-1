@@ -184,9 +184,11 @@ const ShopSection = () => {
             <section className="py-16 bg-white">
                 <div className="w-full mx-auto px-6 md:px-10 lg:px-16 xl:px-24">
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                        {filteredProducts.map((product) => (
+                        {filteredProducts.map((product, index) => (
                             <div
                                 key={product.id}
+                                data-reveal="scale"
+                                data-reveal-delay={String((index % 4) * 95)}
                                 className="flex flex-col group bg-white rounded-[20px] border border-[#e5e5e5] overflow-hidden shadow-sm hover:shadow-lg transition-all duration-500"
                             >
                                 <div
@@ -249,7 +251,7 @@ const ShopSection = () => {
                         ))}
                     </div>
 
-                    <div className="flex justify-center mt-12">
+                    <div data-reveal="fade" data-reveal-delay="170" className="flex justify-center mt-12">
                         <Link href="/collection">
                             <Button className="relative bg-[#f01a33] text-white px-16 py-3 text-base font-medium rounded-[12px] h-auto overflow-hidden group shadow-xl hover:shadow-2xl transition-shadow duration-500">
                                 <span className="relative z-10 group-hover:text-[#f01a33] transition-colors duration-700">Xem toàn bộ sưu tập</span>

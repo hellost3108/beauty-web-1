@@ -31,7 +31,7 @@ const CategoryIcons = () => {
     <section className="border-y border-black/[0.07] bg-[#f4f2ee] py-20 md:py-28">
       <div className="mx-auto max-w-[1440px] px-5 md:px-10 xl:px-14">
         <div className="mb-12 grid gap-7 border-b border-black/10 pb-10 md:mb-14 md:grid-cols-12 md:items-end md:pb-12">
-          <div className="md:col-span-7">
+          <div data-reveal="left" className="md:col-span-7">
             <div className="mb-5 flex items-center gap-3 font-body text-[11px] font-semibold uppercase tracking-[0.22em] text-[#f01a33]">
               <span className="h-px w-8 bg-current" />
               Chăm sóc theo nhu cầu da
@@ -40,7 +40,7 @@ const CategoryIcons = () => {
               Energy Shot <span className="text-[#f01a33]">Hydrogel</span>
             </h2>
           </div>
-          <p className="max-w-xl font-body text-sm leading-7 text-black/60 md:col-span-5 md:justify-self-end md:text-base">
+          <p data-reveal="right" data-reveal-delay="110" className="max-w-xl font-body text-sm leading-7 text-black/60 md:col-span-5 md:justify-self-end md:text-base">
             Bốn công thức tập trung vào bốn nhu cầu thiết yếu: cấp ẩm, phục hồi, làm sáng và duy trì vẻ rạng rỡ của làn da.
           </p>
         </div>
@@ -57,6 +57,8 @@ const CategoryIcons = () => {
             return (
               <article
                 key={product.id}
+                data-reveal="scale"
+                data-reveal-delay={String(index * 95)}
                 className="group flex flex-col rounded-[24px] border border-black/[0.07] bg-white p-2.5 shadow-[0_18px_45px_-42px_rgba(20,18,16,0.8)] transition-[transform,box-shadow] duration-500 ease-out hover:-translate-y-1 hover:shadow-[0_30px_65px_-42px_rgba(20,18,16,0.45)]"
               >
                 <div
@@ -130,7 +132,7 @@ const CategoryIcons = () => {
           })}
         </div>
 
-        <div className="mt-10 flex justify-center md:mt-12">
+        <div data-reveal="fade" data-reveal-delay="180" className="mt-10 flex justify-center md:mt-12">
           <Link
             href="/collection"
             className="group inline-flex items-center gap-3 border-b border-black/25 pb-2 font-body text-sm font-semibold text-[#191816] transition-colors hover:border-[#f01a33] hover:text-[#f01a33]"

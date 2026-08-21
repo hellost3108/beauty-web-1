@@ -32,7 +32,7 @@ const BeautyDiaries = () => {
         <section className="py-24 bg-[#fff5f5]">
             <div className="w-full mx-auto px-6 md:px-10 lg:px-16 xl:px-24">
                 <div className="relative mb-16">
-                    <div className="text-center">
+                    <div data-reveal="up" className="text-center">
                         <h2 className="font-display text-3xl md:text-4xl text-[#1a1a1a]">
                             Đánh giá <span className="text-[#f01a33]">khách hàng</span>
                         </h2>
@@ -46,8 +46,13 @@ const BeautyDiaries = () => {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    {reviews.map((review) => (
-                        <div key={review.id} className="bg-white p-8 rounded-[20px] shadow-sm hover:shadow-md transition-all duration-300">
+                    {reviews.map((review, index) => (
+                        <div
+                            key={review.id}
+                            data-reveal="scale"
+                            data-reveal-delay={String(index * 110)}
+                            className="bg-white p-8 rounded-[20px] shadow-sm hover:shadow-md transition-all duration-300"
+                        >
                             {/* Stars */}
                             <div className="flex gap-1 mb-4">
                                 {[1, 2, 3, 4, 5].map((star) => (
