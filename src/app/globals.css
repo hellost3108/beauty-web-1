@@ -62,7 +62,7 @@
     /* Typography */
     /* --font-display and --font-body are provided via layout.tsx */
     --font-brand: var(--font-display), serif;
-    --font-button: "Poppins", sans-serif;
+    --font-button: var(--font-body), sans-serif;
 
     /* Shadows */
     --shadow-soft: 0 4px 20px -4px hsl(349 75% 58% / 0.1);
@@ -142,6 +142,9 @@
       var(--paper-2026);
     color: var(--ink-2026);
     text-wrap: pretty;
+    font-kerning: normal;
+    font-synthesis: none;
+    font-feature-settings: "kern" 1, "liga" 1;
   }
 
   ::selection {
@@ -167,7 +170,9 @@
   h6 {
     font-family: var(--font-display), serif;
     text-wrap: balance;
-    letter-spacing: -0.025em;
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    font-optical-sizing: auto;
   }
 }
 
@@ -219,10 +224,25 @@
     width: min(calc(100% - 1.5rem), 96rem);
     border: 1px solid color-mix(in oklch, white 68%, var(--line-2026));
     border-radius: 1.25rem;
-    background: color-mix(in oklch, var(--paper-2026) 82%, transparent);
+    background: color-mix(in oklch, white 88%, transparent);
     box-shadow: 0 16px 48px -32px rgb(20 10 12 / 0.42);
     backdrop-filter: blur(22px) saturate(145%);
     -webkit-backdrop-filter: blur(22px) saturate(145%);
+  }
+
+  .home-hero-2026 {
+    background:
+      radial-gradient(circle at 18% 12%, color-mix(in oklch, var(--rose-soft-2026) 72%, transparent), transparent 24rem),
+      var(--paper-2026);
+  }
+
+  .hero-copy-enter {
+    animation: hero-copy-enter 720ms cubic-bezier(.2,.8,.2,1) both;
+  }
+
+  @keyframes hero-copy-enter {
+    from { opacity: 0; translate: 0 1.4rem; }
+    to { opacity: 1; translate: 0 0; }
   }
 
   .nav-link-2026 {

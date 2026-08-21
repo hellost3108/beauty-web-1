@@ -22,7 +22,7 @@ const Index = () => {
 
       <div className={`min-h-screen overflow-x-hidden transition-opacity duration-500 ${showIntro ? 'opacity-0' : 'opacity-100'}`}>
         <Navbar />
-        <main className="pt-[72px]">
+        <main className="pt-[88px] md:pt-[92px]">
           <HeroSection />
           <BeautyDeal />
           <CategoryIcons />
@@ -40,4 +40,3 @@ const Index = () => {
 
 
 export default Index;
-

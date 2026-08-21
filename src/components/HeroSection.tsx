@@ -1,212 +1,73 @@
 "use client";
 
-import { useState, useEffect } from 'react';
-import Link from 'next/link';
-import { Button } from '@/components/ui/button';
+import { useEffect, useState } from "react";
+import Link from "next/link";
+import { ArrowUpRight, FlaskConical, Sparkles } from "lucide-react";
 
 const slides = [
-  {
-    id: 1,
-    headline: { part1: "Khoa Học Của ", part2: "Melanin" },
-    subheadline: "Melalogy mang đến vẻ đẹp bắt nguồn từ khoa học — cấp ẩm sâu và phục hồi làn da mỗi ngày.",
-    image: "/assets/skincare-mask-application.jpg",
-  },
-  {
-    id: 2,
-    headline: { part1: "Cấp Ẩm ", part2: "Chuyên Sâu" },
-    subheadline: "Hydrating Energy Shot với Hyaluronic Acid và Ceramide NP, phục hồi hàng rào bảo vệ da.",
-    image: "/assets/mask-hydrating-blue.png",
-  },
-  {
-    id: 3,
-    headline: { part1: "Phục Hồi & ", part2: "Làm Dịu Da" },
-    subheadline: "Recovery Energy Shot với Madecassic Acid và chiết xuất rau má, dịu làn da nhạy cảm.",
-    image: "/assets/mask-recovery-green-hero.png",
-  },
-  {
-    id: 4,
-    headline: { part1: "Làm Sáng & ", part2: "Đều Màu Da" },
-    subheadline: "Brightening Energy Shot với Niacinamide và cám gạo, mang lại vẻ rạng rỡ tự nhiên.",
-    image: "/assets/mask-brightening-yellow.png",
-  },
-  {
-    id: 5,
-    headline: { part1: "Săn Chắc & ", part2: "Trẻ Hoá Da" },
-    subheadline: "Radiance Energy Shot với Sodium DNA và Acetyl Hexapeptide-8, cải thiện độ đàn hồi.",
-    image: "/assets/mask-radiance-purple.png",
-  },
-  {
-    id: 6,
-    headline: { part1: "4 Công Thức, ", part2: "1 Mục Tiêu Rạng Rỡ" },
-    subheadline: "Cấp ẩm, phục hồi, làm sáng, tái tạo — chọn mặt nạ phù hợp nhất với làn da của bạn.",
-    image: "/assets/skincare-face-lifestyle.jpg",
-  }
+  { id: 1, kicker: "Skin science, made sensorial", headline: { part1: "Khoa Học Của ", part2: "Melanin" }, subheadline: "Chăm sóc làn da bằng công thức hydrogel cô đặc, được thiết kế để cấp ẩm sâu và phục hồi hàng rào bảo vệ da.", image: "/assets/skincare-mask-application.jpg" },
+  { id: 2, kicker: "Hydrating Energy Shot", headline: { part1: "Cấp Ẩm ", part2: "Chuyên Sâu" }, subheadline: "Hyaluronic Acid và Ceramide NP đưa độ ẩm trở lại, giúp bề mặt da căng mượt và khỏe khoắn hơn.", image: "/assets/mask-hydrating-blue.png" },
+  { id: 3, kicker: "Recovery Energy Shot", headline: { part1: "Phục Hồi & ", part2: "Làm Dịu" }, subheadline: "Madecassic Acid và rau má hỗ trợ làm dịu cảm giác khó chịu, phù hợp với làn da nhạy cảm.", image: "/assets/mask-recovery-green-hero.png" },
+  { id: 4, kicker: "Brightening Energy Shot", headline: { part1: "Rạng Rỡ ", part2: "Tự Nhiên" }, subheadline: "Niacinamide và cám gạo giúp bề mặt da trông đều màu, trong trẻo và tràn đầy sức sống.", image: "/assets/mask-brightening-yellow.png" },
 ];
 
 const HeroSection = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [prevSlide, setPrevSlide] = useState(0);
-  const [direction, setDirection] = useState<'up' | 'down'>('up');
-  const [isAnimating, setIsAnimating] = useState(false);
+  const slide = slides[currentSlide];
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setPrevSlide(currentSlide);
-
-      const next = (currentSlide + 1) % slides.length;
-
-      // Alternate direction every transition
-      const dir: 'up' | 'down' = currentSlide % 2 === 0 ? 'down' : 'up';
-
-      setDirection(dir);
-      setCurrentSlide(next);
-      setIsAnimating(true);
-
-      // Reset animating state after transition matches CSS duration (1.2s)
-      setTimeout(() => setIsAnimating(false), 1200);
-
-    }, 4000); // Slower carousel: 4s per slide (1.2s animation + 2.8s view)
-
-    return () => clearInterval(timer);
-  }, [currentSlide]);
-
-  const getTextAnimationClass = (index: number) => {
-    if (index === currentSlide && isAnimating) return `animate-text-enter-${direction}`;
-    if (index === prevSlide && isAnimating) return `animate-text-exit-${direction}`;
-    if (index === currentSlide && !isAnimating) return 'translate-y-0 opacity-100 z-10';
-    return 'opacity-0 z-0 pointer-events-none absolute inset-0';
-  };
-
-  const getImageAnimationClass = (index: number) => {
-    if (index === currentSlide && isAnimating) return `animate-image-enter-${direction}`;
-    if (index === prevSlide && isAnimating) return `animate-image-exit-${direction}`;
-    if (index === currentSlide && !isAnimating) return 'translate-y-0 opacity-100 z-10';
-    return 'opacity-0 z-0 pointer-events-none absolute inset-0';
-  };
+    const timer = window.setInterval(() => setCurrentSlide((current) => (current + 1) % slides.length), 5500);
+    return () => window.clearInterval(timer);
+  }, []);
 
   return (
-    <section className="relative w-full overflow-hidden">
-      <style>{`
-        /* Text animations - slower */
-        .animate-text-enter-up { 
-          animation: slideInUp 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-          will-change: transform;
-        }
-        .animate-text-exit-up { 
-          animation: slideOutUp 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-          will-change: transform;
-        }
-        .animate-text-enter-down { 
-          animation: slideInDown 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-          will-change: transform;
-        }
-        .animate-text-exit-down { 
-          animation: slideOutDown 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-          will-change: transform;
-        }
+    <section className="home-hero-2026 relative px-3 pb-3 pt-3 md:px-5 md:pb-5">
+      <div className="relative mx-auto grid min-h-[calc(100svh-96px)] max-w-[1600px] overflow-hidden rounded-[28px] bg-[#171414] text-white lg:grid-cols-[0.88fr_1.12fr] lg:rounded-[38px]">
+        <div className="relative z-20 flex flex-col justify-between px-6 py-8 sm:px-10 sm:py-10 lg:px-16 lg:py-14 xl:px-20">
+          <div className="flex items-center justify-between border-b border-white/15 pb-5 text-[10px] font-semibold uppercase tracking-[0.22em] text-white/60">
+            <span className="flex items-center gap-2"><FlaskConical className="h-4 w-4 text-[#ff4755]" />Melalogy Lab / 2026</span>
+            <span>0{currentSlide + 1} — 0{slides.length}</span>
+          </div>
 
-        /* Image animations - slower */
-        .animate-image-enter-up { 
-          animation: slideInUp 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-          will-change: transform;
-        }
-        .animate-image-exit-up { 
-          animation: slideOutUp 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-          will-change: transform;
-        }
-        .animate-image-enter-down { 
-          animation: slideInDown 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-          will-change: transform;
-        }
-        .animate-image-exit-down { 
-          animation: slideOutDown 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-          will-change: transform;
-        }
+          <div key={slide.id} className="hero-copy-enter py-14 lg:py-10">
+            <p className="mb-5 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.24em] text-[#ff5a66]"><Sparkles className="h-4 w-4" />{slide.kicker}</p>
+            <h1 className="max-w-[760px] font-display text-[clamp(3.2rem,6.3vw,7.4rem)] leading-[0.94] tracking-[-0.038em]">
+              <span>{slide.headline.part1}</span><span className="block italic text-[#ff4755]">{slide.headline.part2}</span>
+            </h1>
+            <p className="mt-8 max-w-xl text-sm leading-7 text-white/65 md:text-base md:leading-8">{slide.subheadline}</p>
+            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+              <Link href="/collection" className="group inline-flex min-h-14 items-center justify-center gap-3 rounded-full bg-[#f52334] px-7 text-sm font-semibold text-white transition duration-300 hover:-translate-y-1 hover:bg-white hover:text-[#171414]">
+                Khám phá bộ sưu tập <ArrowUpRight className="h-4 w-4 transition-transform group-hover:rotate-45" />
+              </Link>
+              <Link href="/about" className="inline-flex min-h-14 items-center justify-center rounded-full border border-white/25 px-7 text-sm font-semibold text-white transition duration-300 hover:border-white hover:bg-white/10">Câu chuyện thương hiệu</Link>
+            </div>
+          </div>
 
-        @keyframes slideInUp {
-          from { transform: translate3d(0, 150%, 0); opacity: 0; }
-          to { transform: translate3d(0, 0, 0); opacity: 1; }
-        }
-        @keyframes slideOutUp {
-          from { transform: translate3d(0, 0, 0); opacity: 1; }
-          to { transform: translate3d(0, -150%, 0); opacity: 0; }
-        }
-        @keyframes slideInDown {
-          from { transform: translate3d(0, -150%, 0); opacity: 0; }
-          to { transform: translate3d(0, 0, 0); opacity: 1; }
-        }
-        @keyframes slideOutDown {
-          from { transform: translate3d(0, 0, 0); opacity: 1; }
-          to { transform: translate3d(0, 150%, 0); opacity: 0; }
-        }
+          <div className="grid grid-cols-3 gap-3 border-t border-white/15 pt-5">
+            <div><strong className="block font-display text-2xl">04</strong><span className="text-[10px] uppercase tracking-widest text-white/45">Công thức</span></div>
+            <div><strong className="block font-display text-2xl">15&apos;</strong><span className="text-[10px] uppercase tracking-widest text-white/45">Nghi thức</span></div>
+            <div><strong className="block font-display text-2xl">100%</strong><span className="text-[10px] uppercase tracking-widest text-white/45">Thuần chay</span></div>
+          </div>
+        </div>
 
-        /* Mobile landscape adjustments */
-        @media (max-height: 500px) and (orientation: landscape) {
-          .hero-text-section {
-            height: 100vh !important;
-          }
-          .hero-image-section {
-            display: none !important;
-          }
-        }
-      `}</style>
-
-      {/* Text Section - Animates separately */}
-      <div className="hero-text-section relative w-full h-[30vh] flex flex-col items-center justify-center text-center px-4 overflow-hidden bg-white py-8">
-        {/* Background (Static) */}
-        <div className="absolute inset-0 z-0 pointer-events-none bg-[radial-gradient(ellipse_at_center,_#fff5f6_0%,_#ffffff_70%)]" />
-
-        {/* Text Content - Animated */}
-        <div className="relative w-full h-full flex items-center justify-center">
-          {slides.map((slide, index) => (
-            <div
-              key={`text-${slide.id}`}
-              className={`${index === currentSlide && !isAnimating ? 'relative' : 'absolute top-0 left-0 right-0'} w-full h-full flex items-center justify-center ${getTextAnimationClass(index)}`}
-              style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }}
-            >
-              <div className="relative z-10 w-full max-w-none px-4 flex flex-col items-center">
-                <h1 className="font-display text-[2rem] sm:text-[2.5rem] md:text-[3rem] lg:text-[3.5rem] xl:text-[4rem] leading-[1.1] mb-2 tracking-tight font-normal px-4">
-                  <span className="text-[#1a1a1a]">{slide.headline.part1}</span>
-                  <span className="text-[#f01a33]">{slide.headline.part2}</span>
-                </h1>
-                <p className="font-sans text-xs md:text-sm lg:text-base text-[#666666] mt-2 w-full max-w-none md:whitespace-nowrap leading-relaxed opacity-90 px-4">
-                  {slide.subheadline}
-                </p>
-
-                <div className="mt-4 z-20">
-                  <Button asChild className="relative bg-[#f01a33] text-white px-8 py-3 md:px-10 md:py-4 text-sm md:text-base font-medium rounded-[12px] h-auto font-display tracking-tight overflow-hidden group shadow-[0_12px_40px_-10px_rgba(240,26,51,0.35)] hover:shadow-xl transition-shadow duration-500">
-                    <Link href="/collection">
-                      <span className="relative z-10 group-hover:text-[#f01a33] transition-colors duration-700">Khám Phá Ngay</span>
-                      <div className="absolute bottom-0 right-0 w-full h-0 bg-white group-hover:h-full transition-all duration-700 ease-liquid" style={{ transformOrigin: 'bottom right' }} />
-                    </Link>
-                  </Button>
-                </div>
-              </div>
+        <div className="relative min-h-[52svh] overflow-hidden bg-[#eee7e2] lg:min-h-full">
+          {slides.map((item, index) => (
+            <div key={item.id} className={`absolute inset-0 transition-all duration-1000 ease-[cubic-bezier(.2,.8,.2,1)] ${index === currentSlide ? "scale-100 opacity-100" : "pointer-events-none scale-[1.04] opacity-0"}`}>
+              <img src={item.image} alt={`${item.headline.part1}${item.headline.part2}`} width={1920} height={1080} fetchPriority={index === 0 ? "high" : "auto"} decoding="async" className="h-full w-full object-cover object-center" />
             </div>
           ))}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-black/5" />
+          <div className="absolute right-5 top-5 rounded-full border border-white/40 bg-black/20 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-white backdrop-blur-md">Hydrogel Energy Shot</div>
+          <div className="absolute bottom-6 left-6 right-6 flex items-center gap-2 rounded-full border border-white/30 bg-black/25 p-2 backdrop-blur-xl md:left-auto md:w-fit">
+            {slides.map((item, index) => (
+              <button key={item.id} type="button" aria-label={`Hiển thị slide ${index + 1}`} aria-current={index === currentSlide} onClick={() => setCurrentSlide(index)} className={`h-9 rounded-full transition-all duration-500 ${index === currentSlide ? "w-20 bg-white" : "w-9 bg-white/25 hover:bg-white/50"}`}>
+                <span className={`text-[10px] font-bold ${index === currentSlide ? "text-black" : "text-white"}`}>0{index + 1}</span>
+              </button>
+            ))}
+          </div>
         </div>
       </div>
-
-      {/* Image Section - Animates separately, responsive height */}
-      <div className="hero-image-section relative w-full h-[50vh] md:h-[60vh] lg:h-[65vh] max-h-[600px] overflow-hidden bg-[#f7f3f2]">
-        {slides.map((slide, index) => (
-          <div
-            key={`image-${slide.id}`}
-            className={`${index === currentSlide && !isAnimating ? 'relative' : 'absolute top-0 left-0 right-0'} w-full h-full ${getImageAnimationClass(index)}`}
-          >
-            <img
-              src={slide.image}
-              alt={slide.headline.part2}
-              width={1920}
-              height={1080}
-              fetchPriority={index === 0 ? "high" : "auto"}
-              decoding="async"
-              className="w-full h-full object-cover object-[center_20%] md:object-center block"
-            />
-          </div>
-        ))}
-      </div>
-    </section>                                                                                                                                                                                                          
+    </section>
   );
 };
 

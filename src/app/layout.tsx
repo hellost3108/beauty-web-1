@@ -1,25 +1,21 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display, Poppins } from "next/font/google";
+import { Be_Vietnam_Pro, Lora } from "next/font/google";
 import "./globals.css";
 import Providers from "@/components/Providers";
 
-const playfairDisplay = Playfair_Display({
+const lora = Lora({
   subsets: ["latin", "vietnamese"],
-  weight: ["400", "500", "600", "700", "800", "900"],
+  weight: ["400", "500", "600", "700"],
   style: ["normal", "italic"],
   variable: "--font-display",
   display: "swap",
 });
 
-const inter = Inter({
-  subsets: ["latin", "vietnamese"],
-  variable: "--font-body",
-});
-
-const poppins = Poppins({
+const beVietnamPro = Be_Vietnam_Pro({
   subsets: ["latin", "vietnamese"],
   weight: ["400", "500", "600", "700"],
-  variable: "--font-button",
+  variable: "--font-body",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -36,7 +32,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="vi" className={`${playfairDisplay.variable} ${inter.variable} ${poppins.variable}`}>
+    <html lang="vi" className={`${lora.variable} ${beVietnamPro.variable}`}>
       <body className="antialiased" suppressHydrationWarning>
         <Providers>{children}</Providers>
       </body>
