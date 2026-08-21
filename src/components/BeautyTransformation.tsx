@@ -1,4 +1,4 @@
-import { ArrowUpRight, Droplets, FlaskConical, Timer } from 'lucide-react';
+import { ArrowUpRight, Droplets, FlaskConical, Target } from 'lucide-react';
 import Link from 'next/link';
 
 const BeautyTransformation = () => {
@@ -24,14 +24,14 @@ const BeautyTransformation = () => {
               <span className="font-body text-[11px] text-white/45">công thức</span>
             </div>
             <div className="border-x border-white/15 px-4">
-              <Timer className="mb-3 h-4 w-4 text-[#ff5a6d]" />
-              <strong className="block font-body text-xl font-semibold">15–20</strong>
-              <span className="font-body text-[11px] text-white/45">phút sử dụng</span>
-            </div>
-            <div className="pl-4">
               <Droplets className="mb-3 h-4 w-4 text-[#ff5a6d]" />
               <strong className="block font-body text-xl font-semibold">Hydrogel</strong>
               <span className="font-body text-[11px] text-white/45">nền mặt nạ</span>
+            </div>
+            <div className="pl-4">
+              <Target className="mb-3 h-4 w-4 text-[#ff5a6d]" />
+              <strong className="block font-body text-xl font-semibold">Chọn lọc</strong>
+              <span className="font-body text-[11px] text-white/45">hoạt chất chính</span>
             </div>
           </div>
 
