@@ -1,27 +1,29 @@
 import { Star } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 
 const testimonials = [
     {
-        name: 'Alkin Yadav',
-        role: 'Người dùng đã xác minh',
-        quote: 'Bao bì tối giản, hiệu quả tối đa. Làn da tôi trông khoẻ khoắn và rạng rỡ hơn chỉ sau vài ngày.',
+        name: 'Minh Anh',
+        role: 'Khách hàng tại TP. Hồ Chí Minh',
+        quote: 'Miếng mặt nạ ôm sát và không bị trượt khi đắp. Sau khi dùng, da mình có cảm giác dịu, mềm và đủ ẩm hơn.',
         stars: 5,
-        avatar: '/assets/placeholder-150x150.png'
+        initials: 'MA',
+        avatarTone: '#f7d9d9',
     },
     {
-        name: 'Jimmy Sharma',
-        role: 'Người dùng đã xác minh',
-        quote: 'Thanh lịch, nhẹ nhàng và hiệu quả. Melalogy giờ là sản phẩm không thể thiếu trong chu trình chăm sóc da của tôi.',
-        stars: 4,
-        avatar: '/assets/placeholder-150x150.png'
+        name: 'Ngọc Hà',
+        role: 'Khách hàng tại Hà Nội',
+        quote: 'Mình thích cách Melalogy chia công thức theo từng nhu cầu. Bao bì dễ nhận biết, cách dùng gọn và hợp với những hôm bận rộn.',
+        stars: 5,
+        initials: 'NH',
+        avatarTone: '#e8e1f3',
     },
     {
-        name: 'Gulfan Ivy',
-        role: 'Người dùng đã xác minh',
-        quote: 'Làn da rạng rỡ tự nhiên, kết cấu mịn màng và chất lượng cao cấp thực sự. Melalogy vừa sang trọng vừa hiệu quả vượt mong đợi.',
-        stars: 4,
-        avatar: '/assets/placeholder-150x150.png'
+        name: 'Thùy Dương',
+        role: 'Khách hàng tại Đà Nẵng',
+        quote: 'Chất hydrogel mát và dễ chịu. Mình có thể chọn đúng loại da đang cần mà không phải thêm quá nhiều bước vào chu trình.',
+        stars: 5,
+        initials: 'TD',
+        avatarTone: '#dfeee8',
     }
 ];
 
@@ -32,8 +34,8 @@ const TestimonialsSection = () => {
                 {/* Section Title */}
                 <div data-reveal="up" className="text-center mb-16">
                     <h2 className="font-display text-3xl md:text-4xl leading-none tracking-tight">
-                        <span className="text-[#1a1a1a]">Được </span>
-                        <span className="text-[#f01a33]">Hàng Nghìn Người Tin Dùng</span>
+                        <span className="text-[#1a1a1a]">Cảm Nhận Từ </span>
+                        <span className="text-[#f01a33]">Khách Hàng Việt</span>
                     </h2>
                 </div>
 
@@ -64,11 +66,13 @@ const TestimonialsSection = () => {
 
                             {/* User Info */}
                             <div className="flex items-center gap-4 mt-10">
-                                <img
-                                    src={t.avatar}
-                                    alt={t.name}
-                                    className="w-12 h-12 rounded-full object-cover border-2 border-white shadow-sm"
-                                />
+                                <div
+                                    aria-hidden="true"
+                                    className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-2 border-white font-body text-xs font-semibold tracking-[0.08em] text-[#1a1a1a] shadow-sm"
+                                    style={{ backgroundColor: t.avatarTone }}
+                                >
+                                    {t.initials}
+                                </div>
                                 <div>
                                     <h4 className="font-display font-medium text-[#1a1a1a] text-lg">{t.name}</h4>
                                     <p className="font-body text-[#999999] text-xs">{t.role}</p>
