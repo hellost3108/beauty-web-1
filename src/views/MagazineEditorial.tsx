@@ -81,7 +81,7 @@ const MagazineEditorial = () => {
                   <Sparkles className="h-3.5 w-3.5 text-[#ee2940]" />
                   Số 08 · Tháng 8/2026
                 </div>
-                <h1 className="magazine-title-2026 max-w-5xl font-display text-[clamp(3.7rem,8.2vw,8.7rem)] leading-[1.04] tracking-[-0.025em]">
+                <h1 className="magazine-title-2026 max-w-5xl font-display text-[clamp(3.25rem,6.35vw,6.85rem)] tracking-[-0.025em]">
                   Tạp chí của <span className="magazine-title-accent-2026 text-[#ee2940]">làn da.</span>
                 </h1>
               </div>
@@ -114,7 +114,7 @@ const MagazineEditorial = () => {
                   <span className="mt-10 inline-flex rounded-full bg-[#ee2940] px-4 py-2 font-body text-[0.65rem] font-bold uppercase tracking-[0.16em]">
                     {featuredPost.category}
                   </span>
-                  <h2 className="mt-6 max-w-2xl font-display text-[clamp(2.8rem,5.2vw,5.7rem)] leading-[1.07] tracking-[-0.022em]">
+                  <h2 className="mt-6 max-w-2xl font-display text-[clamp(2.7rem,4.55vw,5rem)] tracking-[-0.022em]">
                     {featuredPost.title}
                   </h2>
                   <p className="mt-7 max-w-xl font-body text-sm leading-7 text-white/62 md:text-base md:leading-8">
@@ -213,7 +213,7 @@ const MagazineEditorial = () => {
               <p className="font-body text-xs font-semibold uppercase tracking-[0.2em] text-white/65">Melalogy Notes · Mỗi tháng</p>
             </div>
             <div className="p-8 md:p-12 lg:p-16">
-              <h2 className="max-w-3xl font-display text-[clamp(2.5rem,5vw,5rem)] leading-[1.07] tracking-[-0.022em]">Một lá thư đẹp, không làm đầy hộp thư.</h2>
+              <h2 className="max-w-3xl font-display text-[clamp(2.5rem,4.5vw,4.7rem)] tracking-[-0.022em]">Một lá thư đẹp, không làm đầy hộp thư.</h2>
               <p className="mt-5 max-w-xl font-body text-sm leading-7 text-white/72 md:text-base">Bài đọc mới, kiến thức chăm da và những câu chuyện hậu trường được tuyển chọn vừa đủ.</p>
               <form onSubmit={handleSubscribe} className="mt-8 flex max-w-2xl flex-col gap-3 sm:flex-row">
                 <label htmlFor="magazine-email" className="sr-only">Địa chỉ email</label>

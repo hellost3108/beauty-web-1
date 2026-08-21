@@ -61,11 +61,11 @@ const ShopSection = () => {
                             <span>Energy Shot / 01—04</span>
                         </div>
 
-                        <div className="shop-copy py-14 lg:py-10">
+                        <div className="shop-copy py-12 lg:py-8">
                             <p className="mb-5 font-body text-[11px] font-semibold uppercase tracking-[0.22em] text-[#ff5a6d]">
                                 Chọn theo tín hiệu làn da
                             </p>
-                            <h1 className="max-w-2xl font-display text-[clamp(3rem,5.5vw,6.5rem)] leading-[1.04] tracking-[-0.025em]">
+                            <h1 className="max-w-[34rem] font-display text-[clamp(2.85rem,4.35vw,5rem)] tracking-[-0.025em]">
                                 Đúng Energy Shot. <span className="shop-accent text-[#ff5a6d]">Đúng điều da cần.</span>
                             </h1>
                             <p className="mt-7 max-w-lg font-body text-sm leading-7 text-white/60 md:text-base">

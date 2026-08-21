@@ -31,7 +31,7 @@ const HeroSection = () => {
 
           <div key={slide.id} className="hero-copy-enter py-14 lg:py-10">
             <p className="mb-5 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.24em] text-[#ff5a66]"><Sparkles className="h-4 w-4" />{slide.kicker}</p>
-            <h1 className="max-w-[760px] font-display text-[clamp(3.2rem,6.3vw,7.4rem)] leading-[1.04] tracking-[-0.025em]">
+            <h1 className="max-w-[720px] font-display text-[clamp(3rem,5.15vw,6.15rem)] tracking-[-0.025em]">
               <span>{slide.headline.part1}</span><span className="block italic text-[#ff4755]">{slide.headline.part2}</span>
             </h1>
             <p className="mt-8 max-w-xl text-sm leading-7 text-white/65 md:text-base md:leading-8">{slide.subheadline}</p>

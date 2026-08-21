@@ -45,7 +45,7 @@ const MagazineDetailEditorial = () => {
                     <span>0{post.id} — 09</span>
                   </div>
                   <span className="mt-10 inline-flex rounded-full bg-[#ee2940] px-4 py-2 font-body text-[0.64rem] font-bold uppercase tracking-[0.15em] text-white">{post.category}</span>
-                  <h1 className="mt-6 max-w-3xl font-display text-[clamp(3rem,5.7vw,6.7rem)] leading-[1.04] tracking-[-0.025em]">{post.title}</h1>
+                  <h1 className="mt-6 max-w-3xl font-display text-[clamp(2.85rem,4.9vw,5.65rem)] tracking-[-0.025em]">{post.title}</h1>
                   <p className="mt-7 max-w-xl font-body text-base leading-8 text-black/58">{post.subtitle}</p>
                 </div>
 
