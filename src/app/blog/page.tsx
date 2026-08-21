@@ -3,13 +3,23 @@ import Blog from "@/views/Blog";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://melalogy.com"),
-  title: "Melalogy Journal | Góc nhìn làm đẹp dành cho người Việt",
+  title: "Bí Kíp Làm Đẹp & Chăm Sóc Da | Melalogy Journal",
   description:
-    "Kiến thức chăm sóc da, trang điểm và câu chuyện thương hiệu được tuyển chọn bởi đội ngũ Melalogy.",
+    "9 bài viết chuyên sâu về Melalogy Energy Shot, bí kíp chăm sóc da và trang điểm phù hợp với người Việt.",
+  keywords: ["Melalogy", "bí kíp làm đẹp", "chăm sóc da", "mặt nạ hydrogel", "Melalogy Energy Shot"],
+  alternates: { canonical: "/blog" },
   openGraph: {
-    title: "Melalogy Journal | Đọc chậm. Đẹp lâu.",
+    title: "Bí Kíp Làm Đẹp & Chăm Sóc Da | Melalogy Journal",
     description:
-      "Kiến thức chăm sóc da và những góc nhìn làm đẹp có chiều sâu dành cho người Việt.",
+      "Kiến thức chăm sóc da, trang điểm và cách chọn Melalogy Energy Shot dành cho người Việt.",
+    type: "website",
+    url: "/blog",
+    images: ["/assets/melalogy-blog-hero-2026.png"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Melalogy Journal | Bí Kíp Làm Đẹp",
+    description: "9 bài chăm da và làm đẹp được biên tập riêng cho người Việt.",
     images: ["/assets/melalogy-blog-hero-2026.png"],
   },
 };

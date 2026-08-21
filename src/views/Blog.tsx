@@ -13,7 +13,7 @@ import {
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FanClubSection from "@/components/FanClubSection";
-import { blogPosts } from "@/data/blogData";
+import { blogPosts } from "@/data/melalogyBlogPosts";
 
 const categories = ["Tất Cả", "Chăm Sóc Da", "Trang Điểm", "Thương Hiệu"] as const;
 

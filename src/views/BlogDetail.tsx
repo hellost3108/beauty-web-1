@@ -15,7 +15,7 @@ import {
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { blogPosts } from "@/data/blogData";
+import { blogPosts } from "@/data/melalogyBlogPosts";
 
 const BlogDetail = () => {
   const { id } = useParams();

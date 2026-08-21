@@ -6,8 +6,19 @@ import Link from "next/link";
 import { ArrowRight, ArrowUpRight, CalendarDays, Clock3, Mail, Sparkles } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { magazineEditorialPosts } from "@/data/magazineEditorialData";
+import { magazineEditorialPosts } from "@/data/melalogyMagazinePosts";
 import { useToast } from "@/hooks/use-toast";
+
+const magazineCardLayouts = [
+  "lg:col-span-7",
+  "lg:col-span-5",
+  "lg:col-span-4",
+  "lg:col-span-4",
+  "lg:col-span-4",
+  "lg:col-span-6",
+  "lg:col-span-6",
+  "lg:col-span-12 lg:grid lg:grid-cols-[0.45fr_0.55fr]",
+];
 
 const MagazineEditorial = () => {
   const { toast } = useToast();
@@ -66,7 +77,7 @@ const MagazineEditorial = () => {
                 <div>
                   <div className="flex items-center justify-between border-b border-white/15 pb-5 font-body text-[0.65rem] uppercase tracking-[0.18em] text-white/48">
                     <span>Câu chuyện trang bìa</span>
-                    <span>01 — 04</span>
+                    <span>01 — 09</span>
                   </div>
                   <span className="mt-10 inline-flex rounded-full bg-[#ee2940] px-4 py-2 font-body text-[0.65rem] font-bold uppercase tracking-[0.16em]">
                     {featuredPost.category}
@@ -113,7 +124,7 @@ const MagazineEditorial = () => {
             <div className="mb-12 flex flex-col justify-between gap-6 border-b border-black/10 pb-7 md:flex-row md:items-end">
               <div data-reveal="up">
                 <p className="mb-3 font-body text-xs font-bold uppercase tracking-[0.2em] text-[#ee2940]">Từ ban biên tập</p>
-                <h2 className="font-display text-4xl md:text-6xl">Ba lát cắt mới</h2>
+                <h2 className="font-display text-4xl md:text-6xl">Tám lát cắt mới</h2>
               </div>
               <p className="max-w-md font-body text-sm leading-7 text-black/52 md:text-right">
                 Những câu chuyện ngắn để hiểu làn da, thiết kế và vẻ đẹp Việt theo một cách gần gũi hơn.
@@ -125,15 +136,15 @@ const MagazineEditorial = () => {
                 <Link
                   key={post.id}
                   href={`/magazine/${post.id}`}
-                  className={`magazine-card-2026 group overflow-hidden rounded-[1.75rem] border border-black/10 bg-white ${index === 0 ? "lg:col-span-7" : index === 1 ? "lg:col-span-5" : "lg:col-span-12 lg:grid lg:grid-cols-[0.45fr_0.55fr]"}`}
+                  className={`magazine-card-2026 group overflow-hidden rounded-[1.75rem] border border-black/10 bg-white ${magazineCardLayouts[index % magazineCardLayouts.length]}`}
                 >
-                  <div className={`magazine-card-media-2026 relative overflow-hidden ${index === 2 ? "min-h-[23rem]" : "aspect-[4/3]"}`}>
+                  <div className={`magazine-card-media-2026 relative overflow-hidden ${index === 7 ? "min-h-[23rem]" : "aspect-[4/3]"}`}>
                     <Image
                       src={post.image}
                       alt={post.imageAlt}
                       fill
                       loading="lazy"
-                      sizes={index === 2 ? "(max-width: 1024px) 100vw, 45vw" : "(max-width: 1024px) 100vw, 50vw"}
+                      sizes={index === 7 ? "(max-width: 1024px) 100vw, 45vw" : "(max-width: 1024px) 100vw, 50vw"}
                       className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
                     />
                     <span className="absolute left-5 top-5 rounded-full bg-white/90 px-4 py-2 font-body text-[0.64rem] font-bold uppercase tracking-[0.15em] backdrop-blur-md">
