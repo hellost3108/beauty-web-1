@@ -32,7 +32,11 @@ const BlogDetail = () => {
                 <img
                     src={post.image}
                     alt={post.title}
-                    className="w-full h-full object-cover"
+                    width={1920}
+                    height={1080}
+                    fetchPriority="high"
+                    decoding="async"
+                    className="w-full h-full object-cover object-center"
                 />
                 <div className="absolute inset-0 bg-black/30"></div>
                 <div className="absolute inset-0 flex items-center justify-center">
@@ -86,10 +90,14 @@ const BlogDetail = () => {
                             .slice(0, 3)
                             .map(relatedPost => (
                                 <Link key={relatedPost.id} href={`/blog/${relatedPost.id}`} className="group block">
-                                    <div className="relative overflow-hidden rounded-[20px] aspect-[16/9] mb-4">
+                                    <div className="relative overflow-hidden rounded-[20px] aspect-[4/3] mb-4">
                                         <img
                                             src={relatedPost.image}
                                             alt={relatedPost.title}
+                                            width={800}
+                                            height={600}
+                                            loading="lazy"
+                                            decoding="async"
                                             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                                         />
                                     </div>

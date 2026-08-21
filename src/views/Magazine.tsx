@@ -61,6 +61,10 @@ const Magazine = () => {
                                 <img
                                     src={featuredPost.image}
                                     alt={featuredPost.title}
+                                    width={1600}
+                                    height={1000}
+                                    fetchPriority="high"
+                                    decoding="async"
                                     className="w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-[1.02]"
                                 />
                             </div>
@@ -99,6 +103,10 @@ const Magazine = () => {
                                             <img
                                                 src={post.image}
                                                 alt={post.title}
+                                                width={800}
+                                                height={600}
+                                                loading="lazy"
+                                                decoding="async"
                                                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                                             />
                                         </div>
@@ -155,6 +163,10 @@ const Magazine = () => {
                                     <img
                                         src={post.image}
                                         alt={post.title}
+                                        width={800}
+                                        height={600}
+                                        loading="lazy"
+                                        decoding="async"
                                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                                     />
                                 </div>
@@ -194,10 +206,14 @@ const Magazine = () => {
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-16">
                             {gridPosts.map((post) => (
                                 <Link key={post.id} href={`/magazine/${post.id}`} className="group block">
-                                    <div className="mb-6 bg-[#fcfcfc] rounded-[2px] overflow-hidden aspect-[3/2] border border-gray-100">
+                                    <div className="mb-6 bg-[#fcfcfc] rounded-[2px] overflow-hidden aspect-[4/3] border border-gray-100">
                                         <img
                                             src={post.image}
                                             alt={post.title}
+                                            width={800}
+                                            height={600}
+                                            loading="lazy"
+                                            decoding="async"
                                             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                                         />
                                     </div>

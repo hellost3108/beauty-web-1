@@ -197,6 +197,10 @@ const HeroSection = () => {
             <img
               src={slide.image}
               alt={slide.headline.part2}
+              width={1920}
+              height={1080}
+              fetchPriority={index === 0 ? "high" : "auto"}
+              decoding="async"
               className="w-full h-full object-cover object-[center_20%] md:object-center block"
             />
           </div>
