@@ -7,7 +7,7 @@ import { useParams, useRouter } from "next/navigation";
 import { ArrowLeft, ArrowRight, ArrowUpRight, CalendarDays, Clock3, Facebook, Linkedin, Quote, Twitter, UserRound } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { magazineEditorialPosts } from "@/data/magazineEditorialData";
+import { magazineEditorialPosts } from "@/data/melalogyMagazinePosts";
 
 const MagazineDetailEditorial = () => {
   const { id } = useParams();
@@ -42,7 +42,7 @@ const MagazineDetailEditorial = () => {
                 <div>
                   <div className="flex items-center justify-between border-b border-black/10 pb-5 font-body text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-black/42">
                     <span>Melalogy · Số 08/2026</span>
-                    <span>0{post.id} — 04</span>
+                    <span>0{post.id} — 09</span>
                   </div>
                   <span className="mt-10 inline-flex rounded-full bg-[#ee2940] px-4 py-2 font-body text-[0.64rem] font-bold uppercase tracking-[0.15em] text-white">{post.category}</span>
                   <h1 className="mt-6 max-w-3xl font-display text-[clamp(3rem,5.7vw,6.7rem)] leading-[1.04] tracking-[-0.025em]">{post.title}</h1>
