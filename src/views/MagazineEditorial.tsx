@@ -29,7 +29,7 @@ const MagazineEditorial = () => {
       <Navbar />
 
       <main>
-        <section className="relative overflow-hidden px-5 pb-14 pt-[8.6rem] md:px-8 md:pb-20 md:pt-[10.5rem]">
+        <section className="magazine-hero-2026 relative overflow-hidden px-5 pb-14 pt-[8.6rem] md:px-8 md:pb-20 md:pt-[10.5rem]">
           <div className="magazine-orbit-2026" aria-hidden="true" />
           <div className="relative mx-auto w-full max-w-[90rem]">
             <div className="grid gap-10 border-b border-black/10 pb-12 lg:grid-cols-[0.72fr_0.28fr] lg:items-end">
@@ -38,8 +38,8 @@ const MagazineEditorial = () => {
                   <Sparkles className="h-3.5 w-3.5 text-[#ee2940]" />
                   Số 08 · Tháng 8/2026
                 </div>
-                <h1 className="max-w-5xl font-display text-[clamp(3.7rem,8.2vw,8.7rem)] leading-[1.04] tracking-[-0.025em]">
-                  Tạp chí của <span className="text-[#ee2940]">làn da.</span>
+                <h1 className="magazine-title-2026 max-w-5xl font-display text-[clamp(3.7rem,8.2vw,8.7rem)] leading-[1.04] tracking-[-0.025em]">
+                  Tạp chí của <span className="magazine-title-accent-2026 text-[#ee2940]">làn da.</span>
                 </h1>
               </div>
 
@@ -62,7 +62,7 @@ const MagazineEditorial = () => {
               className="magazine-cover-2026 group grid overflow-hidden rounded-[2rem] bg-[#181515] text-white lg:grid-cols-[0.78fr_1.22fr] lg:rounded-[3rem]"
               data-reveal="scale"
             >
-              <div className="order-2 flex min-h-[34rem] flex-col justify-between p-7 sm:p-10 lg:order-1 lg:min-h-[42rem] lg:p-14 xl:p-16">
+              <div className="magazine-cover-copy-2026 order-2 flex min-h-[34rem] flex-col justify-between p-7 sm:p-10 lg:order-1 lg:min-h-[42rem] lg:p-14 xl:p-16">
                 <div>
                   <div className="flex items-center justify-between border-b border-white/15 pb-5 font-body text-[0.65rem] uppercase tracking-[0.18em] text-white/48">
                     <span>Câu chuyện trang bìa</span>
@@ -90,7 +90,7 @@ const MagazineEditorial = () => {
                 </div>
               </div>
 
-              <div className="relative order-1 min-h-[25rem] overflow-hidden bg-[#e8dfd8] sm:min-h-[34rem] lg:order-2 lg:min-h-full">
+              <div className="magazine-cover-media-2026 relative order-1 min-h-[25rem] overflow-hidden bg-[#e8dfd8] sm:min-h-[34rem] lg:order-2 lg:min-h-full" data-scroll-media="true">
                 <Image
                   src={featuredPost.image}
                   alt={featuredPost.imageAlt}
@@ -127,7 +127,7 @@ const MagazineEditorial = () => {
                   href={`/magazine/${post.id}`}
                   className={`magazine-card-2026 group overflow-hidden rounded-[1.75rem] border border-black/10 bg-white ${index === 0 ? "lg:col-span-7" : index === 1 ? "lg:col-span-5" : "lg:col-span-12 lg:grid lg:grid-cols-[0.45fr_0.55fr]"}`}
                 >
-                  <div className={`relative overflow-hidden ${index === 2 ? "min-h-[23rem]" : "aspect-[4/3]"}`}>
+                  <div className={`magazine-card-media-2026 relative overflow-hidden ${index === 2 ? "min-h-[23rem]" : "aspect-[4/3]"}`}>
                     <Image
                       src={post.image}
                       alt={post.imageAlt}
@@ -140,7 +140,7 @@ const MagazineEditorial = () => {
                       {post.category}
                     </span>
                   </div>
-                  <div className="flex flex-col justify-between p-7 md:p-9">
+                  <div className="magazine-card-copy-2026 flex flex-col justify-between p-7 md:p-9">
                     <div>
                       <p className="font-body text-[0.66rem] uppercase tracking-[0.14em] text-black/42">0{post.id} · {post.readTime}</p>
                       <h3 className="mt-4 font-display text-[clamp(2rem,3.4vw,3.75rem)] leading-[1.12] tracking-[-0.015em] transition-colors group-hover:text-[#d91f35]">
@@ -160,7 +160,7 @@ const MagazineEditorial = () => {
         </section>
 
         <section className="px-5 py-20 md:px-8 md:py-28">
-          <div className="mx-auto grid w-full max-w-[90rem] overflow-hidden rounded-[2rem] bg-[#ee2940] text-white md:grid-cols-[0.7fr_1.3fr] md:rounded-[3rem]" data-reveal="scale">
+          <div className="magazine-newsletter-2026 mx-auto grid w-full max-w-[90rem] overflow-hidden rounded-[2rem] bg-[#ee2940] text-white md:grid-cols-[0.7fr_1.3fr] md:rounded-[3rem]" data-reveal="scale">
             <div className="flex min-h-[17rem] flex-col justify-between border-b border-white/20 p-8 md:border-b-0 md:border-r md:p-12">
               <Mail className="h-7 w-7" />
               <p className="font-body text-xs font-semibold uppercase tracking-[0.2em] text-white/65">Melalogy Notes · Mỗi tháng</p>
