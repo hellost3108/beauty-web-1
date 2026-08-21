@@ -10,14 +10,46 @@ import { magazineEditorialPosts } from "@/data/melalogyMagazinePosts";
 import { useToast } from "@/hooks/use-toast";
 
 const magazineCardLayouts = [
-  "lg:col-span-7",
-  "lg:col-span-5",
-  "lg:col-span-4",
-  "lg:col-span-4",
-  "lg:col-span-4",
-  "lg:col-span-6",
-  "lg:col-span-6",
-  "lg:col-span-12 lg:grid lg:grid-cols-[0.45fr_0.55fr]",
+  {
+    card: "lg:col-span-7",
+    media: "aspect-[16/9]",
+    sizes: "(max-width: 1024px) 100vw, 56vw",
+  },
+  {
+    card: "lg:col-span-5",
+    media: "aspect-[16/10]",
+    sizes: "(max-width: 1024px) 100vw, 40vw",
+  },
+  {
+    card: "lg:col-span-4",
+    media: "aspect-[4/3]",
+    sizes: "(max-width: 1024px) 100vw, 32vw",
+  },
+  {
+    card: "lg:col-span-4",
+    media: "aspect-[4/3]",
+    sizes: "(max-width: 1024px) 100vw, 32vw",
+  },
+  {
+    card: "lg:col-span-4",
+    media: "aspect-[4/3]",
+    sizes: "(max-width: 1024px) 100vw, 32vw",
+  },
+  {
+    card: "lg:col-span-6",
+    media: "aspect-[16/10]",
+    sizes: "(max-width: 1024px) 100vw, 48vw",
+  },
+  {
+    card: "lg:col-span-6",
+    media: "aspect-[16/10]",
+    sizes: "(max-width: 1024px) 100vw, 48vw",
+  },
+  {
+    card: "lg:col-span-12 lg:grid lg:grid-cols-[0.45fr_0.55fr]",
+    media: "aspect-[16/10] lg:aspect-auto lg:min-h-[21rem]",
+    sizes: "(max-width: 1024px) 100vw, 45vw",
+  },
 ];
 
 const MagazineEditorial = () => {
@@ -67,7 +99,7 @@ const MagazineEditorial = () => {
         </section>
 
         <section className="px-5 pb-20 md:px-8 md:pb-28">
-          <div className="mx-auto w-full max-w-[90rem]">
+          <div className="mx-auto w-full max-w-[78rem]">
             <Link
               href={`/magazine/${featuredPost.id}`}
               className="magazine-cover-2026 group grid overflow-hidden rounded-[2rem] bg-[#181515] text-white lg:grid-cols-[0.78fr_1.22fr] lg:rounded-[3rem]"
@@ -120,7 +152,7 @@ const MagazineEditorial = () => {
         </section>
 
         <section className="magazine-index-2026 px-5 py-20 md:px-8 md:py-28">
-          <div className="mx-auto w-full max-w-[90rem]">
+          <div className="mx-auto w-full max-w-[78rem]">
             <div className="mb-12 flex flex-col justify-between gap-6 border-b border-black/10 pb-7 md:flex-row md:items-end">
               <div data-reveal="up">
                 <p className="mb-3 font-body text-xs font-bold uppercase tracking-[0.2em] text-[#ee2940]">Từ ban biên tập</p>
@@ -132,40 +164,44 @@ const MagazineEditorial = () => {
             </div>
 
             <div className="grid gap-6 lg:grid-cols-12" data-motion-stagger>
-              {latestPosts.map((post, index) => (
-                <Link
-                  key={post.id}
-                  href={`/magazine/${post.id}`}
-                  className={`magazine-card-2026 group overflow-hidden rounded-[1.75rem] border border-black/10 bg-white ${magazineCardLayouts[index % magazineCardLayouts.length]}`}
-                >
-                  <div className={`magazine-card-media-2026 relative overflow-hidden ${index === 7 ? "min-h-[23rem]" : "aspect-[4/3]"}`}>
-                    <Image
-                      src={post.image}
-                      alt={post.imageAlt}
-                      fill
-                      loading="lazy"
-                      sizes={index === 7 ? "(max-width: 1024px) 100vw, 45vw" : "(max-width: 1024px) 100vw, 50vw"}
-                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
-                    />
-                    <span className="absolute left-5 top-5 rounded-full bg-white/90 px-4 py-2 font-body text-[0.64rem] font-bold uppercase tracking-[0.15em] backdrop-blur-md">
-                      {post.category}
-                    </span>
-                  </div>
-                  <div className="magazine-card-copy-2026 flex flex-col justify-between p-7 md:p-9">
-                    <div>
-                      <p className="font-body text-[0.66rem] uppercase tracking-[0.14em] text-black/42">0{post.id} · {post.readTime}</p>
-                      <h3 className="mt-4 font-display text-[clamp(2rem,3.4vw,3.75rem)] leading-[1.12] tracking-[-0.015em] transition-colors group-hover:text-[#d91f35]">
-                        {post.title}
-                      </h3>
-                      <p className="mt-5 font-body text-sm leading-7 text-black/55 md:text-base">{post.excerpt}</p>
+              {latestPosts.map((post, index) => {
+                const layout = magazineCardLayouts[index % magazineCardLayouts.length];
+
+                return (
+                  <Link
+                    key={post.id}
+                    href={`/magazine/${post.id}`}
+                    className={`magazine-card-2026 group overflow-hidden rounded-[1.75rem] border border-black/10 bg-white ${layout.card}`}
+                  >
+                    <div className={`magazine-card-media-2026 relative overflow-hidden ${layout.media}`}>
+                      <Image
+                        src={post.image}
+                        alt={post.imageAlt}
+                        fill
+                        loading="lazy"
+                        sizes={layout.sizes}
+                        className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                      />
+                      <span className="absolute left-5 top-5 rounded-full bg-white/90 px-4 py-2 font-body text-[0.64rem] font-bold uppercase tracking-[0.15em] backdrop-blur-md">
+                        {post.category}
+                      </span>
                     </div>
-                    <div className="mt-8 flex items-center justify-between border-t border-black/10 pt-5">
-                      <span className="font-body text-xs font-semibold">{post.author}</span>
-                      <ArrowRight className="h-4 w-4 text-[#ee2940] transition-transform group-hover:translate-x-1" />
+                    <div className="magazine-card-copy-2026 flex flex-col justify-between p-7 md:p-9">
+                      <div>
+                        <p className="font-body text-[0.66rem] uppercase tracking-[0.14em] text-black/42">0{post.id} · {post.readTime}</p>
+                        <h3 className="mt-4 font-display text-[clamp(2rem,3.4vw,3.75rem)] leading-[1.12] tracking-[-0.015em] transition-colors group-hover:text-[#d91f35]">
+                          {post.title}
+                        </h3>
+                        <p className="mt-5 font-body text-sm leading-7 text-black/55 md:text-base">{post.excerpt}</p>
+                      </div>
+                      <div className="mt-8 flex items-center justify-between border-t border-black/10 pt-5">
+                        <span className="font-body text-xs font-semibold">{post.author}</span>
+                        <ArrowRight className="h-4 w-4 text-[#ee2940] transition-transform group-hover:translate-x-1" />
+                      </div>
                     </div>
-                  </div>
-                </Link>
-              ))}
+                  </Link>
+                );
+              })}
             </div>
           </div>
         </section>
