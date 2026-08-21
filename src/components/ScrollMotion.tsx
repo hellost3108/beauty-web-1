@@ -8,7 +8,8 @@ const PARALLAX_SELECTOR = "[data-parallax]";
 const MOTION_PAGE_SELECTOR = "[data-motion-page]";
 const MOTION_MEDIA_SELECTOR = [
   "figure > img",
-  '[class~="overflow-hidden"] > img',
+  "article img",
+  '[class~="overflow-hidden"] img',
   "[data-motion-media] img",
 ].join(",");
 
@@ -85,7 +86,8 @@ export default function ScrollMotion() {
       }
 
       page.querySelectorAll<HTMLElement>("h1, h2").forEach((heading, index) => {
-        setAutoReveal(heading, index === 0 ? "clip" : "up", Math.min(index * 45, 180));
+        heading.dataset.scrollHeading = "true";
+        setAutoReveal(heading, "up", Math.min(index * 45, 180));
       });
 
       page.querySelectorAll<HTMLElement>("article, figure, main form").forEach((element, index) => {

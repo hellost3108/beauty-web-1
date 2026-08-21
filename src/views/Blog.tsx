@@ -53,7 +53,7 @@ const Blog = () => {
                 <Sparkles className="h-3.5 w-3.5 text-[#ee2940]" />
                 Melalogy Journal · Số 08/2026
               </div>
-              <h1 className="font-display text-[clamp(3.6rem,8.6vw,8.8rem)] leading-[1.04] tracking-[-0.025em]">
+              <h1 className="font-display text-[clamp(3.2rem,6.45vw,6.9rem)] tracking-[-0.025em]">
                 Đọc chậm.
                 <span className="mt-2 block pl-[0.55em] text-[#ee2940]">Đẹp lâu.</span>
               </h1>
@@ -202,7 +202,7 @@ const Blog = () => {
                           <span>{post.date}</span>
                           <span>{post.readingTime}</span>
                         </div>
-                        <h3 className="font-display text-[clamp(1.7rem,2.6vw,2.65rem)] leading-[1.04] transition-colors duration-300 group-hover:text-[#d91f35]">{post.title}</h3>
+                        <h3 className="font-display text-[clamp(1.7rem,2.45vw,2.5rem)] transition-colors duration-300 group-hover:text-[#d91f35]">{post.title}</h3>
                         <p className="mt-4 line-clamp-3 font-body text-sm leading-6 text-black/55 md:text-base md:leading-7">{post.excerpt}</p>
                         <div className="mt-auto flex items-center justify-between border-t border-black/10 pt-6 font-body text-xs font-semibold">
                           <span>{post.author}</span>
