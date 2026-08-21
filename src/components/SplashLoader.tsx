@@ -1,110 +1,62 @@
 import React, { useEffect, useState } from 'react';
-import { cn } from '@/lib/utils';
 
 interface SplashLoaderProps {
-    onComplete: () => void;
+  onComplete: () => void;
 }
 
 const SplashLoader: React.FC<SplashLoaderProps> = ({ onComplete }) => {
-    const [stage, setStage] = useState<'initial' | 'text' | 'circle' | 'line' | 'pull' | 'finish'>('initial');
+  const [isLeaving, setIsLeaving] = useState(false);
 
-    useEffect(() => {
-        // Hide Navbar logo initially
-        const navbarLogo = document.getElementById('navbar-logo-container');
-        if (navbarLogo) navbarLogo.style.opacity = '0';
+  useEffect(() => {
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const previousOverflow = document.body.style.overflow;
+    const previousHtmlOverflow = document.documentElement.style.overflow;
 
-        // Stage 1: Logo appears
-        const timer1 = setTimeout(() => setStage('text'), 200);
+    if (reduceMotion) {
+      onComplete();
+      return;
+    }
 
-        // Stage 2: Circle appears (from top)
-        const timer2 = setTimeout(() => setStage('circle'), 700);
+    document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
+    const exitTimer = window.setTimeout(() => setIsLeaving(true), 650);
+    const completeTimer = window.setTimeout(onComplete, 1050);
 
-        // Stage 3: Line grows down
-        const timer3 = setTimeout(() => setStage('line'), 1200);
+    return () => {
+      window.clearTimeout(exitTimer);
+      window.clearTimeout(completeTimer);
+      document.body.style.overflow = previousOverflow;
+      document.documentElement.style.overflow = previousHtmlOverflow;
+    };
+  }, [onComplete]);
 
-        // Stage 4: Pull up (Loader slides up, logo moves to header)
-        const timer4 = setTimeout(() => setStage('pull'), 1800);
-
-        // Stage 5: Circle gone, valid header position
-        const timer5 = setTimeout(() => {
-            setStage('finish');
-            // Show Navbar logo when loader settles
-            if (navbarLogo) {
-                navbarLogo.style.transition = 'opacity 0.2s ease-in-out';
-                navbarLogo.style.opacity = '1';
-            }
-        }, 2800);
-
-        // Complete
-        const timer6 = setTimeout(onComplete, 3100);
-
-        return () => {
-            clearTimeout(timer1);
-            clearTimeout(timer2);
-            clearTimeout(timer3);
-            clearTimeout(timer4);
-            clearTimeout(timer5);
-            clearTimeout(timer6);
-            // Ensure logo is visible on cleanup
-            if (navbarLogo) navbarLogo.style.opacity = '1';
-        };
-    }, [onComplete]);
-
-    return (
-        <div className="fixed inset-0 z-[100] h-full w-full overflow-hidden">
-            {/* White Background Layer - Slides Up */}
-            <div
-                className={cn(
-                    "absolute inset-0 bg-white transition-transform ease-in-out z-0",
-                    (stage === 'pull' || stage === 'finish') ? "-translate-y-full" : "translate-y-0"
-                )}
-                style={{ transitionDuration: '900ms' }}
-            />
-
-            {/* Content Layer - Stays Fixed (but moves internally) */}
-            <div className="absolute inset-0 z-10 flex flex-col items-center justify-center pointer-events-none">
-
-                <div
-                    className={cn(
-                        "relative flex items-center justify-center w-64 h-64 md:w-80 md:h-80 transition-all ease-in-out",
-                        (stage === 'pull' || stage === 'finish')
-                            ? "translate-y-[calc(32px-50vh)] scale-100 md:translate-y-[calc(36px-50vh)]"
-                            : "translate-y-0 scale-100"
-                    )}
-                    style={{ transitionDuration: '900ms' }}
-                >
-                    {/* Circle Border - Drops in then Fades out slowly during pull */}
-                    <div
-                        className={cn(
-                            "absolute inset-0 border-[3px] border-[#1B5E5E] rounded-full transition-all duration-700 ease-out",
-                            stage === 'initial' || stage === 'text' ? "-translate-y-full opacity-0" :
-                                (stage === 'pull' || stage === 'finish') ? "translate-y-0 opacity-0" : "translate-y-0 opacity-100"
-                        )}
-                    />
-
-                    {/* Melalogy Logo - Stays visible until replaced by Navbar logo */}
-                    <img
-                        src="/assets/logo-full.png"
-                        alt="Melalogy"
-                        className={cn(
-                            "w-40 md:w-52 object-contain transition-opacity duration-300 ease-in-out",
-                            stage === 'initial' ? "opacity-0" : "opacity-100"
-                        )}
-                    />
-
-                    {/* Vertical Line - Attached to bottom of circle */}
-                    <div
-                        className={cn(
-                            "absolute top-full left-1/2 -translate-x-1/2 w-[3px] bg-[#1B5E5E] origin-top transition-all ease-in-out",
-                            stage === 'line' ? "h-[50vh]" :
-                                stage === 'pull' ? "h-[50vh] opacity-0" : "h-0 opacity-0"
-                        )}
-                        style={{ transitionDuration: stage === 'pull' ? '600ms' : '900ms' }}
-                    />
-                </div>
-            </div>
+  return (
+    <div
+      className={`fixed inset-0 z-[100] grid place-items-center bg-[#f7f5f1] transition-[opacity,transform] duration-500 ease-out ${
+        isLeaving ? '-translate-y-2 opacity-0' : 'translate-y-0 opacity-100'
+      }`}
+      role="status"
+      aria-label="Đang mở Melalogy"
+    >
+      <div className="flex w-[min(72vw,280px)] flex-col items-center">
+        <img
+          src="/assets/logo-full.png"
+          alt="Melalogy"
+          className="h-auto w-full object-contain"
+        />
+        <div className="mt-6 h-px w-full overflow-hidden bg-black/10">
+          <span className="block h-full w-full origin-left animate-[loader-line_700ms_cubic-bezier(.2,.8,.2,1)_both] bg-[#f01a33]" />
         </div>
-    );
+      </div>
+
+      <style jsx>{`
+        @keyframes loader-line {
+          from { transform: scaleX(0); }
+          to { transform: scaleX(1); }
+        }
+      `}</style>
+    </div>
+  );
 };
 
 export default SplashLoader;
