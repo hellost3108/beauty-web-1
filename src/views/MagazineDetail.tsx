@@ -70,11 +70,17 @@ const MagazineDetail = () => {
 
             {/* Large Hero Image - Full Visibility */}
             <div className="w-full max-w-7xl mx-auto mb-12 px-6">
+              <div className="relative w-full aspect-[16/10] overflow-hidden rounded-[24px] border border-gray-100 shadow-sm">
                 <img
                     src={post.image}
                     alt={post.title}
-                    className="w-full h-[50vh] md:h-[70vh] object-cover mx-auto rounded-[24px] border border-gray-100 shadow-sm"
+                    width={1600}
+                    height={1000}
+                    fetchPriority="high"
+                    decoding="async"
+                    className="w-full h-full object-cover object-center"
                 />
+              </div>
             </div>
 
             <main className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 py-16 md:py-24">

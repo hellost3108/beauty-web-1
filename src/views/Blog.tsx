@@ -35,11 +35,15 @@ const Blog = () => {
                 <div className="max-w-7xl mx-auto px-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
                         {blogPosts.map((post) => (
-                            <Link href={`/blog/${post.id}`} key={post.id} className="group flex flex-col h-full bg-white rounded-[24px] overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 border border-gray-100 cursor-pointer">
-                                <div className="relative overflow-hidden aspect-[4/3]">
+                            <Link href={`/blog/${post.id}`} key={post.id} className="editorial-card-2026 reveal-2026 group flex flex-col h-full overflow-hidden cursor-pointer">
+                                <div className="media-frame-2026 relative overflow-hidden aspect-[4/3]">
                                     <img
                                         src={post.image}
                                         alt={post.title}
+                                        width={800}
+                                        height={600}
+                                        loading="lazy"
+                                        decoding="async"
                                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                                     />
                                     <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider text-[#1a1a1a] shadow-sm">
@@ -47,7 +51,7 @@ const Blog = () => {
                                     </div>
                                     <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                                 </div>
-                                <div className="flex-1 flex flex-col p-8">
+                                <div className="card-copy-2026 flex-1 flex flex-col p-8">
                                     <div className="flex items-center gap-4 text-xs text-[#888888] mb-4 font-body uppercase tracking-wide">
                                         <div className="flex items-center gap-1.5">
                                             <Calendar className="w-3.5 h-3.5 text-[#f01a33]" />
