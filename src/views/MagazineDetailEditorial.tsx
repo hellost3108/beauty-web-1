@@ -37,8 +37,8 @@ const MagazineDetailEditorial = () => {
               Trở về Tạp chí
             </Link>
 
-            <div className="grid overflow-hidden rounded-[2rem] border border-black/10 bg-white lg:grid-cols-[0.86fr_1.14fr] lg:rounded-[3rem]" data-reveal="scale">
-              <div className="order-2 flex flex-col justify-between p-7 md:p-10 lg:order-1 lg:min-h-[44rem] lg:p-14 xl:p-16">
+            <div className="magazine-detail-hero-2026 grid overflow-hidden rounded-[2rem] border border-black/10 bg-white lg:grid-cols-[0.86fr_1.14fr] lg:rounded-[3rem]" data-reveal="scale">
+              <div className="magazine-detail-copy-2026 order-2 flex flex-col justify-between p-7 md:p-10 lg:order-1 lg:min-h-[44rem] lg:p-14 xl:p-16">
                 <div>
                   <div className="flex items-center justify-between border-b border-black/10 pb-5 font-body text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-black/42">
                     <span>Melalogy · Số 08/2026</span>
@@ -56,7 +56,7 @@ const MagazineDetailEditorial = () => {
                 </div>
               </div>
 
-              <div className="relative order-1 min-h-[28rem] overflow-hidden bg-[#e9e1dc] sm:min-h-[38rem] lg:order-2 lg:min-h-full">
+              <div className="magazine-detail-media-2026 relative order-1 min-h-[28rem] overflow-hidden bg-[#e9e1dc] sm:min-h-[38rem] lg:order-2 lg:min-h-full" data-scroll-media="true">
                 <Image src={post.image} alt={post.imageAlt} fill priority sizes="(max-width: 1024px) 100vw, 56vw" className="object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-white/5" />
                 <span className="absolute bottom-6 left-6 rounded-full border border-white/30 bg-black/18 px-4 py-2 font-body text-[0.62rem] font-semibold uppercase tracking-[0.16em] text-white backdrop-blur-md">Ảnh · Melalogy Studio</span>
@@ -84,7 +84,7 @@ const MagazineDetailEditorial = () => {
             </aside>
 
             <article data-reveal="up">
-              <div className="mb-12 rounded-[1.5rem] border border-black/10 bg-white p-7 md:p-9">
+              <div className="magazine-opening-quote-2026 mb-12 rounded-[1.5rem] border border-black/10 bg-white p-7 md:p-9">
                 <Quote className="mb-5 h-7 w-7 text-[#ee2940]" />
                 <p className="font-display text-2xl leading-[1.2] md:text-3xl">{post.excerpt}</p>
               </div>
@@ -100,7 +100,7 @@ const MagazineDetailEditorial = () => {
             </article>
 
             <aside className="h-fit lg:sticky lg:top-32" data-reveal="right" data-reveal-delay="120">
-              <div className="overflow-hidden rounded-[1.5rem] border border-black/10 bg-[#181515] p-3 text-white">
+              <div className="magazine-product-note-2026 overflow-hidden rounded-[1.5rem] border border-black/10 bg-[#181515] p-3 text-white">
                 <div className="relative aspect-[4/5] overflow-hidden rounded-[1rem] bg-[#dff4fb]">
                   <Image src="/assets/mask-hydrating-blue.png" alt="Mặt nạ Energy Shot Cấp Ẩm" fill sizes="16rem" className="object-cover" />
                 </div>
@@ -124,7 +124,7 @@ const MagazineDetailEditorial = () => {
             <div className="grid gap-6 md:grid-cols-3" data-motion-stagger>
               {relatedPosts.map((relatedPost) => (
                 <Link key={relatedPost.id} href={`/magazine/${relatedPost.id}`} className="magazine-related-card-2026 group overflow-hidden rounded-[1.5rem] border border-black/10 bg-white">
-                  <div className="relative aspect-[4/3] overflow-hidden">
+                  <div className="magazine-card-media-2026 relative aspect-[4/3] overflow-hidden">
                     <Image src={relatedPost.image} alt={relatedPost.imageAlt} fill loading="lazy" sizes="(max-width: 768px) 100vw, 33vw" className="object-cover transition-transform duration-700 group-hover:scale-[1.04]" />
                   </div>
                   <div className="p-6">
