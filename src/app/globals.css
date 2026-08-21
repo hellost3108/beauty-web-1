@@ -62,7 +62,7 @@
     /* Typography */
     /* --font-display and --font-body are provided via layout.tsx */
     --font-brand: var(--font-display), serif;
-    --font-button: "Poppins", sans-serif;
+    --font-button: var(--font-body), sans-serif;
 
     /* Shadows */
     --shadow-soft: 0 4px 20px -4px hsl(349 75% 58% / 0.1);
@@ -142,6 +142,9 @@
       var(--paper-2026);
     color: var(--ink-2026);
     text-wrap: pretty;
+    font-kerning: normal;
+    font-synthesis: none;
+    font-feature-settings: "kern" 1, "liga" 1;
   }
 
   ::selection {
@@ -167,7 +170,9 @@
   h6 {
     font-family: var(--font-display), serif;
     text-wrap: balance;
-    letter-spacing: -0.025em;
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    font-optical-sizing: auto;
   }
 }
 

@@ -75,8 +75,8 @@ export default {
       fontFamily: {
         display: ["var(--font-display)", "serif"],
         brand: ["var(--font-display)", "serif"],
-        body: ["Inter", "sans-serif"],
-        button: ["Poppins", "sans-serif"],
+        body: ["var(--font-body)", "sans-serif"],
+        button: ["var(--font-body)", "sans-serif"],
       },
       fontSize: {
         hero: ["3.5rem", { lineHeight: "1.15", letterSpacing: "-0.02em" }],
