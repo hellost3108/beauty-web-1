@@ -7,7 +7,7 @@ const DiscoverNext = () => {
             <div className="w-full px-6 md:px-16 lg:px-24 xl:px-32">
                 {/* Section Title */}
                 <div data-reveal="up" className="text-center mb-16 space-y-4">
-                    <h2 className="font-display text-3xl md:text-4xl leading-none tracking-tight">
+                    <h2 className="font-display text-3xl md:text-4xl leading-[1.1] tracking-[-0.018em]">
                         <span className="text-[#1a1a1a]">Khám Phá </span>
                         <span className="text-[#f01a33]">Thêm</span>
                     </h2>

@@ -36,7 +36,7 @@ const CategoryIcons = () => {
               <span className="h-px w-8 bg-current" />
               Chăm sóc theo nhu cầu da
             </div>
-            <h2 className="font-display text-[clamp(2.5rem,5vw,5.25rem)] leading-[0.98] tracking-[-0.045em] text-[#191816]">
+            <h2 className="font-display text-[clamp(2.5rem,5vw,5.25rem)] leading-[1.07] tracking-[-0.022em] text-[#191816]">
               Energy Shot <span className="text-[#f01a33]">Hydrogel</span>
             </h2>
           </div>

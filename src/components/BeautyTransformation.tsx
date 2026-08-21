@@ -10,7 +10,7 @@ const BeautyTransformation = () => {
             <span className="h-px w-8 bg-current" />
             Từ tín hiệu đến công thức
           </div>
-          <h2 className="max-w-xl font-display text-[clamp(2.75rem,5.2vw,5.75rem)] leading-[0.96] tracking-[-0.05em]">
+          <h2 className="max-w-xl font-display text-[clamp(2.75rem,5.2vw,5.75rem)] leading-[1.07] tracking-[-0.022em]">
             Từ trạng thái da đến <span className="text-[#ff5a6d]">công thức phù hợp.</span>
           </h2>
           <p className="mt-7 max-w-lg font-body text-sm leading-7 text-white/60 md:text-base">

@@ -53,7 +53,7 @@ const Blog = () => {
                 <Sparkles className="h-3.5 w-3.5 text-[#ee2940]" />
                 Melalogy Journal · Số 08/2026
               </div>
-              <h1 className="font-display text-[clamp(3.6rem,8.6vw,8.8rem)] leading-[0.84] tracking-[-0.065em]">
+              <h1 className="font-display text-[clamp(3.6rem,8.6vw,8.8rem)] leading-[1.04] tracking-[-0.025em]">
                 Đọc chậm.
                 <span className="mt-2 block pl-[0.55em] text-[#ee2940]">Đẹp lâu.</span>
               </h1>
@@ -130,7 +130,7 @@ const Blog = () => {
                     <span className="inline-flex items-center gap-2"><CalendarDays className="h-3.5 w-3.5 text-[#ee2940]" />{featuredPost.date}</span>
                     <span className="inline-flex items-center gap-2"><Clock3 className="h-3.5 w-3.5 text-[#ee2940]" />{featuredPost.readingTime}</span>
                   </div>
-                  <h3 className="font-display text-[clamp(2.25rem,4vw,4.5rem)] leading-[0.98] transition-colors duration-300 group-hover:text-[#d91f35]">
+                  <h3 className="font-display text-[clamp(2.25rem,4vw,4.5rem)] leading-[1.12] tracking-[-0.015em] transition-colors duration-300 group-hover:text-[#d91f35]">
                     {featuredPost.title}
                   </h3>
                   <p className="mt-6 font-body text-base leading-7 text-black/58 lg:text-lg lg:leading-8">{featuredPost.excerpt}</p>

@@ -16,7 +16,7 @@ const LifestyleSection = () => {
           <span className="font-body text-sm text-[#f01a33] tracking-widest uppercase mb-4 block">
             @Blushora
           </span>
-          <h2 className="font-display text-3xl md:text-4xl text-[#1a1a1a] leading-none tracking-tight">
+          <h2 className="font-display text-3xl md:text-4xl text-[#1a1a1a] leading-[1.1] tracking-[-0.018em]">
             Join Our Beauty Community
           </h2>
         </div>

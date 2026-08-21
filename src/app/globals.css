@@ -192,6 +192,36 @@
     letter-spacing: -0.02em;
     font-optical-sizing: auto;
   }
+
+  /*
+   * Vietnamese display type needs more vertical room than the Latin-only
+   * editorial settings used previously. These selectors intentionally have
+   * higher specificity than one-off Tailwind leading/tracking utilities so a
+   * page cannot accidentally squeeze tone marks into the neighbouring line.
+   */
+  h1[class~="font-display"] {
+    line-height: 1.04;
+    letter-spacing: -0.025em;
+  }
+
+  h2[class~="font-display"] {
+    line-height: 1.07;
+    letter-spacing: -0.022em;
+  }
+
+  h3[class~="font-display"],
+  h4[class~="font-display"] {
+    line-height: 1.12;
+    letter-spacing: -0.015em;
+  }
+
+  @media (max-width: 47.99rem) {
+    h1[class~="font-display"],
+    h2[class~="font-display"] {
+      line-height: 1.1;
+      letter-spacing: -0.018em;
+    }
+  }
 }
 
 @layer components {
@@ -583,7 +613,7 @@
     font-size: clamp(2rem, 4vw, 3.35rem);
     font-weight: 500;
     line-height: 1.06;
-    letter-spacing: -0.035em;
+    letter-spacing: -0.02em;
   }
 
   .blog-prose-2026 h3::before {
@@ -677,8 +707,8 @@
 
   .text-fluid-display {
     font-size: clamp(2.65rem, 7vw, 7.5rem);
-    line-height: 0.94;
-    letter-spacing: -0.055em;
+    line-height: 1.05;
+    letter-spacing: -0.025em;
   }
 
   @supports (animation-timeline: view()) {
