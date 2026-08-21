@@ -1,1 +1,7 @@
-"use client"; import Cart from "@/views/Cart"; export default function Page() { return <Cart />; }
+"use client";
+
+import Cart2026 from "@/views/Cart2026";
+
+export default function Page() {
+  return <Cart2026 />;
+}
