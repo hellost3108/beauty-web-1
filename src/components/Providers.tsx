@@ -23,7 +23,9 @@ export default function Providers({ children }: { children: React.ReactNode }) {
           <Sonner />
           <ScrollMotion />
           {isLoading && <SplashLoader onComplete={finishLoading} />}
-          {children}
+          <div className="motion-page-2026" data-motion-page>
+            {children}
+          </div>
         </TooltipProvider>
       </ShopProvider>
     </QueryClientProvider>
