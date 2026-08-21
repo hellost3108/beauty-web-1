@@ -156,8 +156,12 @@ const About = () => {
                     <div data-reveal="scale" className="relative min-h-[68svh] overflow-hidden bg-[#c4202f] lg:min-h-0">
                         <img
                             data-parallax="10"
-                            src="/assets/li.jpg"
-                            alt="Chân dung người phụ nữ Việt trong sắc đỏ đặc trưng của Melalogy"
+                            src="/assets/about-hero-vietnamese-portrait-2026.jpg"
+                            alt="Chân dung người phụ nữ Việt với làn da tự nhiên trong sắc đỏ Melalogy"
+                            width="2244"
+                            height="2804"
+                            fetchPriority="high"
+                            decoding="async"
                             className="absolute -inset-y-[7%] left-0 h-[114%] w-full object-cover object-center"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-black/5" />
@@ -219,8 +223,12 @@ const About = () => {
                     <div data-reveal="left" className="relative min-h-[34rem] overflow-hidden rounded-[2rem] bg-[#ded7d0] md:min-h-[44rem]">
                         <img
                             data-parallax="8"
-                            src="/assets/skincare-mask-application.jpg"
-                            alt="Trải nghiệm đắp mặt nạ hydrogel"
+                            src="/assets/about-hydrogel-ritual-2026.jpg"
+                            alt="Người phụ nữ Việt nhẹ nhàng áp mặt nạ hydrogel lên làn da"
+                            width="1944"
+                            height="3238"
+                            loading="lazy"
+                            decoding="async"
                             className="absolute -inset-y-[6%] left-0 h-[112%] w-full object-cover object-center"
                         />
                         <div className="absolute inset-x-5 top-5 flex items-center justify-between rounded-full border border-white/30 bg-black/15 px-5 py-3 font-body text-[10px] font-semibold uppercase tracking-[0.18em] backdrop-blur-md sm:inset-x-7 sm:top-7">
