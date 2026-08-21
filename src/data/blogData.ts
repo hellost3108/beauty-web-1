@@ -6,7 +6,9 @@ export const blogPosts = [
         author: "Đội Ngũ Melalogy",
         date: "13 Tháng 8, 2026",
         category: "Thương Hiệu",
-        image: "/assets/magazine-placeholder.jpg",
+        image: "/assets/mask-recovery-green-hero.png",
+        imageAlt: "Mặt nạ hydrogel xanh lá trong bộ sưu tập chăm sóc da Melalogy",
+        readingTime: "4 phút đọc",
         content: `
             <p>Trong hành trình tìm kiếm những thương hiệu làm đẹp chất lượng từ Hàn Quốc để mang đến cho khách hàng, BNBG là một trong những cái tên Melalogy đã chọn lựa và giới thiệu tới cộng đồng.</p>
 
@@ -24,7 +26,9 @@ export const blogPosts = [
         author: "Minh Anh",
         date: "08 Tháng 8, 2026",
         category: "Chăm Sóc Da",
-        image: "/assets/magazine-placeholder.jpg",
+        image: "/assets/melalogy-blog-routine-2026.png",
+        imageAlt: "Bộ sản phẩm chăm sóc da năm bước trên nền đá màu kem",
+        readingTime: "6 phút đọc",
         content: `
             <p>Giữa hàng trăm sản phẩm chăm sóc da trên thị trường, rất dễ bị cuốn vào việc mua sắm theo cảm tính mà quên mất điều quan trọng nhất: một quy trình chăm sóc da đúng thứ tự, đúng nhu cầu. Trước khi nghĩ đến serum đặc trị hay mặt nạ chuyên sâu, hãy chắc chắn bạn đã nắm vững 5 bước nền tảng dưới đây.</p>
 
@@ -51,7 +55,9 @@ export const blogPosts = [
         author: "Đội Ngũ Melalogy",
         date: "03 Tháng 8, 2026",
         category: "Thương Hiệu",
-        image: "/assets/magazine-placeholder.jpg",
+        image: "/assets/skincare-mask-application.jpg",
+        imageAlt: "Người mẫu đang sử dụng mặt nạ chăm sóc da",
+        readingTime: "4 phút đọc",
         content: `
             <p>Wonjin là một thương hiệu quen thuộc với những ai theo dõi xu hướng skincare Hàn Quốc, gắn liền với triết lý chăm sóc da bài bản, chú trọng từng bước trong quy trình dưỡng da.</p>
 
@@ -69,7 +75,9 @@ export const blogPosts = [
         author: "Ngọc Trần",
         date: "29 Tháng 7, 2026",
         category: "Trang Điểm",
-        image: "/assets/magazine-placeholder.jpg",
+        image: "/assets/melalogy-blog-makeup-2026.png",
+        imageAlt: "Phụ nữ Việt Nam trang điểm môi với sắc son hồng đất",
+        readingTime: "5 phút đọc",
         content: `
             <p>Bạn đã bao giờ mua một thỏi son vì thấy đẹp trên người khác, nhưng khi tô lên môi mình lại thấy không hợp? Bí quyết không nằm ở màu sắc đang hot, mà ở việc xác định đúng tông da của bạn.</p>
 
@@ -93,7 +101,9 @@ export const blogPosts = [
         author: "Đội Ngũ Melalogy",
         date: "24 Tháng 7, 2026",
         category: "Thương Hiệu",
-        image: "/assets/magazine-placeholder.jpg",
+        image: "/assets/3.jpg",
+        imageAlt: "Kết cấu serum trong suốt với bọt khí cấp ẩm",
+        readingTime: "4 phút đọc",
         content: `
             <p>Angel Liquid là cái tên được nhiều tín đồ làm đẹp Hàn Quốc nhắc đến khi nói về hành trình theo đuổi làn da căng bóng, mịn màng theo phong cách "glass skin".</p>
 
@@ -111,7 +121,9 @@ export const blogPosts = [
         author: "Thu Hà",
         date: "18 Tháng 7, 2026",
         category: "Chăm Sóc Da",
-        image: "/assets/magazine-placeholder.jpg",
+        image: "/assets/mask-hydrating-blue.png",
+        imageAlt: "Mặt nạ hydrogel cấp ẩm màu xanh của Melalogy",
+        readingTime: "5 phút đọc",
         content: `
             <p>Khi độ ẩm không khí giảm, làn da mất nước nhanh hơn bình thường, dễ dẫn đến tình trạng căng rát, bong tróc, thậm chí kích ứng. Tin vui là bạn không cần thay đổi toàn bộ quy trình dưỡng da — chỉ cần điều chỉnh đúng 4 điểm sau.</p>
 
@@ -135,7 +147,9 @@ export const blogPosts = [
         author: "Đội Ngũ Melalogy",
         date: "12 Tháng 7, 2026",
         category: "Thương Hiệu",
-        image: "/assets/magazine-placeholder.jpg",
+        image: "/assets/shop-hero.png",
+        imageAlt: "Bộ sưu tập mặt nạ hydrogel nhiều màu của Melalogy",
+        readingTime: "3 phút đọc",
         content: `
             <p>APerire là một trong những thương hiệu mới nhất được Melalogy lựa chọn để giới thiệu tới cộng đồng yêu làm đẹp tại Việt Nam.</p>
 
@@ -153,7 +167,9 @@ export const blogPosts = [
         author: "Ngọc Trần",
         date: "05 Tháng 7, 2026",
         category: "Trang Điểm",
-        image: "/assets/magazine-placeholder.jpg",
+        image: "/assets/skincare-face-lifestyle.jpg",
+        imageAlt: "Chân dung làn da tự nhiên dưới ánh sáng ban ngày",
+        readingTime: "5 phút đọc",
         content: `
             <p>Trang điểm đi làm không cần cầu kỳ. Mục tiêu là giúp bạn trông tươi tắn, chỉn chu nhưng vẫn tự nhiên như không hề trang điểm.</p>
 
@@ -180,7 +196,9 @@ export const blogPosts = [
         author: "Thu Hà",
         date: "28 Tháng 6, 2026",
         category: "Chăm Sóc Da",
-        image: "/assets/magazine-placeholder.jpg",
+        image: "/assets/5.jpg",
+        imageAlt: "Minh họa lớp màng bảo vệ da và dưỡng chất",
+        readingTime: "6 phút đọc",
         content: `
             <p>Chống nắng là bước không thể thiếu trong bất kỳ quy trình chăm sóc da nào, nhưng không phải loại kem chống nắng nào cũng phù hợp với mọi loại da.</p>
 
