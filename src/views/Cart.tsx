@@ -253,7 +253,7 @@ const Cart = () => {
                         {/* Left: Content */}
                         <div className="p-10 md:p-12 flex flex-col justify-center">
                             <div className="flex justify-between items-start mb-2">
-                                <h1 className="font-display text-4xl md:text-5xl text-[#1a1a1a] tracking-tight leading-none">
+                                <h1 className="font-display text-4xl md:text-5xl text-[#1a1a1a] tracking-[-0.018em] leading-[1.08]">
                                     {selectedProduct?.name}
                                 </h1>
                                 <div className="flex items-center gap-1 border border-[#f01a33] rounded-full px-3 py-1 mt-2">

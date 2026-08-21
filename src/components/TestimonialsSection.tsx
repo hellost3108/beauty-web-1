@@ -33,7 +33,7 @@ const TestimonialsSection = () => {
             <div className="w-full px-6 md:px-10 lg:px-24 xl:px-32">
                 {/* Section Title */}
                 <div data-reveal="up" className="text-center mb-16">
-                    <h2 className="font-display text-3xl md:text-4xl leading-none tracking-tight">
+                    <h2 className="font-display text-3xl md:text-4xl leading-[1.1] tracking-[-0.018em]">
                         <span className="text-[#1a1a1a]">Cảm Nhận Từ </span>
                         <span className="text-[#f01a33]">Khách Hàng Việt</span>
                     </h2>

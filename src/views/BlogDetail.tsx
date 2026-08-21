@@ -56,7 +56,7 @@ const BlogDetail = () => {
                   <span className="rounded-full bg-[#ee2940] px-4 py-2 text-white">{post.category}</span>
                   <span className="text-black/45">Melalogy Journal · 2026</span>
                 </div>
-                <h1 className="max-w-5xl font-display text-[clamp(2.65rem,7.3vw,7.6rem)] leading-[0.9] tracking-[-0.055em]">
+                <h1 className="max-w-5xl font-display text-[clamp(2.65rem,7.3vw,7.6rem)] leading-[1.04] tracking-[-0.025em]">
                   {post.title}
                 </h1>
               </div>
