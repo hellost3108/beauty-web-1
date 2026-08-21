@@ -44,9 +44,9 @@ const HeroSection = () => {
           </div>
 
           <div className="grid grid-cols-3 gap-3 border-t border-white/15 pt-5">
-            <div><strong className="block font-display text-2xl">04</strong><span className="text-[10px] uppercase tracking-widest text-white/45">Công thức</span></div>
-            <div><strong className="block font-display text-2xl">15&apos;</strong><span className="text-[10px] uppercase tracking-widest text-white/45">Nghi thức</span></div>
-            <div><strong className="block font-display text-2xl">100%</strong><span className="text-[10px] uppercase tracking-widest text-white/45">Thuần chay</span></div>
+            <div><strong className="block font-display text-lg sm:text-2xl">Cấp ẩm</strong><span className="text-[9px] uppercase tracking-widest text-white/45 sm:text-[10px]">Hyaluronic Acid</span></div>
+            <div><strong className="block font-display text-lg sm:text-2xl">Phục hồi</strong><span className="text-[9px] uppercase tracking-widest text-white/45 sm:text-[10px]">Madecassic Acid</span></div>
+            <div><strong className="block font-display text-lg sm:text-2xl">Làm sáng</strong><span className="text-[9px] uppercase tracking-widest text-white/45 sm:text-[10px]">Niacinamide</span></div>
           </div>
         </div>
 
