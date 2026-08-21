@@ -55,9 +55,9 @@ const Magazine = () => {
                 {/* Featured Section: Magazine Cover Style */}
                 <section className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-24 items-start">
                     {/* Main Cover Story */}
-                    <div className="lg:col-span-8 group cursor-pointer">
+                    <div className="lg:col-span-8 group cursor-pointer reveal-2026">
                         <Link href={`/magazine/${featuredPost.id}`}>
-                            <div className="flex justify-center mb-6 bg-[#fcfcfc] rounded-[2px] overflow-hidden border border-gray-100 aspect-[16/10]">
+                            <div className="media-frame-2026 relative flex justify-center mb-6 rounded-[28px] overflow-hidden aspect-[16/10]">
                                 <img
                                     src={featuredPost.image}
                                     alt={featuredPost.title}
@@ -99,7 +99,7 @@ const Magazine = () => {
                             <div className="flex flex-col gap-10">
                                 {sidePosts.map((post) => (
                                     <Link key={post.id} href={`/magazine/${post.id}`} className="group block">
-                                        <div className="mb-4 bg-[#fcfcfc] border border-gray-100 rounded-[24px] overflow-hidden aspect-[4/3]">
+                                        <div className="media-frame-2026 relative mb-4 rounded-[24px] overflow-hidden aspect-[4/3]">
                                             <img
                                                 src={post.image}
                                                 alt={post.title}
@@ -158,7 +158,7 @@ const Magazine = () => {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-16">
                         {focusPosts.map((post) => (
-                            <Link key={post.id} href={`/magazine/${post.id}`} className="group flex flex-col h-full bg-[#fcfcfc] border border-gray-100 rounded-[2px] overflow-hidden hover:shadow-lg transition-shadow duration-300">
+                            <Link key={post.id} href={`/magazine/${post.id}`} className="editorial-card-2026 reveal-2026 group flex flex-col h-full overflow-hidden">
                                 <div className="aspect-[4/3] overflow-hidden">
                                     <img
                                         src={post.image}

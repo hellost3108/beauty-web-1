@@ -18,8 +18,8 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-border/50 w-full">
-      <div className="w-full px-6 md:px-12 py-4">
+    <nav className="site-nav-2026 fixed top-0 left-0 right-0 z-50">
+      <div className="w-full px-5 md:px-8 py-3.5">
         <div className="flex items-center justify-between">
           {/* Mobile/Tablet Spacer for Centering */}
           <div className="flex-1 block lg:hidden" />
@@ -31,7 +31,7 @@ const Navbar = () => {
               onMouseEnter={() => setIsCollectionHover(true)}
               onMouseLeave={() => setIsCollectionHover(false)}
             >
-              <Link href="/collection" className="font-body text-sm text-foreground hover:text-primary transition-colors">
+              <Link href="/collection" className="nav-link-2026 font-body text-foreground hover:text-primary transition-colors">
                 Bộ Sưu Tập
               </Link>
 
@@ -65,16 +65,16 @@ const Navbar = () => {
               </div>
             </div>
 
-            <Link href="/shop" className="font-body text-sm text-foreground hover:text-primary transition-colors">
+            <Link href="/shop" className="nav-link-2026 font-body text-foreground hover:text-primary transition-colors">
               Cửa Hàng
             </Link>
-            <Link href="/about" className="font-body text-sm text-foreground hover:text-primary transition-colors">
+            <Link href="/about" className="nav-link-2026 font-body text-foreground hover:text-primary transition-colors">
               Giới Thiệu
             </Link>
-            <Link href="/blog" className="font-body text-sm text-foreground hover:text-primary transition-colors">
+            <Link href="/blog" className="nav-link-2026 font-body text-foreground hover:text-primary transition-colors">
               Blog
             </Link>
-            <Link href="/magazine" className="font-body text-sm text-foreground hover:text-primary transition-colors">
+            <Link href="/magazine" className="nav-link-2026 font-body text-foreground hover:text-primary transition-colors">
               Tạp Chí
             </Link>
           </div>
