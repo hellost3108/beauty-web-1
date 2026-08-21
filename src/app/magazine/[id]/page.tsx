@@ -1,7 +1,7 @@
 "use client";
 
-import MagazineDetail from "@/views/MagazineDetail";
+import MagazineDetailEditorial from "@/views/MagazineDetailEditorial";
 
 export default function MagazineDetailPage() {
-  return <MagazineDetail />;
+  return <MagazineDetailEditorial />;
 }
