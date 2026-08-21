@@ -2017,6 +2017,14 @@
 }
 
 @layer components {
+  /* Vietnamese display faces need more room above/below than Latin-only headings. */
+  .vi-display-safe {
+    line-height: 1.14;
+    padding-block: 0.08em 0.11em;
+    text-wrap: balance;
+    overflow: visible;
+  }
+
   .magazine-page-2026,
   .magazine-detail-2026 {
     --magazine-red: #ee2940;

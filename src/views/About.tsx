@@ -81,7 +81,7 @@ const values = [
 
 const About = () => {
     return (
-        <main className="min-h-screen overflow-hidden bg-[#f7f3f0] text-[#191817]">
+        <main className="min-h-screen overflow-x-clip bg-[#f7f3f0] text-[#191817]">
             <Navbar />
 
             <section className="pt-[72px]" aria-labelledby="about-hero-title">
@@ -106,7 +106,7 @@ const About = () => {
                                 id="about-hero-title"
                                 data-reveal="up"
                                 data-reveal-delay="90"
-                                className="font-display text-[clamp(3.1rem,6vw,7rem)] leading-[1.04] tracking-[-0.025em]"
+                                className="vi-display-safe font-display text-[clamp(3rem,5vw,6rem)] tracking-[-0.025em]"
                             >
                                 Chăm da bắt đầu từ việc{' '}
                                 <span className="text-[#ed1835]">lắng nghe.</span>
@@ -170,7 +170,7 @@ const About = () => {
                                 <p className="font-body text-[10px] font-semibold uppercase tracking-[0.22em] text-white/70">
                                     Brand premise
                                 </p>
-                                <p className="mt-2 max-w-xs font-display text-2xl leading-tight sm:text-3xl">
+                                <p className="vi-display-safe mt-2 max-w-none font-display text-[clamp(1.45rem,1.8vw,2.1rem)] lg:whitespace-nowrap">
                                     Đẹp hơn khi hiểu làn da hơn.
                                 </p>
                             </div>
@@ -192,7 +192,7 @@ const About = () => {
                         </div>
 
                         <div>
-                            <h2 data-reveal="up" className="max-w-5xl font-display text-[clamp(2.8rem,6vw,6.2rem)] leading-[1.07] tracking-[-0.022em]">
+                            <h2 data-reveal="up" className="vi-display-safe max-w-5xl font-display text-[clamp(2.65rem,5.1vw,5.5rem)] tracking-[-0.022em]">
                                 Không thêm nhiều bước.{' '}
                                 <span className="text-black/30">Chọn đúng điều da cần.</span>
                             </h2>
@@ -241,7 +241,7 @@ const About = () => {
                         <p data-reveal="up" className="font-body text-xs font-semibold uppercase tracking-[0.22em] text-[#ff6174]">
                             02 / Cách chúng tôi nghĩ
                         </p>
-                        <h2 data-reveal="up" data-reveal-delay="90" className="mt-6 max-w-2xl font-display text-[clamp(2.8rem,5vw,5.6rem)] leading-[1.07] tracking-[-0.022em]">
+                        <h2 data-reveal="up" data-reveal-delay="90" className="vi-display-safe mt-6 max-w-2xl font-display text-[clamp(2.55rem,4.3vw,4.75rem)] tracking-[-0.022em]">
                             Khoa học cần dễ hiểu để trở thành một phần đời sống.
                         </h2>
                         <p data-reveal="up" data-reveal-delay="170" className="mt-7 max-w-xl font-body text-base leading-7 text-white/62 md:text-lg md:leading-8">
@@ -281,7 +281,7 @@ const About = () => {
                             <p data-reveal="up" className="font-body text-xs font-semibold uppercase tracking-[0.22em] text-[#ed1835]">
                                 03 / Bản đồ nhu cầu
                             </p>
-                            <h2 data-reveal="up" data-reveal-delay="90" className="mt-5 max-w-3xl font-display text-[clamp(2.8rem,5vw,5.4rem)] leading-[1.07] tracking-[-0.022em]">
+                            <h2 data-reveal="up" data-reveal-delay="90" className="vi-display-safe mt-5 max-w-3xl font-display text-[clamp(2.55rem,4.3vw,4.8rem)] tracking-[-0.022em]">
                                 Bốn tín hiệu. Bốn lựa chọn rõ ràng.
                             </h2>
                         </div>
@@ -329,7 +329,7 @@ const About = () => {
                             <p data-reveal="left" className="font-body text-xs font-semibold uppercase tracking-[0.22em] text-[#ed1835]">
                                 04 / Giá trị theo đuổi
                             </p>
-                            <h2 data-reveal="left" data-reveal-delay="90" className="mt-5 font-display text-4xl leading-tight md:text-5xl">
+                            <h2 data-reveal="left" data-reveal-delay="90" className="vi-display-safe mt-5 font-display text-4xl md:text-5xl">
                                 Rõ ràng trong từng lựa chọn.
                             </h2>
                         </div>
@@ -364,7 +364,7 @@ const About = () => {
                     <p data-reveal="fade" className="font-body text-xs font-semibold uppercase tracking-[0.22em] text-white/70">
                         Your skin. Your signal.
                     </p>
-                    <h2 data-reveal="up" data-reveal-delay="90" className="mx-auto mt-6 max-w-5xl font-display text-[clamp(3rem,7vw,7rem)] leading-[1.07] tracking-[-0.022em]">
+                    <h2 data-reveal="up" data-reveal-delay="90" className="vi-display-safe mx-auto mt-6 max-w-5xl font-display text-[clamp(2.8rem,5.8vw,6.1rem)] tracking-[-0.022em]">
                         Làn da không cần nhiều hơn. Làn da cần đúng hơn.
                     </h2>
                     <Link
