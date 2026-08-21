@@ -61,12 +61,12 @@ const ShopSection = () => {
                             <span>Energy Shot / 01—04</span>
                         </div>
 
-                        <div className="py-14 lg:py-10">
+                        <div className="shop-copy py-14 lg:py-10">
                             <p className="mb-5 font-body text-[11px] font-semibold uppercase tracking-[0.22em] text-[#ff5a6d]">
                                 Chọn theo tín hiệu làn da
                             </p>
                             <h1 className="max-w-2xl font-display text-[clamp(3rem,5.5vw,6.5rem)] leading-[0.94] tracking-[-0.05em]">
-                                Đúng Energy Shot. <span className="text-[#ff5a6d]">Đúng điều da cần.</span>
+                                Đúng Energy Shot. <span className="shop-accent text-[#ff5a6d]">Đúng điều da cần.</span>
                             </h1>
                             <p className="mt-7 max-w-lg font-body text-sm leading-7 text-white/60 md:text-base">
                                 Bốn công thức hydrogel tập trung cho cấp ẩm, phục hồi, làm sáng và duy trì vẻ rạng rỡ của làn da.
@@ -74,7 +74,7 @@ const ShopSection = () => {
 
                             <a
                                 href="#shop-products"
-                                className="group mt-8 inline-flex items-center gap-3 rounded-full bg-[#f01a33] px-6 py-3.5 font-body text-sm font-semibold text-white transition-[background-color,transform] duration-300 hover:-translate-y-0.5 hover:bg-[#d9152b]"
+                                className="shop-cta group relative mt-8 inline-flex items-center gap-3 overflow-hidden rounded-full bg-[#f01a33] px-6 py-3.5 font-body text-sm font-semibold text-white transition-[background-color,transform] duration-300 hover:-translate-y-0.5 hover:bg-[#d9152b]"
                             >
                                 Chọn công thức của bạn
                                 <ArrowDownRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:translate-y-0.5" />
@@ -94,8 +94,9 @@ const ShopSection = () => {
                     </div>
 
                     <div className="relative overflow-hidden bg-[#eeebe6] p-4 sm:p-6 md:p-8 lg:p-10">
-                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_18%,rgba(95,190,226,0.2),transparent_28%),radial-gradient(circle_at_88%_82%,rgba(161,123,194,0.22),transparent_30%)]" />
-                        <div className="absolute inset-0 opacity-30 [background-image:linear-gradient(rgba(20,18,16,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(20,18,16,0.06)_1px,transparent_1px)] [background-size:48px_48px]" />
+                        <div className="shop-stage-aurora absolute -inset-[12%]" />
+                        <div className="shop-lab-grid absolute inset-0 opacity-30" />
+                        <div className="shop-scan-line absolute inset-y-0 z-[1] w-32" />
 
                         <div className="relative grid h-full grid-cols-2 gap-3 sm:gap-4 md:grid-cols-4 lg:items-center">
                             {allProducts.map((product, index) => {
@@ -111,7 +112,7 @@ const ShopSection = () => {
                                     <Link
                                         key={product.id}
                                         href={`/product/${product.id}`}
-                                        className={`group flex min-w-0 flex-col rounded-[20px] border border-white/75 bg-white/72 p-2 shadow-[0_28px_70px_-45px_rgba(20,18,16,0.8)] backdrop-blur-md transition-[transform,box-shadow] duration-500 hover:!translate-y-0 hover:!rotate-0 hover:shadow-[0_35px_75px_-38px_rgba(20,18,16,0.55)] ${cardStyles[index]}`}
+                                        className={`shop-product-card group flex min-w-0 flex-col rounded-[20px] border border-white/75 bg-white/72 p-2 shadow-[0_28px_70px_-45px_rgba(20,18,16,0.8)] backdrop-blur-md transition-[transform,box-shadow] duration-500 hover:!translate-y-0 hover:!rotate-0 hover:shadow-[0_35px_75px_-38px_rgba(20,18,16,0.55)] ${cardStyles[index]}`}
                                     >
                                         <div className="aspect-[0.9] overflow-hidden rounded-[14px] bg-white/70">
                                             <img
@@ -386,6 +387,126 @@ const ShopSection = () => {
                     </div>
                 </DialogContent>
             </Dialog>
+
+            <style jsx global>{`
+                .shop-copy > * {
+                    animation: shop-copy-reveal 720ms cubic-bezier(.2, .8, .2, 1) both;
+                }
+
+                .shop-copy > :nth-child(2) { animation-delay: 90ms; }
+                .shop-copy > :nth-child(3) { animation-delay: 180ms; }
+                .shop-copy > :nth-child(4) { animation-delay: 270ms; }
+
+                .shop-accent {
+                    position: relative;
+                    display: inline;
+                }
+
+                .shop-accent::after {
+                    position: absolute;
+                    right: 0;
+                    bottom: 0.02em;
+                    left: 0;
+                    height: 0.07em;
+                    content: "";
+                    background: linear-gradient(90deg, #ff5a6d, #ffd1d7);
+                    transform: scaleX(0);
+                    transform-origin: left;
+                    animation: shop-accent-draw 850ms 520ms cubic-bezier(.2, .8, .2, 1) forwards;
+                }
+
+                .shop-cta::before {
+                    position: absolute;
+                    inset: -70% auto -70% -45%;
+                    width: 30%;
+                    content: "";
+                    background: linear-gradient(90deg, transparent, rgb(255 255 255 / 0.42), transparent);
+                    transform: skewX(-18deg);
+                    animation: shop-cta-glint 3.8s 1.1s ease-in-out infinite;
+                }
+
+                .shop-stage-aurora {
+                    background:
+                        radial-gradient(circle at 12% 18%, rgb(95 190 226 / 0.34), transparent 27%),
+                        radial-gradient(circle at 58% 8%, rgb(163 205 91 / 0.2), transparent 24%),
+                        radial-gradient(circle at 82% 38%, rgb(241 209 73 / 0.2), transparent 25%),
+                        radial-gradient(circle at 88% 84%, rgb(161 123 194 / 0.32), transparent 30%);
+                    background-size: 118% 118%;
+                    animation: shop-aurora-drift 8s ease-in-out infinite alternate;
+                }
+
+                .shop-lab-grid {
+                    background-image:
+                        linear-gradient(rgb(20 18 16 / 0.06) 1px, transparent 1px),
+                        linear-gradient(90deg, rgb(20 18 16 / 0.06) 1px, transparent 1px);
+                    background-size: 48px 48px;
+                    animation: shop-grid-drift 18s linear infinite;
+                }
+
+                .shop-scan-line {
+                    left: -25%;
+                    background: linear-gradient(90deg, transparent, rgb(255 255 255 / 0.38), transparent);
+                    filter: blur(5px);
+                    transform: skewX(-12deg);
+                    animation: shop-scan 5.6s 1s cubic-bezier(.4, 0, .2, 1) infinite;
+                }
+
+                .shop-product-card {
+                    animation:
+                        shop-card-reveal 720ms cubic-bezier(.2, .8, .2, 1) both,
+                        shop-card-float 4.5s ease-in-out infinite alternate;
+                }
+
+                .shop-product-card:nth-child(1) { animation-delay: 160ms, -0.4s; }
+                .shop-product-card:nth-child(2) { animation-delay: 270ms, -1.3s; }
+                .shop-product-card:nth-child(3) { animation-delay: 380ms, -2.2s; }
+                .shop-product-card:nth-child(4) { animation-delay: 490ms, -3.1s; }
+
+                .shop-product-card:hover {
+                    animation-play-state: paused;
+                }
+
+                @keyframes shop-copy-reveal {
+                    from { opacity: 0; translate: 0 22px; }
+                    to { opacity: 1; translate: 0 0; }
+                }
+
+                @keyframes shop-accent-draw {
+                    to { transform: scaleX(1); }
+                }
+
+                @keyframes shop-cta-glint {
+                    0%, 62% { left: -45%; opacity: 0; }
+                    72% { opacity: 1; }
+                    100% { left: 125%; opacity: 0; }
+                }
+
+                @keyframes shop-aurora-drift {
+                    from { transform: translate3d(-2%, -1%, 0) scale(0.98); }
+                    to { transform: translate3d(3%, 2%, 0) scale(1.04); }
+                }
+
+                @keyframes shop-grid-drift {
+                    to { background-position: 48px 48px; }
+                }
+
+                @keyframes shop-scan {
+                    0%, 22% { left: -25%; opacity: 0; }
+                    34% { opacity: 1; }
+                    72% { opacity: 0.7; }
+                    88%, 100% { left: 115%; opacity: 0; }
+                }
+
+                @keyframes shop-card-reveal {
+                    from { opacity: 0; filter: blur(8px); scale: 0.94; }
+                    to { opacity: 1; filter: blur(0); scale: 1; }
+                }
+
+                @keyframes shop-card-float {
+                    from { translate: 0 -4px; }
+                    to { translate: 0 6px; }
+                }
+            `}</style>
         </div>
     );
 };
