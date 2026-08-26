@@ -10,19 +10,20 @@ import { ArrowUpRight, Star, ChevronDown, Minus, Plus, Heart } from 'lucide-reac
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { cn } from '@/lib/utils';
 import { allProducts } from '@/data/productsData';
+import type { StorefrontProduct } from '@/types/cms';
 
-const CategoryIcons = () => {
+const CategoryIcons = ({ products = allProducts }: { products?: StorefrontProduct[] }) => {
   const router = useRouter();
   const { addToCart, addToWishlist, isInWishlist } = useShop();
-  const [selectedProduct, setSelectedProduct] = useState<typeof allProducts[0] | null>(null);
+  const [selectedProduct, setSelectedProduct] = useState<StorefrontProduct | null>(null);
   const [quantity, setQuantity] = useState(1);
 
-  const handleWishlist = (product: typeof allProducts[0], e: React.MouseEvent) => {
+  const handleWishlist = (product: StorefrontProduct, e: React.MouseEvent) => {
     e.stopPropagation();
     addToWishlist(product);
   };
 
-  const handleAddToCart = (product: typeof allProducts[0], e: React.MouseEvent) => {
+  const handleAddToCart = (product: StorefrontProduct, e: React.MouseEvent) => {
     e.stopPropagation();
     addToCart(product);
   };
@@ -46,13 +47,13 @@ const CategoryIcons = () => {
         </div>
 
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-4">
-          {allProducts.map((product, index) => {
+          {products.slice(0, 4).map((product, index) => {
             const tones = [
               { surface: '#eaf6fb', accent: '#207da7' },
               { surface: '#f0f6e8', accent: '#4b762e' },
               { surface: '#fff7d9', accent: '#9a7600' },
               { surface: '#f1ebf7', accent: '#745493' },
-            ][index];
+            ][index] ?? { surface: '#f4f0ec', accent: '#f01a33' };
 
             return (
               <article

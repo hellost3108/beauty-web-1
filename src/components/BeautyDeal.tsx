@@ -1,4 +1,6 @@
 import { Leaf, FlaskConical, HeartHandshake, Truck } from 'lucide-react';
+import { defaultWhyMelalogy } from '@/data/homepageData';
+import type { HomepageSection } from '@/types/cms';
 
 const usps = [
     {
@@ -23,16 +25,16 @@ const usps = [
     },
 ];
 
-const BeautyDeal = () => {
+const BeautyDeal = ({ content = defaultWhyMelalogy }: { content?: HomepageSection }) => {
     return (
         <section className="bg-[#f5f0ec] px-4 py-20 md:px-6 md:py-28">
             <div className="max-w-[1440px] mx-auto">
                 <div className="mb-14 grid items-end gap-6 md:grid-cols-2 md:mb-16">
                     <h2 data-reveal="left" className="font-display text-5xl text-[#1a1a1a] tracking-[-0.022em] md:text-6xl">
-                        Vì Sao Chọn <span className="text-[#f01a33]">Melalogy</span>
+                        {content.title} <span className="text-[#f01a33]">{content.highlightedText}</span>
                     </h2>
                     <p data-reveal="right" data-reveal-delay="110" className="font-body text-[#666666] text-sm md:text-base max-w-xl md:ml-auto leading-relaxed">
-                        Mỗi trạng thái da có một tín hiệu riêng. Melalogy giúp bạn nhận ra và chọn đúng công thức cần thiết.
+                        {content.subtitle} {content.body}
                     </p>
                 </div>
 

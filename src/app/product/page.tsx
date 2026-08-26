@@ -1,1 +1,5 @@
-"use client"; import ProductDetail from "@/views/ProductDetail"; export default function Page() { return <ProductDetail />; }
+import { redirect } from "next/navigation";
+
+export default function ProductIndexPage() {
+  redirect("/collection");
+}

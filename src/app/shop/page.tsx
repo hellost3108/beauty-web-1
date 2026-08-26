@@ -1,7 +1,9 @@
-"use client";
-
 import Shop from "@/views/Shop";
+import { getPublicProducts } from "@/services/public-content.service";
 
-export default function ShopPage() {
-  return <Shop />;
+export const revalidate = 60;
+
+export default async function ShopPage() {
+  const products = await getPublicProducts();
+  return <Shop products={products} />;
 }

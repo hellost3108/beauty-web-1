@@ -26,6 +26,7 @@ import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { cn } from '@/lib/utils';
 import { allProducts } from '@/data/productsData';
+import type { StorefrontProduct } from '@/types/cms';
 
 export const dynamic = 'force-dynamic';
 
@@ -35,7 +36,7 @@ interface GroupedProduct extends Product {
 
 const formatVnd = (value: number) => `${value.toLocaleString('vi-VN')}đ`;
 
-const Cart2026 = () => {
+const Cart2026 = ({ availableProducts = allProducts }: { availableProducts?: StorefrontProduct[] }) => {
     const { cart, removeFromCart, addToCart, removeOneFromCart, addToWishlist, isInWishlist } = useShop();
     const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
     const [quantity, setQuantity] = useState(1);
@@ -49,7 +50,7 @@ const Cart2026 = () => {
     const cartItems = Object.values(groupedItems);
     const subtotal = cartItems.reduce((acc, item) => acc + (item.rawPrice ?? 0) * item.quantity, 0);
     const cartIds = new Set(cartItems.map(item => item.id));
-    const recommendedProducts = allProducts.filter(product => !cartIds.has(product.id)).slice(0, 3);
+    const recommendedProducts = availableProducts.filter(product => !cartIds.has(product.id)).slice(0, 3);
 
     return (
         <div className="commerce-page-2026">

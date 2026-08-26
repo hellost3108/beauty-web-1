@@ -1,7 +1,9 @@
-"use client";
-
 import Index from "@/views/Index";
+import { getHomepageContent, getPublicProducts } from "@/services/public-content.service";
 
-export default function Home() {
-  return <Index />;
+export const revalidate = 60;
+
+export default async function Home() {
+  const [content, products] = await Promise.all([getHomepageContent(), getPublicProducts()]);
+  return <Index heroSlides={content.heroSlides} whyMelalogy={content.whyMelalogy} products={products} />;
 }

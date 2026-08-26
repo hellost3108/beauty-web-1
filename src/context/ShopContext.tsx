@@ -8,10 +8,14 @@ export type Product = {
     price: string;
     oldPrice?: string;
     image: string;
+    images?: string[];
     rawPrice?: number;
     subtitle?: string;
     description?: string;
     category?: string;
+    ingredients?: string;
+    usage?: string;
+    slug?: string;
 };
 
 type ShopContextType = {

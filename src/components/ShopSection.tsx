@@ -23,29 +23,29 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { cn } from '@/lib/utils';
 import { allProducts } from '@/data/productsData';
+import type { StorefrontProduct } from '@/types/cms';
 
 import BeautyDiaries from './BeautyDiaries';
 
-const categories = ['Tất Cả', 'Cấp Ẩm', 'Phục Hồi', 'Làm Sáng', 'Rạng Rỡ'];
-
-const ShopSection = () => {
+const ShopSection = ({ initialProducts = allProducts }: { initialProducts?: StorefrontProduct[] }) => {
     const router = useRouter();
+    const categories = useMemo(() => ['Tất Cả', ...Array.from(new Set(initialProducts.map((product) => product.category)))], [initialProducts]);
     const [activeCategory, setActiveCategory] = useState('Tất Cả');
-    const [selectedProduct, setSelectedProduct] = useState<typeof allProducts[0] | null>(null);
+    const [selectedProduct, setSelectedProduct] = useState<StorefrontProduct | null>(null);
     const [quantity, setQuantity] = useState(1);
     const { addToCart, addToWishlist, isInWishlist } = useShop();
 
     const [sortBy, setSortBy] = useState('featured');
 
     const filteredProducts = useMemo(() => {
-        return allProducts
+        return initialProducts
             .filter(product => activeCategory === 'Tất Cả' || product.category === activeCategory)
             .sort((a, b) => {
                 if (sortBy === 'price-low-high') return a.rawPrice - b.rawPrice;
                 if (sortBy === 'price-high-low') return b.rawPrice - a.rawPrice;
                 return 0;
             });
-    }, [activeCategory, sortBy]);
+    }, [activeCategory, initialProducts, sortBy]);
 
     return (
         <div className="w-full bg-[#f4f2ee]">
@@ -99,7 +99,7 @@ const ShopSection = () => {
                         <div className="shop-scan-line absolute inset-y-0 z-[1] w-32" />
 
                         <div className="relative grid h-full grid-cols-2 gap-3 sm:gap-4 md:grid-cols-4 lg:items-center">
-                            {allProducts.map((product, index) => {
+                            {initialProducts.slice(0, 4).map((product, index) => {
                                 const cardStyles = [
                                     'md:translate-y-8 md:-rotate-[1.5deg]',
                                     'md:-translate-y-5 md:rotate-1',
