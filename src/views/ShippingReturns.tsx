@@ -1,53 +1,34 @@
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
+import InformationLayout from '@/components/InformationLayout';
 
-const ShippingReturns = () => {
-    return (
-        <div className="min-h-screen bg-white">
-            <Navbar />
-            <div className="pt-24 pb-16 px-6 md:px-12 max-w-4xl mx-auto">
-                <h1 className="font-display text-4xl mb-12 text-[#1a1a1a] text-center">Vận Chuyển & Đổi Trả</h1>
+const ShippingReturns = () => (
+    <InformationLayout
+        currentPath="/shipping-returns"
+        eyebrow="Mua sắm an tâm"
+        title="Vận chuyển & đổi trả"
+        intro="Mọi mốc thời gian, chi phí và điều kiện đổi trả được trình bày rõ ràng để bạn chủ động trong từng đơn hàng."
+        meta="Áp dụng trên toàn quốc"
+    >
+        <section>
+            <h2>Chính sách vận chuyển</h2>
+            <p><strong>Thời gian xử lý:</strong> Tất cả đơn hàng được xử lý trong vòng 1–2 ngày làm việc. Đơn hàng không được giao hoặc vận chuyển vào cuối tuần hoặc ngày lễ.</p>
+            <p><strong>Phí vận chuyển:</strong> Chúng tôi áp dụng phí vận chuyển đồng giá 30.000₫ cho đơn hàng dưới 500.000₫. Đơn hàng từ 500.000₫ trở lên được miễn phí vận chuyển tiêu chuẩn.</p>
+            <p><strong>Thời gian giao hàng dự kiến:</strong> Vận chuyển tiêu chuẩn thường mất 3–5 ngày làm việc tuỳ khu vực. Bạn có thể chọn hình thức giao hàng nhanh ngay tại bước thanh toán.</p>
+            <div data-info-callout><p>Thời gian giao hàng có thể thay đổi trong dịp lễ, chương trình lớn hoặc do điều kiện vận chuyển tại địa phương.</p></div>
+        </section>
 
-                <div className="space-y-12">
-                    {/* Shipping Section */}
-                    <section className="space-y-4">
-                        <h2 className="font-display text-2xl text-[#1a1a1a] border-b border-gray-200 pb-2">Chính Sách Vận Chuyển</h2>
-                        <div className="space-y-4 text-[#666666] font-body">
-                            <p>
-                                <strong>Thời Gian Xử Lý:</strong> Tất cả đơn hàng được xử lý trong vòng 1-2 ngày làm việc. Đơn hàng không được giao hoặc vận chuyển vào cuối tuần hoặc ngày lễ.
-                            </p>
-                            <p>
-                                <strong>Phí Vận Chuyển:</strong> Chúng tôi áp dụng phí vận chuyển đồng giá 30.000₫ cho đơn hàng dưới 500.000₫. Đơn hàng từ 500.000₫ trở lên được miễn phí vận chuyển tiêu chuẩn.
-                            </p>
-                            <p>
-                                <strong>Thời Gian Giao Hàng Dự Kiến:</strong> Vận chuyển tiêu chuẩn thường mất 3-5 ngày làm việc tuỳ khu vực. Bạn có thể chọn hình thức giao hàng nhanh ngay tại bước thanh toán.
-                            </p>
-                        </div>
-                    </section>
+        <section>
+            <h2>Đổi trả & hoàn tiền</h2>
+            <p>Chúng tôi mong muốn bạn hoàn toàn hài lòng với sản phẩm đã mua. Nếu đơn hàng chưa đáp ứng kỳ vọng, đội ngũ Melalogy luôn sẵn sàng hỗ trợ.</p>
+            <p><strong>Điều kiện đổi trả:</strong> Bạn có 30 ngày kể từ ngày nhận hàng. Sản phẩm phải chưa qua sử dụng, còn nguyên trạng và còn bao bì gốc.</p>
+            <p><strong>Quy trình hoàn tiền:</strong> Sau khi nhận và kiểm tra sản phẩm, chúng tôi sẽ thông báo kết quả. Yêu cầu hợp lệ được hoàn về phương thức thanh toán ban đầu.</p>
+            <p><strong>Phí trả hàng:</strong> Khách hàng chịu phí vận chuyển khi gửi trả sản phẩm. Phí vận chuyển ban đầu không được hoàn lại.</p>
+        </section>
 
-                    {/* Returns Section */}
-                    <section className="space-y-4">
-                        <h2 className="font-display text-2xl text-[#1a1a1a] border-b border-gray-200 pb-2">Chính Sách Đổi Trả & Hoàn Tiền</h2>
-                        <div className="space-y-4 text-[#666666] font-body">
-                            <p>
-                                Chúng tôi mong muốn bạn hoàn toàn hài lòng với sản phẩm đã mua. Nếu bạn chưa hài lòng với đơn hàng của mình, chúng tôi luôn sẵn sàng hỗ trợ.
-                            </p>
-                            <p>
-                                <strong>Đổi Trả:</strong> Bạn có 30 ngày để trả lại sản phẩm kể từ ngày nhận hàng. Để đủ điều kiện đổi trả, sản phẩm phải chưa qua sử dụng, còn nguyên trạng như khi nhận và còn nguyên bao bì gốc.
-                            </p>
-                            <p>
-                                <strong>Hoàn Tiền:</strong> Sau khi nhận được sản phẩm trả lại, chúng tôi sẽ kiểm tra và thông báo cho bạn. Chúng tôi sẽ báo ngay tình trạng hoàn tiền sau khi kiểm tra xong sản phẩm. Nếu yêu cầu đổi trả được chấp thuận, chúng tôi sẽ tiến hành hoàn tiền vào thẻ tín dụng (hoặc phương thức thanh toán ban đầu) của bạn.
-                            </p>
-                            <p>
-                                <strong>Phí Vận Chuyển Trả Hàng:</strong> Bạn sẽ chịu trách nhiệm thanh toán phí vận chuyển khi trả lại sản phẩm. Phí vận chuyển sẽ không được hoàn lại.
-                            </p>
-                        </div>
-                    </section>
-                </div>
-            </div>
-            <Footer />
-        </div>
-    );
-};
+        <section>
+            <h2>Cần hỗ trợ một đơn hàng?</h2>
+            <p>Vui lòng gửi email kèm mã đơn hàng, hình ảnh sản phẩm và mô tả tình trạng đến <strong>metquatroiquaday@melalogy.com</strong>. Chúng tôi sẽ phản hồi trong 1–2 ngày làm việc.</p>
+        </section>
+    </InformationLayout>
+);
 
 export default ShippingReturns;

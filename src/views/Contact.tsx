@@ -1,75 +1,53 @@
 "use client";
+
+import { ArrowRight } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
+
+import InformationLayout from '@/components/InformationLayout';
 
 const Contact = () => {
     const router = useRouter();
 
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        toast.success("Gửi tin nhắn thành công!");
+    const handleSubmit = (event: React.FormEvent) => {
+        event.preventDefault();
+        toast.success('Gửi tin nhắn thành công!');
         router.push('/');
     };
 
     return (
-        <div className="min-h-screen bg-white">
-            <Navbar />
-            <div className="pt-24 pb-16 px-6 md:px-12 max-w-7xl mx-auto">
-                <h1 className="font-display text-4xl mb-8 text-[#1a1a1a] text-center">Liên Hệ</h1>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-                    <div className="space-y-6">
-                        <h2 className="font-display text-2xl text-[#1a1a1a]">Kết Nối Với Chúng Tôi</h2>
-                        <p className="font-body text-[#666666] leading-relaxed">
-                            Bạn có thắc mắc về sản phẩm hoặc đơn hàng? Chúng tôi luôn sẵn sàng hỗ trợ!
-                            Điền vào form bên dưới hoặc liên hệ trực tiếp qua thông tin dưới đây.
-                        </p>
-
-                        <div className="space-y-4 pt-4">
-                            <div>
-                                <h3 className="font-bold text-[#1a1a1a]">Địa Chỉ</h3>
-                                <p className="text-[#666666]">347 Nguyễn Trọng Tuyển, Phường Tân Sơn Hoà, Quận Tân Bình</p>
-                            </div>
-                            <div>
-                                <h3 className="font-bold text-[#1a1a1a]">Email</h3>
-                                <p className="text-[#666666]">metquatroiquaday@melalogy.com</p>
-                            </div>
-                            <div>
-                                <h3 className="font-bold text-[#1a1a1a]">Điện Thoại</h3>
-                                <p className="text-[#666666]">+ 1234000</p>
-                            </div>
-                            <div>
-                                <h3 className="font-bold text-[#1a1a1a]">Giờ Làm Việc</h3>
-                                <p className="text-[#666666]">08:30 - 18:30</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="bg-[#f9f8f7] p-8 rounded-[20px]">
-                        <form className="space-y-6" onSubmit={handleSubmit}>
-                            <div>
-                                <label className="block text-sm font-medium text-[#1a1a1a] mb-2">Họ Tên</label>
-                                <input required type="text" className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:border-[#f01a33]" placeholder="Tên của bạn" />
-                            </div>
-                            <div>
-                                <label className="block text-sm font-medium text-[#1a1a1a] mb-2">Email</label>
-                                <input required type="email" className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:border-[#f01a33]" placeholder="Email của bạn" />
-                            </div>
-                            <div>
-                                <label className="block text-sm font-medium text-[#1a1a1a] mb-2">Nội Dung</label>
-                                <textarea required rows={4} className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:border-[#f01a33]" placeholder="Bạn cần chúng tôi hỗ trợ gì?"></textarea>
-                            </div>
-                            <button type="submit" className="w-full bg-[#f01a33] text-white py-3 rounded-lg font-semibold hover:bg-[#d63a63] transition-colors">
-                                Gửi Tin Nhắn
-                            </button>
-                        </form>
-                    </div>
+        <InformationLayout
+            currentPath="/contact"
+            eyebrow="Hỗ trợ khách hàng"
+            title="Liên hệ với Melalogy"
+            intro="Một câu hỏi đúng giúp chúng tôi hiểu làn da và nhu cầu của bạn tốt hơn. Đội ngũ Melalogy luôn sẵn sàng lắng nghe."
+            meta="Phản hồi trong 1–2 ngày làm việc"
+        >
+            <section>
+                <h2>Kết nối theo cách thuận tiện nhất</h2>
+                <p>
+                    Bạn cần tư vấn sản phẩm, hỗ trợ đơn hàng hay muốn chia sẻ trải nghiệm? Hãy gửi thông tin cho chúng tôi qua biểu mẫu hoặc liên hệ trực tiếp.
+                </p>
+                <div data-info-contact-grid>
+                    <div><h3>Địa chỉ</h3><p>347 Nguyễn Trọng Tuyển, Phường Tân Sơn Hoà, Quận Tân Bình</p></div>
+                    <div><h3>Email</h3><p>metquatroiquaday@melalogy.com</p></div>
+                    <div><h3>Giờ làm việc</h3><p>08:30–18:30 mỗi ngày</p></div>
+                    <div><h3>Khu vực hỗ trợ</h3><p>Giao hàng và chăm sóc khách hàng trên toàn quốc</p></div>
                 </div>
-            </div>
-            <Footer />
-        </div>
+            </section>
+
+            <section>
+                <h2>Gửi lời nhắn</h2>
+                <form data-info-form onSubmit={handleSubmit}>
+                    <div data-info-form-row>
+                        <label>Họ và tên<input required type="text" placeholder="Tên của bạn" autoComplete="name" /></label>
+                        <label>Email<input required type="email" placeholder="email@domain.com" autoComplete="email" /></label>
+                    </div>
+                    <label>Nội dung<textarea required rows={5} placeholder="Bạn cần Melalogy hỗ trợ điều gì?" /></label>
+                    <button type="submit">Gửi tin nhắn <ArrowRight size={18} aria-hidden="true" /></button>
+                </form>
+            </section>
+        </InformationLayout>
     );
 };
 

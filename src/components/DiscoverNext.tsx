@@ -1,64 +1,84 @@
-import { Button } from '@/components/ui/button';
+import { ArrowUpRight } from 'lucide-react';
 import Link from 'next/link';
+
+import styles from './DiscoverNext.module.css';
 
 const DiscoverNext = () => {
     return (
-        <section className="py-24 bg-white">
-            <div className="w-full px-6 md:px-16 lg:px-24 xl:px-32">
-                {/* Section Title */}
-                <div data-reveal="up" className="text-center mb-16 space-y-4">
-                    <h2 className="font-display text-3xl md:text-4xl leading-[1.1] tracking-[-0.018em]">
-                        <span className="text-[#1a1a1a]">Khám Phá </span>
-                        <span className="text-[#f01a33]">Thêm</span>
-                    </h2>
-                    <p className="font-body text-[#666666] max-w-2xl mx-auto text-base md:text-[1.1rem] leading-relaxed">
-                        Tìm hiểu trọn bộ sưu tập Energy Shot và những chia sẻ chăm sóc da từ Melalogy
+        <section className={styles.section} aria-labelledby="discover-next-title">
+            <div className={styles.shell}>
+                <header className={styles.header}>
+                    <div data-reveal="up" className={styles.headingGroup}>
+                        <span className={styles.eyebrow}>Tiếp tục khám phá</span>
+                        <h2 id="discover-next-title" className={styles.title}>
+                            Chăm da đẹp hơn<br />
+                            khi <em>hiểu đúng hơn.</em>
+                        </h2>
+                    </div>
+
+                    <p data-reveal="up" data-reveal-delay="100" className={styles.intro}>
+                        Khám phá công thức Energy Shot phù hợp với làn da, hoặc tiếp tục đọc những
+                        góc nhìn chăm sóc da được Melalogy chọn lọc.
                     </p>
-                </div>
+                </header>
 
-                {/* Grid Content */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16">
-                    {/* Full Collection */}
-                    <div data-reveal="left" className="flex flex-col items-center group">
-                        <div className="relative w-full aspect-[16/10] rounded-[24px] overflow-hidden shadow-lg mb-8">
-                            <img
-                                data-parallax="0.035"
-                                src="/assets/mask-hydrating-blue.png"
-                                alt="Bộ sưu tập Energy Shot"
-                                className="w-full h-[108%] -translate-y-[4%] object-cover transition-transform duration-700 group-hover:scale-105"
-                            />
-                        </div>
-                        <h3 className="font-display text-2xl md:text-[1.75rem] text-[#1a1a1a] mb-6">
-                            Toàn Bộ Sưu Tập
-                        </h3>
-                        <Button asChild className="relative bg-[#f01a33] text-white px-16 py-3 text-base font-medium rounded-[12px] h-auto overflow-hidden group/btn shadow-xl hover:shadow-2xl transition-shadow duration-500">
-                            <Link href="/collection">
-                                <span className="relative z-10 group-hover/btn:text-[#f01a33] transition-colors duration-700">Mua Ngay</span>
-                                <div className="absolute bottom-0 right-0 w-full h-0 bg-white group-hover/btn:h-full transition-all duration-700 ease-liquid" style={{ transformOrigin: 'bottom right' }} />
-                            </Link>
-                        </Button>
-                    </div>
+                <div className={styles.grid} data-motion-stagger>
+                    <Link
+                        href="/collection"
+                        aria-label="Khám phá toàn bộ bộ sưu tập Energy Shot"
+                        data-reveal="left"
+                        className={styles.card}
+                    >
+                        <img
+                            data-parallax="0.025"
+                            src="/assets/shop-hero.png"
+                            alt="Bốn công thức mặt nạ Energy Shot của Melalogy"
+                            className={styles.image}
+                        />
+                        <span className={styles.scrim} aria-hidden="true" />
+                        <span className={styles.cardNumber}>01</span>
+                        <span className={styles.cardContent}>
+                            <span className={styles.cardLabel}>Bộ sưu tập Energy Shot</span>
+                            <strong className={styles.cardTitle}>
+                                Chọn đúng công thức cho điều da đang cần.
+                            </strong>
+                            <span className={styles.cardAction}>
+                                Xem toàn bộ sản phẩm
+                                <span className={styles.actionIcon} aria-hidden="true">
+                                    <ArrowUpRight size={20} strokeWidth={1.8} />
+                                </span>
+                            </span>
+                        </span>
+                    </Link>
 
-                    {/* From Our Blogs */}
-                    <div data-reveal="right" data-reveal-delay="130" className="flex flex-col items-center group">
-                        <div className="relative w-full aspect-[16/10] rounded-[24px] overflow-hidden shadow-lg mb-8">
-                            <img
-                                data-parallax="0.035"
-                                src="/assets/skincare-face-lifestyle.jpg"
-                                alt="Blog chăm sóc da Melalogy"
-                                className="w-full h-[108%] -translate-y-[4%] object-cover transition-transform duration-700 group-hover:scale-105"
-                            />
-                        </div>
-                        <h3 className="font-display text-2xl md:text-[1.75rem] text-[#1a1a1a] mb-6">
-                            Từ Blog Của Chúng Tôi
-                        </h3>
-                        <Button asChild className="relative bg-[#f01a33] text-white px-16 py-3 text-base font-medium rounded-[12px] h-auto overflow-hidden group/btn shadow-xl hover:shadow-2xl transition-shadow duration-500">
-                            <Link href="/blog">
-                                <span className="relative z-10 group-hover/btn:text-[#f01a33] transition-colors duration-700">Đọc Thêm</span>
-                                <div className="absolute bottom-0 right-0 w-full h-0 bg-white group-hover/btn:h-full transition-all duration-700 ease-liquid" style={{ transformOrigin: 'bottom right' }} />
-                            </Link>
-                        </Button>
-                    </div>
+                    <Link
+                        href="/blog"
+                        aria-label="Đọc blog chăm sóc da của Melalogy"
+                        data-reveal="right"
+                        data-reveal-delay="120"
+                        className={`${styles.card} ${styles.blogCard}`}
+                    >
+                        <img
+                            data-parallax="0.025"
+                            src="/assets/skincare-face-lifestyle.jpg"
+                            alt="Chăm sóc và thấu hiểu làn da cùng Melalogy"
+                            className={styles.image}
+                        />
+                        <span className={styles.scrim} aria-hidden="true" />
+                        <span className={styles.cardNumber}>02</span>
+                        <span className={styles.cardContent}>
+                            <span className={styles.cardLabel}>Melalogy Journal</span>
+                            <strong className={styles.cardTitle}>
+                                Hiểu làn da trước khi thêm một bước chăm sóc.
+                            </strong>
+                            <span className={styles.cardAction}>
+                                Đọc câu chuyện mới
+                                <span className={styles.actionIcon} aria-hidden="true">
+                                    <ArrowUpRight size={20} strokeWidth={1.8} />
+                                </span>
+                            </span>
+                        </span>
+                    </Link>
                 </div>
             </div>
         </section>
