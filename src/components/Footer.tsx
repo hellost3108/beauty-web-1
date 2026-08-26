@@ -1,4 +1,4 @@
-import { ArrowUpRight, Facebook, Instagram, Mail, MapPin } from 'lucide-react';
+import { ArrowUpRight, Facebook, Instagram, Mail, MapPin, Phone } from 'lucide-react';
 import Link from 'next/link';
 
 import styles from './Footer.module.css';
@@ -26,10 +26,10 @@ const Footer = () => (
             <em>Chọn đúng công thức.</em>
           </p>
           <div className={styles.socials} aria-label="Mạng xã hội Melalogy">
-            <a href="#" aria-label="Zalo">Z</a>
-            <a href="#" aria-label="Instagram"><Instagram size={18} /></a>
-            <a href="#" aria-label="Facebook"><Facebook size={18} /></a>
-            <a href="#" aria-label="TikTok">♪</a>
+            <a href="https://zalo.me/0702899707" target="_blank" rel="noopener noreferrer" aria-label="Zalo Melalogy">Z</a>
+            <a href="https://www.instagram.com/melalogyvietnam/" target="_blank" rel="noopener noreferrer" aria-label="Instagram Melalogy"><Instagram size={18} /></a>
+            <a href="https://www.facebook.com/melalogyvietnam/" target="_blank" rel="noopener noreferrer" aria-label="Facebook Melalogy"><Facebook size={18} /></a>
+            <a href="https://www.tiktok.com/@melalogy.vietnam" target="_blank" rel="noopener noreferrer" aria-label="TikTok Melalogy">♪</a>
           </div>
         </div>
 
@@ -37,13 +37,17 @@ const Footer = () => (
           <span className={styles.columnLabel}>Cửa hàng & liên hệ</span>
           <div className={styles.contactItem}>
             <MapPin size={18} aria-hidden="true" />
-            <p>347 Nguyễn Trọng Tuyển,<br />Phường Tân Sơn Hoà, Quận Tân Bình</p>
+            <p>29D Cộng Hòa 3,<br />Phường Phú Thọ Hòa, Thành phố Hồ Chí Minh</p>
+          </div>
+          <div className={styles.contactItem}>
+            <Phone size={18} aria-hidden="true" />
+            <a href="tel:+84702899707">0702 899 707</a>
           </div>
           <div className={styles.contactItem}>
             <Mail size={18} aria-hidden="true" />
-            <a href="mailto:metquatroiquaday@melalogy.com">metquatroiquaday@melalogy.com</a>
+            <a href="mailto:melalogyvietnam@gmail.com">melalogyvietnam@gmail.com</a>
           </div>
-          <p className={styles.hours}>Mở cửa 08:30–18:30 mỗi ngày</p>
+          <p className={styles.hours}>Mở cửa 09:00–22:00 mỗi ngày</p>
         </div>
 
         <nav className={styles.infoColumn} aria-label="Thông tin Melalogy">

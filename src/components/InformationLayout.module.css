@@ -295,6 +295,18 @@
     overflow-wrap: anywhere;
 }
 
+.content [data-info-contact-grid] a {
+    color: inherit;
+    text-decoration-color: rgba(240, 26, 51, 0.35);
+    text-underline-offset: 0.22em;
+    transition: color 0.25s ease, text-decoration-color 0.25s ease;
+}
+
+.content [data-info-contact-grid] a:hover {
+    color: #f01a33;
+    text-decoration-color: #f01a33;
+}
+
 .content [data-info-form] {
     display: grid;
     gap: 1.25rem;

@@ -1,4 +1,4 @@
-import { Instagram, Facebook, Link2 } from 'lucide-react';
+import { Instagram, Facebook } from 'lucide-react';
 
 const lifestyleImages = [
   { src: '/assets/placeholder-400x400.png', alt: 'Luxury cosmetics arranged on marble surface' },
@@ -36,17 +36,17 @@ const LifestyleSection = () => {
 
               {/* Social Media Overlay */}
               <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4 z-10 backdrop-blur-[2px]">
-                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="bg-white/20 p-2 rounded-full hover:bg-[#f01a33] transition-colors duration-200">
+                <a href="https://www.instagram.com/melalogyvietnam/" target="_blank" rel="noopener noreferrer" aria-label="Instagram Melalogy" className="bg-white/20 p-2 rounded-full hover:bg-[#f01a33] transition-colors duration-200">
                   <Instagram className="w-5 h-5 text-white" />
                 </a>
-                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="bg-white/20 p-2 rounded-full hover:bg-[#f01a33] transition-colors duration-200">
-                  <svg viewBox="0 0 24 24" aria-hidden="true" className="w-5 h-5 fill-white"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
+                <a href="https://zalo.me/0702899707" target="_blank" rel="noopener noreferrer" aria-label="Zalo Melalogy" className="bg-white/20 p-2 rounded-full hover:bg-[#f01a33] transition-colors duration-200">
+                  <span aria-hidden="true" className="grid w-5 h-5 place-items-center text-xs font-bold leading-none text-white">Z</span>
                 </a>
-                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="bg-white/20 p-2 rounded-full hover:bg-[#f01a33] transition-colors duration-200">
+                <a href="https://www.facebook.com/melalogyvietnam/" target="_blank" rel="noopener noreferrer" aria-label="Facebook Melalogy" className="bg-white/20 p-2 rounded-full hover:bg-[#f01a33] transition-colors duration-200">
                   <Facebook className="w-5 h-5 text-white" />
                 </a>
-                <a href="#" className="bg-white/20 p-2 rounded-full hover:bg-[#f01a33] transition-colors duration-200">
-                  <Link2 className="w-5 h-5 text-white" />
+                <a href="https://www.tiktok.com/@melalogy.vietnam" target="_blank" rel="noopener noreferrer" aria-label="TikTok Melalogy" className="bg-white/20 p-2 rounded-full hover:bg-[#f01a33] transition-colors duration-200">
+                  <span aria-hidden="true" className="grid w-5 h-5 place-items-center text-lg leading-none text-white">♪</span>
                 </a>
               </div>
             </div>

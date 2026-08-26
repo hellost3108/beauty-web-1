@@ -9,7 +9,7 @@ import styles from './FanClubSection.module.css';
 const benefits = [
     { icon: Truck, index: '01', title: 'Giao hàng toàn quốc', detail: 'Miễn phí cho đơn từ 500.000₫' },
     { icon: RefreshCcw, index: '02', title: 'Đổi trả rõ ràng', detail: 'Hỗ trợ trong vòng 30 ngày' },
-    { icon: Headphones, index: '03', title: 'Tư vấn chăm sóc da', detail: '08:30–18:30 mỗi ngày' },
+    { icon: Headphones, index: '03', title: 'Tư vấn chăm sóc da', detail: '09:00–22:00 mỗi ngày' },
     { icon: LockKeyhole, index: '04', title: 'Thanh toán bảo mật', detail: 'Thông tin giao dịch được bảo vệ' },
 ];
 

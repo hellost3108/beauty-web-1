@@ -63,7 +63,7 @@ const InformationLayout = ({ children, currentPath, eyebrow, intro, meta, title 
                             })}
                         </nav>
 
-                        <Link href="mailto:metquatroiquaday@melalogy.com" className={styles.supportCard}>
+                        <Link href="mailto:melalogyvietnam@gmail.com" className={styles.supportCard}>
                             <Mail size={19} aria-hidden="true" />
                             <span>
                                 <small>Cần hỗ trợ thêm?</small>
