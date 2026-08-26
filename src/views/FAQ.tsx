@@ -32,7 +32,7 @@ const FAQ = () => (
 
         <section>
             <h2>Chưa tìm thấy câu trả lời?</h2>
-            <p>Hãy gửi câu hỏi đến <strong>metquatroiquaday@melalogy.com</strong>. Đội ngũ Melalogy sẽ phản hồi trong 1–2 ngày làm việc.</p>
+            <p>Hãy gửi câu hỏi đến <strong>melalogyvietnam@gmail.com</strong>. Đội ngũ Melalogy sẽ phản hồi trong 1–2 ngày làm việc.</p>
         </section>
     </InformationLayout>
 );

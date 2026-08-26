@@ -29,10 +29,10 @@ const Contact = () => {
                     Bạn cần tư vấn sản phẩm, hỗ trợ đơn hàng hay muốn chia sẻ trải nghiệm? Hãy gửi thông tin cho chúng tôi qua biểu mẫu hoặc liên hệ trực tiếp.
                 </p>
                 <div data-info-contact-grid>
-                    <div><h3>Địa chỉ</h3><p>347 Nguyễn Trọng Tuyển, Phường Tân Sơn Hoà, Quận Tân Bình</p></div>
-                    <div><h3>Email</h3><p>metquatroiquaday@melalogy.com</p></div>
-                    <div><h3>Giờ làm việc</h3><p>08:30–18:30 mỗi ngày</p></div>
-                    <div><h3>Khu vực hỗ trợ</h3><p>Giao hàng và chăm sóc khách hàng trên toàn quốc</p></div>
+                    <div><h3>Địa chỉ</h3><p>29D Cộng Hòa 3, Phường Phú Thọ Hòa, Thành phố Hồ Chí Minh</p></div>
+                    <div><h3>Điện thoại</h3><p><a href="tel:+84702899707">0702 899 707</a></p></div>
+                    <div><h3>Email</h3><p><a href="mailto:melalogyvietnam@gmail.com">melalogyvietnam@gmail.com</a></p></div>
+                    <div><h3>Giờ làm việc</h3><p>09:00–22:00 mỗi ngày</p></div>
                 </div>
             </section>
 

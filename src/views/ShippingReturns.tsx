@@ -26,7 +26,7 @@ const ShippingReturns = () => (
 
         <section>
             <h2>Cần hỗ trợ một đơn hàng?</h2>
-            <p>Vui lòng gửi email kèm mã đơn hàng, hình ảnh sản phẩm và mô tả tình trạng đến <strong>metquatroiquaday@melalogy.com</strong>. Chúng tôi sẽ phản hồi trong 1–2 ngày làm việc.</p>
+            <p>Vui lòng gửi email kèm mã đơn hàng, hình ảnh sản phẩm và mô tả tình trạng đến <strong>melalogyvietnam@gmail.com</strong>. Chúng tôi sẽ phản hồi trong 1–2 ngày làm việc.</p>
         </section>
     </InformationLayout>
 );

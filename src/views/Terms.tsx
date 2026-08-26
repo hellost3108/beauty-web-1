@@ -134,9 +134,9 @@ const Terms = () => (
             <p>Nếu bạn có bất kỳ câu hỏi nào về các Điều Khoản này, vui lòng liên hệ với chúng tôi:</p>
             <div data-info-callout>
                 <p>
-                    <strong>Email:</strong> metquatroiquaday@melalogy.com<br />
-                    <strong>Điện thoại:</strong> + 1234000<br />
-                    <strong>Địa chỉ:</strong> 347 Nguyễn Trọng Tuyển, Phường Tân Sơn Hoà, Quận Tân Bình
+                    <strong>Email:</strong> melalogyvietnam@gmail.com<br />
+                    <strong>Điện thoại:</strong> 0702 899 707<br />
+                    <strong>Địa chỉ:</strong> 29D Cộng Hòa 3, Phường Phú Thọ Hòa, Thành phố Hồ Chí Minh
                 </p>
             </div>
         </section>
