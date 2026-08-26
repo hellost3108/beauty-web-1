@@ -1,0 +1,188 @@
+.section {
+    position: relative;
+    overflow: hidden;
+    padding: clamp(5.5rem, 9vw, 9rem) 0;
+    background: #181716;
+    color: white;
+}
+
+.section::before {
+    position: absolute;
+    top: -18rem;
+    left: -11rem;
+    width: 42rem;
+    height: 42rem;
+    border-radius: 50%;
+    content: '';
+    background: radial-gradient(circle, rgba(240, 26, 51, 0.23), transparent 68%);
+    filter: blur(18px);
+}
+
+.shell {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: clamp(3rem, 8vw, 8rem);
+    width: min(100% - 2rem, 88rem);
+    margin-inline: auto;
+}
+
+.newsletter { min-width: 0; }
+
+.eyebrow {
+    display: inline-flex;
+    gap: 0.75rem;
+    align-items: center;
+    margin-bottom: 1.4rem;
+    color: #ff5367;
+    font-family: var(--font-body), sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+}
+
+.eyebrow::before {
+    width: 2.5rem;
+    height: 1px;
+    content: '';
+    background: currentColor;
+}
+
+.title {
+    max-width: 12ch;
+    margin: 0;
+    font-family: var(--font-display), serif;
+    font-size: clamp(3.25rem, 5.8vw, 6.7rem);
+    font-weight: 400;
+    line-height: 1.04;
+    letter-spacing: -0.045em;
+    text-wrap: balance;
+}
+
+.title em { color: #ff5367; font-weight: inherit; }
+
+.description {
+    max-width: 34rem;
+    margin: 1.7rem 0 2rem;
+    color: #aaa5a1;
+    font: 400 clamp(1rem, 1.3vw, 1.14rem)/1.72 var(--font-body), sans-serif;
+}
+
+.form {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0.6rem;
+    max-width: 37rem;
+    padding-bottom: 0.7rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.42);
+}
+
+.form input {
+    min-width: 0;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: white;
+    font: 400 1rem/1.5 var(--font-body), sans-serif;
+}
+
+.form input::placeholder { color: #817c78; }
+
+.form button {
+    display: inline-flex;
+    gap: 0.65rem;
+    align-items: center;
+    justify-content: center;
+    min-height: 3rem;
+    padding: 0 1.25rem;
+    border: 0;
+    border-radius: 999px;
+    background: #f01a33;
+    color: white;
+    cursor: pointer;
+    font-family: var(--font-body), sans-serif;
+    font-weight: 700;
+    transition: color 0.3s ease, background 0.3s ease, transform 0.3s ease;
+}
+
+.form button:hover { color: #181716; background: white; transform: translateY(-2px); }
+
+.consent {
+    display: block;
+    margin-top: 0.9rem;
+    color: #6f6b68;
+    font: 400 0.72rem/1.5 var(--font-body), sans-serif;
+}
+
+.benefits {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    border-left: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.benefit {
+    display: flex;
+    min-height: 12.5rem;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: clamp(1.4rem, 3vw, 2.25rem);
+    border-right: 1px solid rgba(255, 255, 255, 0.15);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    transition: background 0.35s ease;
+}
+
+.benefit:hover { background: rgba(255, 255, 255, 0.045); }
+
+.benefitTop {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: auto;
+    color: #ff5367;
+}
+
+.benefitTop span {
+    font: 700 0.68rem/1 var(--font-body), sans-serif;
+    letter-spacing: 0.12em;
+}
+
+.benefit strong {
+    color: #f4f0ed;
+    font: 400 clamp(1.2rem, 1.8vw, 1.55rem)/1.25 var(--font-display), serif;
+}
+
+.benefit small {
+    margin-top: 0.45rem;
+    color: #817c78;
+    font: 400 0.78rem/1.45 var(--font-body), sans-serif;
+}
+
+.srOnly {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+}
+
+@media (max-width: 900px) {
+    .shell { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 560px) {
+    .section { padding: 5rem 0; }
+    .shell { width: min(100% - 1.25rem, 88rem); gap: 3.5rem; }
+    .title { font-size: clamp(3rem, 15vw, 4.4rem); line-height: 1.05; }
+    .form { grid-template-columns: 1fr; border-bottom: 0; }
+    .form input { min-height: 3.6rem; padding: 0 1rem; border: 1px solid rgba(255, 255, 255, 0.25); border-radius: 0.9rem; }
+    .form button { width: 100%; min-height: 3.6rem; }
+    .benefits { grid-template-columns: 1fr; }
+    .benefit { min-height: 10.5rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .form button, .benefit { transition: none; }
+}
