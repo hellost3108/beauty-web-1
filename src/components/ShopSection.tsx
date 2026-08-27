@@ -28,6 +28,21 @@ import BeautyDiaries from './BeautyDiaries';
 
 const categories = ['Tất Cả', 'Cấp Ẩm', 'Phục Hồi', 'Làm Sáng', 'Rạng Rỡ'];
 
+const heroCardOffsets = [
+    'lg:translate-y-7 lg:-rotate-[1.2deg]',
+    'lg:-translate-y-4 lg:rotate-[0.8deg]',
+    'lg:translate-y-3 lg:-rotate-[0.6deg]',
+    'lg:-translate-y-6 lg:rotate-[1deg]',
+    'lg:translate-y-1 lg:-rotate-[0.4deg]',
+];
+
+const categoryAccents: Record<string, string> = {
+    'Cấp Ẩm': '#3b96bd',
+    'Phục Hồi': '#648c38',
+    'Làm Sáng': '#b08a0b',
+    'Rạng Rỡ': '#8262a0',
+};
+
 const ShopSection = () => {
     const router = useRouter();
     const [activeCategory, setActiveCategory] = useState('Tất Cả');
@@ -36,6 +51,7 @@ const ShopSection = () => {
     const { addToCart, addToWishlist, isInWishlist } = useShop();
 
     const [sortBy, setSortBy] = useState('featured');
+    const productCountLabel = String(allProducts.length).padStart(2, '0');
 
     const filteredProducts = useMemo(() => {
         return allProducts
@@ -51,14 +67,14 @@ const ShopSection = () => {
         <div className="w-full bg-[#f4f2ee]">
             {/* Hero */}
             <section className="relative w-full px-3 pb-3 pt-3 md:px-5 md:pb-5">
-                <div className="mx-auto grid max-w-[1600px] overflow-hidden rounded-[28px] bg-[#191816] text-white lg:min-h-[650px] lg:grid-cols-[0.78fr_1.22fr] lg:rounded-[38px]">
+                <div className="mx-auto grid max-w-[1600px] overflow-hidden rounded-[28px] bg-[#191816] text-white lg:min-h-[620px] lg:grid-cols-[0.72fr_1.28fr] lg:rounded-[38px]">
                     <div className="flex flex-col justify-between px-6 py-9 sm:px-10 sm:py-12 lg:px-14 lg:py-16 xl:px-20">
                         <div className="flex items-center justify-between border-b border-white/15 pb-5 font-body text-[10px] font-semibold uppercase tracking-[0.2em] text-white/45">
                             <span className="flex items-center gap-2">
                                 <span className="h-1.5 w-1.5 rounded-full bg-[#f01a33]" />
                                 Melalogy Store
                             </span>
-                            <span>Energy Shot / 01—04</span>
+                            <span>Energy Shot / 01—{productCountLabel}</span>
                         </div>
 
                         <div className="shop-copy py-12 lg:py-8">
@@ -69,7 +85,7 @@ const ShopSection = () => {
                                 Đúng Energy Shot. <span className="shop-accent text-[#ff5a6d]">Đúng điều da cần.</span>
                             </h1>
                             <p className="mt-7 max-w-lg font-body text-sm leading-7 text-white/60 md:text-base">
-                                Bốn công thức hydrogel tập trung cho cấp ẩm, phục hồi, làm sáng và duy trì vẻ rạng rỡ của làn da.
+                                Khám phá {allProducts.length} lựa chọn chăm sóc được sắp xếp theo đúng tín hiệu và nhu cầu hiện tại của làn da.
                             </p>
 
                             <a
@@ -83,7 +99,7 @@ const ShopSection = () => {
 
                         <div className="grid grid-cols-2 gap-4 border-t border-white/15 pt-5 font-body">
                             <div>
-                                <strong className="block text-lg font-semibold">04 công thức</strong>
+                                <strong className="block text-lg font-semibold">{productCountLabel} sản phẩm</strong>
                                 <span className="text-[10px] uppercase tracking-[0.14em] text-white/40">Theo nhu cầu da</span>
                             </div>
                             <div>
@@ -93,28 +109,23 @@ const ShopSection = () => {
                         </div>
                     </div>
 
-                    <div className="relative overflow-hidden bg-[#eeebe6] p-4 sm:p-6 md:p-8 lg:p-10">
+                    <div className="relative overflow-hidden bg-[#eeebe6] p-4 sm:p-6 md:p-8 lg:p-9">
                         <div className="shop-stage-aurora absolute -inset-[12%]" />
                         <div className="shop-lab-grid absolute inset-0 opacity-30" />
                         <div className="shop-scan-line absolute inset-y-0 z-[1] w-32" />
 
-                        <div className="relative grid h-full grid-cols-2 gap-3 sm:gap-4 md:grid-cols-4 lg:items-center">
+                        <div className="shop-product-stage relative z-[2] grid h-full grid-cols-2 content-center gap-3 sm:gap-4">
                             {allProducts.map((product, index) => {
-                                const cardStyles = [
-                                    'md:translate-y-8 md:-rotate-[1.5deg]',
-                                    'md:-translate-y-5 md:rotate-1',
-                                    'md:translate-y-5 md:-rotate-1',
-                                    'md:-translate-y-8 md:rotate-[1.5deg]',
-                                ];
-                                const accents = ['#3b96bd', '#648c38', '#b08a0b', '#8262a0'];
+                                const cardStyle = heroCardOffsets[index % heroCardOffsets.length];
+                                const accent = categoryAccents[product.category] ?? '#f01a33';
 
                                 return (
                                     <Link
                                         key={product.id}
                                         href={`/product/${product.id}`}
-                                        className={`shop-product-card group flex min-w-0 flex-col rounded-[20px] border border-white/75 bg-white/72 p-2 shadow-[0_28px_70px_-45px_rgba(20,18,16,0.8)] backdrop-blur-md transition-[transform,box-shadow] duration-500 hover:!translate-y-0 hover:!rotate-0 hover:shadow-[0_35px_75px_-38px_rgba(20,18,16,0.55)] ${cardStyles[index]}`}
+                                        className={`shop-product-card group flex min-w-0 flex-col rounded-[20px] border border-white/75 bg-white/75 p-2 shadow-[0_28px_70px_-45px_rgba(20,18,16,0.8)] backdrop-blur-md transition-[transform,box-shadow] duration-500 hover:!translate-y-0 hover:!rotate-0 hover:shadow-[0_35px_75px_-38px_rgba(20,18,16,0.55)] ${cardStyle}`}
                                     >
-                                        <div className="aspect-[0.9] overflow-hidden rounded-[14px] bg-white/70">
+                                        <div className="aspect-[0.88] overflow-hidden rounded-[14px] bg-white/70">
                                             <img
                                                 src={product.image}
                                                 alt={product.name}
@@ -123,7 +134,7 @@ const ShopSection = () => {
                                         </div>
                                         <div className="flex items-center justify-between gap-2 px-1 pb-1 pt-3 font-body text-[9px] font-semibold uppercase tracking-[0.1em] text-black/58">
                                             <span className="truncate">{product.category}</span>
-                                            <span className="h-1.5 w-1.5 shrink-0 rounded-full" style={{ backgroundColor: accents[index] }} />
+                                            <span className="h-1.5 w-1.5 shrink-0 rounded-full" style={{ backgroundColor: accent }} />
                                         </div>
                                     </Link>
                                 );
@@ -135,7 +146,7 @@ const ShopSection = () => {
 
             {/* Category Tabs */}
             <section id="shop-products" className="scroll-mt-28 border-y border-[#e5e5e5] bg-white">
-                <div className="w-full mx-auto px-6 md:px-10 lg:px-16 xl:px-24">
+                <div className="mx-auto w-full max-w-[1600px] px-6 md:px-10 lg:px-14">
                     <div className="flex flex-nowrap overflow-x-auto justify-start md:justify-center gap-6 md:gap-12 py-6 px-4 md:px-0 scrollbar-hide">
                         {categories.map((category) => (
                             <button
@@ -155,7 +166,7 @@ const ShopSection = () => {
 
             {/* Sort Bar */}
             <section className="bg-white">
-                <div className="w-full mx-auto px-6 md:px-10 lg:px-16 xl:px-24 py-4">
+                <div className="mx-auto w-full max-w-[1600px] px-6 py-4 md:px-10 lg:px-14">
                     <div className="flex justify-end">
                         <DropdownMenu modal={false}>
                             <DropdownMenuTrigger asChild>
@@ -181,9 +192,9 @@ const ShopSection = () => {
             </section>
 
             {/* Products Grid */}
-            <section className="py-16 bg-white">
-                <div className="w-full mx-auto px-6 md:px-10 lg:px-16 xl:px-24">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <section className="bg-white py-14 md:py-16">
+                <div className="mx-auto w-full max-w-[1600px] px-6 md:px-10 lg:px-14">
+                    <div className="shop-catalog-grid grid gap-5 md:gap-6">
                         {filteredProducts.map((product, index) => (
                             <div
                                 key={product.id}
@@ -468,6 +479,14 @@ const ShopSection = () => {
                     animation-play-state: paused;
                 }
 
+                .shop-product-stage {
+                    grid-template-columns: repeat(auto-fit, minmax(min(100%, 9rem), 1fr));
+                }
+
+                .shop-catalog-grid {
+                    grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+                }
+
                 @keyframes shop-copy-reveal {
                     from { opacity: 0; translate: 0 22px; }
                     to { opacity: 1; translate: 0 0; }
@@ -507,6 +526,12 @@ const ShopSection = () => {
                 @keyframes shop-card-float {
                     from { translate: 0 -4px; }
                     to { translate: 0 6px; }
+                }
+
+                @media (max-width: 1023px) {
+                    .shop-product-card {
+                        animation: shop-card-reveal 720ms cubic-bezier(.2, .8, .2, 1) both;
+                    }
                 }
             `}</style>
         </div>

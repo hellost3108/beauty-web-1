@@ -357,25 +357,47 @@ const About = () => {
                 </div>
             </section>
 
-            <section className="relative overflow-hidden bg-[#ed1835] px-6 py-24 text-white sm:px-10 md:py-32 lg:px-16 xl:px-24">
-                <div className="pointer-events-none absolute -right-24 -top-24 h-80 w-80 rounded-full border border-white/25" />
-                <div className="pointer-events-none absolute -bottom-40 left-[12%] h-96 w-96 rounded-full border border-white/15" />
-                <div className="relative mx-auto max-w-[90rem] text-center">
-                    <p data-reveal="fade" className="font-body text-xs font-semibold uppercase tracking-[0.22em] text-white/70">
-                        Your skin. Your signal.
-                    </p>
-                    <h2 data-reveal="up" data-reveal-delay="90" className="vi-display-safe mx-auto mt-6 max-w-5xl font-display text-[clamp(2.8rem,5.8vw,6.1rem)] tracking-[-0.022em]">
-                        Làn da không cần nhiều hơn. Làn da cần đúng hơn.
-                    </h2>
-                    <Link
-                        href="/shop"
-                        data-reveal="up"
-                        data-reveal-delay="180"
-                        className="group mt-10 inline-flex min-h-13 items-center gap-3 rounded-full bg-white px-7 py-4 font-body text-sm font-semibold text-[#191817] transition-transform duration-300 hover:-translate-y-1"
-                    >
-                        Tìm Energy Shot của bạn
-                        <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                    </Link>
+            <section className="bg-[#f4f2ee] px-4 py-5 sm:px-6 sm:py-7 lg:px-10">
+                <div className="relative mx-auto grid max-w-[90rem] overflow-hidden rounded-[30px] bg-[#181715] text-white shadow-[0_35px_100px_-65px_rgba(20,18,16,0.9)] lg:grid-cols-[1.22fr_0.78fr] lg:rounded-[40px]">
+                    <div className="pointer-events-none absolute -left-24 -top-40 h-[28rem] w-[28rem] rounded-full bg-[#ed1835]/20 blur-[100px]" />
+                    <div className="relative px-7 py-14 sm:px-12 sm:py-16 lg:px-16 lg:py-20">
+                        <p data-reveal="fade" className="flex items-center gap-3 font-body text-[11px] font-semibold uppercase tracking-[0.24em] text-[#ff6477]">
+                            <span className="h-px w-8 bg-current" />
+                            Your skin. Your signal.
+                        </p>
+                        <h2 data-reveal="up" data-reveal-delay="90" className="vi-display-safe mt-7 max-w-4xl font-display text-[clamp(2.55rem,4.9vw,5.4rem)] leading-[0.98] tracking-[-0.026em]">
+                            Không cần nhiều hơn. Chỉ cần <span className="text-[#ff5a6d]">đúng hơn.</span>
+                        </h2>
+                        <p data-reveal="up" data-reveal-delay="140" className="mt-7 max-w-2xl font-body text-sm leading-7 text-white/58 md:text-base">
+                            Bắt đầu từ tín hiệu của làn da, chọn một công thức có chủ đích và duy trì một nhịp chăm sóc vừa đủ cho bạn.
+                        </p>
+                        <Link
+                            href="/shop"
+                            data-reveal="up"
+                            data-reveal-delay="190"
+                            className="group mt-9 inline-flex min-h-13 items-center gap-3 rounded-full bg-[#ed1835] px-7 py-4 font-body text-sm font-semibold text-white transition-[transform,background-color] duration-300 hover:-translate-y-1 hover:bg-[#ff3048]"
+                        >
+                            Tìm Energy Shot của bạn
+                            <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                        </Link>
+                    </div>
+
+                    <div className="relative border-t border-white/10 bg-white/[0.035] p-5 sm:p-7 lg:border-l lg:border-t-0 lg:p-8">
+                        <div data-reveal="right" className="flex h-full flex-col justify-between rounded-[24px] border border-white/12 bg-white/[0.045] p-6 backdrop-blur-xl sm:p-8">
+                            <div>
+                                <span className="font-body text-[10px] font-semibold uppercase tracking-[0.24em] text-white/40">Melalogy method</span>
+                                <p className="vi-display-safe mt-4 max-w-md font-display text-3xl leading-tight sm:text-4xl">Ba nhịp để hiểu và chăm da rõ ràng hơn.</p>
+                            </div>
+                            <div className="mt-12 divide-y divide-white/12 border-y border-white/12">
+                                {['Đọc tín hiệu', 'Chọn đúng công thức', 'Duy trì vừa đủ'].map((step, index) => (
+                                    <div key={step} className="flex items-center justify-between gap-5 py-5 font-body text-sm">
+                                        <span className="text-white/38">0{index + 1}</span>
+                                        <strong className="font-medium text-white/88">{step}</strong>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
 
