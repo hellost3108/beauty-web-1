@@ -1,29 +1,19 @@
 "use client";
 
-import { useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useParams, useRouter } from "next/navigation";
 import { ArrowLeft, ArrowRight, ArrowUpRight, CalendarDays, Clock3, Facebook, Linkedin, Quote, Twitter, UserRound } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { magazineEditorialPosts } from "@/data/melalogyMagazinePosts";
+import type { MelalogyMagazinePost } from "@/data/melalogyMagazinePosts";
 
-const MagazineDetailEditorial = () => {
-  const { id } = useParams();
-  const router = useRouter();
-  const post = magazineEditorialPosts.find((item) => item.id === Number(id));
-
-  useEffect(() => {
-    if (!post) router.push("/magazine");
-    window.scrollTo(0, 0);
-  }, [post, router]);
-
-  if (!post) return null;
-
-  const relatedPosts = magazineEditorialPosts
-    .filter((item) => item.id !== post.id)
-    .slice(0, 3);
+const MagazineDetailEditorial = ({
+  post,
+  relatedPosts,
+}: {
+  post: MelalogyMagazinePost;
+  relatedPosts: MelalogyMagazinePost[];
+}) => {
 
   return (
     <div className="magazine-detail-2026 min-h-screen text-[#201c1c]">
@@ -123,7 +113,7 @@ const MagazineDetailEditorial = () => {
             </div>
             <div className="grid gap-6 md:grid-cols-3" data-motion-stagger>
               {relatedPosts.map((relatedPost) => (
-                <Link key={relatedPost.id} href={`/magazine/${relatedPost.id}`} className="magazine-related-card-2026 group overflow-hidden rounded-[1.5rem] border border-black/10 bg-white">
+                <Link key={relatedPost.slug ?? relatedPost.id} href={`/magazine/${relatedPost.slug ?? relatedPost.id}`} className="magazine-related-card-2026 group overflow-hidden rounded-[1.5rem] border border-black/10 bg-white">
                   <div className="magazine-card-media-2026 relative aspect-[4/3] overflow-hidden">
                     <Image src={relatedPost.image} alt={relatedPost.imageAlt} fill loading="lazy" sizes="(max-width: 768px) 100vw, 33vw" className="object-cover transition-transform duration-700 group-hover:scale-[1.04]" />
                   </div>

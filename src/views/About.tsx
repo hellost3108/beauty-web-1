@@ -11,24 +11,9 @@ import {
 } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import type { AboutPageContent } from '@/data/aboutContent';
 
-const principles = [
-    {
-        icon: ScanLine,
-        label: 'Đọc đúng tín hiệu',
-        copy: 'Bắt đầu từ điều làn da đang cần thay vì kéo dài chu trình bằng nhiều bước.',
-    },
-    {
-        icon: FlaskConical,
-        label: 'Công thức có chủ đích',
-        copy: 'Mỗi Energy Shot tập trung vào một nhu cầu rõ ràng, với thông tin dễ hiểu.',
-    },
-    {
-        icon: Layers3,
-        label: 'Trải nghiệm tinh gọn',
-        copy: 'Kết cấu hydrogel ôm sát để khoảng thời gian chăm da trở nên nhẹ nhàng hơn.',
-    },
-];
+const principleIcons = [ScanLine, FlaskConical, Layers3];
 
 const collection = [
     {
@@ -61,25 +46,9 @@ const collection = [
     },
 ];
 
-const values = [
-    {
-        icon: ShieldCheck,
-        title: 'Minh bạch trước tiên',
-        copy: 'Nhu cầu, thành phần nổi bật và cách dùng cần được trình bày rõ ràng để bạn dễ lựa chọn.',
-    },
-    {
-        icon: Droplets,
-        title: 'Tôn trọng làn da',
-        copy: 'Chăm da là một nhịp sống cá nhân. Chúng tôi ưu tiên cảm giác dễ chịu và cách dùng vừa đủ.',
-    },
-    {
-        icon: Sparkles,
-        title: 'Thiết kế có mục đích',
-        copy: 'Từ màu sắc đến trải nghiệm, mọi chi tiết đều giúp bạn nhận ra đúng công thức mình cần.',
-    },
-];
+const valueIcons = [ShieldCheck, Droplets, Sparkles];
 
-const About = () => {
+const About = ({ content }: { content: AboutPageContent }) => {
     return (
         <main className="min-h-screen overflow-x-clip bg-[#f7f3f0] text-[#191817]">
             <Navbar />
@@ -100,7 +69,7 @@ const About = () => {
                                 data-reveal="up"
                                 className="mb-6 font-body text-xs font-semibold uppercase tracking-[0.22em] text-[#ed1835]"
                             >
-                                Câu chuyện thương hiệu
+                                {content.hero.eyebrow}
                             </p>
                             <h1
                                 id="about-hero-title"
@@ -108,17 +77,15 @@ const About = () => {
                                 data-reveal-delay="90"
                                 className="vi-display-safe font-display text-[clamp(3rem,5vw,6rem)] tracking-[-0.025em]"
                             >
-                                Chăm da bắt đầu từ việc{' '}
-                                <span className="text-[#ed1835]">lắng nghe.</span>
+                                {content.hero.title}{' '}
+                                <span className="text-[#ed1835]">{content.hero.highlightedText}</span>
                             </h1>
                             <p
                                 data-reveal="up"
                                 data-reveal-delay="180"
                                 className="mt-8 max-w-xl font-body text-base leading-7 text-black/62 md:text-lg md:leading-8"
                             >
-                                Melalogy đặt việc đọc tín hiệu làn da trước việc thêm một sản phẩm mới.
-                                Energy Shot được tạo nên như những công thức hydrogel tập trung, trực quan
-                                và vừa đủ cho nhịp sống hiện đại.
+                                {content.hero.body}
                             </p>
 
                             <div
@@ -156,8 +123,8 @@ const About = () => {
                     <div data-reveal="scale" className="relative min-h-[68svh] overflow-hidden bg-[#c4202f] lg:min-h-0">
                         <img
                             data-parallax="10"
-                            src="/assets/about-hero-vietnamese-portrait-2026.jpg"
-                            alt="Chân dung người phụ nữ Việt với làn da tự nhiên trong sắc đỏ Melalogy"
+                            src={content.hero.imageUrl}
+                            alt={content.hero.imageAlt}
                             width="2244"
                             height="2804"
                             fetchPriority="high"
@@ -171,7 +138,7 @@ const About = () => {
                                     Brand premise
                                 </p>
                                 <p className="vi-display-safe mt-2 max-w-none font-display text-[clamp(1.45rem,1.8vw,2.1rem)] lg:whitespace-nowrap">
-                                    Đẹp hơn khi hiểu làn da hơn.
+                                    {content.hero.imageCaption}
                                 </p>
                             </div>
                             <span className="font-body text-xs text-white/70">2026</span>
@@ -186,29 +153,27 @@ const About = () => {
                         <div data-reveal="left" className="flex items-start gap-4">
                             <span className="mt-1 h-2.5 w-2.5 rounded-full bg-[#ed1835]" />
                             <div>
-                                <p className="font-body text-xs font-semibold uppercase tracking-[0.2em] text-black/45">01 / Niềm tin</p>
+                                <p className="font-body text-xs font-semibold uppercase tracking-[0.2em] text-black/45">{content.premise.eyebrow}</p>
                                 <p className="mt-2 font-body text-sm text-black/60">Điểm bắt đầu của Melalogy</p>
                             </div>
                         </div>
 
                         <div>
                             <h2 data-reveal="up" className="vi-display-safe max-w-5xl font-display text-[clamp(2.65rem,5.1vw,5.5rem)] tracking-[-0.022em]">
-                                Không thêm nhiều bước.{' '}
-                                <span className="text-black/30">Chọn đúng điều da cần.</span>
+                                {content.premise.title}{' '}
+                                <span className="text-black/30">{content.premise.highlightedText}</span>
                             </h2>
                             <div className="mt-14 grid gap-8 border-t border-black/15 pt-8 md:grid-cols-2 md:gap-12">
                                 <div data-reveal="up" data-reveal-delay="90">
-                                    <p className="font-display text-2xl">Tín hiệu</p>
+                                    <p className="font-display text-2xl">{content.premise.signalTitle}</p>
                                     <p className="mt-4 max-w-md font-body text-base leading-7 text-black/58">
-                                        Da có thể thay đổi theo thời tiết, nhịp sinh hoạt và từng thời điểm. Vì vậy,
-                                        lựa chọn chăm sóc cũng cần linh hoạt và dễ hiểu.
+                                        {content.premise.signalBody}
                                     </p>
                                 </div>
                                 <div data-reveal="up" data-reveal-delay="180">
-                                    <p className="font-display text-2xl">Đáp án vừa đủ</p>
+                                    <p className="font-display text-2xl">{content.premise.answerTitle}</p>
                                     <p className="mt-4 max-w-md font-body text-base leading-7 text-black/58">
-                                        Mỗi công thức được định vị bằng một màu sắc và một nhu cầu chính, giúp bạn
-                                        tìm đúng Energy Shot mà không phải đoán.
+                                        {content.premise.answerBody}
                                     </p>
                                 </div>
                             </div>
@@ -223,8 +188,8 @@ const About = () => {
                     <div data-reveal="left" className="relative min-h-[34rem] overflow-hidden rounded-[2rem] bg-[#ded7d0] md:min-h-[44rem]">
                         <img
                             data-parallax="8"
-                            src="/assets/about-hydrogel-ritual-2026.jpg"
-                            alt="Người phụ nữ Việt nhẹ nhàng áp mặt nạ hydrogel lên làn da"
+                            src={content.thinking.imageUrl}
+                            alt={content.thinking.imageAlt}
                             width="1944"
                             height="3238"
                             loading="lazy"
@@ -239,22 +204,21 @@ const About = () => {
 
                     <div>
                         <p data-reveal="up" className="font-body text-xs font-semibold uppercase tracking-[0.22em] text-[#ff6174]">
-                            02 / Cách chúng tôi nghĩ
+                            {content.thinking.eyebrow}
                         </p>
                         <h2 data-reveal="up" data-reveal-delay="90" className="vi-display-safe mt-6 max-w-2xl font-display text-[clamp(2.55rem,4.3vw,4.75rem)] tracking-[-0.022em]">
-                            Khoa học cần dễ hiểu để trở thành một phần đời sống.
+                            {content.thinking.title}
                         </h2>
                         <p data-reveal="up" data-reveal-delay="170" className="mt-7 max-w-xl font-body text-base leading-7 text-white/62 md:text-lg md:leading-8">
-                            Melalogy chuyển ngôn ngữ chăm da phức tạp thành những lựa chọn trực quan. Không
-                            phô trương, không khiến bạn phải ghi nhớ quá nhiều — chỉ giữ lại điều cần thiết.
+                            {content.thinking.body}
                         </p>
 
                         <div className="mt-12 divide-y divide-white/15 border-y border-white/15">
-                            {principles.map((principle, index) => {
-                                const Icon = principle.icon;
+                            {content.thinking.principles.map((principle, index) => {
+                                const Icon = principleIcons[index % principleIcons.length];
                                 return (
                                     <div
-                                        key={principle.label}
+                                        key={`${principle.title}-${index}`}
                                         data-reveal="right"
                                         data-reveal-delay={String(index * 100)}
                                         className="grid grid-cols-[auto_1fr] gap-5 py-6"
@@ -263,8 +227,8 @@ const About = () => {
                                             <Icon className="h-5 w-5" />
                                         </div>
                                         <div>
-                                            <h3 className="font-body text-base font-semibold tracking-tight">{principle.label}</h3>
-                                            <p className="mt-2 max-w-lg font-body text-sm leading-6 text-white/55">{principle.copy}</p>
+                                            <h3 className="font-body text-base font-semibold tracking-tight">{principle.title}</h3>
+                                            <p className="mt-2 max-w-lg font-body text-sm leading-6 text-white/55">{principle.body}</p>
                                         </div>
                                     </div>
                                 );
@@ -279,14 +243,14 @@ const About = () => {
                     <div className="mb-12 grid gap-8 md:grid-cols-[1fr_auto] md:items-end">
                         <div>
                             <p data-reveal="up" className="font-body text-xs font-semibold uppercase tracking-[0.22em] text-[#ed1835]">
-                                03 / Bản đồ nhu cầu
+                                {content.collection.eyebrow}
                             </p>
                             <h2 data-reveal="up" data-reveal-delay="90" className="vi-display-safe mt-5 max-w-3xl font-display text-[clamp(2.55rem,4.3vw,4.8rem)] tracking-[-0.022em]">
-                                Bốn tín hiệu. Bốn lựa chọn rõ ràng.
+                                {content.collection.title}
                             </h2>
                         </div>
                         <p data-reveal="fade" className="max-w-sm font-body text-sm leading-6 text-black/55 md:text-right">
-                            Màu sắc không chỉ để trang trí. Đó là cách Melalogy giúp bạn nhận diện nhanh điều làn da đang tìm kiếm.
+                            {content.collection.body}
                         </p>
                     </div>
 
@@ -327,19 +291,19 @@ const About = () => {
                     <div className="grid gap-12 lg:grid-cols-[0.36fr_0.64fr] lg:gap-20">
                         <div>
                             <p data-reveal="left" className="font-body text-xs font-semibold uppercase tracking-[0.22em] text-[#ed1835]">
-                                04 / Giá trị theo đuổi
+                                {content.values.eyebrow}
                             </p>
                             <h2 data-reveal="left" data-reveal-delay="90" className="vi-display-safe mt-5 font-display text-4xl md:text-5xl">
-                                Rõ ràng trong từng lựa chọn.
+                                {content.values.title}
                             </h2>
                         </div>
 
                         <div className="divide-y divide-black/12 border-y border-black/12">
-                            {values.map((value, index) => {
-                                const Icon = value.icon;
+                            {content.values.items.map((value, index) => {
+                                const Icon = valueIcons[index % valueIcons.length];
                                 return (
                                     <div
-                                        key={value.title}
+                                        key={`${value.title}-${index}`}
                                         data-reveal="up"
                                         data-reveal-delay={String(index * 100)}
                                         className="grid gap-5 py-8 sm:grid-cols-[auto_0.4fr_0.6fr] sm:items-start sm:gap-8"
@@ -348,7 +312,7 @@ const About = () => {
                                             <Icon className="h-5 w-5" />
                                         </div>
                                         <h3 className="font-display text-2xl">{value.title}</h3>
-                                        <p className="max-w-lg font-body text-sm leading-6 text-black/55">{value.copy}</p>
+                                        <p className="max-w-lg font-body text-sm leading-6 text-black/55">{value.body}</p>
                                     </div>
                                 );
                             })}
@@ -362,18 +326,18 @@ const About = () => {
                 <div className="pointer-events-none absolute -bottom-40 left-[12%] h-96 w-96 rounded-full border border-white/15" />
                 <div className="relative mx-auto max-w-[90rem] text-center">
                     <p data-reveal="fade" className="font-body text-xs font-semibold uppercase tracking-[0.22em] text-white/70">
-                        Your skin. Your signal.
+                        {content.cta.eyebrow}
                     </p>
                     <h2 data-reveal="up" data-reveal-delay="90" className="vi-display-safe mx-auto mt-6 max-w-5xl font-display text-[clamp(2.8rem,5.8vw,6.1rem)] tracking-[-0.022em]">
-                        Làn da không cần nhiều hơn. Làn da cần đúng hơn.
+                        {content.cta.title}
                     </h2>
                     <Link
-                        href="/shop"
+                        href={content.cta.buttonUrl}
                         data-reveal="up"
                         data-reveal-delay="180"
                         className="group mt-10 inline-flex min-h-13 items-center gap-3 rounded-full bg-white px-7 py-4 font-body text-sm font-semibold text-[#191817] transition-transform duration-300 hover:-translate-y-1"
                     >
-                        Tìm Energy Shot của bạn
+                        {content.cta.buttonLabel}
                         <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                     </Link>
                 </div>

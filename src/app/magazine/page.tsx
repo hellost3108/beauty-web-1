@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import MagazineEditorial from "@/views/MagazineEditorial";
+import { getPublicMagazinePosts } from "@/services/public-content.service";
+
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://melalogy.com"),
@@ -22,6 +25,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function Page() {
-  return <MagazineEditorial />;
+export default async function Page() {
+  const posts = await getPublicMagazinePosts();
+  return <MagazineEditorial posts={posts} />;
 }

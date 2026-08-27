@@ -1,14 +1,16 @@
 import Link from "next/link";
-import { ArrowRight, FileImage, FolderTree, Package, Sparkles } from "lucide-react";
+import { ArrowRight, BookOpenText, FileImage, FolderTree, Newspaper, Package, Sparkles } from "lucide-react";
 import { createClient } from "@/lib/supabase/server";
 
 export default async function AdminDashboardPage() {
   const supabase = await createClient();
-  const [products, publishedProducts, categories, banners] = await Promise.all([
+  const [products, publishedProducts, categories, banners, blog, magazine] = await Promise.all([
     supabase.from("products").select("id", { count: "exact", head: true }),
     supabase.from("products").select("id", { count: "exact", head: true }).eq("status", "published"),
     supabase.from("categories").select("id", { count: "exact", head: true }).eq("is_active", true),
     supabase.from("banners").select("id", { count: "exact", head: true }).eq("status", "published"),
+    supabase.from("articles").select("id", { count: "exact", head: true }).eq("channel", "blog"),
+    supabase.from("articles").select("id", { count: "exact", head: true }).eq("channel", "magazine"),
   ]);
 
   const cards = [
@@ -16,6 +18,8 @@ export default async function AdminDashboardPage() {
     { label: "Đang hiển thị", value: publishedProducts.count ?? 0, icon: Sparkles, href: "/admin/products?status=published" },
     { label: "Danh mục hoạt động", value: categories.count ?? 0, icon: FolderTree, href: "/admin/categories" },
     { label: "Banner đang chạy", value: banners.count ?? 0, icon: FileImage, href: "/admin/banners" },
+    { label: "Bài Blog", value: blog.count ?? 0, icon: BookOpenText, href: "/admin/blog" },
+    { label: "Bài Tạp chí", value: magazine.count ?? 0, icon: Newspaper, href: "/admin/magazine" },
   ];
 
   return (
@@ -26,7 +30,7 @@ export default async function AdminDashboardPage() {
         <p className="mt-3 max-w-2xl text-sm leading-6 text-black/50">Theo dõi nội dung đang xuất bản và đi nhanh đến các module quản trị chính.</p>
       </header>
 
-      <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+      <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
         {cards.map((card) => (
           <Link key={card.label} href={card.href} className="group rounded-3xl border border-black/10 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
             <div className="flex items-start justify-between">

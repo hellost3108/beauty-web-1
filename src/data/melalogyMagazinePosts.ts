@@ -1,5 +1,6 @@
 export type MelalogyMagazinePost = {
   id: number;
+  slug?: string;
   title: string;
   seoTitle: string;
   metaDescription: string;

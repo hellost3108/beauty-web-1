@@ -6,7 +6,7 @@ import Link from "next/link";
 import { ArrowRight, ArrowUpRight, CalendarDays, Clock3, Mail, Sparkles } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { magazineEditorialPosts } from "@/data/melalogyMagazinePosts";
+import type { MelalogyMagazinePost } from "@/data/melalogyMagazinePosts";
 import { useToast } from "@/hooks/use-toast";
 
 const magazineCardLayouts = [
@@ -52,11 +52,11 @@ const magazineCardLayouts = [
   },
 ];
 
-const MagazineEditorial = () => {
+const MagazineEditorial = ({ posts }: { posts: MelalogyMagazinePost[] }) => {
   const { toast } = useToast();
   const [email, setEmail] = useState("");
-  const featuredPost = magazineEditorialPosts[0];
-  const latestPosts = magazineEditorialPosts.slice(1);
+  const featuredPost = posts[0];
+  const latestPosts = posts.slice(1);
 
   const handleSubscribe = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -101,7 +101,7 @@ const MagazineEditorial = () => {
         <section className="px-5 pb-20 md:px-8 md:pb-28">
           <div className="mx-auto w-full max-w-[78rem]">
             <Link
-              href={`/magazine/${featuredPost.id}`}
+              href={`/magazine/${featuredPost.slug ?? featuredPost.id}`}
               className="magazine-cover-2026 group grid overflow-hidden rounded-[2rem] bg-[#181515] text-white lg:grid-cols-[0.78fr_1.22fr] lg:rounded-[3rem]"
               data-reveal="scale"
             >
@@ -170,7 +170,7 @@ const MagazineEditorial = () => {
                 return (
                   <Link
                     key={post.id}
-                    href={`/magazine/${post.id}`}
+                    href={`/magazine/${post.slug ?? post.id}`}
                     className={`magazine-card-2026 group overflow-hidden rounded-[1.75rem] border border-black/10 bg-white ${layout.card}`}
                   >
                     <div className={`magazine-card-media-2026 relative overflow-hidden ${layout.media}`}>

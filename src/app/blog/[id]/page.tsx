@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import BlogDetail from "@/views/BlogDetail";
 import { blogPosts } from "@/data/melalogyBlogPosts";
+import { getPublicBlogPost } from "@/services/public-content.service";
 
 type BlogDetailPageProps = {
   params: Promise<{ id: string }>;
@@ -8,7 +10,7 @@ type BlogDetailPageProps = {
 
 export async function generateMetadata({ params }: BlogDetailPageProps): Promise<Metadata> {
   const { id } = await params;
-  const post = blogPosts.find((item) => item.id === Number(id));
+  const { post } = await getPublicBlogPost(id);
 
   if (!post) return { title: "Bài viết không tồn tại | Melalogy" };
 
@@ -17,7 +19,7 @@ export async function generateMetadata({ params }: BlogDetailPageProps): Promise
     title: post.seoTitle,
     description: post.metaDescription,
     keywords: post.keywords,
-    alternates: { canonical: `/blog/${post.id}` },
+    alternates: { canonical: `/blog/${post.slug ?? post.id}` },
     openGraph: {
       title: post.seoTitle,
       description: post.metaDescription,
@@ -42,13 +44,18 @@ export function generateStaticParams() {
 
 export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
   const { id } = await params;
-  const post = blogPosts.find((item) => item.id === Number(id));
+  const { post, relatedPosts } = await getPublicBlogPost(id);
+  if (!post) notFound();
+  const articlePath = post.slug ?? post.id;
+  const articleImage = post.image.startsWith("http")
+    ? post.image
+    : `https://melalogy.com${post.image}`;
   const articleSchema = post ? {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     headline: post.title,
     description: post.metaDescription,
-    image: `https://melalogy.com${post.image}`,
+    image: articleImage,
     datePublished: post.publishedAt,
     dateModified: post.publishedAt,
     author: { "@type": "Person", name: post.author },
@@ -57,7 +64,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
       name: "Melalogy",
       logo: { "@type": "ImageObject", url: "https://melalogy.com/assets/logo-full.png" },
     },
-    mainEntityOfPage: `https://melalogy.com/blog/${post.id}`,
+    mainEntityOfPage: `https://melalogy.com/blog/${articlePath}`,
   } : null;
 
   return (
@@ -68,7 +75,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema).replace(/</g, "\\u003c") }}
         />
       )}
-      <BlogDetail />
+      <BlogDetail post={post} relatedPosts={relatedPosts} />
     </>
   );
 }

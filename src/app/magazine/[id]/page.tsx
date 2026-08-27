@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import MagazineDetailEditorial from "@/views/MagazineDetailEditorial";
 import { magazineEditorialPosts } from "@/data/melalogyMagazinePosts";
+import { getPublicMagazinePost } from "@/services/public-content.service";
 
 type MagazineDetailPageProps = {
   params: Promise<{ id: string }>;
@@ -8,7 +10,7 @@ type MagazineDetailPageProps = {
 
 export async function generateMetadata({ params }: MagazineDetailPageProps): Promise<Metadata> {
   const { id } = await params;
-  const post = magazineEditorialPosts.find((item) => item.id === Number(id));
+  const { post } = await getPublicMagazinePost(id);
 
   if (!post) return { title: "Bài viết không tồn tại | Tạp chí Melalogy" };
 
@@ -17,7 +19,7 @@ export async function generateMetadata({ params }: MagazineDetailPageProps): Pro
     title: post.seoTitle,
     description: post.metaDescription,
     keywords: post.keywords,
-    alternates: { canonical: `/magazine/${post.id}` },
+    alternates: { canonical: `/magazine/${post.slug ?? post.id}` },
     openGraph: {
       title: post.seoTitle,
       description: post.metaDescription,
@@ -42,13 +44,18 @@ export function generateStaticParams() {
 
 export default async function MagazineDetailPage({ params }: MagazineDetailPageProps) {
   const { id } = await params;
-  const post = magazineEditorialPosts.find((item) => item.id === Number(id));
+  const { post, relatedPosts } = await getPublicMagazinePost(id);
+  if (!post) notFound();
+  const articlePath = post.slug ?? post.id;
+  const articleImage = post.image.startsWith("http")
+    ? post.image
+    : `https://melalogy.com${post.image}`;
   const articleSchema = post ? {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: post.title,
     description: post.metaDescription,
-    image: `https://melalogy.com${post.image}`,
+    image: articleImage,
     datePublished: post.publishedAt,
     dateModified: post.publishedAt,
     author: { "@type": "Person", name: post.author },
@@ -57,7 +64,7 @@ export default async function MagazineDetailPage({ params }: MagazineDetailPageP
       name: "Melalogy",
       logo: { "@type": "ImageObject", url: "https://melalogy.com/assets/logo-full.png" },
     },
-    mainEntityOfPage: `https://melalogy.com/magazine/${post.id}`,
+    mainEntityOfPage: `https://melalogy.com/magazine/${articlePath}`,
   } : null;
 
   return (
@@ -68,7 +75,7 @@ export default async function MagazineDetailPage({ params }: MagazineDetailPageP
           dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema).replace(/</g, "\\u003c") }}
         />
       )}
-      <MagazineDetailEditorial />
+      <MagazineDetailEditorial post={post} relatedPosts={relatedPosts} />
     </>
   );
 }
