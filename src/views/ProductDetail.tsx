@@ -53,7 +53,7 @@ const ProductDetail = () => {
     };
 
     return (
-        <div className="min-h-screen bg-white text-[#1a1a1a]">
+        <div className="min-h-screen bg-white text-[#111111]">
             <Navbar />
 
             {/* Breadcrumb */}
@@ -61,14 +61,14 @@ const ProductDetail = () => {
                 <nav className="flex items-center gap-2 text-sm text-gray-500 overflow-hidden">
                     <Link
                         href="/"
-                        className="hover:text-[#f01a33] transition-colors animate-in fade-in slide-in-from-left-4 duration-700 fill-mode-both"
+                        className="hover:text-[#b31324] transition-colors animate-in fade-in slide-in-from-left-4 duration-700 fill-mode-both"
                     >
                         Trang Chủ
                     </Link>
                     <ChevronRight className="w-4 h-4 text-gray-400 animate-in fade-in slide-in-from-left-4 duration-700 delay-150 fill-mode-both" />
                     <Link
                         href="/collection"
-                        className="hover:text-[#f01a33] transition-colors animate-in fade-in slide-in-from-left-4 duration-700 delay-300 fill-mode-both"
+                        className="hover:text-[#b31324] transition-colors animate-in fade-in slide-in-from-left-4 duration-700 delay-300 fill-mode-both"
                     >
                         Bộ Sưu Tập
                     </Link>
@@ -86,7 +86,7 @@ const ProductDetail = () => {
                         {/* Left: Image */}
                         <div className="space-y-6">
                             <div className="relative aspect-square bg-[#f9f8f7] rounded-[20px] overflow-hidden">
-                                <div className="absolute top-6 left-6 z-10 bg-[#f01a33]/10 text-[#f01a33] text-xs font-bold px-3 py-1 rounded-sm uppercase tracking-wider border border-[#f01a33]/20">
+                                <div className="absolute top-6 left-6 z-10 bg-[#b31324]/10 text-[#b31324] text-xs font-bold px-3 py-1 rounded-sm uppercase tracking-wider border border-[#b31324]/20">
                                     Bán Chạy Nhất
                                 </div>
                                 <img
@@ -101,7 +101,7 @@ const ProductDetail = () => {
                                         <button
                                             key={idx}
                                             onClick={() => setActiveImage(img)}
-                                            className={`aspect-square bg-[#f9f8f7] rounded-[12px] overflow-hidden border-2 transition-all ${activeImage === img ? 'border-[#f01a33]' : 'border-transparent hover:border-gray-200'}`}
+                                            className={`aspect-square bg-[#f9f8f7] rounded-[12px] overflow-hidden border-2 transition-all ${activeImage === img ? 'border-[#b31324]' : 'border-transparent hover:border-gray-200'}`}
                                         >
                                             <img src={img} alt={`${productDetails.name} ${idx + 1}`} className="w-full h-full object-cover" />
                                         </button>
@@ -113,14 +113,14 @@ const ProductDetail = () => {
                         {/* Right: Details */}
                         <div className="space-y-8">
                             <div>
-                                <h1 className="font-display text-4xl md:text-5xl text-[#1a1a1a] mb-2">
+                                <h1 className="font-display text-4xl md:text-5xl text-[#111111] mb-2">
                                     {productDetails.name}
                                 </h1>
                                 <p className="font-body text-[#666666] text-lg">{productDetails.subtitle}</p>
 
                                 {/* Rating Badge */}
                                 <div className="flex items-center gap-1 mt-3">
-                                    <div className="flex items-center gap-1 px-2 py-0.5 border border-[#f01a33]/50 rounded-full text-[#f01a33] text-xs font-bold">
+                                    <div className="flex items-center gap-1 px-2 py-0.5 border border-[#b31324]/50 rounded-full text-[#b31324] text-xs font-bold">
                                         <span>4.2</span>
                                         <div className="flex gap-[1px]">
                                             {[1, 2, 3, 4].map((star) => (
@@ -132,7 +132,7 @@ const ProductDetail = () => {
                             </div>
 
                             <div className="flex items-end gap-3">
-                                <span className="font-display text-3xl font-bold text-[#f01a33]">{productDetails.price}đ</span>
+                                <span className="font-display text-3xl font-bold text-[#b31324]">{productDetails.price}đ</span>
                             </div>
 
                             <p className="font-body text-[#666666] leading-relaxed">
@@ -158,7 +158,7 @@ const ProductDetail = () => {
                                 </div>
                                 <Button
                                     onClick={() => handleAddToCart(quantity)}
-                                    className="bg-white text-[#f01a33] border border-[#f01a33] px-8 py-6 rounded-md hover:bg-[#fff5f5] text-base font-medium min-w-[140px]"
+                                    className="bg-white text-[#b31324] border border-[#b31324] px-8 py-6 rounded-md hover:bg-[#fff5f5] text-base font-medium min-w-[140px]"
                                 >
                                     Thêm Vào Giỏ
                                 </Button>
@@ -167,16 +167,16 @@ const ProductDetail = () => {
                             <div className="flex flex-wrap gap-4">
                                 <Button
                                     onClick={handleBuyNow}
-                                    className="bg-[#f01a33] text-white px-12 py-6 rounded-md shadow-lg shadow-[#f01a33]/20 text-base font-medium flex-1 md:flex-none relative overflow-hidden group/btn"
+                                    className="bg-[#b31324] text-white px-12 py-6 rounded-md shadow-lg shadow-[#b31324]/20 text-base font-medium flex-1 md:flex-none relative overflow-hidden group/btn"
                                 >
-                                    <span className="relative z-10 group-hover/btn:text-[#f01a33] transition-colors duration-700">Mua Ngay</span>
+                                    <span className="relative z-10 group-hover/btn:text-[#b31324] transition-colors duration-700">Mua Ngay</span>
                                     <div className="absolute bottom-0 right-0 w-full h-0 bg-white group-hover/btn:h-full transition-all duration-700 ease-liquid" style={{ transformOrigin: 'bottom right' }} />
                                 </Button>
                                 <button
                                     onClick={handleAddToWishlist}
-                                    className={`flex items-center gap-2 px-6 py-3 border rounded-md transition-colors ${isInWishlist(productDetails.id) ? 'border-[#f01a33] text-[#f01a33] bg-[#fff5f5]' : 'border-gray-200 hover:border-[#f01a33] hover:text-[#f01a33]'}`}
+                                    className={`flex items-center gap-2 px-6 py-3 border rounded-md transition-colors ${isInWishlist(productDetails.id) ? 'border-[#b31324] text-[#b31324] bg-[#fff5f5]' : 'border-gray-200 hover:border-[#b31324] hover:text-[#b31324]'}`}
                                 >
-                                    <Heart className={`w-5 h-5 ${isInWishlist(productDetails.id) ? 'fill-[#f01a33]' : ''}`} />
+                                    <Heart className={`w-5 h-5 ${isInWishlist(productDetails.id) ? 'fill-[#b31324]' : ''}`} />
                                     <span className="text-sm font-medium">{isInWishlist(productDetails.id) ? 'Đã Yêu Thích' : 'Thêm Vào Yêu Thích'}</span>
                                 </button>
                             </div>
@@ -207,25 +207,25 @@ const ProductDetail = () => {
                 <div className="w-full mx-auto px-6 md:px-10 lg:px-16 xl:px-24">
                     <Accordion type="single" collapsible className="w-full space-y-4">
                         <AccordionItem value="description" className="border-b border-gray-200">
-                            <AccordionTrigger className="font-display text-xl py-4 hover:text-[#f01a33] hover:no-underline">Mô Tả Sản Phẩm</AccordionTrigger>
+                            <AccordionTrigger className="font-display text-xl py-4 hover:text-[#b31324] hover:no-underline">Mô Tả Sản Phẩm</AccordionTrigger>
                             <AccordionContent className="text-gray-600 leading-relaxed pb-6">
                                 {productDetails.description}
                             </AccordionContent>
                         </AccordionItem>
                         <AccordionItem value="ingredients" className="border-b border-gray-200">
-                            <AccordionTrigger className="font-display text-xl py-4 hover:text-[#f01a33] hover:no-underline">Thành Phần Chính</AccordionTrigger>
+                            <AccordionTrigger className="font-display text-xl py-4 hover:text-[#b31324] hover:no-underline">Thành Phần Chính</AccordionTrigger>
                             <AccordionContent className="text-gray-600 leading-relaxed pb-6">
                                 {productDetails.ingredients}
                             </AccordionContent>
                         </AccordionItem>
                         <AccordionItem value="usage" className="border-b border-gray-200">
-                            <AccordionTrigger className="font-display text-xl py-4 hover:text-[#f01a33] hover:no-underline">Cách Sử Dụng</AccordionTrigger>
+                            <AccordionTrigger className="font-display text-xl py-4 hover:text-[#b31324] hover:no-underline">Cách Sử Dụng</AccordionTrigger>
                             <AccordionContent className="text-gray-600 leading-relaxed pb-6">
                                 {productDetails.usage}
                             </AccordionContent>
                         </AccordionItem>
                         <AccordionItem value="shipping" className="border-b border-gray-200">
-                            <AccordionTrigger className="font-display text-xl py-4 hover:text-[#f01a33] hover:no-underline">Vận Chuyển & Đổi Trả</AccordionTrigger>
+                            <AccordionTrigger className="font-display text-xl py-4 hover:text-[#b31324] hover:no-underline">Vận Chuyển & Đổi Trả</AccordionTrigger>
                             <AccordionContent className="text-gray-600 leading-relaxed pb-6">
                                 Miễn phí vận chuyển cho đơn hàng từ 500.000đ. Chấp nhận đổi trả trong vòng 7 ngày kể từ ngày nhận hàng nếu sản phẩm chưa sử dụng và còn nguyên bao bì.
                             </AccordionContent>
@@ -241,8 +241,8 @@ const ProductDetail = () => {
             <section className="py-20 bg-white">
                 <div className="w-full mx-auto px-6 md:px-10 lg:px-16 xl:px-24">
                     <div className="text-center mb-16">
-                        <h2 className="font-display text-[36px] text-[#1a1a1a]">
-                            Khám Phá <span className="text-[#f01a33]">Các Sản Phẩm Khác</span>
+                        <h2 className="font-display text-[36px] text-[#111111]">
+                            Khám Phá <span className="text-[#b31324]">Các Sản Phẩm Khác</span>
                         </h2>
                     </div>
 
@@ -270,7 +270,7 @@ const ProductDetail = () => {
                                                     e.stopPropagation();
                                                     addToWishlist(product);
                                                 }}
-                                                className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 shadow-md ${isInWishlist(product.id) ? 'bg-[#f01a33] text-white' : 'bg-white hover:bg-[#f01a33] hover:text-white'}`}
+                                                className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 shadow-md ${isInWishlist(product.id) ? 'bg-[#b31324] text-white' : 'bg-white hover:bg-[#b31324] hover:text-white'}`}
                                             >
                                                 <Heart className={`w-5 h-5 ${isInWishlist(product.id) ? 'fill-current' : ''}`} />
                                             </button>
@@ -279,7 +279,7 @@ const ProductDetail = () => {
                                                     e.stopPropagation();
                                                     // Share functionality
                                                 }}
-                                                className="w-10 h-10 bg-white rounded-full flex items-center justify-center hover:bg-[#f01a33] hover:text-white transition-all duration-300 shadow-md"
+                                                className="w-10 h-10 bg-white rounded-full flex items-center justify-center hover:bg-[#b31324] hover:text-white transition-all duration-300 shadow-md"
                                             >
                                                 <Share2 className="w-5 h-5" />
                                             </button>
@@ -290,9 +290,9 @@ const ProductDetail = () => {
                                                     e.stopPropagation();
                                                     addToCart(product);
                                                 }}
-                                                className="relative w-full bg-[#f01a33] text-white py-3 rounded-[12px] font-display font-semibold text-sm overflow-hidden group/btn shadow-lg hover:shadow-xl transition-shadow duration-500"
+                                                className="relative w-full bg-[#b31324] text-white py-3 rounded-[12px] font-display font-semibold text-sm overflow-hidden group/btn shadow-lg hover:shadow-xl transition-shadow duration-500"
                                             >
-                                                <span className="relative z-10 group-hover/btn:text-[#f01a33] transition-colors duration-700">Thêm Vào Giỏ</span>
+                                                <span className="relative z-10 group-hover/btn:text-[#b31324] transition-colors duration-700">Thêm Vào Giỏ</span>
                                                 <div className="absolute bottom-0 right-0 w-full h-0 bg-white group-hover/btn:h-full transition-all duration-700 ease-liquid" style={{ transformOrigin: 'bottom right' }} />
                                             </button>
                                         </div>
@@ -302,8 +302,8 @@ const ProductDetail = () => {
                                     className="flex flex-col items-center text-center p-6 pt-4 space-y-2"
                                     onClick={() => setQuickViewProduct(product)}
                                 >
-                                    <span className="font-display text-xl font-bold text-[#1a1a1a]">{product.price}đ</span>
-                                    <p className="font-display text-lg italic text-[#1a1a1a] opacity-90 group-hover:text-[#f01a33] transition-colors">
+                                    <span className="font-display text-xl font-bold text-[#111111]">{product.price}đ</span>
+                                    <p className="font-display text-lg italic text-[#111111] opacity-90 group-hover:text-[#b31324] transition-colors">
                                         {product.name}
                                     </p>
                                 </div>
@@ -328,17 +328,17 @@ const ProductDetail = () => {
                         {/* Left: Content */}
                         <div className="p-8 md:p-12 flex flex-col justify-center">
                             <div className="flex justify-between items-start mb-2">
-                                <h2 className="font-display text-3xl md:text-4xl text-[#1a1a1a]">
+                                <h2 className="font-display text-3xl md:text-4xl text-[#111111]">
                                     {quickViewProduct?.name}
                                 </h2>
-                                <div className="flex items-center gap-1 border border-[#f01a33] rounded-full px-2 py-0.5">
-                                    <span className="text-xs font-bold text-[#f01a33]">4.2</span>
-                                    <Star className="w-3 h-3 text-[#f01a33] fill-[#f01a33]" />
+                                <div className="flex items-center gap-1 border border-[#b31324] rounded-full px-2 py-0.5">
+                                    <span className="text-xs font-bold text-[#b31324]">4.2</span>
+                                    <Star className="w-3 h-3 text-[#b31324] fill-[#b31324]" />
                                 </div>
                             </div>
 
                             <div className="flex items-baseline gap-3 mb-4">
-                                <span className="text-[#f01a33] font-display text-2xl font-bold">{quickViewProduct?.price}đ</span>
+                                <span className="text-[#b31324] font-display text-2xl font-bold">{quickViewProduct?.price}đ</span>
                             </div>
 
                             <p className="font-body text-[#666666] text-sm leading-relaxed mb-8">
@@ -376,9 +376,9 @@ const ProductDetail = () => {
                                         setQuickViewProduct(null);
                                         setQuickViewQuantity(1);
                                     }}
-                                    className="flex-1 bg-[#f01a33] hover:bg-[#d6182d] text-white rounded-[10px] py-6 shadow-lg shadow-[#f01a33]/20 text-base font-normal relative overflow-hidden group/btn"
+                                    className="flex-1 bg-[#b31324] hover:bg-[#d6182d] text-white rounded-[10px] py-6 shadow-lg shadow-[#b31324]/20 text-base font-normal relative overflow-hidden group/btn"
                                 >
-                                    <span className="relative z-10 group-hover/btn:text-[#f01a33] transition-colors duration-700">Mua Ngay</span>
+                                    <span className="relative z-10 group-hover/btn:text-[#b31324] transition-colors duration-700">Mua Ngay</span>
                                     <div className="absolute bottom-0 right-0 w-full h-0 bg-white group-hover/btn:h-full transition-all duration-700 ease-liquid" style={{ transformOrigin: 'bottom right' }} />
                                 </Button>
                                 <Button
@@ -391,7 +391,7 @@ const ProductDetail = () => {
                                         setQuickViewProduct(null);
                                         setQuickViewQuantity(1);
                                     }}
-                                    className="flex-1 bg-white hover:bg-[#fff5f5] text-[#f01a33] border border-[#f01a33] rounded-[10px] py-6 text-base font-normal"
+                                    className="flex-1 bg-white hover:bg-[#fff5f5] text-[#b31324] border border-[#b31324] rounded-[10px] py-6 text-base font-normal"
                                 >
                                     Thêm Vào Giỏ
                                 </Button>
@@ -404,7 +404,7 @@ const ProductDetail = () => {
                                     variant="outline"
                                     className={cn(
                                         "w-12 h-12 rounded-[10px] border border-gray-200 flex items-center justify-center p-0 hover:bg-gray-50",
-                                        quickViewProduct && isInWishlist(quickViewProduct.id) && "bg-[#f01a33]/5 border-[#f01a33]/20 text-[#f01a33]"
+                                        quickViewProduct && isInWishlist(quickViewProduct.id) && "bg-[#b31324]/5 border-[#b31324]/20 text-[#b31324]"
                                     )}
                                 >
                                     <Heart className={cn("w-5 h-5", quickViewProduct && isInWishlist(quickViewProduct.id) && "fill-current")} />
@@ -420,7 +420,7 @@ const ProductDetail = () => {
                                         router.push(`/product/${productId}`);
                                     }, 50);
                                 }}
-                                className="inline-flex items-center gap-2 text-[#f01a33] text-sm sm:text-base border border-[#f01a33]/30 px-6 py-2 rounded-full w-fit hover:bg-[#f01a33]/5 transition-colors cursor-pointer"
+                                className="inline-flex items-center gap-2 text-[#b31324] text-sm sm:text-base border border-[#b31324]/30 px-6 py-2 rounded-full w-fit hover:bg-[#b31324]/5 transition-colors cursor-pointer"
                             >
                                 <span>Xem Chi Tiết Đầy Đủ</span>
                                 <ChevronDown className="w-4 h-4 -rotate-90" />
@@ -442,7 +442,7 @@ const ProductDetail = () => {
             {/* Loading Overlay */}
             {isNavigating && (
                 <div className="fixed inset-0 bg-white z-[9999] flex items-center justify-center">
-                    <div className="text-[#f01a33] text-lg font-medium">Đang tải...</div>
+                    <div className="text-[#b31324] text-lg font-medium">Đang tải...</div>
                 </div>
             )}
         </div>

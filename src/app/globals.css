@@ -14,12 +14,12 @@
    ================================================================ */
 @layer components {
   .commerce-page-2026 {
-    --commerce-ink: oklch(19% 0.018 22);
-    --commerce-muted: oklch(51% 0.018 25);
-    --commerce-red: oklch(61% 0.235 22);
+    --commerce-ink: #111111;
+    --commerce-muted: #6b6a67;
+    --commerce-red: #b31324;
     --commerce-green: oklch(53% 0.13 155);
-    --commerce-paper: oklch(98.5% 0.008 35);
-    --commerce-blush: oklch(96.5% 0.024 20);
+    --commerce-paper: #f8f7f5;
+    --commerce-blush: #f4f1ee;
     --commerce-line: color-mix(in oklch, var(--commerce-ink) 11%, transparent);
     --commerce-surface: color-mix(in oklch, white 92%, var(--commerce-blush));
     min-height: 100vh;
@@ -27,7 +27,7 @@
     color: var(--commerce-ink);
     background:
       radial-gradient(circle at 9% 18%, color-mix(in oklch, var(--commerce-red) 5%, transparent) 0 9rem, transparent 22rem),
-      radial-gradient(circle at 94% 38%, oklch(93% 0.04 170 / .55) 0 8rem, transparent 25rem),
+      radial-gradient(circle at 94% 38%, color-mix(in oklch, var(--mlg-pearl) 70%, transparent) 0 8rem, transparent 25rem),
       var(--commerce-paper);
     font-family: var(--font-body), sans-serif;
   }
@@ -1529,43 +1529,53 @@
 
 @layer base {
   :root {
-    /* Blushora Brand Colors */
-    --background: 350 100% 98%;
-    --foreground: 0 0% 17%;
+    /*
+     * Melalogy brand palette (guideline 05A) expressed in the HSL channel
+     * format the shadcn tokens expect:
+     *   Cherry     #B31324 → 354 81% 39%
+     *   Black      #111111 →   0  0%  7%
+     *   Off-white  #F8F7F5 →  40 18% 97%
+     *   Pearl grey #ECECEA →  60  5% 92%
+     *   Charcoal   #303030 →   0  0% 19%
+     * The old Blushora palette was pink-tinted; the guideline calls for a
+     * neutral canvas with cherry as the only accent.
+     */
+    --background: 40 18% 97%;
+    --foreground: 0 0% 7%;
 
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 17%;
+    --card-foreground: 0 0% 7%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 17%;
+    --popover-foreground: 0 0% 7%;
 
-    --primary: 349 75% 58%;
+    --primary: 354 81% 39%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 350 59% 95%;
-    --secondary-foreground: 0 0% 17%;
+    --secondary: 60 5% 92%;
+    --secondary-foreground: 0 0% 7%;
 
-    --muted: 350 40% 96%;
-    --muted-foreground: 0 0% 42%;
+    --muted: 45 10% 95%;
+    --muted-foreground: 0 0% 38%;
 
-    --accent: 350 59% 95%;
-    --accent-foreground: 0 0% 17%;
+    --accent: 60 5% 92%;
+    --accent-foreground: 0 0% 7%;
 
-    --destructive: 0 84.2% 60.2%;
+    --destructive: 354 84% 28%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 350 30% 90%;
-    --input: 350 30% 90%;
-    --ring: 349 75% 58%;
+    --border: 48 8% 88%;
+    --input: 48 8% 88%;
+    --ring: 354 81% 39%;
 
     --radius: 0.75rem;
 
-    /* Melalogy 2026 editorial system */
-    --ink-2026: oklch(20% 0.018 20);
-    --paper-2026: oklch(98.5% 0.008 35);
-    --rose-2026: oklch(61% 0.235 22);
-    --rose-soft-2026: oklch(95.5% 0.035 20);
-    --sage-2026: oklch(91% 0.035 155);
+    /* Melalogy 2026 editorial system — repointed at the brand palette */
+    --ink-2026: #111111;
+    --paper-2026: #f8f7f5;
+    --rose-2026: #b31324;
+    --rose-soft-2026: #f4f1ee;
+    --sage-2026: #ececea;
     --line-2026: color-mix(in oklch, var(--ink-2026) 12%, transparent);
     --surface-2026: color-mix(in oklch, white 86%, var(--rose-soft-2026));
     --radius-card-2026: clamp(1.25rem, 2vw, 2rem);
@@ -1574,19 +1584,20 @@
     --shadow-float-2026: 0 1px 0 rgb(255 255 255 / 0.8) inset,
       0 24px 70px -38px color-mix(in oklch, var(--ink-2026) 38%, transparent);
 
-    /* Blushora Custom Tokens */
-    --blush-soft: 350 100% 98%;
-    --blush-medium: 350 59% 95%;
-    --blush-warm: 30 30% 95%;
-    --brand-pink: 349 75% 58%;
-    --text-primary: 0 0% 17%;
-    --text-secondary: 0 0% 42%;
-    --text-charcoal: 0 0% 20%;
+    /* Legacy token names, repointed at the Melalogy palette */
+    --blush-soft: 40 18% 97%;
+    --blush-medium: 60 5% 92%;
+    --blush-warm: 30 12% 95%;
+    --brand-pink: 354 81% 39%;
+    --text-primary: 0 0% 7%;
+    --text-secondary: 0 0% 38%;
+    --text-charcoal: 0 0% 19%;
 
-    /* Typography */
-    /* --font-display and --font-body are provided via layout.tsx */
-    --font-brand: var(--font-display), serif;
-    --font-button: var(--font-body), sans-serif;
+    /* Typography — Mona Sans is the single brand typeface (see layout.tsx) */
+    --font-display: var(--font-mona);
+    --font-body: var(--font-mona);
+    --font-brand: var(--font-mona);
+    --font-button: var(--font-mona);
 
     /* Shadows */
     --shadow-soft: 0 4px 20px -4px hsl(349 75% 58% / 0.1);
@@ -1892,7 +1903,7 @@
     display: block;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, #f01a33, #ff7f8e 62%, #ffd2d8);
+    background: linear-gradient(90deg, #b31324, #ff7f8e 62%, #ffd2d8);
     box-shadow: 0 0 18px rgb(240 26 51 / 0.35);
     transform: scaleX(var(--scroll-progress, 0));
     transform-origin: left;

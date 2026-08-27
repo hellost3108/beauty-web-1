@@ -30,22 +30,22 @@ const Magazine = () => {
     };
 
     return (
-        <div className="min-h-screen bg-white text-[#1a1a1a]">
+        <div className="min-h-screen bg-white text-[#111111]">
             <Navbar />
 
             {/* Editorial Header */}
             <header className="pt-[120px] pb-12 md:pt-[160px] md:pb-20 px-6">
                 <div className="max-w-7xl mx-auto text-center">
-                    <span className="text-[#1a1a1a] font-display text-lg tracking-wide uppercase mb-4 block">Số Báo Điện Tử</span>
+                    <span className="text-[#111111] font-display text-lg tracking-wide uppercase mb-4 block">Số Báo Điện Tử</span>
                     <h1 className="font-display text-4xl md:text-5xl lg:text-7xl mb-6">
-                        <span className="text-[#1a1a1a]">Melalogy </span>
-                        <span className="text-[#1a1a1a]">Magazine</span>
+                        <span className="text-[#111111]">Melalogy </span>
+                        <span className="text-[#111111]">Magazine</span>
                     </h1>
                     <div className="flex justify-center gap-8 text-sm uppercase tracking-widest font-body font-medium text-[#666]">
                         <span>Làm Đẹp</span>
-                        <span className="text-[#f01a33]">•</span>
+                        <span className="text-[#b31324]">•</span>
                         <span>Văn Hoá</span>
-                        <span className="text-[#f01a33]">•</span>
+                        <span className="text-[#b31324]">•</span>
                         <span>Phong Cách Sống</span>
                     </div>
                 </div>
@@ -69,10 +69,10 @@ const Magazine = () => {
                                 />
                             </div>
                             <div className="max-w-3xl">
-                                <span className="inline-block px-4 py-1.5 bg-[#f01a33] text-white text-xs font-bold uppercase tracking-wider rounded-full mb-4">
+                                <span className="inline-block px-4 py-1.5 bg-[#b31324] text-white text-xs font-bold uppercase tracking-wider rounded-full mb-4">
                                     {featuredPost.category}
                                 </span>
-                                <h2 className="font-display text-3xl md:text-5xl mb-4 leading-tight group-hover:text-[#f01a33] transition-colors">
+                                <h2 className="font-display text-3xl md:text-5xl mb-4 leading-tight group-hover:text-[#b31324] transition-colors">
                                     {featuredPost.title}
                                 </h2>
                                 <p className="font-body text-xl text-[#666] mb-4 leading-relaxed">
@@ -93,7 +93,7 @@ const Magazine = () => {
                     {/* Sidebar Posts - Sticky */}
                     <div className="lg:col-span-4 lg:sticky lg:top-32 flex flex-col gap-12 lg:pl-8 h-fit">
                         <div>
-                            <span className="inline-block text-xs font-display font-bold uppercase tracking-wider text-[#1a1a1a] mb-8 border-b-2 border-[#f01a33] pb-2">
+                            <span className="inline-block text-xs font-display font-bold uppercase tracking-wider text-[#111111] mb-8 border-b-2 border-[#b31324] pb-2">
                                 Bài Viết Nổi Bật
                             </span>
                             <div className="flex flex-col gap-10">
@@ -114,7 +114,7 @@ const Magazine = () => {
                                             <span className="text-[10px] font-bold uppercase text-[#e7406e] tracking-wider font-body">
                                                 {post.category}
                                             </span>
-                                            <h3 className="font-display text-xl leading-tight group-hover:text-[#f01a33] transition-colors">
+                                            <h3 className="font-display text-xl leading-tight group-hover:text-[#b31324] transition-colors">
                                                 {post.title}
                                             </h3>
                                             <p className="font-body text-[#666] text-sm line-clamp-2">
@@ -127,7 +127,7 @@ const Magazine = () => {
                         </div>
 
                         <div className="bg-[#fcfcfc] p-8 border border-gray-100 rounded-[24px] text-center">
-                            <h3 className="font-display text-2xl mb-2 text-[#1a1a1a]">Bản Tin</h3>
+                            <h3 className="font-display text-2xl mb-2 text-[#111111]">Bản Tin</h3>
                             <p className="font-body text-sm text-[#666] mb-6">Tuyển chọn làm đẹp hàng tuần, gửi thẳng đến hộp thư của bạn.</p>
                             <form onSubmit={handleSubscribe}>
                                 <input
@@ -135,11 +135,11 @@ const Magazine = () => {
                                     placeholder="Địa chỉ email của bạn"
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
-                                    className="w-full bg-white border border-gray-200 p-3 text-sm text-[#1a1a1a] placeholder:text-gray-400 mb-4 focus:outline-none focus:border-[#f01a33] transition-colors rounded-lg"
+                                    className="w-full bg-white border border-gray-200 p-3 text-sm text-[#111111] placeholder:text-gray-400 mb-4 focus:outline-none focus:border-[#b31324] transition-colors rounded-lg"
                                 />
                                 <button
                                     type="submit"
-                                    className="w-full bg-[#1a1a1a] text-white font-bold uppercase text-xs tracking-widest py-3 hover:bg-[#f01a33] transition-colors rounded-lg"
+                                    className="w-full bg-[#111111] text-white font-bold uppercase text-xs tracking-widest py-3 hover:bg-[#b31324] transition-colors rounded-lg"
                                 >
                                     Đăng Ký
                                 </button>
@@ -153,7 +153,7 @@ const Magazine = () => {
                 <section className="mb-24">
                     <div className="text-center mb-16">
                         <span className="text-[#e7406e] font-display text-sm tracking-wide uppercase mb-2 block">Lựa Chọn Của Biên Tập Viên</span>
-                        <h2 className="font-display text-4xl md:text-5xl text-[#1a1a1a]">Tiêu Điểm</h2>
+                        <h2 className="font-display text-4xl md:text-5xl text-[#111111]">Tiêu Điểm</h2>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-16">
@@ -175,14 +175,14 @@ const Magazine = () => {
                                         <span className="inline-block text-[10px] font-bold uppercase tracking-wider text-[#e7406e] mb-3">
                                             {post.category}
                                         </span>
-                                        <h3 className="font-display text-2xl md:text-3xl mb-4 group-hover:text-[#f01a33] transition-colors">
+                                        <h3 className="font-display text-2xl md:text-3xl mb-4 group-hover:text-[#b31324] transition-colors">
                                             {post.title}
                                         </h3>
                                         <p className="font-body text-[#666] leading-relaxed mb-6">
                                             {post.excerpt}
                                         </p>
                                     </div>
-                                    <div className="flex items-center gap-2 text-[10px] uppercase tracking-widest font-bold text-[#1a1a1a]/60 pt-6 border-t border-gray-100">
+                                    <div className="flex items-center gap-2 text-[10px] uppercase tracking-widest font-bold text-[#111111]/60 pt-6 border-t border-gray-100">
                                         <Clock className="w-3 h-3" />
                                         <span>{post.readTime}</span>
                                     </div>
@@ -197,8 +197,8 @@ const Magazine = () => {
                 {gridPosts.length > 0 && (
                     <section>
                         <div className="flex items-end justify-between mb-12 border-b border-gray-100 pb-4">
-                            <h2 className="font-display text-3xl md:text-4xl text-[#1a1a1a]">Bài Viết Mới Nhất</h2>
-                            <Link href="#" className="flex items-center gap-2 text-[#f01a33] font-medium hover:opacity-80 transition-opacity">
+                            <h2 className="font-display text-3xl md:text-4xl text-[#111111]">Bài Viết Mới Nhất</h2>
+                            <Link href="#" className="flex items-center gap-2 text-[#b31324] font-medium hover:opacity-80 transition-opacity">
                                 Xem Lưu Trữ <ArrowUpRight className="w-4 h-4" />
                             </Link>
                         </div>
@@ -220,7 +220,7 @@ const Magazine = () => {
                                     <div className="flex justify-between items-start mb-4">
                                         <span className="text-xs font-bold uppercase tracking-wider text-[#e7406e] font-body">{post.category}</span>
                                     </div>
-                                    <h3 className="font-display text-2xl mb-4 group-hover:text-[#f01a33] transition-colors leading-tight">
+                                    <h3 className="font-display text-2xl mb-4 group-hover:text-[#b31324] transition-colors leading-tight">
                                         {post.title}
                                     </h3>
                                     <p className="font-body text-[#666] mb-6 line-clamp-3 leading-relaxed">

@@ -89,18 +89,18 @@ const Checkout = () => {
     };
 
     return (
-        <div className="min-h-screen bg-white font-sans text-[#1a1a1a]">
+        <div className="min-h-screen bg-white font-sans text-[#111111]">
             <Navbar />
 
             <div className="pt-28 pb-10 px-4 md:px-8 lg:px-16 max-w-[1440px] mx-auto">
 
                 {/* Breadcrumb */}
                 <div className="flex items-center gap-2 text-sm text-gray-500 mb-8 font-medium">
-                    <Link href="/cart" className="hover:text-[#f01a33]">Giỏ Hàng</Link>
+                    <Link href="/cart" className="hover:text-[#b31324]">Giỏ Hàng</Link>
                     <ChevronRight className="w-4 h-4" />
-                    <span className="hover:text-[#f01a33] cursor-pointer">Vận Chuyển</span>
+                    <span className="hover:text-[#b31324] cursor-pointer">Vận Chuyển</span>
                     <ChevronRight className="w-4 h-4" />
-                    <span className="text-[#f01a33] font-bold">Thanh Toán</span>
+                    <span className="text-[#b31324] font-bold">Thanh Toán</span>
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
@@ -108,7 +108,7 @@ const Checkout = () => {
                     {/* LEFT COLUMN: Payment Details */}
                     <div className="lg:col-span-7 space-y-8">
                         <div>
-                            <h1 className="text-3xl font-bold text-[#1a1a1a]">Chi Tiết Thanh Toán</h1>
+                            <h1 className="text-3xl font-bold text-[#111111]">Chi Tiết Thanh Toán</h1>
                             <p className="text-gray-500 mt-2">Hoàn tất đơn hàng của bạn một cách an toàn.</p>
                         </div>
 
@@ -122,12 +122,12 @@ const Checkout = () => {
                                     className={cn(
                                         "relative flex flex-col items-center justify-center gap-3 p-4 border rounded-xl transition-all",
                                         paymentMethod === 'card'
-                                            ? "border-[#f01a33] bg-[#f01a33]/5 text-[#f01a33] font-medium ring-1 ring-[#f01a33]"
+                                            ? "border-[#b31324] bg-[#b31324]/5 text-[#b31324] font-medium ring-1 ring-[#b31324]"
                                             : "border-gray-200 hover:border-red-200 text-gray-600"
                                     )}
                                 >
                                     {paymentMethod === 'card' && (
-                                        <div className="absolute top-2 right-2 text-[#f01a33]">
+                                        <div className="absolute top-2 right-2 text-[#b31324]">
                                             <CheckCircle2 className="w-4 h-4 fill-current" />
                                         </div>
                                     )}
@@ -141,7 +141,7 @@ const Checkout = () => {
                                     className={cn(
                                         "flex flex-col items-center justify-center gap-3 p-4 border rounded-xl transition-all",
                                         paymentMethod === 'bank_transfer'
-                                            ? "border-[#f01a33] bg-[#f01a33]/5 text-[#f01a33] font-medium ring-1 ring-[#f01a33]"
+                                            ? "border-[#b31324] bg-[#b31324]/5 text-[#b31324] font-medium ring-1 ring-[#b31324]"
                                             : "border-gray-200 hover:border-red-200 text-gray-600"
                                     )}
                                 >
@@ -155,7 +155,7 @@ const Checkout = () => {
                                     className={cn(
                                         "flex flex-col items-center justify-center gap-3 p-4 border rounded-xl transition-all",
                                         paymentMethod === 'cod'
-                                            ? "border-[#f01a33] bg-[#f01a33]/5 text-[#f01a33] font-medium ring-1 ring-[#f01a33]"
+                                            ? "border-[#b31324] bg-[#b31324]/5 text-[#b31324] font-medium ring-1 ring-[#b31324]"
                                             : "border-gray-200 hover:border-red-200 text-gray-600"
                                     )}
                                 >
@@ -224,7 +224,7 @@ const Checkout = () => {
                                 </div>
 
                                 <div className="flex items-center space-x-2 pt-2">
-                                    <Checkbox id="billing" defaultChecked className="data-[state=checked]:bg-[#f01a33] border-gray-300" />
+                                    <Checkbox id="billing" defaultChecked className="data-[state=checked]:bg-[#b31324] border-gray-300" />
                                     <label
                                         htmlFor="billing"
                                         className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-gray-700"
@@ -265,7 +265,7 @@ const Checkout = () => {
                     {/* RIGHT COLUMN: Order Summary */}
                     <div className="lg:col-span-5">
                         <div className="bg-white p-6 md:p-8 rounded-2xl shadow-[0_5px_30px_rgba(0,0,0,0.05)] border border-gray-100 sticky top-32">
-                            <h2 className="text-xl font-bold mb-6 text-[#1a1a1a]">Tóm Tắt Đơn Hàng</h2>
+                            <h2 className="text-xl font-bold mb-6 text-[#111111]">Tóm Tắt Đơn Hàng</h2>
 
                             <div className="space-y-6 mb-8">
                                 {cartItems.length > 0 ? cartItems.map((item, index) => (
@@ -290,14 +290,14 @@ const Checkout = () => {
                             <div className="mb-8">
                                 <div
                                     onClick={() => setDiscountCode('SAVE10')}
-                                    className="bg-[#f01a33]/5 border border-[#f01a33]/20 rounded-lg p-3 mb-3 flex items-center gap-2 cursor-pointer hover:bg-[#f01a33]/10 transition-colors"
+                                    className="bg-[#b31324]/5 border border-[#b31324]/20 rounded-lg p-3 mb-3 flex items-center gap-2 cursor-pointer hover:bg-[#b31324]/10 transition-colors"
                                 >
-                                    <span className="text-xs font-medium text-[#f01a33]">Dùng mã <strong className="font-bold">SAVE10</strong> để giảm 10%! (Bấm để dùng)</span>
+                                    <span className="text-xs font-medium text-[#b31324]">Dùng mã <strong className="font-bold">SAVE10</strong> để giảm 10%! (Bấm để dùng)</span>
                                 </div>
                                 <div className="flex gap-3">
                                     <Input
                                         placeholder="Mã giảm giá hoặc thẻ quà tặng"
-                                        className="bg-gray-50 border-gray-200 focus-visible:ring-[#f01a33]"
+                                        className="bg-gray-50 border-gray-200 focus-visible:ring-[#b31324]"
                                         value={discountCode}
                                         onChange={(e) => setDiscountCode(e.target.value)}
                                     />
@@ -336,7 +336,7 @@ const Checkout = () => {
                                         <span className="text-sm text-gray-400 line-through text-right w-full">{(total + discountAmount).toLocaleString('vi-VN')}đ</span>
                                     )}
                                     <div className="flex items-baseline gap-1">
-                                        <span className="text-2xl font-bold text-[#f01a33]">{total.toLocaleString('vi-VN')}đ</span>
+                                        <span className="text-2xl font-bold text-[#b31324]">{total.toLocaleString('vi-VN')}đ</span>
                                     </div>
                                 </div>
                             </div>
@@ -344,7 +344,7 @@ const Checkout = () => {
                             <Button
                                 onClick={handleSubmit}
                                 disabled={isLoading || cart.length === 0 || !isFormValid}
-                                className="w-full bg-[#f01a33] hover:bg-[#d41830] text-white py-6 rounded-lg font-bold shadow-lg shadow-red-900/10 flex items-center justify-center gap-2"
+                                className="w-full bg-[#b31324] hover:bg-[#d41830] text-white py-6 rounded-lg font-bold shadow-lg shadow-red-900/10 flex items-center justify-center gap-2"
                             >
                                 <Lock className="w-4 h-4" />
                                 {isLoading ? 'Đang xử lý...' : `Thanh Toán ${total.toLocaleString('vi-VN')}đ`}

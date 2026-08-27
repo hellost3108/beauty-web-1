@@ -37,7 +37,7 @@ const BeautyTransformation = () => {
 
           <Link
             href="/collection"
-            className="group mt-9 inline-flex items-center gap-3 rounded-full bg-[#f01a33] px-6 py-3.5 font-body text-sm font-semibold text-white transition-[background-color,transform] duration-300 hover:-translate-y-0.5 hover:bg-[#d9152b]"
+            className="group mt-9 inline-flex items-center gap-3 rounded-full bg-[#b31324] px-6 py-3.5 font-body text-sm font-semibold text-white transition-[background-color,transform] duration-300 hover:-translate-y-0.5 hover:bg-[#d9152b]"
           >
             Tìm Energy Shot của bạn
             <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />

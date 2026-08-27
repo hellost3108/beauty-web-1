@@ -71,7 +71,7 @@ const ShopSection = () => {
                     <div className="flex flex-col justify-between px-6 py-9 sm:px-10 sm:py-12 lg:px-14 lg:py-16 xl:px-20">
                         <div className="flex items-center justify-between border-b border-white/15 pb-5 font-body text-[10px] font-semibold uppercase tracking-[0.2em] text-white/45">
                             <span className="flex items-center gap-2">
-                                <span className="h-1.5 w-1.5 rounded-full bg-[#f01a33]" />
+                                <span className="h-1.5 w-1.5 rounded-full bg-[#b31324]" />
                                 Melalogy Store
                             </span>
                             <span>Energy Shot / 01—{productCountLabel}</span>
@@ -90,7 +90,7 @@ const ShopSection = () => {
 
                             <a
                                 href="#shop-products"
-                                className="shop-cta group relative mt-8 inline-flex items-center gap-3 overflow-hidden rounded-full bg-[#f01a33] px-6 py-3.5 font-body text-sm font-semibold text-white transition-[background-color,transform] duration-300 hover:-translate-y-0.5 hover:bg-[#d9152b]"
+                                className="shop-cta group relative mt-8 inline-flex items-center gap-3 overflow-hidden rounded-full bg-[#b31324] px-6 py-3.5 font-body text-sm font-semibold text-white transition-[background-color,transform] duration-300 hover:-translate-y-0.5 hover:bg-[#d9152b]"
                             >
                                 Chọn công thức của bạn
                                 <ArrowDownRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:translate-y-0.5" />
@@ -117,7 +117,7 @@ const ShopSection = () => {
                         <div className="shop-product-stage relative z-[2] grid h-full grid-cols-2 content-center gap-3 sm:gap-4">
                             {allProducts.map((product, index) => {
                                 const cardStyle = heroCardOffsets[index % heroCardOffsets.length];
-                                const accent = categoryAccents[product.category] ?? '#f01a33';
+                                const accent = categoryAccents[product.category] ?? '#b31324';
 
                                 return (
                                     <Link
@@ -153,8 +153,8 @@ const ShopSection = () => {
                                 key={category}
                                 onClick={() => setActiveCategory(category)}
                                 className={`font-display text-base md:text-lg transition-colors duration-300 whitespace-nowrap ${activeCategory === category
-                                    ? 'text-[#f01a33] border-b-2 border-[#f01a33] pb-2'
-                                    : 'text-[#1a1a1a] hover:text-[#f01a33] pb-2'
+                                    ? 'text-[#b31324] border-b-2 border-[#b31324] pb-2'
+                                    : 'text-[#111111] hover:text-[#b31324] pb-2'
                                     }`}
                             >
                                 {category}
@@ -206,7 +206,7 @@ const ShopSection = () => {
                                     className="relative w-full aspect-square overflow-hidden bg-[#f9f8f7] cursor-pointer"
                                     onClick={() => setSelectedProduct(product)}
                                 >
-                                    <div className="absolute top-4 left-4 z-20 bg-[#f01a33] text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                                    <div className="absolute top-4 left-4 z-20 bg-[#b31324] text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">
                                         {product.category}
                                     </div>
 
@@ -223,13 +223,13 @@ const ShopSection = () => {
                                                     e.stopPropagation();
                                                     addToWishlist(product);
                                                 }}
-                                                className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 shadow-md ${isInWishlist(product.id) ? 'bg-[#f01a33] text-white' : 'bg-white hover:bg-[#f01a33] hover:text-white'}`}
+                                                className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 shadow-md ${isInWishlist(product.id) ? 'bg-[#b31324] text-white' : 'bg-white hover:bg-[#b31324] hover:text-white'}`}
                                             >
                                                 <Heart className={`w-5 h-5 ${isInWishlist(product.id) ? 'fill-current' : ''}`} />
                                             </button>
                                             <button
                                                 onClick={(e) => e.stopPropagation()}
-                                                className="w-10 h-10 bg-white rounded-full flex items-center justify-center hover:bg-[#f01a33] hover:text-white transition-all duration-300 shadow-md"
+                                                className="w-10 h-10 bg-white rounded-full flex items-center justify-center hover:bg-[#b31324] hover:text-white transition-all duration-300 shadow-md"
                                             >
                                                 <Share2 className="w-5 h-5" />
                                             </button>
@@ -240,9 +240,9 @@ const ShopSection = () => {
                                                     e.stopPropagation();
                                                     addToCart(product);
                                                 }}
-                                                className="relative w-full bg-[#f01a33] text-white py-3 rounded-[12px] font-display font-semibold text-sm overflow-hidden group/btn shadow-lg hover:shadow-xl transition-shadow duration-500"
+                                                className="relative w-full bg-[#b31324] text-white py-3 rounded-[12px] font-display font-semibold text-sm overflow-hidden group/btn shadow-lg hover:shadow-xl transition-shadow duration-500"
                                             >
-                                                <span className="relative z-10 group-hover/btn:text-[#f01a33] transition-colors duration-700">Thêm vào giỏ</span>
+                                                <span className="relative z-10 group-hover/btn:text-[#b31324] transition-colors duration-700">Thêm vào giỏ</span>
                                                 <div className="absolute bottom-0 right-0 w-full h-0 bg-white group-hover/btn:h-full transition-all duration-700 ease-liquid" style={{ transformOrigin: 'bottom right' }} />
                                             </button>
                                         </div>
@@ -250,10 +250,10 @@ const ShopSection = () => {
                                 </div>
 
                                 <div className="flex flex-col items-center text-center p-6 pt-4 space-y-2">
-                                    <span className="font-display text-xl font-bold text-[#1a1a1a]">{product.price}đ</span>
+                                    <span className="font-display text-xl font-bold text-[#111111]">{product.price}đ</span>
                                     <button
                                         onClick={() => setSelectedProduct(product)}
-                                        className="font-display text-lg italic text-[#1a1a1a] opacity-90 hover:text-[#f01a33] transition-colors"
+                                        className="font-display text-lg italic text-[#111111] opacity-90 hover:text-[#b31324] transition-colors"
                                     >
                                         {product.name}
                                     </button>
@@ -264,8 +264,8 @@ const ShopSection = () => {
 
                     <div data-reveal="fade" data-reveal-delay="170" className="flex justify-center mt-12">
                         <Link href="/collection">
-                            <Button className="relative bg-[#f01a33] text-white px-16 py-3 text-base font-medium rounded-[12px] h-auto overflow-hidden group shadow-xl hover:shadow-2xl transition-shadow duration-500">
-                                <span className="relative z-10 group-hover:text-[#f01a33] transition-colors duration-700">Xem toàn bộ sưu tập</span>
+                            <Button className="relative bg-[#b31324] text-white px-16 py-3 text-base font-medium rounded-[12px] h-auto overflow-hidden group shadow-xl hover:shadow-2xl transition-shadow duration-500">
+                                <span className="relative z-10 group-hover:text-[#b31324] transition-colors duration-700">Xem toàn bộ sưu tập</span>
                                 <div className="absolute bottom-0 right-0 w-full h-0 bg-white group-hover:h-full transition-all duration-700 ease-liquid" style={{ transformOrigin: 'bottom right' }} />
                             </Button>
                         </Link>
@@ -287,17 +287,17 @@ const ShopSection = () => {
                         {/* Left: Content */}
                         <div className="p-8 md:p-12 flex flex-col justify-center">
                             <div className="flex justify-between items-start mb-2">
-                                <h2 className="font-display text-3xl md:text-4xl text-[#1a1a1a]">
+                                <h2 className="font-display text-3xl md:text-4xl text-[#111111]">
                                     {selectedProduct?.name}
                                 </h2>
-                                <div className="flex items-center gap-1 border border-[#f01a33] rounded-full px-2 py-0.5">
-                                    <span className="text-xs font-bold text-[#f01a33]">4.8</span>
-                                    <Star className="w-3 h-3 text-[#f01a33] fill-[#f01a33]" />
+                                <div className="flex items-center gap-1 border border-[#b31324] rounded-full px-2 py-0.5">
+                                    <span className="text-xs font-bold text-[#b31324]">4.8</span>
+                                    <Star className="w-3 h-3 text-[#b31324] fill-[#b31324]" />
                                 </div>
                             </div>
 
                             <div className="flex items-baseline gap-3 mb-4">
-                                <span className="text-[#f01a33] font-display text-2xl font-bold">{selectedProduct?.price}đ</span>
+                                <span className="text-[#b31324] font-display text-2xl font-bold">{selectedProduct?.price}đ</span>
                             </div>
 
                             <p className="font-body text-[#666666] text-sm leading-relaxed mb-8">
@@ -336,9 +336,9 @@ const ShopSection = () => {
                                         setQuantity(1);
                                         router.push('/cart');
                                     }}
-                                    className="flex-1 bg-[#f01a33] text-white rounded-[10px] py-6 shadow-lg shadow-[#f01a33]/20 text-base font-normal relative overflow-hidden group/btn"
+                                    className="flex-1 bg-[#b31324] text-white rounded-[10px] py-6 shadow-lg shadow-[#b31324]/20 text-base font-normal relative overflow-hidden group/btn"
                                 >
-                                    <span className="relative z-10 group-hover/btn:text-[#f01a33] transition-colors duration-700">Mua ngay</span>
+                                    <span className="relative z-10 group-hover/btn:text-[#b31324] transition-colors duration-700">Mua ngay</span>
                                     <div className="absolute bottom-0 right-0 w-full h-0 bg-white group-hover/btn:h-full transition-all duration-700 ease-liquid" style={{ transformOrigin: 'bottom right' }} />
                                 </Button>
                                 <Button
@@ -351,7 +351,7 @@ const ShopSection = () => {
                                         setSelectedProduct(null);
                                         setQuantity(1);
                                     }}
-                                    className="flex-1 bg-white hover:bg-[#fff5f5] text-[#f01a33] border border-[#f01a33] rounded-[10px] py-6 text-base font-normal"
+                                    className="flex-1 bg-white hover:bg-[#fff5f5] text-[#b31324] border border-[#b31324] rounded-[10px] py-6 text-base font-normal"
                                 >
                                     Thêm vào giỏ
                                 </Button>
@@ -364,7 +364,7 @@ const ShopSection = () => {
                                     variant="outline"
                                     className={cn(
                                         "w-12 h-12 rounded-[10px] border border-gray-200 flex items-center justify-center p-0 hover:bg-gray-50",
-                                        selectedProduct && isInWishlist(selectedProduct.id) && "bg-[#f01a33]/5 border-[#f01a33]/20 text-[#f01a33]"
+                                        selectedProduct && isInWishlist(selectedProduct.id) && "bg-[#b31324]/5 border-[#b31324]/20 text-[#b31324]"
                                     )}
                                 >
                                     <Heart className={cn("w-5 h-5", selectedProduct && isInWishlist(selectedProduct.id) && "fill-current")} />
@@ -382,7 +382,7 @@ const ShopSection = () => {
                                         }, 0);
                                     }
                                 }}
-                                className="inline-flex items-center gap-2 text-[#f01a33] text-sm sm:text-base border border-[#f01a33]/30 px-6 py-2 rounded-full w-fit hover:bg-[#f01a33]/5 transition-colors cursor-pointer"
+                                className="inline-flex items-center gap-2 text-[#b31324] text-sm sm:text-base border border-[#b31324]/30 px-6 py-2 rounded-full w-fit hover:bg-[#b31324]/5 transition-colors cursor-pointer"
                             >
                                 <span>Xem chi tiết</span>
                                 <ChevronDown className="w-4 h-4 -rotate-90" />

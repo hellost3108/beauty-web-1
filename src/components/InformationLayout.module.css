@@ -53,7 +53,7 @@
     gap: 0.8rem;
     align-items: center;
     margin-bottom: 1.35rem;
-    color: #f01a33;
+    color: #b31324;
 }
 
 .eyebrow::before {
@@ -82,7 +82,7 @@
 .meta {
     display: block;
     margin-bottom: 1rem;
-    color: #f01a33;
+    color: #b31324;
 }
 
 .heroAside p {
@@ -151,7 +151,7 @@
 
 .activeLink {
     padding-left: 0.6rem;
-    color: #f01a33;
+    color: #b31324;
     font-weight: 650;
 }
 
@@ -264,13 +264,13 @@
     height: 0.4rem;
     border-radius: 50%;
     content: '';
-    background: #f01a33;
+    background: #b31324;
 }
 
 .content [data-info-callout] {
     margin-top: 1.5rem;
     padding: 1.5rem;
-    border-left: 2px solid #f01a33;
+    border-left: 2px solid #b31324;
     border-radius: 0 1rem 1rem 0;
     background: #f8f2ef;
 }
@@ -303,8 +303,8 @@
 }
 
 .content [data-info-contact-grid] a:hover {
-    color: #f01a33;
-    text-decoration-color: #f01a33;
+    color: #b31324;
+    text-decoration-color: #b31324;
 }
 
 .content [data-info-form] {
@@ -348,7 +348,7 @@
 
 .content input:focus,
 .content textarea:focus {
-    border-color: #f01a33;
+    border-color: #b31324;
     box-shadow: 0 0 0 4px rgba(240, 26, 51, 0.09);
 }
 
@@ -362,7 +362,7 @@
     padding: 0 1.6rem;
     border: 0;
     border-radius: 999px;
-    background: #f01a33;
+    background: #b31324;
     color: white;
     cursor: pointer;
     font-family: var(--font-body), sans-serif;
@@ -395,7 +395,7 @@
     text-align: left;
 }
 
-.content [data-info-accordion] [data-state='open'] > button { color: #f01a33; }
+.content [data-info-accordion] [data-state='open'] > button { color: #b31324; }
 
 @media (max-width: 900px) {
     .heroInner { grid-template-columns: 1fr; gap: 2rem; }

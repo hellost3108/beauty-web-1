@@ -62,7 +62,7 @@ const Login = () => {
                                         name="email"
                                         value={formData.email}
                                         onChange={handleInputChange}
-                                        className="w-full pl-11 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#f01a33] focus:border-transparent transition-all duration-200 font-body"
+                                        className="w-full pl-11 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#b31324] focus:border-transparent transition-all duration-200 font-body"
                                         placeholder="Enter your email"
                                         required
                                     />
@@ -82,7 +82,7 @@ const Login = () => {
                                         name="password"
                                         value={formData.password}
                                         onChange={handleInputChange}
-                                        className="w-full pl-11 pr-12 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#f01a33] focus:border-transparent transition-all duration-200 font-body"
+                                        className="w-full pl-11 pr-12 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#b31324] focus:border-transparent transition-all duration-200 font-body"
                                         placeholder="Enter your password"
                                         required
                                     />
@@ -105,10 +105,10 @@ const Login = () => {
                             {/* Submit Button */}
                             <button
                                 type="submit"
-                                className="w-full bg-gradient-to-r from-[#f01a33] to-[#e91e63] text-white py-3 rounded-lg font-button font-semibold hover:shadow-lg hover:shadow-[#f01a33]/30 transform hover:-translate-y-0.5 transition-all duration-300 relative overflow-hidden group"
+                                className="w-full bg-gradient-to-r from-[#b31324] to-[#850c18] text-white py-3 rounded-lg font-button font-semibold hover:shadow-lg hover:shadow-[#b31324]/30 transform hover:-translate-y-0.5 transition-all duration-300 relative overflow-hidden group"
                             >
                                 <span className="relative z-10">Sign In</span>
-                                <div className="absolute inset-0 bg-gradient-to-r from-[#e91e63] to-[#f01a33] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                                <div className="absolute inset-0 bg-gradient-to-r from-[#850c18] to-[#b31324] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                             </button>
                         </form>
 
@@ -154,7 +154,7 @@ const Login = () => {
                                 Don't have an account?{' '}
                                 <Link
                                     href="/signup"
-                                    className="text-[#f01a33] hover:text-[#d01629] font-semibold transition-colors"
+                                    className="text-[#b31324] hover:text-[#d01629] font-semibold transition-colors"
                                 >
                                     Sign Up
                                 </Link>

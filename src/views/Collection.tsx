@@ -74,8 +74,8 @@ const Collection = () => {
 
             {/* Page Header */}
             <div className="pt-32 pb-8 text-center bg-white">
-                <h1 className="font-display text-4xl md:text-5xl text-[#1a1a1a] mb-4">
-                    Bộ Sưu Tập <span className="text-[#f01a33]">Của Chúng Tôi</span>
+                <h1 className="font-display text-4xl md:text-5xl text-[#111111] mb-4">
+                    Bộ Sưu Tập <span className="text-[#b31324]">Của Chúng Tôi</span>
                 </h1>
                 <p className="font-body text-[#666666] text-sm md:text-base max-w-2xl mx-auto px-6 leading-relaxed">
                     Dòng mặt nạ hydrogel Energy Shot của Melalogy — mỗi phiên bản được nghiên cứu cho một nhu cầu chăm sóc da riêng biệt.
@@ -91,8 +91,8 @@ const Collection = () => {
                                 key={category}
                                 onClick={() => setActiveCategory(category)}
                                 className={`font-display text-base md:text-lg transition-colors duration-300 whitespace-nowrap ${activeCategory === category
-                                    ? 'text-[#f01a33] border-b-2 border-[#f01a33] pb-2'
-                                    : 'text-[#1a1a1a] hover:text-[#f01a33] pb-2'
+                                    ? 'text-[#b31324] border-b-2 border-[#b31324] pb-2'
+                                    : 'text-[#111111] hover:text-[#b31324] pb-2'
                                     }`}
                             >
                                 {category}
@@ -178,7 +178,7 @@ const Collection = () => {
                                                         e.stopPropagation();
                                                         addToWishlist(product);
                                                     }}
-                                                    className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 shadow-md ${isInWishlist(product.id) ? 'bg-[#f01a33] text-white' : 'bg-white hover:bg-[#f01a33] hover:text-white'}`}
+                                                    className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 shadow-md ${isInWishlist(product.id) ? 'bg-[#b31324] text-white' : 'bg-white hover:bg-[#b31324] hover:text-white'}`}
                                                 >
                                                     <svg className="w-5 h-5" fill={isInWishlist(product.id) ? "currentColor" : "none"} stroke="currentColor" viewBox="0 0 24 24">
                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
@@ -192,7 +192,7 @@ const Collection = () => {
                                                         e.stopPropagation();
                                                         handleShare(product);
                                                     }}
-                                                    className="w-10 h-10 bg-white rounded-full flex items-center justify-center hover:bg-[#f01a33] hover:text-white transition-all duration-300 shadow-md"
+                                                    className="w-10 h-10 bg-white rounded-full flex items-center justify-center hover:bg-[#b31324] hover:text-white transition-all duration-300 shadow-md"
                                                 >
                                                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
@@ -208,9 +208,9 @@ const Collection = () => {
                                                         e.stopPropagation();
                                                         addToCart(product);
                                                     }}
-                                                    className="relative w-full bg-[#f01a33] text-white py-3 rounded-[12px] font-display font-semibold text-sm overflow-hidden group/btn shadow-lg hover:shadow-xl transition-shadow duration-500"
+                                                    className="relative w-full bg-[#b31324] text-white py-3 rounded-[12px] font-display font-semibold text-sm overflow-hidden group/btn shadow-lg hover:shadow-xl transition-shadow duration-500"
                                                 >
-                                                    <span className="relative z-10 group-hover/btn:text-[#f01a33] transition-colors duration-700">Thêm Vào Giỏ</span>
+                                                    <span className="relative z-10 group-hover/btn:text-[#b31324] transition-colors duration-700">Thêm Vào Giỏ</span>
                                                     {/* White fill animation from bottom-right rising upward */}
                                                     <div className="absolute bottom-0 right-0 w-full h-0 bg-white group-hover/btn:h-full transition-all duration-700 ease-liquid"
                                                         style={{ transformOrigin: 'bottom right' }} />
@@ -221,8 +221,8 @@ const Collection = () => {
 
                                     {/* Info Section */}
                                     <div className="flex flex-col items-center text-center p-6 pt-4 space-y-2">
-                                        <span className="font-display text-xl font-bold text-[#1a1a1a]">{product.price}đ</span>
-                                        <p className="font-display text-lg italic text-[#1a1a1a] opacity-90">
+                                        <span className="font-display text-xl font-bold text-[#111111]">{product.price}đ</span>
+                                        <p className="font-display text-lg italic text-[#111111] opacity-90">
                                             {product.name}
                                         </p>
                                     </div>
@@ -240,9 +240,9 @@ const Collection = () => {
                         <div className="flex justify-center mt-12">
                             <Button
                                 onClick={handleLoadMore}
-                                className="relative bg-[#f01a33] text-white px-16 py-3 text-base font-medium rounded-[12px] h-auto overflow-hidden group shadow-xl hover:shadow-2xl transition-shadow duration-500"
+                                className="relative bg-[#b31324] text-white px-16 py-3 text-base font-medium rounded-[12px] h-auto overflow-hidden group shadow-xl hover:shadow-2xl transition-shadow duration-500"
                             >
-                                <span className="relative z-10 group-hover:text-[#f01a33] transition-colors duration-700">Xem Thêm</span>
+                                <span className="relative z-10 group-hover:text-[#b31324] transition-colors duration-700">Xem Thêm</span>
                                 <div className="absolute bottom-0 right-0 w-full h-0 bg-white group-hover:h-full transition-all duration-700 ease-liquid" style={{ transformOrigin: 'bottom right' }} />
                             </Button>
                         </div>
@@ -263,17 +263,17 @@ const Collection = () => {
                         {/* Left: Content */}
                         <div className="p-8 md:p-12 flex flex-col justify-center">
                             <div className="flex justify-between items-start mb-2">
-                                <h2 className="font-display text-3xl md:text-4xl text-[#1a1a1a]">
+                                <h2 className="font-display text-3xl md:text-4xl text-[#111111]">
                                     {quickViewProduct?.name}
                                 </h2>
-                                <div className="flex items-center gap-1 border border-[#f01a33] rounded-full px-2 py-0.5">
-                                    <span className="text-xs font-bold text-[#f01a33]">4.2</span>
-                                    <Star className="w-3 h-3 text-[#f01a33] fill-[#f01a33]" />
+                                <div className="flex items-center gap-1 border border-[#b31324] rounded-full px-2 py-0.5">
+                                    <span className="text-xs font-bold text-[#b31324]">4.2</span>
+                                    <Star className="w-3 h-3 text-[#b31324] fill-[#b31324]" />
                                 </div>
                             </div>
 
                             <div className="flex items-baseline gap-3 mb-4">
-                                <span className="text-[#f01a33] font-display text-2xl font-bold">{quickViewProduct?.price}đ</span>
+                                <span className="text-[#b31324] font-display text-2xl font-bold">{quickViewProduct?.price}đ</span>
                             </div>
 
                             <p className="font-body text-[#666666] text-sm leading-relaxed mb-8">
@@ -311,9 +311,9 @@ const Collection = () => {
                                         setQuickViewProduct(null);
                                         setQuickViewQuantity(1);
                                     }}
-                                    className="flex-1 bg-[#f01a33] text-white rounded-[10px] py-6 shadow-lg shadow-[#f01a33]/20 text-base font-normal relative overflow-hidden group/btn"
+                                    className="flex-1 bg-[#b31324] text-white rounded-[10px] py-6 shadow-lg shadow-[#b31324]/20 text-base font-normal relative overflow-hidden group/btn"
                                 >
-                                    <span className="relative z-10 group-hover/btn:text-[#f01a33] transition-colors duration-700">Mua Ngay</span>
+                                    <span className="relative z-10 group-hover/btn:text-[#b31324] transition-colors duration-700">Mua Ngay</span>
                                     <div className="absolute bottom-0 right-0 w-full h-0 bg-white group-hover/btn:h-full transition-all duration-700 ease-liquid" style={{ transformOrigin: 'bottom right' }} />
                                 </Button>
                                 <Button
@@ -326,7 +326,7 @@ const Collection = () => {
                                         setQuickViewProduct(null);
                                         setQuickViewQuantity(1);
                                     }}
-                                    className="flex-1 bg-white hover:bg-[#fff5f5] text-[#f01a33] border border-[#f01a33] rounded-[10px] py-6 text-base font-normal"
+                                    className="flex-1 bg-white hover:bg-[#fff5f5] text-[#b31324] border border-[#b31324] rounded-[10px] py-6 text-base font-normal"
                                 >
                                     Thêm Vào Giỏ
                                 </Button>
@@ -339,7 +339,7 @@ const Collection = () => {
                                     variant="outline"
                                     className={cn(
                                         "w-12 h-12 rounded-[10px] border border-gray-200 flex items-center justify-center p-0 hover:bg-gray-50",
-                                        quickViewProduct && isInWishlist(quickViewProduct.id) && "bg-[#f01a33]/5 border-[#f01a33]/20 text-[#f01a33]"
+                                        quickViewProduct && isInWishlist(quickViewProduct.id) && "bg-[#b31324]/5 border-[#b31324]/20 text-[#b31324]"
                                     )}
                                 >
                                     <Heart className={cn("w-5 h-5", quickViewProduct && isInWishlist(quickViewProduct.id) && "fill-current")} />
@@ -352,7 +352,7 @@ const Collection = () => {
                                     router.push(`/product/${productId}`);
                                     setQuickViewProduct(null);
                                 }}
-                                className="inline-flex items-center gap-2 text-[#f01a33] text-sm sm:text-base border border-[#f01a33]/30 px-6 py-2 rounded-full w-fit hover:bg-[#f01a33]/5 transition-colors cursor-pointer"
+                                className="inline-flex items-center gap-2 text-[#b31324] text-sm sm:text-base border border-[#b31324]/30 px-6 py-2 rounded-full w-fit hover:bg-[#b31324]/5 transition-colors cursor-pointer"
                             >
                                 <span>Xem Chi Tiết Đầy Đủ</span>
                                 <ChevronDown className="w-4 h-4 -rotate-90" />

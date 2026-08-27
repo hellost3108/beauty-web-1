@@ -36,8 +36,8 @@ const BeautyDiaries = () => {
             <div className="w-full mx-auto px-6 md:px-10 lg:px-16 xl:px-24">
                 <div className="relative mb-16">
                     <div data-reveal="up" className="text-center">
-                        <h2 className="font-display text-3xl md:text-4xl text-[#1a1a1a]">
-                            Đánh giá <span className="text-[#f01a33]">khách hàng</span>
+                        <h2 className="font-display text-3xl md:text-4xl text-[#111111]">
+                            Đánh giá <span className="text-[#b31324]">khách hàng</span>
                         </h2>
                     </div>
                     <div className="absolute right-0 top-1/2 -translate-y-1/2 hidden md:block">
@@ -72,13 +72,13 @@ const BeautyDiaries = () => {
                             <div className="flex items-center gap-4">
                                 <div
                                     aria-hidden="true"
-                                    className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full font-body text-xs font-semibold tracking-[0.08em] text-[#1a1a1a]"
+                                    className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full font-body text-xs font-semibold tracking-[0.08em] text-[#111111]"
                                     style={{ backgroundColor: review.avatarTone }}
                                 >
                                     {review.initials}
                                 </div>
                                 <div className="flex flex-col">
-                                    <span className="font-display font-semibold text-[#1a1a1a] text-base">
+                                    <span className="font-display font-semibold text-[#111111] text-base">
                                         {review.author}
                                     </span>
                                     <span className="font-body text-xs text-[#888888]">{review.role}</span>
