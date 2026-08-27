@@ -41,33 +41,47 @@ const reviews = [
     image: '/assets/skincare-face-lifestyle.jpg',
     tags: [],
   },
+  {
+    name: 'Gia Hân',
+    role: 'Khách hàng tại TP. Hồ Chí Minh',
+    quote:
+      'Mặt nạ mát, ôm da tốt và không bị trượt. Mình thích cảm giác mềm ẩm sau khi tháo mặt nạ.',
+    stars: 5,
+    sku: 'Phục Hồi',
+    skuColour: 'var(--mlg-sku-recovery)',
+    image: null,
+    tags: [],
+  },
 ];
 
 const [lead, ...rest] = reviews;
 const average = reviews.reduce((sum, review) => sum + review.stars, 0) / reviews.length;
 
 const RealSkin = () => (
-  <section className="mlg-section mlg-light" aria-labelledby="mlg-reviews-title">
+  <section className="mlg-section mlg-light mlg-testimonials" aria-labelledby="mlg-reviews-title">
     <div className="mlg-shell mlg-rise">
-      <p className="mlg-eyebrow mlg-eyebrow--center">Đánh giá của khách hàng</p>
-      <h2
-        className="mlg-display mlg-display--sm"
-        id="mlg-reviews-title"
-        style={{ textAlign: 'center' }}
-      >
-        Real skin.
-        <em>Real experience.</em>
-      </h2>
-      <p className="mlg-copy mlg-copy--center">
-        Trải nghiệm thật từ những làn da đã sử dụng Melalogy Energy Shot Hydrogel.
-      </p>
+      <header className="mlg-review-heading">
+        <span className="mlg-review-heading__index" aria-hidden="true">05 / REAL SKIN</span>
+        <div>
+          <p className="mlg-eyebrow mlg-eyebrow--center">Đánh giá của khách hàng</p>
+          <h2 className="mlg-display mlg-display--sm" id="mlg-reviews-title">
+            Real skin.
+            <em>Real experience.</em>
+          </h2>
+          <p className="mlg-copy mlg-copy--center">
+            Trải nghiệm thật từ những làn da đã sử dụng Melalogy Energy Shot Hydrogel.
+          </p>
+        </div>
+        <span className="mlg-review-heading__note">Melalogy / Vietnam / 2026</span>
+      </header>
 
       <div className="mlg-review-lead">
         <div className="mlg-review-lead__media">
           <img src={lead.image} alt={`Khách hàng ${lead.name} đang dùng Melalogy Energy Shot`} loading="lazy" />
         </div>
 
-        <div>
+        <div className="mlg-review-lead__quote">
+          <span className="mlg-review-lead__label">Hydrating Energy Shot</span>
           <span className="mlg-quotemark" aria-hidden="true">
             “
           </span>
@@ -96,22 +110,28 @@ const RealSkin = () => (
             ))}
           </div>
           <span>
-            Trung bình từ {reviews.length} đánh giá
+            Trung bình từ {reviews.length} trải nghiệm
             <br />
             đang hiển thị trên trang.
           </span>
         </div>
       </div>
 
-      <div className="mlg-review-row">
-        {rest.map((review) => (
+      <div className="mlg-review-row" aria-label="Các đánh giá khác">
+        {rest.map((review, index) => (
           <article
             className="mlg-review"
             key={review.name}
             style={{ '--sku': review.skuColour } as React.CSSProperties}
           >
-            <img src={review.image} alt={`Khách hàng ${review.name}`} loading="lazy" />
+            <span className="mlg-review__number" aria-hidden="true">
+              {String(index + 2).padStart(2, '0')}
+            </span>
+            {review.image && (
+              <img src={review.image} alt={`Khách hàng ${review.name}`} loading="lazy" />
+            )}
             <div className="mlg-review__body">
+              <span className="mlg-review__quote" aria-hidden="true">“</span>
               <p>{review.quote}</p>
               <div>
                 <strong>{review.name}</strong>
@@ -122,6 +142,10 @@ const RealSkin = () => (
           </article>
         ))}
       </div>
+
+      <p className="mlg-review-disclaimer">
+        Cảm nhận có thể khác nhau tùy tình trạng da và cách sử dụng của mỗi người.
+      </p>
     </div>
   </section>
 );
