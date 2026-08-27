@@ -29,13 +29,13 @@ const testimonials = [
 
 const TestimonialsSection = () => {
     return (
-        <section className="py-24 bg-[#fff8f9]">
+        <section className="py-24 bg-[#f8f7f5]">
             <div className="w-full px-6 md:px-10 lg:px-24 xl:px-32">
                 {/* Section Title */}
                 <div data-reveal="up" className="text-center mb-16">
                     <h2 className="font-display text-3xl md:text-4xl leading-[1.1] tracking-[-0.018em]">
-                        <span className="text-[#1a1a1a]">Cảm Nhận Từ </span>
-                        <span className="text-[#f01a33]">Khách Hàng Việt</span>
+                        <span className="text-[#111111]">Cảm Nhận Từ </span>
+                        <span className="text-[#b31324]">Khách Hàng Việt</span>
                     </h2>
                 </div>
 
@@ -54,12 +54,12 @@ const TestimonialsSection = () => {
                                     {[...Array(5)].map((_, idx) => (
                                         <Star
                                             key={idx}
-                                            className={`w-5 h-5 ${idx < t.stars ? 'fill-[#c5a35d] text-[#c5a35d]' : 'text-[#e2e2e2]'}`}
+                                            className={`w-5 h-5 ${idx < t.stars ? 'fill-[#b31324] text-[#b31324]' : 'text-[#e2e2e2]'}`}
                                         />
                                     ))}
                                 </div>
                                 {/* Quote */}
-                                <p className="font-body text-[#1a1a1a] text-base leading-relaxed">
+                                <p className="font-body text-[#111111] text-base leading-relaxed">
                                     {t.quote}
                                 </p>
                             </div>
@@ -68,13 +68,13 @@ const TestimonialsSection = () => {
                             <div className="flex items-center gap-4 mt-10">
                                 <div
                                     aria-hidden="true"
-                                    className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-2 border-white font-body text-xs font-semibold tracking-[0.08em] text-[#1a1a1a] shadow-sm"
+                                    className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-2 border-white font-body text-xs font-semibold tracking-[0.08em] text-[#111111] shadow-sm"
                                     style={{ backgroundColor: t.avatarTone }}
                                 >
                                     {t.initials}
                                 </div>
                                 <div>
-                                    <h4 className="font-display font-medium text-[#1a1a1a] text-lg">{t.name}</h4>
+                                    <h4 className="font-display font-medium text-[#111111] text-lg">{t.name}</h4>
                                     <p className="font-body text-[#999999] text-xs">{t.role}</p>
                                 </div>
                             </div>

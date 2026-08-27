@@ -45,7 +45,7 @@ const Cart = () => {
     const recommendedProducts = allProducts.filter(p => !cartIds.has(p.id)).slice(0, 3);
 
     return (
-        <div className="min-h-screen bg-white font-sans text-[#1a1a1a]">
+        <div className="min-h-screen bg-white font-sans text-[#111111]">
             <Navbar />
 
             <div className="pt-32 pb-20 px-6 md:px-12 lg:px-24 max-w-[1440px] mx-auto">
@@ -61,7 +61,7 @@ const Cart = () => {
                         </div>
                         <p className="text-gray-500 text-lg font-body">Giỏ hàng của bạn đang trống.</p>
                         <Link href="/collection">
-                            <Button className="bg-[#f01a33] hover:bg-[#d6182d] text-white px-10 py-6 rounded-xl text-lg transition-transform hover:scale-105">
+                            <Button className="bg-[#b31324] hover:bg-[#d6182d] text-white px-10 py-6 rounded-xl text-lg transition-transform hover:scale-105">
                                 Tiếp Tục Mua Sắm
                             </Button>
                         </Link>
@@ -92,14 +92,14 @@ const Cart = () => {
                                                 <div className="flex justify-between items-start w-full mb-2">
                                                     <div>
                                                         <h3 
-                                                            className="text-2xl font-display text-[#1a1a1a] cursor-pointer hover:text-[#f01a33] transition-colors"
+                                                            className="text-2xl font-display text-[#111111] cursor-pointer hover:text-[#b31324] transition-colors"
                                                             onClick={() => setSelectedProduct(item)}
                                                         >
                                                             {item.name}
                                                         </h3>
                                                         <p className="text-[#999999] text-sm mt-1 font-body">{item.subtitle ?? '35g / 1.23oz'}</p>
                                                     </div>
-                                                    <div className="text-xl font-display font-bold text-[#f01a33] text-right">
+                                                    <div className="text-xl font-display font-bold text-[#b31324] text-right">
                                                         {((item.rawPrice ?? 0) * item.quantity).toLocaleString('vi-VN')}đ
                                                     </div>
                                                 </div>
@@ -136,7 +136,7 @@ const Cart = () => {
                                                             e.stopPropagation();
                                                             removeFromCart(item.id);
                                                         }}
-                                                        className="flex items-center text-[#999999] hover:text-[#f01a33] text-sm transition-all gap-2 px-4 py-2 hover:bg-red-50 rounded-lg group/remove"
+                                                        className="flex items-center text-[#999999] hover:text-[#b31324] text-sm transition-all gap-2 px-4 py-2 hover:bg-red-50 rounded-lg group/remove"
                                                     >
                                                         <Trash2 className="w-4 h-4 group-hover/remove:scale-110 transition-transform" />
                                                         <span className="font-semibold uppercase tracking-wider text-[11px]">Xoá</span>
@@ -151,7 +151,7 @@ const Cart = () => {
                             {/* You might also like */}
                             {recommendedProducts.length > 0 && (
                             <div className="pt-8">
-                                <h3 className="font-display text-2xl text-[#1a1a1a] mb-8">Có Thể Bạn Sẽ Thích</h3>
+                                <h3 className="font-display text-2xl text-[#111111] mb-8">Có Thể Bạn Sẽ Thích</h3>
                                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
                                     {recommendedProducts.map((product) => (
                                         <div key={product.id} className="group flex flex-col gap-4">
@@ -170,15 +170,15 @@ const Cart = () => {
                                                         addToCart(product);
                                                         toast.success(`Đã thêm ${product.name} vào giỏ`);
                                                     }}
-                                                    className="absolute bottom-4 right-4 w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-xl hover:bg-[#f01a33] hover:text-white transition-all duration-300 transform translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100"
+                                                    className="absolute bottom-4 right-4 w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-xl hover:bg-[#b31324] hover:text-white transition-all duration-300 transform translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100"
                                                 >
                                                     <Plus className="w-6 h-6" />
                                                 </button>
                                             </div>
                                             <div className="flex justify-between items-center px-2">
                                                 <div>
-                                                    <h4 className="font-display text-lg text-[#1a1a1a]">{product.name}</h4>
-                                                    <p className="text-[#f01a33] font-bold">{product.price}đ</p>
+                                                    <h4 className="font-display text-lg text-[#111111]">{product.name}</h4>
+                                                    <p className="text-[#b31324] font-bold">{product.price}đ</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -191,12 +191,12 @@ const Cart = () => {
                         {/* Right Column: Order Summary */}
                         <div className="xl:col-span-4">
                             <div className="bg-white p-6 md:p-10 rounded-[30px] border border-[#f5f5f5] shadow-[0_20px_50px_rgba(0,0,0,0.03)] lg:sticky lg:top-32 h-fit">
-                                <h3 className="font-display text-2xl text-[#1a1a1a] mb-8">Tóm Tắt Đơn Hàng</h3>
+                                <h3 className="font-display text-2xl text-[#111111] mb-8">Tóm Tắt Đơn Hàng</h3>
 
                                 <div className="space-y-5 mb-8">
                                     <div className="flex justify-between items-center text-[15px]">
                                         <span className="text-[#666666] font-body">Tạm tính</span>
-                                        <span className="font-display font-bold text-[#1a1a1a]">{subtotal.toLocaleString('vi-VN')}đ</span>
+                                        <span className="font-display font-bold text-[#111111]">{subtotal.toLocaleString('vi-VN')}đ</span>
                                     </div>
                                     <div className="flex justify-between items-center text-[15px]">
                                         <span className="text-[#666666] font-body">Phí vận chuyển</span>
@@ -206,15 +206,15 @@ const Cart = () => {
 
                                 <div className="border-t border-[#f5f5f5] pt-8 mb-8">
                                     <div className="flex justify-between items-center">
-                                        <h4 className="font-display text-xl text-[#1a1a1a] font-bold">Tổng Cộng</h4>
+                                        <h4 className="font-display text-xl text-[#111111] font-bold">Tổng Cộng</h4>
                                         <div className="text-right">
-                                            <span className="font-display text-3xl font-bold text-[#1a1a1a]">{total.toLocaleString('vi-VN')}đ</span>
+                                            <span className="font-display text-3xl font-bold text-[#111111]">{total.toLocaleString('vi-VN')}đ</span>
                                         </div>
                                     </div>
                                 </div>
 
                                 <Link href="/checkout" className="block mb-10">
-                                    <Button className="w-full bg-[#f01a33] hover:bg-[#d6182d] text-white py-8 rounded-[12px] text-sm font-bold tracking-wide uppercase transition-all shadow-lg shadow-[#f01a33]/20 flex items-center justify-center gap-3">
+                                    <Button className="w-full bg-[#b31324] hover:bg-[#d6182d] text-white py-8 rounded-[12px] text-sm font-bold tracking-wide uppercase transition-all shadow-lg shadow-[#b31324]/20 flex items-center justify-center gap-3">
                                         TIẾN HÀNH THANH TOÁN <ArrowRight className="w-4 h-4" />
                                     </Button>
                                 </Link>
@@ -253,17 +253,17 @@ const Cart = () => {
                         {/* Left: Content */}
                         <div className="p-10 md:p-12 flex flex-col justify-center">
                             <div className="flex justify-between items-start mb-2">
-                                <h1 className="font-display text-4xl md:text-5xl text-[#1a1a1a] tracking-[-0.018em] leading-[1.08]">
+                                <h1 className="font-display text-4xl md:text-5xl text-[#111111] tracking-[-0.018em] leading-[1.08]">
                                     {selectedProduct?.name}
                                 </h1>
-                                <div className="flex items-center gap-1 border border-[#f01a33] rounded-full px-3 py-1 mt-2">
-                                    <span className="text-xs font-bold text-[#f01a33]">4.8</span>
-                                    <Star className="w-3 h-3 text-[#f01a33] fill-[#f01a33]" />
+                                <div className="flex items-center gap-1 border border-[#b31324] rounded-full px-3 py-1 mt-2">
+                                    <span className="text-xs font-bold text-[#b31324]">4.8</span>
+                                    <Star className="w-3 h-3 text-[#b31324] fill-[#b31324]" />
                                 </div>
                             </div>
 
                             <div className="flex items-baseline gap-3 mb-6">
-                                <span className="text-[#f01a33] font-display text-3xl font-bold">{selectedProduct?.price}đ</span>
+                                <span className="text-[#b31324] font-display text-3xl font-bold">{selectedProduct?.price}đ</span>
                             </div>
 
                             <p className="font-body text-[#666666] text-sm leading-relaxed mb-8 max-w-[400px]">
@@ -279,7 +279,7 @@ const Cart = () => {
                                     >
                                         <Minus className="w-4 h-4" />
                                     </button>
-                                    <span className="w-10 text-center text-lg font-medium text-[#1a1a1a]">{quantity}</span>
+                                    <span className="w-10 text-center text-lg font-medium text-[#111111]">{quantity}</span>
                                     <button
                                         onClick={() => setQuantity(quantity + 1)}
                                         className="px-4 h-full hover:bg-gray-50 text-gray-400 transition-colors"
@@ -302,7 +302,7 @@ const Cart = () => {
                                         setQuantity(1);
                                         toast.success("Đã thêm vào giỏ hàng");
                                     }}
-                                    className="flex-1 bg-[#f01a33] hover:bg-[#d6182d] text-white rounded-[12px] h-14 text-base font-semibold shadow-lg shadow-[#f01a33]/20"
+                                    className="flex-1 bg-[#b31324] hover:bg-[#d6182d] text-white rounded-[12px] h-14 text-base font-semibold shadow-lg shadow-[#b31324]/20"
                                 >
                                     Mua Ngay
                                 </Button>
@@ -316,7 +316,7 @@ const Cart = () => {
                                         setSelectedProduct(null);
                                         setQuantity(1);
                                     }}
-                                    className="flex-1 bg-white hover:bg-[#fff5f5] text-[#f01a33] border border-[#f01a33] rounded-[12px] h-14 text-base font-semibold"
+                                    className="flex-1 bg-white hover:bg-[#fff5f5] text-[#b31324] border border-[#b31324] rounded-[12px] h-14 text-base font-semibold"
                                 >
                                     Thêm Vào Giỏ
                                 </Button>
@@ -329,14 +329,14 @@ const Cart = () => {
                                     variant="outline"
                                     className={cn(
                                         "w-14 h-14 rounded-[12px] border border-gray-200 flex items-center justify-center p-0 hover:bg-gray-50",
-                                        selectedProduct && isInWishlist(selectedProduct.id) && "bg-[#f01a33]/5 border-[#f01a33]/20 text-[#f01a33]"
+                                        selectedProduct && isInWishlist(selectedProduct.id) && "bg-[#b31324]/5 border-[#b31324]/20 text-[#b31324]"
                                     )}
                                 >
                                     <Heart className={cn("w-6 h-6", selectedProduct && isInWishlist(selectedProduct.id) && "fill-current")} />
                                 </Button>
                             </div>
 
-                            <Link href={`/product/${selectedProduct?.id}`} className="group inline-flex items-center gap-2 text-[#f01a33] text-sm font-medium border border-[#f01a33]/30 px-6 py-2.5 rounded-full w-fit hover:bg-[#f01a33]/5 transition-all">
+                            <Link href={`/product/${selectedProduct?.id}`} className="group inline-flex items-center gap-2 text-[#b31324] text-sm font-medium border border-[#b31324]/30 px-6 py-2.5 rounded-full w-fit hover:bg-[#b31324]/5 transition-all">
                                 <span>Xem chi tiết</span>
                                 <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                             </Link>
@@ -345,7 +345,7 @@ const Cart = () => {
                         {/* Right: Image */}
                         <div className="relative bg-[#f8f5f2] h-[400px] md:h-auto flex items-center justify-center p-12">
                             <div className="absolute top-8 left-8 z-10">
-                                <span className="border border-[#f01a33] text-[#f01a33] px-5 py-1.5 rounded-full text-xs font-display uppercase tracking-wider font-semibold">
+                                <span className="border border-[#b31324] text-[#b31324] px-5 py-1.5 rounded-full text-xs font-display uppercase tracking-wider font-semibold">
                                     BÁN CHẠY
                                 </span>
                             </div>

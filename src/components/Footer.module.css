@@ -60,7 +60,7 @@
   transition: color 0.3s ease, background 0.3s ease, border-color 0.3s ease;
 }
 
-.socials a:hover { border-color: #f01a33; background: #f01a33; color: white; }
+.socials a:hover { border-color: #b31324; background: #b31324; color: white; }
 
 .columnLabel {
   display: block;

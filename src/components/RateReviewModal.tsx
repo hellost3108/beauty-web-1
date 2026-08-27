@@ -41,7 +41,7 @@ export function RateReviewModal() {
             </DialogTrigger>
             <DialogContent className="sm:max-w-md rounded-[20px] p-6 bg-white">
                 <DialogHeader className="mb-4">
-                    <DialogTitle className="text-xl font-bold flex justify-between items-center text-[#1a1a1a] font-display">
+                    <DialogTitle className="text-xl font-bold flex justify-between items-center text-[#111111] font-display">
                         Đánh Giá Sản Phẩm!
                     </DialogTitle>
                     <DialogDescription className="text-gray-500 mt-2 font-body">
@@ -68,7 +68,7 @@ export function RateReviewModal() {
                 </div>
 
                 <div className="space-y-3 mb-6">
-                    <label className="text-sm font-semibold text-[#1a1a1a] font-display">
+                    <label className="text-sm font-semibold text-[#111111] font-display">
                         Bạn có muốn chia sẻ thêm không?
                     </label>
                     <Textarea

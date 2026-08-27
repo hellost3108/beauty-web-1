@@ -49,7 +49,7 @@
     align-items: center;
     gap: 0.8rem;
     margin-bottom: 1.35rem;
-    color: #f01a33;
+    color: #b31324;
 }
 
 .eyebrow::before {
@@ -72,7 +72,7 @@
 }
 
 .title em {
-    color: #f01a33;
+    color: #b31324;
     font-weight: inherit;
     font-style: italic;
 }
@@ -208,7 +208,7 @@
     height: 2.9rem;
     place-items: center;
     border-radius: 50%;
-    background: #f01a33;
+    background: #b31324;
     color: white;
     transition: color 0.4s ease, background 0.4s ease, transform 0.55s cubic-bezier(0.2, 0.72, 0.2, 1);
 }
@@ -225,7 +225,7 @@
     }
 
     .card:hover .actionIcon {
-        color: #f01a33;
+        color: #b31324;
         background: white;
         transform: rotate(9deg) scale(1.06);
     }

@@ -63,7 +63,7 @@ const Signup = () => {
                                         name="name"
                                         value={formData.name}
                                         onChange={handleInputChange}
-                                        className="w-full pl-11 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#f01a33] focus:border-transparent transition-all duration-200 font-body"
+                                        className="w-full pl-11 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#b31324] focus:border-transparent transition-all duration-200 font-body"
                                         placeholder="Enter your full name"
                                         required
                                     />
@@ -83,7 +83,7 @@ const Signup = () => {
                                         name="email"
                                         value={formData.email}
                                         onChange={handleInputChange}
-                                        className="w-full pl-11 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#f01a33] focus:border-transparent transition-all duration-200 font-body"
+                                        className="w-full pl-11 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#b31324] focus:border-transparent transition-all duration-200 font-body"
                                         placeholder="Enter your email"
                                         required
                                     />
@@ -103,7 +103,7 @@ const Signup = () => {
                                         name="password"
                                         value={formData.password}
                                         onChange={handleInputChange}
-                                        className="w-full pl-11 pr-12 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#f01a33] focus:border-transparent transition-all duration-200 font-body"
+                                        className="w-full pl-11 pr-12 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#b31324] focus:border-transparent transition-all duration-200 font-body"
                                         placeholder="Create a password"
                                         required
                                     />
@@ -127,15 +127,15 @@ const Signup = () => {
                                     type="checkbox"
                                     id="terms"
                                     required
-                                    className="mt-1 w-4 h-4 text-[#f01a33] border-gray-300 rounded focus:ring-[#f01a33]"
+                                    className="mt-1 w-4 h-4 text-[#b31324] border-gray-300 rounded focus:ring-[#b31324]"
                                 />
                                 <label htmlFor="terms" className="text-sm text-gray-600 font-body">
                                     I agree to the{' '}
-                                    <Link href="/terms" className="text-[#f01a33] hover:text-[#d01629] transition-colors">
+                                    <Link href="/terms" className="text-[#b31324] hover:text-[#d01629] transition-colors">
                                         Terms of Service
                                     </Link>{' '}
                                     and{' '}
-                                    <Link href="/privacy" className="text-[#f01a33] hover:text-[#d01629] transition-colors">
+                                    <Link href="/privacy" className="text-[#b31324] hover:text-[#d01629] transition-colors">
                                         Privacy Policy
                                     </Link>
                                 </label>
@@ -144,10 +144,10 @@ const Signup = () => {
                             {/* Submit Button */}
                             <button
                                 type="submit"
-                                className="w-full bg-gradient-to-r from-[#f01a33] to-[#e91e63] text-white py-3 rounded-lg font-button font-semibold hover:shadow-lg hover:shadow-[#f01a33]/30 transform hover:-translate-y-0.5 transition-all duration-300 relative overflow-hidden group"
+                                className="w-full bg-gradient-to-r from-[#b31324] to-[#850c18] text-white py-3 rounded-lg font-button font-semibold hover:shadow-lg hover:shadow-[#b31324]/30 transform hover:-translate-y-0.5 transition-all duration-300 relative overflow-hidden group"
                             >
                                 <span className="relative z-10">Create Account</span>
-                                <div className="absolute inset-0 bg-gradient-to-r from-[#e91e63] to-[#f01a33] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                                <div className="absolute inset-0 bg-gradient-to-r from-[#850c18] to-[#b31324] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                             </button>
                         </form>
 
@@ -193,7 +193,7 @@ const Signup = () => {
                                 Already have an account?{' '}
                                 <Link
                                     href="/login"
-                                    className="text-[#f01a33] hover:text-[#d01629] font-semibold transition-colors"
+                                    className="text-[#b31324] hover:text-[#d01629] font-semibold transition-colors"
                                 >
                                     Sign In
                                 </Link>

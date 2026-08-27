@@ -13,7 +13,7 @@ const Wishlist = () => {
         <div className="min-h-screen bg-white">
             <Navbar />
             <div className="pt-24 pb-16 px-6 md:px-12 text-center min-h-[60vh]">
-                <h1 className="font-display text-4xl mb-8 text-[#1a1a1a]">My Wishlist</h1>
+                <h1 className="font-display text-4xl mb-8 text-[#111111]">My Wishlist</h1>
 
                 {wishlist.length === 0 ? (
                     <div className="flex flex-col items-center gap-4">
@@ -51,7 +51,7 @@ const Wishlist = () => {
                                     </div>
                                 </div>
                                 <div className="p-4 text-center">
-                                    <h3 className="font-display text-lg text-[#1a1a1a] mb-1">{product.name}</h3>
+                                    <h3 className="font-display text-lg text-[#111111] mb-1">{product.name}</h3>
                                     <p className="font-display text-[#e7406e] font-bold">Rs. {product.price}</p>
                                 </div>
                             </div>

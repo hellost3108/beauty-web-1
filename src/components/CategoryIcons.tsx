@@ -32,12 +32,12 @@ const CategoryIcons = () => {
       <div className="mx-auto max-w-[1440px] px-5 md:px-10 xl:px-14">
         <div className="mb-12 grid gap-7 border-b border-black/10 pb-10 md:mb-14 md:grid-cols-12 md:items-end md:pb-12">
           <div data-reveal="left" className="md:col-span-7">
-            <div className="mb-5 flex items-center gap-3 font-body text-[11px] font-semibold uppercase tracking-[0.22em] text-[#f01a33]">
+            <div className="mb-5 flex items-center gap-3 font-body text-[11px] font-semibold uppercase tracking-[0.22em] text-[#b31324]">
               <span className="h-px w-8 bg-current" />
               Chăm sóc theo nhu cầu da
             </div>
             <h2 className="font-display text-[clamp(2.45rem,4.35vw,4.7rem)] tracking-[-0.022em] text-[#191816]">
-              Energy Shot <span className="text-[#f01a33]">Hydrogel</span>
+              Energy Shot <span className="text-[#b31324]">Hydrogel</span>
             </h2>
           </div>
           <p data-reveal="right" data-reveal-delay="110" className="max-w-xl font-body text-sm leading-7 text-black/60 md:col-span-5 md:justify-self-end md:text-base">
@@ -77,8 +77,8 @@ const CategoryIcons = () => {
                     aria-label={`Thêm ${product.name} vào danh sách yêu thích`}
                     className={`absolute right-3 top-3 z-20 grid h-9 w-9 place-items-center rounded-full border border-white/70 backdrop-blur-md transition-colors ${
                       isInWishlist(product.id)
-                        ? 'bg-[#f01a33] text-white'
-                        : 'bg-white/85 text-black/70 hover:bg-white hover:text-[#f01a33]'
+                        ? 'bg-[#b31324] text-white'
+                        : 'bg-white/85 text-black/70 hover:bg-white hover:text-[#b31324]'
                     }`}
                   >
                     <Heart className={`h-4 w-4 ${isInWishlist(product.id) ? 'fill-current' : ''}`} />
@@ -101,7 +101,7 @@ const CategoryIcons = () => {
                   <button
                     type="button"
                     onClick={() => setSelectedProduct(product)}
-                    className="mb-3 text-left font-display text-[1.35rem] leading-[1.16] tracking-[-0.025em] text-[#191816] transition-colors hover:text-[#f01a33]"
+                    className="mb-3 text-left font-display text-[1.35rem] leading-[1.16] tracking-[-0.025em] text-[#191816] transition-colors hover:text-[#b31324]"
                   >
                     {product.name}
                   </button>
@@ -113,7 +113,7 @@ const CategoryIcons = () => {
                     <button
                       type="button"
                       onClick={(e) => handleAddToCart(product, e)}
-                      className="rounded-full bg-[#191816] px-4 py-2.5 font-body text-xs font-semibold text-white transition-colors hover:bg-[#f01a33]"
+                      className="rounded-full bg-[#191816] px-4 py-2.5 font-body text-xs font-semibold text-white transition-colors hover:bg-[#b31324]"
                     >
                       Thêm vào giỏ
                     </button>
@@ -121,7 +121,7 @@ const CategoryIcons = () => {
                       type="button"
                       onClick={() => setSelectedProduct(product)}
                       aria-label={`Xem nhanh ${product.name}`}
-                      className="grid h-10 w-10 place-items-center rounded-full border border-black/15 text-[#191816] transition-colors hover:border-[#f01a33] hover:text-[#f01a33]"
+                      className="grid h-10 w-10 place-items-center rounded-full border border-black/15 text-[#191816] transition-colors hover:border-[#b31324] hover:text-[#b31324]"
                     >
                       <ArrowUpRight className="h-4 w-4" />
                     </button>
@@ -135,7 +135,7 @@ const CategoryIcons = () => {
         <div data-reveal="fade" data-reveal-delay="180" className="mt-10 flex justify-center md:mt-12">
           <Link
             href="/collection"
-            className="group inline-flex items-center gap-3 border-b border-black/25 pb-2 font-body text-sm font-semibold text-[#191816] transition-colors hover:border-[#f01a33] hover:text-[#f01a33]"
+            className="group inline-flex items-center gap-3 border-b border-black/25 pb-2 font-body text-sm font-semibold text-[#191816] transition-colors hover:border-[#b31324] hover:text-[#b31324]"
           >
             Xem toàn bộ bộ sưu tập
             <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
@@ -154,17 +154,17 @@ const CategoryIcons = () => {
             {/* Left: Content */}
             <div className="p-8 md:p-12 flex flex-col justify-center">
               <div className="flex justify-between items-start mb-2">
-                <h2 className="font-display text-3xl md:text-4xl text-[#1a1a1a]">
+                <h2 className="font-display text-3xl md:text-4xl text-[#111111]">
                   {selectedProduct?.name}
                 </h2>
-                <div className="flex items-center gap-1 border border-[#f01a33] rounded-full px-2 py-0.5">
-                  <span className="text-xs font-bold text-[#f01a33]">4.8</span>
-                  <Star className="w-3 h-3 text-[#f01a33] fill-[#f01a33]" />
+                <div className="flex items-center gap-1 border border-[#b31324] rounded-full px-2 py-0.5">
+                  <span className="text-xs font-bold text-[#b31324]">4.8</span>
+                  <Star className="w-3 h-3 text-[#b31324] fill-[#b31324]" />
                 </div>
               </div>
 
               <div className="flex items-baseline gap-3 mb-4">
-                <span className="text-[#f01a33] font-display text-2xl font-bold">{selectedProduct?.price}đ</span>
+                <span className="text-[#b31324] font-display text-2xl font-bold">{selectedProduct?.price}đ</span>
               </div>
 
               <p className="font-body text-[#666666] text-sm leading-relaxed mb-8">
@@ -203,9 +203,9 @@ const CategoryIcons = () => {
                     setQuantity(1);
                     router.push('/cart');
                   }}
-                  className="flex-1 bg-[#f01a33] text-white rounded-[10px] py-6 shadow-lg shadow-[#f01a33]/20 text-base font-normal relative overflow-hidden group/btn"
+                  className="flex-1 bg-[#b31324] text-white rounded-[10px] py-6 shadow-lg shadow-[#b31324]/20 text-base font-normal relative overflow-hidden group/btn"
                 >
-                  <span className="relative z-10 group-hover/btn:text-[#f01a33] transition-colors duration-700">Mua Ngay</span>
+                  <span className="relative z-10 group-hover/btn:text-[#b31324] transition-colors duration-700">Mua Ngay</span>
                   <div className="absolute bottom-0 right-0 w-full h-0 bg-white group-hover/btn:h-full transition-all duration-700 ease-liquid" style={{ transformOrigin: 'bottom right' }} />
                 </Button>
                 <Button
@@ -219,7 +219,7 @@ const CategoryIcons = () => {
                     setQuantity(1);
                     toast.success("Đã thêm vào giỏ hàng");
                   }}
-                  className="flex-1 bg-white hover:bg-[#fff5f5] text-[#f01a33] border border-[#f01a33] rounded-[10px] py-6 text-base font-normal"
+                  className="flex-1 bg-white hover:bg-[#fff5f5] text-[#b31324] border border-[#b31324] rounded-[10px] py-6 text-base font-normal"
                 >
                   Thêm Vào Giỏ
                 </Button>
@@ -232,7 +232,7 @@ const CategoryIcons = () => {
                   variant="outline"
                   className={cn(
                     "w-12 h-12 rounded-[10px] border border-gray-200 flex items-center justify-center p-0 hover:bg-gray-50",
-                    selectedProduct && isInWishlist(selectedProduct.id) && "bg-[#f01a33]/5 border-[#f01a33]/20 text-[#f01a33]"
+                    selectedProduct && isInWishlist(selectedProduct.id) && "bg-[#b31324]/5 border-[#b31324]/20 text-[#b31324]"
                   )}
                 >
                   <Heart className={cn("w-5 h-5", selectedProduct && isInWishlist(selectedProduct.id) && "fill-current")} />
@@ -250,7 +250,7 @@ const CategoryIcons = () => {
                     }, 0);
                   }
                 }}
-                className="inline-flex items-center gap-2 text-[#f01a33] text-sm sm:text-base border border-[#f01a33]/30 px-6 py-2 rounded-full w-fit hover:bg-[#f01a33]/5 transition-colors cursor-pointer"
+                className="inline-flex items-center gap-2 text-[#b31324] text-sm sm:text-base border border-[#b31324]/30 px-6 py-2 rounded-full w-fit hover:bg-[#b31324]/5 transition-colors cursor-pointer"
               >
                 <span>Xem chi tiết sản phẩm</span>
                 <ChevronDown className="w-4 h-4 -rotate-90" />
