@@ -32,9 +32,14 @@ const channels = [
 ];
 
 const LetsTalkMelanin = () => (
-  <section className="mlg-section mlg-dark" aria-labelledby="mlg-contact-title">
+  <section className="mlg-section mlg-dark mlg-contact-section" aria-labelledby="mlg-contact-title">
     <div className="mlg-shell mlg-contact mlg-rise">
-      <div>
+      <div className="mlg-contact-art" aria-hidden="true">
+        <img src="/assets/brand-banner-melanin.png" alt="" loading="lazy" />
+        <span>06 / CONNECT</span>
+      </div>
+
+      <div className="mlg-contact-main">
         <p className="mlg-eyebrow mlg-eyebrow--rule">Liên hệ Melalogy</p>
         <h2 className="mlg-display" id="mlg-contact-title">
           Let’s talk

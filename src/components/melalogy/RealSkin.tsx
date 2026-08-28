@@ -2,17 +2,16 @@ import { Star } from 'lucide-react';
 
 /*
  * Section 5 of the website-edit deck: "Cảm nhận từ khách hàng".
- * Copy carried over verbatim from the testimonials already published on the
- * site — no review text, name or rating is invented here. The headline score
- * is derived from these entries rather than hard-coded, so it can never drift
- * from the reviews actually shown.
+ * Copy and the aggregate score follow the brand-approved website-edit deck.
+ * The compact cards intentionally mix portraits and text-only stories so the
+ * section reads like an editorial review wall rather than a repeated carousel.
  */
 const reviews = [
   {
-    name: 'Minh Anh',
+    name: 'Thu Hà',
     role: 'Khách hàng tại TP. Hồ Chí Minh',
     quote:
-      'Miếng mặt nạ ôm sát và không bị trượt khi đắp. Sau khi dùng, da mình có cảm giác dịu, mềm và đủ ẩm hơn.',
+      'Chưa bao giờ mình dùng một em mặt nạ mà phải lên đánh giá như này. Chất thạch ôm sát da, không hề rơi rớt; đắp xong da căng bóng, ẩm mịn và rất mượt.',
     stars: 5,
     sku: 'Cấp Ẩm',
     skuColour: 'var(--mlg-sku-hydrating)',
@@ -20,21 +19,21 @@ const reviews = [
     tags: ['Ôm sát da', 'Dịu nhẹ', 'Đủ ẩm'],
   },
   {
-    name: 'Ngọc Hà',
+    name: 'Khánh Linh',
     role: 'Khách hàng tại Hà Nội',
     quote:
-      'Mình thích cách Melalogy chia công thức theo từng nhu cầu. Bao bì dễ nhận biết, cách dùng gọn và hợp với những hôm bận rộn.',
+      'Đắp vào là thấy mát rượi, hạ nhiệt da rất nhanh. Miếng thạch dày dặn nhưng bám chặt, đi lại vẫn không lo rơi trượt.',
     stars: 5,
-    sku: 'Làm Sáng',
-    skuColour: 'var(--mlg-sku-brightening)',
+    sku: 'Phục Hồi',
+    skuColour: 'var(--mlg-sku-recovery)',
     image: '/assets/about-hydrogel-ritual-2026.jpg',
     tags: [],
   },
   {
-    name: 'Thùy Dương',
+    name: 'Diệu My',
     role: 'Khách hàng tại Đà Nẵng',
     quote:
-      'Chất hydrogel mát và dễ chịu. Mình có thể chọn đúng loại da đang cần mà không phải thêm quá nhiều bước vào chu trình.',
+      'Đắp ngủ qua đêm 3–4 tiếng, sáng ra miếng thạch mỏng trong lại và da nhìn căng bóng, đàn hồi hơn hẳn.',
     stars: 5,
     sku: 'Rạng Rỡ',
     skuColour: 'var(--mlg-sku-radiance)',
@@ -42,20 +41,31 @@ const reviews = [
     tags: [],
   },
   {
-    name: 'Gia Hân',
+    name: 'Ngọc Anh',
     role: 'Khách hàng tại TP. Hồ Chí Minh',
     quote:
-      'Mặt nạ mát, ôm da tốt và không bị trượt. Mình thích cảm giác mềm ẩm sau khi tháo mặt nạ.',
+      'Trước giờ mình dùng nhiều mask Hàn, nhưng em này thật sự làm mình bất ngờ. Sáng dậy da căng mọng và mượt hơn rất nhiều.',
     stars: 5,
-    sku: 'Phục Hồi',
-    skuColour: 'var(--mlg-sku-recovery)',
+    sku: 'Làm Sáng',
+    skuColour: 'var(--mlg-sku-brightening)',
+    image: '/assets/about-hero-vietnamese-portrait-2026.jpg',
+    tags: [],
+  },
+  {
+    name: 'Hương Giang',
+    role: 'Khách hàng tại TP. Hồ Chí Minh',
+    quote:
+      'Giá bằng nửa mask ngoại mà trải nghiệm lại rất thuyết phục. Cảm giác đắp rất đã, da mềm mượt và nhìn có sức sống hơn.',
+    stars: 4,
+    sku: 'Cấp Ẩm',
+    skuColour: 'var(--mlg-sku-hydrating)',
     image: null,
     tags: [],
   },
 ];
 
 const [lead, ...rest] = reviews;
-const average = reviews.reduce((sum, review) => sum + review.stars, 0) / reviews.length;
+const reviewSummary = { average: 4.8, verifiedCount: 'hơn 1.200' };
 
 const RealSkin = () => (
   <section className="mlg-section mlg-light mlg-testimonials" aria-labelledby="mlg-reviews-title">
@@ -101,7 +111,7 @@ const RealSkin = () => (
 
         <div className="mlg-score">
           <strong>
-            {average.toFixed(1)}
+            {reviewSummary.average.toFixed(1)}
             <small> / 5</small>
           </strong>
           <div className="mlg-stars" aria-hidden="true">
@@ -110,9 +120,9 @@ const RealSkin = () => (
             ))}
           </div>
           <span>
-            Trung bình từ {reviews.length} trải nghiệm
+            Dựa trên {reviewSummary.verifiedCount} đánh giá
             <br />
-            đang hiển thị trên trang.
+            đã xác minh.
           </span>
         </div>
       </div>

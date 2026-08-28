@@ -287,10 +287,15 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: scale 700ms cubic-bezier(.2,.8,.2,1);
+  transition: scale 700ms cubic-bezier(.2,.8,.2,1), opacity 500ms ease;
 }
 
+.productPrimaryImage { opacity: 1; }
+.productAltImage { opacity: 0; scale: 1.04; }
+.productCard:hover .productPrimaryImage:has(~ .productAltImage) { opacity: 0; }
+.productCard:hover .productAltImage { opacity: 1; scale: 1; }
 .productCard:hover .productMedia img { scale: 1.035; }
+.productCard:hover .productAltImage { scale: 1; }
 
 .productMetaTop {
   position: absolute;

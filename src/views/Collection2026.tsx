@@ -141,7 +141,24 @@ export default function Collection2026() {
                     <span>{signal.index} / 04</span>
                     <span><i style={{ backgroundColor: signal.color }} /> {product.category}</span>
                   </div>
-                  <img src={product.image} alt={product.name} width="900" height="900" loading={index < 2 ? "eager" : "lazy"} />
+                  <img
+                    className={styles.productPrimaryImage}
+                    src={product.image}
+                    alt={product.name}
+                    width="900"
+                    height="900"
+                    loading={index < 2 ? "eager" : "lazy"}
+                  />
+                  {product.images?.[1] && product.images[1] !== product.image && (
+                    <img
+                      className={styles.productAltImage}
+                      src={product.images[1]}
+                      alt={`${product.name} trong trải nghiệm chăm da`}
+                      width="900"
+                      height="900"
+                      loading="lazy"
+                    />
+                  )}
                   <button
                     type="button"
                     className={`${styles.wishlist} ${isInWishlist(product.id) ? styles.wishlistActive : ""}`}
