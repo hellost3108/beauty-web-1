@@ -15,7 +15,7 @@ const reviews = [
     stars: 5,
     sku: 'Cấp Ẩm',
     skuColour: 'var(--mlg-sku-hydrating)',
-    image: '/assets/review-thu-ha-2026.png',
+    image: '/assets/review-thu-ha-hd-2026.png',
     tags: ['Ôm sát da', 'Dịu nhẹ', 'Đủ ẩm'],
   },
   {
