@@ -153,7 +153,7 @@ export default function Collection2026() {
                     <img
                       className={styles.productAltImage}
                       src={product.images[1]}
-                      alt={`${product.name} trong trải nghiệm chăm da`}
+                      alt={`Hộp ${product.name}`}
                       width="900"
                       height="900"
                       loading="lazy"

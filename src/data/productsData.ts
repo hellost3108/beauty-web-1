@@ -3,7 +3,7 @@ export const allProducts = [
     {
         id: 1,
         image: "/assets/mask-hydrating-blue.png",
-        images: ["/assets/mask-hydrating-blue.png", "/assets/skincare-face-lifestyle.jpg"],
+        images: ["/assets/mask-hydrating-blue.png", "/assets/mask-hydrating-blue-box-2026.png"],
         name: 'Mặt Nạ Hydrogel Energy Shot - Cấp Ẩm',
         subtitle: 'Cấp Ẩm Chuyên Sâu',
         price: '79.000',
@@ -29,7 +29,7 @@ export const allProducts = [
     {
         id: 3,
         image: "/assets/mask-brightening-yellow.png",
-        images: ["/assets/mask-brightening-yellow.png", "/assets/skincare-face-lifestyle.jpg"],
+        images: ["/assets/mask-brightening-yellow.png", "/assets/mask-brightening-yellow-box-2026.png"],
         name: 'Mặt Nạ Hydrogel Energy Shot - Làm Sáng',
         subtitle: 'Làm Sáng & Đều Màu Da',
         price: '79.000',
@@ -42,7 +42,7 @@ export const allProducts = [
     {
         id: 4,
         image: "/assets/mask-radiance-purple.png",
-        images: ["/assets/mask-radiance-purple.png", "/assets/skincare-face-lifestyle.jpg"],
+        images: ["/assets/mask-radiance-purple.png", "/assets/mask-radiance-purple-box-2026.png"],
         name: 'Mặt Nạ Hydrogel Energy Shot - Rạng Rỡ',
         subtitle: 'Săn Chắc & Trẻ Hoá Da',
         price: '79.000',

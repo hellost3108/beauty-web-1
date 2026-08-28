@@ -218,7 +218,7 @@ const ShopSection = () => {
                                     {product.images?.[1] && product.images[1] !== product.image && (
                                         <img
                                             src={product.images[1]}
-                                            alt={`${product.name} trong trải nghiệm chăm da`}
+                                            alt={`Hộp ${product.name}`}
                                             className="absolute inset-0 w-full h-full object-cover opacity-0 scale-[1.04] group-hover:opacity-100 group-hover:scale-100 transition-all duration-700 ease-out"
                                             loading="lazy"
                                         />
