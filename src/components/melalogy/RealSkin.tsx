@@ -15,7 +15,7 @@ const reviews = [
     stars: 5,
     sku: 'Cấp Ẩm',
     skuColour: 'var(--mlg-sku-hydrating)',
-    image: '/assets/skincare-mask-application.jpg',
+    image: '/assets/review-thu-ha-2026.png',
     tags: ['Ôm sát da', 'Dịu nhẹ', 'Đủ ẩm'],
   },
   {
@@ -26,7 +26,7 @@ const reviews = [
     stars: 5,
     sku: 'Phục Hồi',
     skuColour: 'var(--mlg-sku-recovery)',
-    image: '/assets/about-hydrogel-ritual-2026.jpg',
+    image: '/assets/review-khanh-linh-2026.png',
     tags: [],
   },
   {
@@ -37,7 +37,7 @@ const reviews = [
     stars: 5,
     sku: 'Rạng Rỡ',
     skuColour: 'var(--mlg-sku-radiance)',
-    image: '/assets/skincare-face-lifestyle.jpg',
+    image: '/assets/review-dieu-my-2026.png',
     tags: [],
   },
   {
@@ -48,7 +48,7 @@ const reviews = [
     stars: 5,
     sku: 'Làm Sáng',
     skuColour: 'var(--mlg-sku-brightening)',
-    image: '/assets/about-hero-vietnamese-portrait-2026.jpg',
+    image: '/assets/review-ngoc-anh-2026.png',
     tags: [],
   },
   {
