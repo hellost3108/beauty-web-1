@@ -213,8 +213,16 @@ const ShopSection = () => {
                                     <img
                                         src={product.image}
                                         alt={product.name}
-                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                                        className={`w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-105 ${product.images?.[1] && product.images[1] !== product.image ? 'group-hover:opacity-0' : ''}`}
                                     />
+                                    {product.images?.[1] && product.images[1] !== product.image && (
+                                        <img
+                                            src={product.images[1]}
+                                            alt={`${product.name} trong trải nghiệm chăm da`}
+                                            className="absolute inset-0 w-full h-full object-cover opacity-0 scale-[1.04] group-hover:opacity-100 group-hover:scale-100 transition-all duration-700 ease-out"
+                                            loading="lazy"
+                                        />
+                                    )}
 
                                     <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 pointer-events-none">
                                         <div className="absolute top-4 right-4 flex flex-col gap-2 translate-x-16 group-hover:translate-x-0 transition-transform duration-500 ease-out pointer-events-auto">
