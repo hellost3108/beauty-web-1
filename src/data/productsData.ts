@@ -11,7 +11,7 @@ export const allProducts = [
         rawPrice: 79000,
         description: 'Mặt nạ hydrogel cấp ẩm tức thì với Hyaluronic Acid và Ceramide NP, giúp phục hồi hàng rào bảo vệ da và duy trì độ ẩm sâu suốt nhiều giờ.',
         ingredients: 'Hyaluronic Acid, Ceramide NP, Nước Khoáng',
-        usage: 'Đắp mặt nạ lên da đã làm sạch trong 15-20 phút. Gỡ mặt nạ và massage nhẹ phần tinh chất còn lại cho thấm đều. Sử dụng 2-3 lần/tuần để đạt hiệu quả tốt nhất.',
+        usage: 'Đắp mặt nạ lên da đã làm sạch và để hydrogel giải phóng tinh chất có kiểm soát trong khoảng 2 giờ. Gỡ mặt nạ, vỗ nhẹ phần tinh chất còn lại. Sử dụng 2-3 lần/tuần.',
     },
     {
         id: 2,
@@ -24,7 +24,7 @@ export const allProducts = [
         rawPrice: 79000,
         description: 'Mặt nạ hydrogel phục hồi với Madecassic Acid và chiết xuất rau má (Centella Asiatica), làm dịu da nhạy cảm, kích ứng và hỗ trợ tái tạo da.',
         ingredients: 'Madecassic Acid, Centella Asiatica Leaf Vesicles',
-        usage: 'Đắp mặt nạ lên da đã làm sạch trong 15-20 phút. Gỡ mặt nạ và massage nhẹ phần tinh chất còn lại cho thấm đều. Phù hợp dùng khi da đang kích ứng hoặc sau các bước điều trị mạnh.',
+        usage: 'Đắp mặt nạ lên da đã làm sạch và để hydrogel giải phóng tinh chất có kiểm soát trong khoảng 2 giờ. Gỡ mặt nạ, vỗ nhẹ phần tinh chất còn lại. Phù hợp khi da cần được làm dịu và phục hồi.',
     },
     {
         id: 3,
@@ -37,7 +37,7 @@ export const allProducts = [
         rawPrice: 79000,
         description: 'Mặt nạ hydrogel làm sáng da với Niacinamide và chiết xuất cám gạo (Oryza Sativa Bran Extract), giúp đều màu da và mang lại vẻ rạng rỡ tự nhiên.',
         ingredients: 'Niacinamide, Oryza Sativa (Rice) Bran Extract',
-        usage: 'Đắp mặt nạ lên da đã làm sạch trong 15-20 phút. Gỡ mặt nạ và massage nhẹ phần tinh chất còn lại cho thấm đều. Dùng đều đặn để cải thiện tông màu da.',
+        usage: 'Đắp mặt nạ lên da đã làm sạch và để hydrogel giải phóng tinh chất có kiểm soát trong khoảng 2 giờ. Gỡ mặt nạ, vỗ nhẹ phần tinh chất còn lại. Dùng đều đặn để hỗ trợ làn da đều màu, rạng sáng.',
     },
     {
         id: 4,
@@ -50,6 +50,6 @@ export const allProducts = [
         rawPrice: 79000,
         description: 'Mặt nạ hydrogel trẻ hoá với Sodium DNA và Acetyl Hexapeptide-8, hỗ trợ săn chắc da và cải thiện độ đàn hồi.',
         ingredients: 'Sodium DNA, Acetyl Hexapeptide-8',
-        usage: 'Đắp mặt nạ lên da đã làm sạch trong 15-20 phút. Gỡ mặt nạ và massage nhẹ phần tinh chất còn lại cho thấm đều. Sử dụng 2-3 lần/tuần cho làn da săn chắc hơn.',
+        usage: 'Đắp mặt nạ lên da đã làm sạch và để hydrogel giải phóng tinh chất có kiểm soát trong khoảng 2 giờ. Gỡ mặt nạ, vỗ nhẹ phần tinh chất còn lại. Sử dụng 2-3 lần/tuần để hỗ trợ độ đàn hồi của da.',
     },
 ];
