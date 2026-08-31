@@ -663,6 +663,68 @@ html {
   pointer-events: none;
 }
 
+.mlg-hero__arrows {
+  position: absolute;
+  z-index: 5;
+  top: 50%;
+  right: clamp(0.75rem, 2vw, 1.5rem);
+  left: clamp(0.75rem, 2vw, 1.5rem);
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+  translate: 0 -50%;
+}
+
+.mlg-hero__arrow {
+  display: grid;
+  width: clamp(2.75rem, 4vw, 3.5rem);
+  aspect-ratio: 1;
+  place-items: center;
+  border: 1px solid color-mix(in oklab, var(--mlg-white) 32%, transparent);
+  border-radius: 999px;
+  color: var(--mlg-white);
+  background: color-mix(in oklab, var(--mlg-black) 70%, transparent);
+  box-shadow:
+    0 0.8rem 2.25rem -1rem rgb(0 0 0 / 82%),
+    inset 0 1px rgb(255 255 255 / 12%);
+  backdrop-filter: blur(0.85rem) saturate(125%);
+  -webkit-backdrop-filter: blur(0.85rem) saturate(125%);
+  cursor: pointer;
+  opacity: 0.88;
+  pointer-events: auto;
+  transition:
+    border-color 0.3s var(--mlg-ease),
+    background-color 0.3s var(--mlg-ease),
+    box-shadow 0.3s var(--mlg-ease),
+    opacity 0.3s var(--mlg-ease),
+    scale 0.3s var(--mlg-ease);
+}
+
+.mlg-hero__arrow svg {
+  width: 46%;
+  height: 46%;
+}
+
+.mlg-hero__arrow:hover {
+  border-color: color-mix(in oklab, var(--mlg-cherry) 76%, white);
+  background: color-mix(in oklab, var(--mlg-cherry) 88%, transparent);
+  box-shadow:
+    0 1rem 2.75rem -1.2rem rgb(179 19 36 / 85%),
+    inset 0 1px rgb(255 255 255 / 18%);
+  opacity: 1;
+  scale: 1.06;
+}
+
+.mlg-hero__arrow:active {
+  scale: 0.96;
+}
+
+.mlg-hero__arrow:focus-visible {
+  outline: 2px solid var(--mlg-white);
+  outline-offset: 3px;
+  opacity: 1;
+}
+
 .mlg-hero__rail {
   position: absolute;
   z-index: 4;
@@ -775,6 +837,17 @@ html {
       color-mix(in oklab, var(--mlg-black) 45%, transparent) 0%,
       transparent 22%
     );
+  }
+
+  .mlg-hero__arrows {
+    right: 0.45rem;
+    left: 0.45rem;
+  }
+
+  .mlg-hero__arrow {
+    width: 2.5rem;
+    border-color: color-mix(in oklab, var(--mlg-white) 42%, transparent);
+    background: color-mix(in oklab, var(--mlg-black) 76%, transparent);
   }
 }
 

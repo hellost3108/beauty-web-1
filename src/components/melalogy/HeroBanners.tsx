@@ -1,6 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 /*
  * Section 1 of the website-edit deck: "banner chạy".
@@ -90,6 +91,28 @@ const HeroBanners = () => {
         ))}
 
         <div className="mlg-hero__scrim" />
+
+        <div className="mlg-hero__arrows" aria-label="Điều khiển chuyển banner">
+          <button
+            type="button"
+            className="mlg-hero__arrow mlg-hero__arrow--previous"
+            onClick={() => goTo(active - 1)}
+            aria-label={`Banner trước: ${
+              banners[(active - 1 + banners.length) % banners.length].label
+            }`}
+          >
+            <ChevronLeft aria-hidden="true" strokeWidth={1.7} />
+          </button>
+
+          <button
+            type="button"
+            className="mlg-hero__arrow mlg-hero__arrow--next"
+            onClick={() => goTo(active + 1)}
+            aria-label={`Banner tiếp theo: ${banners[(active + 1) % banners.length].label}`}
+          >
+            <ChevronRight aria-hidden="true" strokeWidth={1.7} />
+          </button>
+        </div>
 
         <div className="mlg-hero__rail">
           {banners.map((banner, index) => (
