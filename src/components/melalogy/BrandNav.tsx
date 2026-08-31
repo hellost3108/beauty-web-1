@@ -12,7 +12,7 @@ import { useShop } from '@/context/ShopContext';
  * the website-edit deck: Melanin Science · Energy Shot · Journal · Shop.
  */
 const navLinks = [
-  { href: '/about', label: 'Melanin Science' },
+  { href: '/melanin-science', label: 'Melanin Science' },
   { href: '/collection', label: 'Energy Shot' },
   { href: '/blog', label: 'Journal' },
   { href: '/shop', label: 'Shop' },

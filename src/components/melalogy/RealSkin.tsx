@@ -87,7 +87,11 @@ const RealSkin = () => (
 
       <div className="mlg-review-lead">
         <div className="mlg-review-lead__media">
-          <img src={lead.image} alt={`Khách hàng ${lead.name} đang dùng Melalogy Energy Shot`} loading="lazy" />
+          <img
+            src={lead.image ?? undefined}
+            alt={`Khách hàng ${lead.name} đang dùng Melalogy Energy Shot`}
+            loading="lazy"
+          />
         </div>
 
         <div className="mlg-review-lead__quote">
@@ -138,7 +142,7 @@ const RealSkin = () => (
               {String(index + 2).padStart(2, '0')}
             </span>
             {review.image && (
-              <img src={review.image} alt={`Khách hàng ${review.name}`} loading="lazy" />
+              <img src={review.image ?? undefined} alt={`Khách hàng ${review.name}`} loading="lazy" />
             )}
             <div className="mlg-review__body">
               <span className="mlg-review__quote" aria-hidden="true">“</span>
