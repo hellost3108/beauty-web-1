@@ -36,7 +36,7 @@ const HeroSection = () => {
             </h1>
             <p className="mt-8 max-w-xl text-sm leading-7 text-white/65 md:text-base md:leading-8">{slide.subheadline}</p>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-              <Link href="/collection" className="group inline-flex min-h-14 items-center justify-center gap-3 rounded-full bg-[#f52334] px-7 text-sm font-semibold text-white transition duration-300 hover:-translate-y-1 hover:bg-white hover:text-[#171414]">
+              <Link href="/shop#shop-products" className="group inline-flex min-h-14 items-center justify-center gap-3 rounded-full bg-[#f52334] px-7 text-sm font-semibold text-white transition duration-300 hover:-translate-y-1 hover:bg-white hover:text-[#171414]">
                 Khám phá bộ sưu tập <ArrowUpRight className="h-4 w-4 transition-transform group-hover:rotate-45" />
               </Link>
               <Link href="/about" className="inline-flex min-h-14 items-center justify-center rounded-full border border-white/25 px-7 text-sm font-semibold text-white transition duration-300 hover:border-white hover:bg-white/10">Triết lý Energy Shot</Link>

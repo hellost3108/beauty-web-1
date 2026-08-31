@@ -69,7 +69,7 @@ const MelaninScience = () => (
             Khoa học chỉ có ý nghĩa
             <em>khi trở thành trải nghiệm thật trên làn da.</em>
           </h2>
-          <Link href="/collection" className="mlg-cta">
+          <Link href="/shop#shop-products" className="mlg-cta">
             Khám phá Energy Shot
             <ArrowRight aria-hidden="true" />
           </Link>

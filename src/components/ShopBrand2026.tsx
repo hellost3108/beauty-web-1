@@ -402,12 +402,6 @@ const ShopBrand2026 = () => {
                         })}
                     </div>
 
-                    <div data-reveal="fade" data-reveal-delay="120" className="mt-16 flex justify-center border-t border-black/10 pt-10">
-                        <Link href="/collection" className="group inline-flex items-center gap-4 rounded-full bg-[#d3172b] px-7 py-4 font-body text-sm font-semibold text-white transition-[transform,background-color] hover:-translate-y-0.5 hover:bg-[#151513]">
-                            Khám phá toàn bộ sưu tập
-                            <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                        </Link>
-                    </div>
                 </div>
             </section>
 
