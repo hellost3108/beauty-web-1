@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { Mail, MapPin, Phone } from 'lucide-react';
 
 const primaryLinks = [
-  { href: '/about', label: 'Melanin Science' },
+  { href: '/melanin-science', label: 'Melanin Science' },
   { href: '/collection', label: 'Energy Shot' },
   { href: '/blog', label: 'Journal' },
   { href: '/shop', label: 'Shop' },
