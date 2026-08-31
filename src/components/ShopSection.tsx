@@ -271,7 +271,7 @@ const ShopSection = () => {
                     </div>
 
                     <div data-reveal="fade" data-reveal-delay="170" className="flex justify-center mt-12">
-                        <Link href="/collection">
+                        <Link href="/shop#shop-products">
                             <Button className="relative bg-[#b31324] text-white px-16 py-3 text-base font-medium rounded-[12px] h-auto overflow-hidden group shadow-xl hover:shadow-2xl transition-shadow duration-500">
                                 <span className="relative z-10 group-hover:text-[#b31324] transition-colors duration-700">Xem toàn bộ sưu tập</span>
                                 <div className="absolute bottom-0 right-0 w-full h-0 bg-white group-hover:h-full transition-all duration-700 ease-liquid" style={{ transformOrigin: 'bottom right' }} />

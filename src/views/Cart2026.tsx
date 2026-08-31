@@ -77,7 +77,7 @@ const Cart2026 = () => {
                         <p className="commerce-eyebrow-2026">Giỏ hàng đang trống</p>
                         <h2>Bắt đầu từ điều làn da bạn đang cần.</h2>
                         <p>Khám phá bốn công thức Energy Shot được thiết kế cho từng trạng thái da.</p>
-                        <Link href="/collection" className="commerce-primary-action-2026">
+                        <Link href="/shop#shop-products" className="commerce-primary-action-2026">
                             Khám phá bộ sưu tập <ArrowRight />
                         </Link>
                     </section>
@@ -90,7 +90,7 @@ const Cart2026 = () => {
                                         <p className="commerce-kicker-2026">Lựa chọn của bạn</p>
                                         <h2 id="cart-items-heading">{cartItems.length} công thức / {cart.length} sản phẩm</h2>
                                     </div>
-                                    <Link href="/collection">Tiếp tục mua sắm <ArrowRight /></Link>
+                                    <Link href="/shop#shop-products">Tiếp tục mua sắm <ArrowRight /></Link>
                                 </div>
 
                                 <div className="commerce-cart-list-2026">

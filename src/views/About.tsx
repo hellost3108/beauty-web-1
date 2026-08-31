@@ -127,7 +127,7 @@ const About = () => {
                                 className="mt-9 flex flex-wrap items-center gap-4"
                             >
                                 <Link
-                                    href="/collection"
+                                    href="/shop#shop-products"
                                     className="group inline-flex min-h-12 items-center gap-3 rounded-full bg-[#ed1835] px-6 font-body text-sm font-semibold text-white transition-transform duration-300 hover:-translate-y-1"
                                 >
                                     Khám phá Energy Shot
@@ -293,7 +293,7 @@ const About = () => {
                     <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
                         {collection.map((item, index) => (
                             <Link
-                                href="/collection"
+                                href="/shop#shop-products"
                                 key={item.name}
                                 data-reveal="scale"
                                 data-reveal-delay={String(index * 90)}

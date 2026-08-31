@@ -60,7 +60,7 @@ const Cart = () => {
                             <Truck className="w-10 h-10 text-gray-300" />
                         </div>
                         <p className="text-gray-500 text-lg font-body">Giỏ hàng của bạn đang trống.</p>
-                        <Link href="/collection">
+                        <Link href="/shop#shop-products">
                             <Button className="bg-[#b31324] hover:bg-[#d6182d] text-white px-10 py-6 rounded-xl text-lg transition-transform hover:scale-105">
                                 Tiếp Tục Mua Sắm
                             </Button>

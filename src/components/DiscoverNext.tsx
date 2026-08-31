@@ -24,7 +24,7 @@ const DiscoverNext = () => {
 
                 <div className={styles.grid} data-motion-stagger>
                     <Link
-                        href="/collection"
+                        href="/shop#shop-products"
                         aria-label="Khám phá toàn bộ bộ sưu tập Energy Shot"
                         data-reveal="left"
                         className={styles.card}

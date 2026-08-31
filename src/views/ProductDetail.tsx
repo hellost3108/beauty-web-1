@@ -27,7 +27,7 @@ const ProductDetail = () => {
 
     useEffect(() => {
         if (!productDetails) {
-            router.push('/collection');
+            router.push('/shop#shop-products');
         }
         window.scrollTo(0, 0);
         setActiveImage(productDetails?.images?.[0]);
@@ -67,10 +67,10 @@ const ProductDetail = () => {
                     </Link>
                     <ChevronRight className="w-4 h-4 text-gray-400 animate-in fade-in slide-in-from-left-4 duration-700 delay-150 fill-mode-both" />
                     <Link
-                        href="/collection"
+                        href="/shop#shop-products"
                         className="hover:text-[#b31324] transition-colors animate-in fade-in slide-in-from-left-4 duration-700 delay-300 fill-mode-both"
                     >
-                        Bộ Sưu Tập
+                        Shop
                     </Link>
                     <ChevronRight className="w-4 h-4 text-gray-400 animate-in fade-in slide-in-from-left-4 duration-700 delay-500 fill-mode-both" />
                     <span className="text-gray-900 truncate max-w-[200px] sm:max-w-none animate-in fade-in slide-in-from-left-4 duration-700 delay-700 fill-mode-both">

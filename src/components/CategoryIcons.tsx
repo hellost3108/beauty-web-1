@@ -134,7 +134,7 @@ const CategoryIcons = () => {
 
         <div data-reveal="fade" data-reveal-delay="180" className="mt-10 flex justify-center md:mt-12">
           <Link
-            href="/collection"
+            href="/shop#shop-products"
             className="group inline-flex items-center gap-3 border-b border-black/25 pb-2 font-body text-sm font-semibold text-[#191816] transition-colors hover:border-[#b31324] hover:text-[#b31324]"
           >
             Xem toàn bộ bộ sưu tập

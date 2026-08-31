@@ -1,12 +1,5 @@
-"use client";
-
-import { Suspense } from "react";
-import Collection from "@/views/Collection2026";
+import { redirect } from "next/navigation";
 
 export default function CollectionPage() {
-  return (
-    <Suspense fallback={null}>
-      <Collection />
-    </Suspense>
-  );
+  redirect("/shop#shop-products");
 }

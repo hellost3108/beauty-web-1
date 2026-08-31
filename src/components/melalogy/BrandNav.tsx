@@ -9,11 +9,11 @@ import { useShop } from '@/context/ShopContext';
 /*
  * Guideline 04 (Logo system) + 11 (Layout principles): black bar, white logo,
  * cherry reserved for the active item only. Nav labels follow the site map in
- * the website-edit deck: Melanin Science · Energy Shot · Journal · Shop.
+ * the consolidated site map: Melanin Science · Journal · Shop. The Energy
+ * Shot story and catalog now live together on the Shop page.
  */
 const navLinks = [
   { href: '/melanin-science', label: 'Melanin Science' },
-  { href: '/collection', label: 'Energy Shot' },
   { href: '/blog', label: 'Journal' },
   { href: '/shop', label: 'Shop' },
 ];
@@ -134,7 +134,7 @@ const BrandNav = ({ overlay = false }: BrandNavProps) => {
             </Link>
           ))}
           <Link href="/contact">
-            <span>05</span>
+            <span>04</span>
             Liên hệ
           </Link>
         </div>
