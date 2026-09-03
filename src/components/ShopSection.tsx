@@ -132,7 +132,7 @@ const ShopSection = () => {
                                                 className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.025]"
                                             />
                                         </div>
-                                        <div className="flex items-center justify-between gap-2 px-1 pb-1 pt-3 font-body text-[9px] font-semibold uppercase tracking-[0.1em] text-black/58">
+                                        <div className="flex items-center justify-between gap-2 px-1 pb-1 pt-3 font-body text-[10px] font-semibold uppercase tracking-[0.1em] text-black/58">
                                             <span className="truncate">{product.category}</span>
                                             <span className="h-1.5 w-1.5 shrink-0 rounded-full" style={{ backgroundColor: accent }} />
                                         </div>

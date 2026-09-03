@@ -427,7 +427,9 @@ html {
 .mlg-nav__icon {
   position: relative;
   display: grid;
-  width: 2.4rem;
+  width: 2.75rem;
+  min-width: 2.75rem;
+  min-height: 2.75rem;
   aspect-ratio: 1;
   place-items: center;
   border: 0;
@@ -444,8 +446,21 @@ html {
 }
 
 .mlg-nav__icon svg {
-  width: 1.05rem;
-  height: 1.05rem;
+  width: 1.15rem;
+  height: 1.15rem;
+}
+
+@media (hover: none), (pointer: coarse) {
+  .shop-product-actions,
+  .shop-product-quick-add,
+  .product-related-actions {
+    transform: translate(0) !important;
+  }
+
+  .product-related-overlay {
+    background: transparent !important;
+    opacity: 1 !important;
+  }
 }
 
 .mlg-nav__count {

@@ -24,6 +24,9 @@ const Index = () => (
 
     {/* The hero runs full-bleed under the floating bar, as in the mockup. */}
     <main>
+      <h1 className="sr-only">
+        Melalogy — khoa học sắc tố và chăm sóc làn da
+      </h1>
       <HeroBanners />
       <BrandFilm />
       <SciencePortal />

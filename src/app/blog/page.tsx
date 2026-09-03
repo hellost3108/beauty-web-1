@@ -3,7 +3,7 @@ import Blog from "@/views/Blog";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://melalogy.com"),
-  title: "Bí Kíp Làm Đẹp & Chăm Sóc Da | Melalogy Journal",
+  title: "Bí Kíp Làm Đẹp & Chăm Sóc Da",
   description:
     "9 bài viết chuyên sâu về Melalogy Energy Shot, bí kíp chăm sóc da và trang điểm phù hợp với người Việt.",
   keywords: ["Melalogy", "bí kíp làm đẹp", "chăm sóc da", "mặt nạ hydrogel", "Melalogy Energy Shot"],

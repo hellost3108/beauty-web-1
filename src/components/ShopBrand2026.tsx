@@ -143,15 +143,15 @@ const ShopBrand2026 = () => {
                         <div className="grid grid-cols-3 gap-3 border-t border-white/15 pt-5 font-body">
                             <div>
                                 <strong className="block text-base font-semibold sm:text-lg">{productCountLabel}</strong>
-                                <span className="text-[9px] uppercase tracking-[0.15em] text-white/38">Công thức</span>
+                                <span className="text-[10px] uppercase tracking-[0.15em] text-white/38">Công thức</span>
                             </div>
                             <div>
                                 <strong className="block text-base font-semibold sm:text-lg">2 giờ</strong>
-                                <span className="text-[9px] uppercase tracking-[0.15em] text-white/38">Giải phóng</span>
+                                <span className="text-[10px] uppercase tracking-[0.15em] text-white/38">Giải phóng</span>
                             </div>
                             <div>
                                 <strong className="block text-base font-semibold sm:text-lg">Kiểm soát</strong>
-                                <span className="text-[9px] uppercase tracking-[0.15em] text-white/38">Hệ dẫn truyền</span>
+                                <span className="text-[10px] uppercase tracking-[0.15em] text-white/38">Hệ dẫn truyền</span>
                             </div>
                         </div>
                     </div>
@@ -164,7 +164,7 @@ const ShopBrand2026 = () => {
                         <div className="shop-target-line absolute" />
 
                         <div className="relative z-[2] flex h-full flex-col justify-between">
-                            <div className="flex items-start justify-between gap-4 font-body text-[9px] font-semibold uppercase tracking-[0.19em] text-black/45 sm:text-[10px]">
+                            <div className="flex items-start justify-between gap-4 font-body text-[10px] font-semibold uppercase tracking-[0.17em] text-black/45 sm:text-[11px]">
                                 <span>Melalogy Science / Controlled Delivery</span>
                                 <span className="hidden text-right sm:block">Active Reservoir · Controlled Release</span>
                             </div>
@@ -202,7 +202,7 @@ const ShopBrand2026 = () => {
                                 })}
                             </div>
 
-                            <div className="flex items-center justify-between border-t border-black/10 pt-4 font-body text-[9px] uppercase tracking-[0.18em] text-black/40">
+                            <div className="flex items-center justify-between gap-4 border-t border-black/10 pt-4 font-body text-[10px] uppercase tracking-[0.15em] text-black/40">
                                 <span>The science of melanin</span>
                                 {allProducts.length > heroProducts.length && (
                                     <span>+ {allProducts.length - heroProducts.length} công thức trong catalog</span>
@@ -249,7 +249,7 @@ const ShopBrand2026 = () => {
                                     type="button"
                                     onClick={() => setActiveCategory(category)}
                                     className={cn(
-                                        "group flex shrink-0 items-center gap-3 rounded-full border px-4 py-2.5 font-body text-xs font-semibold transition-colors duration-300 sm:px-5 sm:text-sm",
+                                        "group flex min-h-11 shrink-0 items-center gap-3 rounded-full border px-4 py-2.5 font-body text-xs font-semibold transition-colors duration-300 sm:px-5 sm:text-sm",
                                         activeCategory === category
                                             ? "border-[#151513] bg-[#151513] text-white"
                                             : "border-black/12 bg-transparent text-black/58 hover:border-black/35 hover:text-black"
@@ -269,7 +269,7 @@ const ShopBrand2026 = () => {
                             </span>
                             <DropdownMenu modal={false}>
                                 <DropdownMenuTrigger asChild>
-                                    <button className="flex shrink-0 items-center gap-3 border-b border-black/25 px-1 py-2 font-body text-xs font-semibold text-black/68 transition-colors hover:border-black hover:text-black sm:text-sm">
+                                    <button className="flex min-h-11 shrink-0 items-center gap-3 border-b border-black/25 px-1 py-2 font-body text-xs font-semibold text-black/68 transition-colors hover:border-black hover:text-black sm:text-sm">
                                         {sortBy === "featured"
                                             ? "Nổi bật"
                                             : sortBy === "price-low-high"
@@ -302,7 +302,7 @@ const ShopBrand2026 = () => {
                                     className="shop-catalog-card group flex min-w-0 flex-col border-t border-black/15"
                                     style={{ "--formula-accent": accent } as CSSProperties}
                                 >
-                                    <div className="flex items-center justify-between gap-4 py-3 font-body text-[9px] font-semibold uppercase tracking-[0.16em] text-black/40">
+                                    <div className="flex items-center justify-between gap-4 py-3 font-body text-[10px] font-semibold uppercase tracking-[0.16em] text-black/40">
                                         <span>Formula {String(index + 1).padStart(2, "0")}</span>
                                         <span className="flex items-center gap-2 text-black/58">
                                             <span className="h-1.5 w-1.5 rounded-full bg-[var(--formula-accent)]" />
@@ -313,6 +313,15 @@ const ShopBrand2026 = () => {
                                     <div
                                         className="shop-product-media relative aspect-[0.92] cursor-pointer overflow-hidden bg-[#e9e5df]"
                                         onClick={() => setSelectedProduct(product)}
+                                        role="button"
+                                        tabIndex={0}
+                                        aria-label={`Xem nhanh ${product.name}`}
+                                        onKeyDown={(event) => {
+                                            if (event.key === "Enter" || event.key === " ") {
+                                                event.preventDefault();
+                                                setSelectedProduct(product);
+                                            }
+                                        }}
                                     >
                                         <img
                                             src={product.image}
@@ -331,7 +340,7 @@ const ShopBrand2026 = () => {
                                             />
                                         )}
 
-                                        <div className="absolute right-3 top-3 z-20 flex translate-x-14 flex-col gap-2 transition-transform duration-500 group-hover:translate-x-0">
+                                        <div className="shop-product-actions absolute right-3 top-3 z-20 flex translate-x-14 flex-col gap-2 transition-transform duration-500 group-hover:translate-x-0">
                                             <button
                                                 type="button"
                                                 aria-label={`Yêu thích ${product.name}`}
@@ -340,7 +349,7 @@ const ShopBrand2026 = () => {
                                                     addToWishlist(product);
                                                 }}
                                                 className={cn(
-                                                    "flex h-10 w-10 items-center justify-center rounded-full border border-black/10 bg-white text-black shadow-sm transition-colors hover:bg-[#151513] hover:text-white",
+                                                    "flex h-11 w-11 items-center justify-center rounded-full border border-black/10 bg-white text-black shadow-sm transition-colors hover:bg-[#151513] hover:text-white",
                                                     isInWishlist(product.id) && "bg-[#d3172b] text-white"
                                                 )}
                                             >
@@ -353,20 +362,20 @@ const ShopBrand2026 = () => {
                                                     event.stopPropagation();
                                                     void shareProduct(product);
                                                 }}
-                                                className="flex h-10 w-10 items-center justify-center rounded-full border border-black/10 bg-white text-black shadow-sm transition-colors hover:bg-[#151513] hover:text-white"
+                                                className="flex h-11 w-11 items-center justify-center rounded-full border border-black/10 bg-white text-black shadow-sm transition-colors hover:bg-[#151513] hover:text-white"
                                             >
                                                 <Share2 className="h-4 w-4" />
                                             </button>
                                         </div>
 
-                                        <div className="absolute inset-x-3 bottom-3 z-20 translate-y-[calc(100%+1rem)] transition-transform duration-500 group-hover:translate-y-0">
+                                        <div className="shop-product-quick-add absolute inset-x-3 bottom-3 z-20 translate-y-[calc(100%+1rem)] transition-transform duration-500 group-hover:translate-y-0">
                                             <button
                                                 type="button"
                                                 onClick={(event) => {
                                                     event.stopPropagation();
                                                     addToCart(product);
                                                 }}
-                                                className="flex w-full items-center justify-between bg-[#151513] px-5 py-3.5 font-body text-sm font-semibold text-white transition-colors hover:bg-[#d3172b]"
+                                                className="flex min-h-11 w-full items-center justify-between bg-[#151513] px-5 py-3.5 font-body text-sm font-semibold text-white transition-colors hover:bg-[#d3172b]"
                                             >
                                                 Thêm vào giỏ
                                                 <Plus className="h-4 w-4" />
@@ -375,7 +384,7 @@ const ShopBrand2026 = () => {
                                     </div>
 
                                     <div className="flex flex-1 flex-col pt-5">
-                                        <div className="mb-3 flex items-center justify-between gap-4 font-body text-[9px] font-semibold uppercase tracking-[0.13em] text-black/40">
+                                        <div className="mb-3 flex items-center justify-between gap-4 font-body text-[10px] font-semibold uppercase tracking-[0.13em] text-black/40">
                                             <span>{formulaNotes[product.category] ?? "Melalogy Formula"}</span>
                                             <span>{product.price}đ</span>
                                         </div>
@@ -415,7 +424,7 @@ const ShopBrand2026 = () => {
                     </DialogHeader>
                     <div className="flex flex-col-reverse md:grid md:grid-cols-2">
                         <div className="flex flex-col justify-center p-7 sm:p-9 md:p-11">
-                            <p className="mb-5 font-body text-[9px] font-semibold uppercase tracking-[0.2em] text-[#c41327]">Melalogy / Energy Shot</p>
+                            <p className="mb-5 font-body text-[10px] font-semibold uppercase tracking-[0.18em] text-[#c41327]">Melalogy / Energy Shot</p>
                             <div className="mb-3 flex items-start justify-between gap-4">
                                 <h2 className="font-display text-3xl leading-[1.05] text-[#111] md:text-4xl">{selectedProduct?.name}</h2>
                                 <div className="flex shrink-0 items-center gap-1 border border-[#c41327]/40 px-2 py-1">
@@ -427,11 +436,11 @@ const ShopBrand2026 = () => {
                             <p className="mb-7 font-body text-sm leading-7 text-black/55">{selectedProduct?.description}</p>
 
                             <div className="mb-7 flex items-center border-y border-black/10 py-4">
-                                <button type="button" onClick={() => setQuantity(Math.max(1, quantity - 1))} className="p-2 text-black/50 hover:text-black" aria-label="Giảm số lượng">
+                                <button type="button" onClick={() => setQuantity(Math.max(1, quantity - 1))} className="flex h-11 w-11 items-center justify-center text-black/50 hover:text-black" aria-label="Giảm số lượng">
                                     <Minus className="h-4 w-4" />
                                 </button>
                                 <span className="w-10 text-center font-body text-sm font-semibold">{quantity}</span>
-                                <button type="button" onClick={() => setQuantity(quantity + 1)} className="p-2 text-black/50 hover:text-black" aria-label="Tăng số lượng">
+                                <button type="button" onClick={() => setQuantity(quantity + 1)} className="flex h-11 w-11 items-center justify-center text-black/50 hover:text-black" aria-label="Tăng số lượng">
                                     <Plus className="h-4 w-4" />
                                 </button>
                             </div>

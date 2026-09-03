@@ -30,7 +30,7 @@ const MelaninScience = () => (
           <div className="mlg-science-hero__copy">
             <p className="mlg-eyebrow mlg-eyebrow--rule">The science of melanin</p>
             <h1 className="mlg-display mlg-display--xl" id="mlg-science-hero-title">
-              Khoa học bắt đầu từ việc
+              Khoa học bắt đầu từ việc{" "}
               <em>hiểu sắc tố.</em>
             </h1>
             <p className="mlg-copy">
@@ -66,7 +66,7 @@ const MelaninScience = () => (
         <div className="mlg-shell mlg-science-end__inner mlg-rise">
           <p className="mlg-eyebrow mlg-eyebrow--center">From mechanism to formula</p>
           <h2 className="mlg-display mlg-display--sm">
-            Khoa học chỉ có ý nghĩa
+            Khoa học chỉ có ý nghĩa{" "}
             <em>khi trở thành trải nghiệm thật trên làn da.</em>
           </h2>
           <Link href="/shop#shop-products" className="mlg-cta">
