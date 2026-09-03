@@ -22,19 +22,23 @@ const SplashLoader: React.FC<SplashLoaderProps> = ({ onComplete }) => {
 
   useEffect(() => {
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const storageKey = 'melalogy:splash-seen';
+    const hasSeenSplash = window.sessionStorage.getItem(storageKey) === '1';
     const previousOverflow = document.body.style.overflow;
     const previousHtmlOverflow = document.documentElement.style.overflow;
 
-    if (reduceMotion) {
+    if (reduceMotion || hasSeenSplash) {
       onComplete();
       return;
     }
 
+    window.sessionStorage.setItem(storageKey, '1');
+
     document.body.style.overflow = 'hidden';
     document.documentElement.style.overflow = 'hidden';
 
-    const exitTimer = window.setTimeout(() => setIsLeaving(true), 1100);
-    const completeTimer = window.setTimeout(onComplete, 1800);
+    const exitTimer = window.setTimeout(() => setIsLeaving(true), 420);
+    const completeTimer = window.setTimeout(onComplete, 850);
 
     return () => {
       window.clearTimeout(exitTimer);

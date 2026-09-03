@@ -19,9 +19,35 @@ const monaSans = Mona_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Melalogy | The Science of Melanin",
+  metadataBase: new URL("https://melalogy.com"),
+  title: {
+    default: "Melalogy | The Science of Melanin",
+    template: "%s | Melalogy",
+  },
   description:
     "Melalogy là thương hiệu skincare khoa học chuyên biệt về sắc tố — được xây dựng từ sự thấu hiểu melanin và khoa học về làn da.",
+  alternates: {
+    canonical: "/",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  openGraph: {
+    type: "website",
+    locale: "vi_VN",
+    siteName: "Melalogy",
+    url: "/",
+    title: "Melalogy | The Science of Melanin",
+    description:
+      "Khoa học sắc tố và các giải pháp chăm sóc làn da được phát triển dựa trên cơ chế.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Melalogy | The Science of Melanin",
+    description:
+      "Khoa học sắc tố và các giải pháp chăm sóc làn da được phát triển dựa trên cơ chế.",
+  },
   icons: {
     icon: "/favicon.png",
   }

@@ -42,7 +42,7 @@ const BrandFoundation = () => (
         <div>
           <p className="mlg-eyebrow mlg-eyebrow--rule">Melalogy là gì?</p>
           <h2 className="mlg-display" id="mlg-equation-title">
-            Melalogy =<em>Melanin + Dermalogy</em>
+            Melalogy = <em>Melanin + Dermalogy</em>
           </h2>
           <p className="mlg-copy">
             Melalogy là thương hiệu skincare khoa học chuyên biệt về sắc tố, được xây dựng từ sự thấu
@@ -59,7 +59,7 @@ const BrandFoundation = () => (
         <div>
           <p className="mlg-eyebrow mlg-eyebrow--rule">Câu chuyện hình thành</p>
           <h2 className="mlg-display" id="mlg-story-title">
-            Melalogy không bắt đầu từ một sản phẩm.
+            Melalogy không bắt đầu từ một sản phẩm.{" "}
             <em>Nó bắt đầu từ một câu hỏi.</em>
           </h2>
         </div>
@@ -82,7 +82,7 @@ const BrandFoundation = () => (
       <div className="mlg-shell mlg-rise">
         <p className="mlg-eyebrow mlg-eyebrow--center">Tone of voice</p>
         <h2 className="mlg-display mlg-display--sm" id="mlg-belief-title" style={{ textAlign: 'center' }}>
-          Chúng tôi không tin vào “trắng nhanh”.
+          Chúng tôi không tin vào “trắng nhanh”.{" "}
           <em>Chúng tôi tin vào cơ chế.</em>
         </h2>
 

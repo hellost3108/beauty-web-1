@@ -3,7 +3,7 @@ import MagazineEditorial from "@/views/MagazineEditorial";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://melalogy.com"),
-  title: "Tạp Chí Melalogy | Thương Hiệu, Khoa Học & Vẻ Đẹp Việt",
+  title: "Tạp Chí: Thương Hiệu, Khoa Học & Vẻ Đẹp Việt",
   description: "9 câu chuyện chuyên sâu về thương hiệu Melalogy, khoa học melanin, Energy Shot và văn hóa làm đẹp dành cho người Việt.",
   keywords: ["Tạp chí Melalogy", "thương hiệu Melalogy", "khoa học làn da", "vẻ đẹp Việt", "Melalogy Energy Shot"],
   alternates: { canonical: "/magazine" },

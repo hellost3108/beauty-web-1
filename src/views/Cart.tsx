@@ -223,15 +223,15 @@ const Cart = () => {
                                 <div className="grid grid-cols-3 gap-2 px-2">
                                     <div className="flex flex-col items-center gap-2">
                                         <Lock className="w-5 h-5 text-[#999999]" />
-                                        <span className="text-[9px] font-medium text-[#999999] uppercase tracking-wider text-center">Bảo Mật</span>
+                                        <span className="text-[10px] font-medium text-[#777777] uppercase tracking-wider text-center">Bảo Mật</span>
                                     </div>
                                     <div className="flex flex-col items-center gap-2">
                                         <ShieldCheck className="w-5 h-5 text-[#999999]" />
-                                        <span className="text-[9px] font-medium text-[#999999] uppercase tracking-wider text-center">Chính Hãng</span>
+                                        <span className="text-[10px] font-medium text-[#777777] uppercase tracking-wider text-center">Chính Hãng</span>
                                     </div>
                                     <div className="flex flex-col items-center gap-2">
                                         <Truck className="w-5 h-5 text-[#999999]" />
-                                        <span className="text-[9px] font-medium text-[#999999] uppercase tracking-wider text-center">Giao Nhanh</span>
+                                        <span className="text-[10px] font-medium text-[#777777] uppercase tracking-wider text-center">Giao Nhanh</span>
                                     </div>
                                 </div>
                             </div>

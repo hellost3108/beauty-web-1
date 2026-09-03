@@ -140,41 +140,45 @@ const ProductDetail = () => {
                             </p>
 
                             {/* Quantity & Actions */}
-                            <div className="flex flex-wrap items-center gap-6">
+                            <div className="grid grid-cols-[auto_minmax(0,1fr)] items-center gap-3 sm:flex sm:flex-wrap sm:gap-4">
                                 <div className="flex items-center border border-gray-200 rounded-md">
                                     <button
+                                        type="button"
+                                        aria-label="Giảm số lượng"
                                         onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                                        className="p-3 hover:bg-gray-50 text-gray-500"
+                                        className="flex h-11 w-11 items-center justify-center text-gray-500 hover:bg-gray-50"
                                     >
                                         <Minus className="w-4 h-4" />
                                     </button>
                                     <span className="w-12 text-center font-medium">{quantity}</span>
                                     <button
+                                        type="button"
+                                        aria-label="Tăng số lượng"
                                         onClick={() => setQuantity(quantity + 1)}
-                                        className="p-3 hover:bg-gray-50 text-gray-500"
+                                        className="flex h-11 w-11 items-center justify-center text-gray-500 hover:bg-gray-50"
                                     >
                                         <Plus className="w-4 h-4" />
                                     </button>
                                 </div>
                                 <Button
                                     onClick={() => handleAddToCart(quantity)}
-                                    className="bg-white text-[#b31324] border border-[#b31324] px-8 py-6 rounded-md hover:bg-[#fff5f5] text-base font-medium min-w-[140px]"
+                                    className="h-12 w-full min-w-0 rounded-md border border-[#b31324] bg-white px-4 text-base font-medium text-[#b31324] hover:bg-[#fff5f5] sm:w-auto sm:min-w-[160px] sm:px-8"
                                 >
                                     Thêm Vào Giỏ
                                 </Button>
                             </div>
 
-                            <div className="flex flex-wrap gap-4">
+                            <div className="grid gap-3 sm:flex sm:flex-wrap">
                                 <Button
                                     onClick={handleBuyNow}
-                                    className="bg-[#b31324] text-white px-12 py-6 rounded-md shadow-lg shadow-[#b31324]/20 text-base font-medium flex-1 md:flex-none relative overflow-hidden group/btn"
+                                    className="group/btn relative h-12 w-full min-w-0 overflow-hidden whitespace-nowrap rounded-md bg-[#b31324] px-6 text-base font-medium text-white shadow-lg shadow-[#b31324]/20 sm:w-auto sm:min-w-[160px] sm:px-10"
                                 >
                                     <span className="relative z-10 group-hover/btn:text-[#b31324] transition-colors duration-700">Mua Ngay</span>
                                     <div className="absolute bottom-0 right-0 w-full h-0 bg-white group-hover/btn:h-full transition-all duration-700 ease-liquid" style={{ transformOrigin: 'bottom right' }} />
                                 </Button>
                                 <button
                                     onClick={handleAddToWishlist}
-                                    className={`flex items-center gap-2 px-6 py-3 border rounded-md transition-colors ${isInWishlist(productDetails.id) ? 'border-[#b31324] text-[#b31324] bg-[#fff5f5]' : 'border-gray-200 hover:border-[#b31324] hover:text-[#b31324]'}`}
+                                    className={`flex h-12 w-full items-center justify-center gap-2 rounded-md border px-6 transition-colors sm:w-auto ${isInWishlist(productDetails.id) ? 'border-[#b31324] text-[#b31324] bg-[#fff5f5]' : 'border-gray-200 hover:border-[#b31324] hover:text-[#b31324]'}`}
                                 >
                                     <Heart className={`w-5 h-5 ${isInWishlist(productDetails.id) ? 'fill-[#b31324]' : ''}`} />
                                     <span className="text-sm font-medium">{isInWishlist(productDetails.id) ? 'Đã Yêu Thích' : 'Thêm Vào Yêu Thích'}</span>
@@ -182,7 +186,7 @@ const ProductDetail = () => {
                             </div>
 
                             {/* Trust Badges */}
-                            <div className="grid grid-cols-4 gap-4 py-6 border-t border-gray-100">
+                            <div className="grid grid-cols-2 gap-4 border-t border-gray-100 py-6 sm:grid-cols-4">
                                 {[
                                     { icon: "/assets/icon1.png", label: "Thành Phần Tự Nhiên" },
                                     { icon: "/assets/icon2.png", label: "Có Thể Tái Chế" },
@@ -255,6 +259,15 @@ const ProductDetail = () => {
                                 <div
                                     className="relative w-full aspect-[4/5] overflow-hidden bg-[#f9f8f7]"
                                     onClick={() => setQuickViewProduct(product)}
+                                    role="button"
+                                    tabIndex={0}
+                                    aria-label={`Xem nhanh ${product.name}`}
+                                    onKeyDown={(event) => {
+                                        if (event.key === 'Enter' || event.key === ' ') {
+                                            event.preventDefault();
+                                            setQuickViewProduct(product);
+                                        }
+                                    }}
                                 >
                                     <img
                                         src={product.image}
@@ -263,14 +276,15 @@ const ProductDetail = () => {
                                     />
 
                                     {/* Hover Overlay */}
-                                    <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 pointer-events-none">
-                                        <div className="absolute top-4 right-4 flex flex-col gap-2 translate-x-16 group-hover:translate-x-0 transition-transform duration-500 ease-out pointer-events-auto">
+                                    <div className="product-related-overlay absolute inset-0 z-10 bg-black/20 opacity-0 transition-opacity duration-300 group-hover:opacity-100 pointer-events-none">
+                                        <div className="product-related-actions pointer-events-auto absolute right-4 top-4 flex translate-x-16 flex-col gap-2 transition-transform duration-500 ease-out group-hover:translate-x-0">
                                             <button
                                                 onClick={(e) => {
                                                     e.stopPropagation();
                                                     addToWishlist(product);
                                                 }}
-                                                className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 shadow-md ${isInWishlist(product.id) ? 'bg-[#b31324] text-white' : 'bg-white hover:bg-[#b31324] hover:text-white'}`}
+                                                aria-label={`Yêu thích ${product.name}`}
+                                                className={`flex h-11 w-11 items-center justify-center rounded-full shadow-md transition-all duration-300 ${isInWishlist(product.id) ? 'bg-[#b31324] text-white' : 'bg-white hover:bg-[#b31324] hover:text-white'}`}
                                             >
                                                 <Heart className={`w-5 h-5 ${isInWishlist(product.id) ? 'fill-current' : ''}`} />
                                             </button>
@@ -279,7 +293,8 @@ const ProductDetail = () => {
                                                     e.stopPropagation();
                                                     // Share functionality
                                                 }}
-                                                className="w-10 h-10 bg-white rounded-full flex items-center justify-center hover:bg-[#b31324] hover:text-white transition-all duration-300 shadow-md"
+                                                aria-label={`Chia sẻ ${product.name}`}
+                                                className="flex h-11 w-11 items-center justify-center rounded-full bg-white shadow-md transition-all duration-300 hover:bg-[#b31324] hover:text-white"
                                             >
                                                 <Share2 className="w-5 h-5" />
                                             </button>

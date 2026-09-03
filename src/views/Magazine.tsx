@@ -65,7 +65,7 @@ const Magazine = () => {
                                     height={1000}
                                     fetchPriority="high"
                                     decoding="async"
-                                    className="w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-[1.02]"
+                                    className="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-[1.02]"
                                 />
                             </div>
                             <div className="max-w-3xl">

@@ -44,15 +44,15 @@ const HeroSection = () => {
           </div>
 
           <div className="grid grid-cols-3 gap-3 border-t border-white/15 pt-5">
-            <div><strong className="block font-display text-lg sm:text-2xl">Cấp ẩm</strong><span className="text-[9px] uppercase tracking-widest text-white/45 sm:text-[10px]">Hyaluronic Acid</span></div>
-            <div><strong className="block font-display text-lg sm:text-2xl">Phục hồi</strong><span className="text-[9px] uppercase tracking-widest text-white/45 sm:text-[10px]">Madecassic Acid</span></div>
-            <div><strong className="block font-display text-lg sm:text-2xl">Làm sáng</strong><span className="text-[9px] uppercase tracking-widest text-white/45 sm:text-[10px]">Niacinamide</span></div>
+            <div><strong className="block font-display text-lg sm:text-2xl">Cấp ẩm</strong><span className="text-[10px] uppercase tracking-widest text-white/45 sm:text-[11px]">Hyaluronic Acid</span></div>
+            <div><strong className="block font-display text-lg sm:text-2xl">Phục hồi</strong><span className="text-[10px] uppercase tracking-widest text-white/45 sm:text-[11px]">Madecassic Acid</span></div>
+            <div><strong className="block font-display text-lg sm:text-2xl">Làm sáng</strong><span className="text-[10px] uppercase tracking-widest text-white/45 sm:text-[11px]">Niacinamide</span></div>
           </div>
         </div>
 
         <div className="relative min-h-[52svh] overflow-hidden bg-[#eee7e2] lg:min-h-full">
           {slides.map((item, index) => (
-            <div key={item.id} className={`absolute inset-0 transition-all duration-1000 ease-[cubic-bezier(.2,.8,.2,1)] ${index === currentSlide ? "scale-100 opacity-100" : "pointer-events-none scale-[1.04] opacity-0"}`}>
+            <div key={item.id} className={`absolute inset-0 transition-all duration-1000 ease-out ${index === currentSlide ? "scale-100 opacity-100" : "pointer-events-none scale-[1.04] opacity-0"}`}>
               <img src={item.image} alt={`${item.headline.part1}${item.headline.part2}`} width={1920} height={1080} fetchPriority={index === 0 ? "high" : "auto"} decoding="async" className="h-full w-full object-cover object-center" />
             </div>
           ))}
