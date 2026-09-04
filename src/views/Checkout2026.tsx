@@ -1,7 +1,7 @@
 "use client";
 
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 import {
@@ -13,6 +13,7 @@ import {
     CreditCard,
     Gift,
     Lock,
+    MapPin,
     PackageCheck,
     ShieldCheck,
     Sparkles,
@@ -24,6 +25,11 @@ import { useShop, Product } from '@/context/ShopContext';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Checkbox } from '@/components/ui/checkbox';
+import {
+    clearDeliveryDetails,
+    readDeliveryDetails,
+    type DeliveryDetails,
+} from '@/lib/checkoutDelivery';
 
 export const dynamic = 'force-dynamic';
 
@@ -42,6 +48,7 @@ const Checkout2026 = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [discountCode, setDiscountCode] = useState('');
     const [discountAmount, setDiscountAmount] = useState(0);
+    const [deliveryDetails, setDeliveryDetails] = useState<DeliveryDetails | null>(null);
     const [formData, setFormData] = useState({
         cardNumber: '',
         expiry: '',
@@ -65,6 +72,16 @@ const Checkout2026 = () => {
         formData.cardName.trim().length > 0
     );
 
+    useEffect(() => {
+        const storedDetails = readDeliveryDetails();
+        if (!storedDetails) {
+            toast.error('Vui lòng nhập thông tin giao nhận trước khi thanh toán.');
+            router.replace('/shipping');
+            return;
+        }
+        setDeliveryDetails(storedDetails);
+    }, [router]);
+
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { id, value } = event.target;
         setFormData(previous => ({ ...previous, [id]: value }));
@@ -82,11 +99,18 @@ const Checkout2026 = () => {
 
     const handleSubmit = (event?: React.SyntheticEvent) => {
         event?.preventDefault();
+        const storedDetails = readDeliveryDetails();
+        if (!storedDetails) {
+            toast.error('Vui lòng hoàn tất thông tin giao nhận.');
+            router.push('/shipping');
+            return;
+        }
         if (!isFormValid || cart.length === 0) return;
         setIsLoading(true);
         setTimeout(() => {
             setIsLoading(false);
             clearCart();
+            clearDeliveryDetails();
             toast.success('Đặt hàng thành công!');
             router.push('/');
         }, 2000);
@@ -105,7 +129,7 @@ const Checkout2026 = () => {
             <main className="commerce-shell-2026">
                 <header className="commerce-hero-2026 commerce-checkout-hero-2026 reveal-2026">
                     <div>
-                        <Link href="/cart" className="commerce-back-link-2026"><ArrowLeft /> Trở lại giỏ hàng</Link>
+                        <Link href="/shipping" className="commerce-back-link-2026"><ArrowLeft /> Trở lại giao nhận</Link>
                         <p className="commerce-eyebrow-2026"><Lock /> Secure checkout / 03</p>
                         <h1>Thanh toán <em>an tâm.</em></h1>
                         <p className="commerce-hero-copy-2026">Chọn phương thức phù hợp và kiểm tra lần cuối trước khi hoàn tất đơn hàng.</p>
@@ -119,6 +143,20 @@ const Checkout2026 = () => {
 
                 <div className="commerce-checkout-layout-2026">
                     <section className="commerce-payment-panel-2026 reveal-2026" aria-labelledby="payment-heading">
+                        <div className={`commerce-delivery-review-2026${deliveryDetails ? '' : ' is-missing'}`}>
+                            <span><MapPin /></span>
+                            <div>
+                                <small>Giao đến</small>
+                                <strong>{deliveryDetails?.fullName ?? 'Đang tải thông tin giao nhận...'}</strong>
+                                {deliveryDetails && (
+                                    <>
+                                        <p>{deliveryDetails.address}, {deliveryDetails.ward}, {deliveryDetails.district}, {deliveryDetails.city}</p>
+                                        <p>{deliveryDetails.phone} · {deliveryDetails.email}</p>
+                                    </>
+                                )}
+                            </div>
+                            <Link href="/shipping">Chỉnh sửa</Link>
+                        </div>
                         <div className="commerce-section-heading-2026">
                             <div>
                                 <p className="commerce-kicker-2026">Phương thức thanh toán</p>

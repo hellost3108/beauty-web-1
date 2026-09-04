@@ -143,8 +143,8 @@ const Cart2026 = () => {
                                     <span>Tổng cộng <small>Đã gồm VAT</small></span>
                                     <strong>{formatVnd(subtotal)}</strong>
                                 </div>
-                                <Link href="/checkout" className="commerce-primary-action-2026">
-                                    Thanh toán an toàn <ArrowRight />
+                                <Link href="/shipping" className="commerce-primary-action-2026">
+                                    Tiếp tục giao nhận <ArrowRight />
                                 </Link>
                                 <p className="commerce-summary-note-2026"><Lock /> Thông tin của bạn được mã hoá trong suốt quá trình thanh toán.</p>
                                 <div className="commerce-trust-grid-2026">
