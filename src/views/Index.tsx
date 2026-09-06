@@ -36,7 +36,7 @@ const Index = () => (
       <LetsTalkMelanin />
     </main>
 
-    <BrandFooter />
+    <BrandFooter compact />
   </div>
 );
 

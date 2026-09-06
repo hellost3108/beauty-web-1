@@ -27,7 +27,7 @@ const BrandFilm = () => {
   };
 
   return (
-    <section className="mlg-section mlg-dark" aria-labelledby="mlg-film-title">
+    <section className="mlg-section mlg-dark mlg-film-section" aria-labelledby="mlg-film-title">
       <div className="mlg-shell mlg-rise">
         <p className="mlg-eyebrow mlg-eyebrow--rule">Brand film</p>
         <h2 className="mlg-display" id="mlg-film-title">
@@ -35,7 +35,7 @@ const BrandFilm = () => {
           <em>kể bằng hình ảnh.</em>
         </h2>
 
-        <div className="mlg-film__frame" style={{ marginTop: 'clamp(2rem, 4vw, 3rem)' }}>
+        <div className="mlg-film__frame">
           <video
             ref={videoRef}
             src={TVC_SRC}

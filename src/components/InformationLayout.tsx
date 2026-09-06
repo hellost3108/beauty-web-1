@@ -25,6 +25,7 @@ type InformationLayoutProps = {
 
 const InformationLayout = ({ children, currentPath, eyebrow, intro, meta, title }: InformationLayoutProps) => {
     const currentIndex = informationLinks.findIndex((link) => link.href === currentPath) + 1;
+    const hasContactDetails = ['/contact', '/privacy', '/shipping-returns', '/terms'].includes(currentPath);
 
     return (
         <div className={styles.page} data-motion-page>
@@ -71,14 +72,16 @@ const InformationLayout = ({ children, currentPath, eyebrow, intro, meta, title 
                                 })}
                             </nav>
 
-                            <Link href="mailto:melalogyvietnam@gmail.com" className={styles.supportCard}>
-                                <Mail size={19} aria-hidden="true" />
-                                <span>
-                                    <small>Cần hỗ trợ thêm?</small>
-                                    Gửi email cho Melalogy
-                                </span>
-                                <ArrowUpRight size={16} aria-hidden="true" />
-                            </Link>
+                            {currentPath !== '/contact' && (
+                                <Link href="mailto:melalogyvietnam@gmail.com" className={styles.supportCard}>
+                                    <Mail size={19} aria-hidden="true" />
+                                    <span>
+                                        <small>Cần hỗ trợ thêm?</small>
+                                        Gửi email cho Melalogy
+                                    </span>
+                                    <ArrowUpRight size={16} aria-hidden="true" />
+                                </Link>
+                            )}
                         </aside>
 
                         <article data-reveal="up" data-reveal-delay="80" className={styles.content}>
@@ -92,7 +95,7 @@ const InformationLayout = ({ children, currentPath, eyebrow, intro, meta, title 
                 </section>
             </main>
 
-            <BrandFooter />
+            <BrandFooter compact={hasContactDetails} />
         </div>
     );
 };

@@ -14,8 +14,12 @@ const legalLinks = [
   { href: '/contact', label: 'Liên hệ' },
 ];
 
-const BrandFooter = () => (
-  <footer className="mlg-footer">
+type BrandFooterProps = {
+  compact?: boolean;
+};
+
+const BrandFooter = ({ compact = false }: BrandFooterProps) => (
+  <footer className={`mlg-footer${compact ? ' mlg-footer--compact' : ''}`}>
     <div className="mlg-footer__inner">
       <div className="mlg-footer__brand">
         <img src="/assets/logo.png" alt="Melalogy" />
@@ -30,21 +34,22 @@ const BrandFooter = () => (
         ))}
       </nav>
 
-      {/* Contact stays in the footer so every page carries it, not just home. */}
-      <address className="mlg-footer__contact">
-        <a href="tel:+84702899707">
-          <Phone aria-hidden="true" />
-          0702 899 707
-        </a>
-        <a href="mailto:melalogyvietnam@gmail.com">
-          <Mail aria-hidden="true" />
-          melalogyvietnam@gmail.com
-        </a>
-        <span>
-          <MapPin aria-hidden="true" />
-          29D Cộng Hòa 3, P. Phú Thọ Hòa, TP. Hồ Chí Minh
-        </span>
-      </address>
+      {!compact && (
+        <address className="mlg-footer__contact">
+          <a href="tel:+84702899707">
+            <Phone aria-hidden="true" />
+            0702 899 707
+          </a>
+          <a href="mailto:melalogyvietnam@gmail.com">
+            <Mail aria-hidden="true" />
+            melalogyvietnam@gmail.com
+          </a>
+          <span>
+            <MapPin aria-hidden="true" />
+            29D Cộng Hòa 3, P. Phú Thọ Hòa, TP. Hồ Chí Minh
+          </span>
+        </address>
+      )}
     </div>
 
     <div className="mlg-footer__legal">

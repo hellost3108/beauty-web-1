@@ -25,8 +25,8 @@
     position: relative;
     isolation: isolate;
     overflow: hidden;
-    min-height: min(48rem, 78vh);
-    padding: clamp(10rem, 14vw, 13rem) 0 clamp(5rem, 8vw, 8rem);
+    min-height: min(42rem, 68vh);
+    padding: clamp(8rem, 11vw, 10.5rem) 0 clamp(3.5rem, 6vw, 5.5rem);
     background:
         linear-gradient(90deg, rgba(18, 18, 18, 0.045) 1px, transparent 1px) 0 0 / 25% 100%,
         radial-gradient(circle at 87% 28%, rgba(179, 19, 36, 0.14), transparent 27rem),
@@ -149,7 +149,7 @@
 
 .body {
     position: relative;
-    padding: clamp(3.75rem, 7vw, 7rem) 0 clamp(6rem, 10vw, 10rem);
+    padding: clamp(3rem, 5vw, 5rem) 0 clamp(4rem, 6vw, 5.5rem);
     background:
         radial-gradient(circle at 72% 18%, rgba(179, 19, 36, 0.055), transparent 25rem),
         var(--info-paper);
@@ -282,7 +282,7 @@
 
 .content > section {
     position: relative;
-    padding: clamp(2.75rem, 5vw, 5rem) 0;
+    padding: clamp(2.25rem, 4vw, 3.75rem) 0;
     border-bottom: 1px solid rgba(18, 18, 18, 0.11);
 }
 
@@ -497,7 +497,7 @@
     .heroInner { grid-template-columns: 1fr; gap: 2.75rem; }
     .title { max-width: 12ch; }
     .chapter { margin-bottom: 2rem; }
-    .bodyGrid { grid-template-columns: 1fr; }
+    .bodyGrid { grid-template-columns: 1fr; gap: 1.5rem; }
     .rail { position: static; overflow: hidden; }
     .railLabel { margin-bottom: 1rem; }
     .infoNav {
@@ -528,10 +528,10 @@
 }
 
 @media (max-width: 560px) {
-    .hero { padding: 8.5rem 0 4.5rem; }
+    .hero { padding: 7rem 0 3.25rem; }
     .heroOrb { opacity: 0.6; }
     .title { font-size: clamp(3.45rem, 17vw, 5.25rem); line-height: 1; }
-    .body { padding: 2.5rem 0 5rem; }
+    .body { padding: 2rem 0 3.5rem; }
     .bodyGrid,
     .heroInner { width: min(100% - 1.25rem, 92rem); }
     .content { padding: 1rem 1.35rem 1.75rem; border-radius: 1.35rem; }
