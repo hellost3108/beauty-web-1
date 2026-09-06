@@ -23,7 +23,7 @@
   --mlg-sku-radiance: #9a7ec4;
 
   /* Rhythm — "premium comes from hierarchy and breathing room" */
-  --mlg-section: clamp(5rem, 10vw, 9.5rem);
+  --mlg-section: clamp(4.25rem, 7.5vw, 7.25rem);
   --mlg-shell: min(calc(100% - clamp(1.25rem, 5vw, 5rem)), 82.5rem);
   --mlg-nav-h: 4.75rem;
 
@@ -881,6 +881,14 @@ html {
 /* ================================================================
    Section 2 — Brand film (TVC)
    ================================================================ */
+
+.mlg-film-section {
+  padding-block: clamp(3.5rem, 6vw, 6rem);
+}
+
+.mlg-film-section .mlg-film__frame {
+  margin-top: clamp(1.5rem, 2.5vw, 2.25rem);
+}
 
 .mlg-film__frame {
   position: relative;
@@ -1917,6 +1925,7 @@ html {
 .mlg-contact-section {
   position: relative;
   overflow: hidden;
+  padding-block: clamp(3.5rem, 6vw, 5.5rem);
   background:
     radial-gradient(circle at 18% 45%, color-mix(in oklab, var(--mlg-cherry) 15%, transparent), transparent 28rem),
     var(--mlg-black);
@@ -1944,7 +1953,7 @@ html {
 
 .mlg-contact-art {
   position: relative;
-  min-height: 31rem;
+  min-height: 26rem;
   overflow: hidden;
   border: 1px solid color-mix(in oklab, var(--mlg-cherry) 28%, transparent);
   border-radius: 1.25rem;
@@ -2000,11 +2009,11 @@ html {
 .mlg-contact-main .mlg-card-row {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.7rem;
-  margin-top: clamp(1.75rem, 3vw, 2.5rem);
+  margin-top: clamp(1.25rem, 2vw, 1.75rem);
 }
 
 .mlg-contact-main .mlg-card {
-  min-height: 14rem;
+  min-height: 11.5rem;
   padding: clamp(1.1rem, 1.7vw, 1.5rem);
 }
 
@@ -2020,7 +2029,7 @@ html {
 .mlg-contact-detail {
   display: grid;
   align-content: center;
-  gap: 1.5rem;
+  gap: 1.1rem;
   padding-left: clamp(1.5rem, 3vw, 2.5rem);
   border-left: 1px solid color-mix(in oklab, var(--mlg-white) 14%, transparent);
 }
@@ -2124,13 +2133,13 @@ html {
   .mlg-contact-detail {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     padding-left: 0;
-    padding-top: 1.75rem;
+    padding-top: 1.25rem;
     border-left: 0;
     border-top: 1px solid color-mix(in oklab, var(--mlg-white) 14%, transparent);
   }
 
   .mlg-contact-art {
-    min-height: 20rem;
+    min-height: 18rem;
   }
 
   .mlg-contact-main .mlg-card-row {
@@ -2140,11 +2149,15 @@ html {
 
 @media (max-width: 42rem) {
   .mlg-contact-art {
-    min-height: 17rem;
+    display: none;
   }
 
   .mlg-contact-main .mlg-card-row {
     grid-template-columns: minmax(0, 1fr);
+  }
+
+  .mlg-contact-main .mlg-card {
+    min-height: auto;
   }
 
   .mlg-contact-detail {
@@ -2261,6 +2274,44 @@ html {
 
 .mlg-footer__legal a:hover {
   color: var(--mlg-white);
+}
+
+.mlg-footer--compact .mlg-footer__inner {
+  gap: 1.25rem clamp(1.5rem, 4vw, 3rem);
+  padding-block: clamp(1.5rem, 2.5vw, 2.25rem);
+}
+
+.mlg-footer--compact .mlg-footer__legal {
+  padding-block: 1rem;
+}
+
+@media (max-width: 42rem) {
+  .mlg-footer__inner {
+    gap: 1.5rem;
+    align-items: flex-start;
+    padding-block: 2rem;
+  }
+
+  .mlg-footer__brand,
+  .mlg-footer__nav,
+  .mlg-footer__contact {
+    width: 100%;
+  }
+
+  .mlg-footer__nav {
+    gap: 0.65rem 1.25rem;
+  }
+
+  .mlg-footer--compact .mlg-footer__inner {
+    gap: 1.2rem;
+    padding-block: 1.5rem;
+  }
+
+  .mlg-footer__legal {
+    align-items: flex-start;
+    padding-block: 1rem 1.25rem;
+    line-height: 1.55;
+  }
 }
 
 /* ================================================================
@@ -2746,7 +2797,7 @@ html {
 }
 
 .mlg-science-end {
-  padding-block: clamp(4.5rem, 9vw, 8rem);
+  padding-block: clamp(3rem, 5vw, 4.5rem);
 }
 
 .mlg-science-end__inner {
@@ -2760,7 +2811,7 @@ html {
 }
 
 .mlg-science-end__inner .mlg-cta {
-  margin-top: 2rem;
+  margin-top: 1.5rem;
 }
 
 @supports (animation-timeline: view()) {
