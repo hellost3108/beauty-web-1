@@ -1,0 +1,72 @@
+.titleLead {
+  display: block;
+}
+
+@media (max-width: 47.99rem) {
+  .title {
+    max-width: 16ch;
+    margin-inline: auto;
+    font-size: clamp(1.65rem, 7.5vw, 2rem);
+    line-height: 1.16;
+  }
+
+  .titleLead,
+  .title em {
+    text-wrap: balance;
+  }
+
+  .title em {
+    margin-top: 0.35rem;
+  }
+
+  .description {
+    max-width: 34ch;
+    margin-top: 1.05rem;
+    line-height: 1.68;
+  }
+
+  .rail {
+    display: flex;
+    align-items: stretch;
+    gap: 0.85rem;
+    margin-top: 2rem;
+    padding: 0.15rem 0.1rem 0.9rem;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scroll-padding-inline: 0.1rem;
+    scroll-snap-type: inline mandatory;
+    scrollbar-color: var(--mlg-cherry) color-mix(in oklab, var(--mlg-white) 10%, transparent);
+    scrollbar-width: thin;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .rail:focus-visible {
+    outline: 2px solid var(--mlg-cherry);
+    outline-offset: 0.35rem;
+  }
+
+  .rail > .card {
+    flex: 0 0 min(82vw, 19rem);
+    min-height: 25rem;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+
+  .card :global(.mlg-product__name) {
+    min-height: 2.6em;
+  }
+
+  .card :global(.mlg-product__actives) {
+    min-height: 3em;
+  }
+
+  .card :global(.mlg-product__foot) {
+    margin-top: auto;
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .card:hover {
+    translate: 0;
+  }
+}

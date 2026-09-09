@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { ArrowRight, Heart, Headphones, Plus, RotateCcw, ShieldCheck, Truck } from 'lucide-react';
 import { allProducts } from '@/data/productsData';
 import { useShop } from '@/context/ShopContext';
+import styles from './EnergyShotLineup.module.css';
 
 /*
  * Section 3 of the website-edit deck: "Thông tin mua hàng".
@@ -33,27 +34,36 @@ const EnergyShotLineup = () => {
       <div className="mlg-shell mlg-rise">
         <p className="mlg-eyebrow mlg-eyebrow--center">From science to formula</p>
         <h2
-          className="mlg-display mlg-display--sm"
+          className={`mlg-display mlg-display--sm ${styles.title}`}
           id="mlg-lineup-title"
           style={{ textAlign: 'center' }}
         >
-          Energy Shot Hydrogel
+          <span className={styles.titleLead}>Energy Shot Hydrogel</span>
           <em>Bốn công thức, bốn trạng thái da.</em>
         </h2>
-        <p className="mlg-copy mlg-copy--center">
+        <p className={`mlg-copy mlg-copy--center ${styles.description}`}>
           Khoa học chỉ có ý nghĩa khi được chuyển hóa thành một trải nghiệm thực tế trên làn da.
         </p>
 
-        <div className="mlg-lineup">
-          {allProducts.map((product) => {
+        <div
+          className={`mlg-lineup ${styles.rail}`}
+          role="region"
+          aria-label="Bốn công thức Energy Shot, cuộn ngang để xem từng sản phẩm"
+          tabIndex={0}
+        >
+          {allProducts.map((product, index) => {
             const sku = skuColour[product.category];
             const wished = isInWishlist(product.id);
+            const titleId = `mlg-product-title-${product.id}`;
 
             return (
               <article
-                className="mlg-product"
+                className={`mlg-product ${styles.card}`}
                 key={product.id}
                 style={{ '--sku': sku?.colour } as React.CSSProperties}
+                aria-labelledby={titleId}
+                aria-posinset={index + 1}
+                aria-setsize={allProducts.length}
               >
                 <div className="mlg-product__media">
                   <Link href={`/product/${product.id}`} aria-label={product.name}>
@@ -79,7 +89,7 @@ const EnergyShotLineup = () => {
                 </div>
 
                 <div className="mlg-product__body">
-                  <h3 className="mlg-product__name">
+                  <h3 className="mlg-product__name" id={titleId}>
                     <Link
                       href={`/product/${product.id}`}
                       style={{ color: 'inherit', textDecoration: 'none' }}

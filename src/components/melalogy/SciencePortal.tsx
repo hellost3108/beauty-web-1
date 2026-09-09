@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
+import styles from './SciencePortal.module.css';
 
 /*
  * Homepage section 3 in the edit deck. The long-form science story now lives
@@ -9,17 +10,20 @@ import { ArrowRight } from 'lucide-react';
 const SciencePortal = () => (
   <section className="mlg-science-portal mlg-light" aria-labelledby="mlg-science-portal-title">
     <div className="mlg-science-portal__grid mlg-rise">
-      <div className="mlg-science-portal__copy">
+      <div className={`mlg-science-portal__copy ${styles.copy}`}>
         <p className="mlg-eyebrow mlg-eyebrow--rule">Melanin Science</p>
-        <h2 className="mlg-display mlg-display--sm" id="mlg-science-portal-title">
-          Không bắt đầu từ lời hứa trắng nhanh.
+        <h2
+          className={`mlg-display mlg-display--sm ${styles.title}`}
+          id="mlg-science-portal-title"
+        >
+          <span className={styles.titleLead}>Không bắt đầu từ lời hứa trắng nhanh.</span>
           <em>Bắt đầu từ cơ chế sắc tố.</em>
         </h2>
-        <p className="mlg-copy">
+        <p className={`mlg-copy ${styles.description}`}>
           Khám phá nền tảng Melanin + Dermalogy, ba trụ cột khoa học và công nghệ dẫn truyền
           đúng đích phía sau Melalogy.
         </p>
-        <Link href="/melanin-science" className="mlg-cta">
+        <Link href="/melanin-science" className={`mlg-cta ${styles.cta}`}>
           Khám phá Melanin Science
           <ArrowRight aria-hidden="true" />
         </Link>
