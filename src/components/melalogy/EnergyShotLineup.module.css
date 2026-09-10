@@ -4,18 +4,24 @@
 
 @media (max-width: 47.99rem) {
   .title {
-    max-width: 16ch;
+    max-width: 100%;
     margin-inline: auto;
-    font-size: clamp(1.65rem, 7.5vw, 2rem);
+    font-size: clamp(1.35rem, 6.8vw, 1.9rem);
     line-height: 1.16;
   }
 
   .titleLead,
-  .title em {
+  .titleAccent {
     text-wrap: balance;
   }
 
-  .title em {
+  .titleLead > span,
+  .titleAccent > span {
+    display: block;
+    white-space: nowrap;
+  }
+
+  .titleAccent {
     margin-top: 0.35rem;
   }
 

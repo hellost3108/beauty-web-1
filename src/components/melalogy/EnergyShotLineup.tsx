@@ -38,8 +38,14 @@ const EnergyShotLineup = () => {
           id="mlg-lineup-title"
           style={{ textAlign: 'center' }}
         >
-          <span className={styles.titleLead}>Energy Shot Hydrogel</span>
-          <em>Bốn công thức, bốn trạng thái da.</em>
+          <span className={styles.titleLead}>
+            <span>Energy Shot</span>{' '}
+            <span>Hydrogel</span>
+          </span>
+          <em className={styles.titleAccent}>
+            <span>Bốn công thức,</span>{' '}
+            <span>bốn trạng thái da.</span>
+          </em>
         </h2>
         <p className={`mlg-copy mlg-copy--center ${styles.description}`}>
           Khoa học chỉ có ý nghĩa khi được chuyển hóa thành một trải nghiệm thực tế trên làn da.
