@@ -119,8 +119,8 @@ const RealSkin = () => (
             className={`mlg-display mlg-display--sm ${styles.title}`}
             id="mlg-reviews-title"
           >
-            <span className={styles.titleLead}>Real skin.</span>
-            <em>Real experience.</em>
+            <span className={styles.titleLead}>Real skin</span>
+            <em>Real experience</em>
           </h2>
           <p className={`mlg-copy mlg-copy--center ${styles.description}`}>
             Trải nghiệm thật từ những làn da đã sử dụng Melalogy Energy Shot Hydrogel.
