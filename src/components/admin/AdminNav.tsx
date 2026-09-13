@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { FileImage, FolderTree, House, LayoutDashboard, Package } from "lucide-react";
+import { BookOpenText, FileImage, FolderTree, House, Info, LayoutDashboard, Newspaper, Package } from "lucide-react";
 
 const links = [
   { href: "/admin", label: "Tổng quan", icon: LayoutDashboard, exact: true },
@@ -10,6 +10,9 @@ const links = [
   { href: "/admin/categories", label: "Danh mục", icon: FolderTree },
   { href: "/admin/banners", label: "Banner", icon: FileImage },
   { href: "/admin/homepage", label: "Trang chủ", icon: House },
+  { href: "/admin/blog", label: "Blog", icon: BookOpenText },
+  { href: "/admin/magazine", label: "Tạp chí", icon: Newspaper },
+  { href: "/admin/about", label: "Giới thiệu", icon: Info },
 ];
 
 export default function AdminNav({ compact = false }: { compact?: boolean }) {

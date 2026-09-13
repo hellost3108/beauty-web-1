@@ -1,5 +1,6 @@
 export type MelalogyBlogPost = {
   id: number;
+  slug?: string;
   title: string;
   seoTitle: string;
   metaDescription: string;
@@ -8,7 +9,7 @@ export type MelalogyBlogPost = {
   author: string;
   date: string;
   publishedAt: string;
-  category: "Chăm Sóc Da" | "Trang Điểm" | "Thương Hiệu";
+  category: string;
   image: string;
   imageAlt: string;
   readingTime: string;

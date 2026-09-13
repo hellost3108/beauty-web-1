@@ -13,9 +13,7 @@ import {
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FanClubSection from "@/components/FanClubSection";
-import { blogPosts } from "@/data/melalogyBlogPosts";
-
-const categories = ["Tất Cả", "Chăm Sóc Da", "Trang Điểm", "Thương Hiệu"] as const;
+import type { MelalogyBlogPost } from "@/data/melalogyBlogPosts";
 
 const cardLayouts = [
   "lg:col-span-7",
@@ -28,16 +26,20 @@ const cardLayouts = [
   "lg:col-span-12",
 ];
 
-const Blog = () => {
-  const [activeCategory, setActiveCategory] = useState<(typeof categories)[number]>("Tất Cả");
-  const featuredPost = blogPosts[0];
+const Blog = ({ posts }: { posts: MelalogyBlogPost[] }) => {
+  const [activeCategory, setActiveCategory] = useState("Tất Cả");
+  const categories = useMemo(
+    () => ["Tất Cả", ...Array.from(new Set(posts.map((post) => post.category)))],
+    [posts],
+  );
+  const featuredPost = posts[0];
 
   const visiblePosts = useMemo(
     () =>
-      blogPosts
+      posts
         .slice(1)
         .filter((post) => activeCategory === "Tất Cả" || post.category === activeCategory),
-    [activeCategory],
+    [activeCategory, posts],
   );
 
   return (
@@ -111,7 +113,7 @@ const Blog = () => {
               </p>
             </div>
 
-            <Link href={`/blog/${featuredPost.id}`} className="blog-feature-2026 group grid overflow-hidden rounded-[2rem] border border-black/10 bg-white md:grid-cols-[1.22fr_0.78fr] md:rounded-[2.75rem]" data-reveal="scale">
+            <Link href={`/blog/${featuredPost.slug ?? featuredPost.id}`} className="blog-feature-2026 group grid overflow-hidden rounded-[2rem] border border-black/10 bg-white md:grid-cols-[1.22fr_0.78fr] md:rounded-[2.75rem]" data-reveal="scale">
               <div className="relative min-h-[22rem] overflow-hidden md:min-h-[36rem]">
                 <Image
                   src={featuredPost.image}
@@ -158,7 +160,7 @@ const Blog = () => {
               </div>
               <div className="blog-filter-2026 flex max-w-full gap-2 overflow-x-auto pb-1" aria-label="Lọc bài viết theo chuyên mục">
                 {categories.map((category) => {
-                  const count = category === "Tất Cả" ? blogPosts.length : blogPosts.filter((post) => post.category === category).length;
+                  const count = category === "Tất Cả" ? posts.length : posts.filter((post) => post.category === category).length;
                   const isActive = category === activeCategory;
                   return (
                     <button
@@ -179,7 +181,7 @@ const Blog = () => {
               <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-12" data-motion-stagger>
                 {visiblePosts.map((post, index) => (
                   <article key={post.id} className={`${cardLayouts[index % cardLayouts.length]} blog-card-2026 group overflow-hidden rounded-[1.7rem] border border-black/10 bg-white`}>
-                    <Link href={`/blog/${post.id}`} className="flex h-full flex-col">
+                    <Link href={`/blog/${post.slug ?? post.id}`} className="flex h-full flex-col">
                       <div className={`relative overflow-hidden ${index < 2 ? "aspect-[16/10]" : "aspect-[4/3]"}`}>
                         <Image
                           src={post.image}
