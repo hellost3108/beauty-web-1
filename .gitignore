@@ -10,9 +10,13 @@ lerna-debug.log*
 node_modules
 .next
 *.local
+.env
+.env.*
+!.env.example
 
 # Next.js auto-generated
 next-env.d.ts
+*.tsbuildinfo
 
 # Editor directories and files
 .vscode/*

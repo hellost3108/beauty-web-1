@@ -1,5 +1,7 @@
-// Melalogy Energy Shot Hydrogel Mask lineup
-export const allProducts = [
+import type { StorefrontProduct } from "@/types/cms";
+
+// Static fallback used until Supabase is configured or when the CMS is unavailable.
+export const allProducts: StorefrontProduct[] = [
     {
         id: 1,
         image: "/assets/mask-hydrating-blue.png",

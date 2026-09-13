@@ -8,25 +8,11 @@ import MelaninJournal from '@/components/melalogy/MelaninJournal';
 import RealSkin from '@/components/melalogy/RealSkin';
 import LetsTalkMelanin from '@/components/melalogy/LetsTalkMelanin';
 
-/*
- * Melalogy homepage 2026 — section order taken from the website-edit deck:
- *   1  banner chạy            → HeroBanners
- *   2  TVC brand              → BrandFilm
- *   3  banner chuyển tiếp     → SciencePortal
- *   3b thông tin mua hàng     → EnergyShotLineup
- *   4  blog                   → MelaninJournal
- *   5  cảm nhận khách hàng    → RealSkin
- *   6  liên hệ                → LetsTalkMelanin
- */
 const Index = () => (
   <div className="min-h-screen overflow-x-hidden">
     <BrandNav overlay />
-
-    {/* The hero runs full-bleed under the floating bar, as in the mockup. */}
     <main>
-      <h1 className="sr-only">
-        Melalogy — khoa học sắc tố và chăm sóc làn da
-      </h1>
+      <h1 className="sr-only">Melalogy — khoa học sắc tố và chăm sóc làn da</h1>
       <HeroBanners />
       <BrandFilm />
       <SciencePortal />
@@ -35,7 +21,6 @@ const Index = () => (
       <RealSkin />
       <LetsTalkMelanin />
     </main>
-
     <BrandFooter compact />
   </div>
 );

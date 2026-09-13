@@ -23,6 +23,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { cn } from '@/lib/utils';
 import { allProducts } from '@/data/productsData';
+import type { StorefrontProduct } from '@/types/cms';
 
 import BeautyDiaries from './BeautyDiaries';
 
@@ -43,25 +44,25 @@ const categoryAccents: Record<string, string> = {
     'Rạng Rỡ': '#8262a0',
 };
 
-const ShopSection = () => {
+const ShopSection = ({ initialProducts = allProducts }: { initialProducts?: StorefrontProduct[] }) => {
     const router = useRouter();
     const [activeCategory, setActiveCategory] = useState('Tất Cả');
-    const [selectedProduct, setSelectedProduct] = useState<typeof allProducts[0] | null>(null);
+    const [selectedProduct, setSelectedProduct] = useState<StorefrontProduct | null>(null);
     const [quantity, setQuantity] = useState(1);
     const { addToCart, addToWishlist, isInWishlist } = useShop();
 
     const [sortBy, setSortBy] = useState('featured');
-    const productCountLabel = String(allProducts.length).padStart(2, '0');
+    const productCountLabel = String(initialProducts.length).padStart(2, '0');
 
     const filteredProducts = useMemo(() => {
-        return allProducts
+        return initialProducts
             .filter(product => activeCategory === 'Tất Cả' || product.category === activeCategory)
             .sort((a, b) => {
                 if (sortBy === 'price-low-high') return a.rawPrice - b.rawPrice;
                 if (sortBy === 'price-high-low') return b.rawPrice - a.rawPrice;
                 return 0;
             });
-    }, [activeCategory, sortBy]);
+    }, [activeCategory, initialProducts, sortBy]);
 
     return (
         <div className="w-full bg-[#f4f2ee]">
@@ -85,7 +86,7 @@ const ShopSection = () => {
                                 Đúng Energy Shot. <span className="shop-accent text-[#ff5a6d]">Đúng điều da cần.</span>
                             </h1>
                             <p className="mt-7 max-w-lg font-body text-sm leading-7 text-white/60 md:text-base">
-                                Khám phá {allProducts.length} lựa chọn chăm sóc được sắp xếp theo đúng tín hiệu và nhu cầu hiện tại của làn da.
+                                Khám phá {initialProducts.length} lựa chọn chăm sóc được sắp xếp theo đúng tín hiệu và nhu cầu hiện tại của làn da.
                             </p>
 
                             <a
@@ -115,7 +116,7 @@ const ShopSection = () => {
                         <div className="shop-scan-line absolute inset-y-0 z-[1] w-32" />
 
                         <div className="shop-product-stage relative z-[2] grid h-full grid-cols-2 content-center gap-3 sm:gap-4">
-                            {allProducts.map((product, index) => {
+                            {initialProducts.map((product, index) => {
                                 const cardStyle = heroCardOffsets[index % heroCardOffsets.length];
                                 const accent = categoryAccents[product.category] ?? '#b31324';
 

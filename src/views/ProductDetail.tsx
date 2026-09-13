@@ -1,7 +1,7 @@
 "use client";
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-import { useParams, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { useShop } from '@/context/ShopContext';
 import { Minus, Plus, Heart, ChevronDown, Star, ChevronRight, Share2 } from 'lucide-react';
 import Navbar from '@/components/Navbar';
@@ -11,10 +11,15 @@ import { Button } from '@/components/ui/button';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { cn } from '@/lib/utils';
-import { allProducts } from '@/data/productsData';
+import type { StorefrontProduct } from '@/types/cms';
 
-const ProductDetail = () => {
-    const { id } = useParams();
+const ProductDetail = ({
+    product: productDetails,
+    relatedProducts = [],
+}: {
+    product: StorefrontProduct | null;
+    relatedProducts?: StorefrontProduct[];
+}) => {
     const router = useRouter();
     const [quantity, setQuantity] = useState(1);
     const [quickViewProduct, setQuickViewProduct] = useState<any>(null);
@@ -22,7 +27,6 @@ const ProductDetail = () => {
     const [isNavigating, setIsNavigating] = useState(false);
     const { addToCart, addToWishlist, isInWishlist } = useShop();
 
-    const productDetails = allProducts.find(p => p.id === Number(id));
     const [activeImage, setActiveImage] = useState<string | undefined>(productDetails?.images?.[0]);
 
     useEffect(() => {
@@ -34,8 +38,6 @@ const ProductDetail = () => {
     }, [productDetails, router]);
 
     if (!productDetails) return null;
-
-    const relatedProducts = allProducts.filter(p => p.id !== productDetails.id);
 
     const handleAddToCart = (qty: number = 1) => {
         for (let i = 0; i < qty; i++) {

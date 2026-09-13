@@ -21,8 +21,7 @@ import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/compone
 import { allProducts } from "@/data/productsData";
 import { useShop } from "@/context/ShopContext";
 import styles from "./collection-2026.module.css";
-
-const categories = ["Tất Cả", "Cấp Ẩm", "Phục Hồi", "Làm Sáng", "Rạng Rỡ"];
+import type { StorefrontProduct } from "@/types/cms";
 
 const signals = [
   { index: "01", label: "Thiếu nước", category: "Cấp Ẩm", color: "#52c8f4", tint: "#e6f8ff" },
@@ -31,10 +30,10 @@ const signals = [
   { index: "04", label: "Thiếu sức sống", category: "Rạng Rỡ", color: "#9274c8", tint: "#f2ecfb" },
 ];
 
-type Product = (typeof allProducts)[number];
+type Product = StorefrontProduct;
 type ToneStyle = CSSProperties & { "--signal": string; "--signal-tint": string };
 
-export default function Collection2026() {
+export default function Collection2026({ initialProducts = allProducts }: { initialProducts?: StorefrontProduct[] }) {
   const searchParams = useSearchParams();
   const router = useRouter();
   const { addToCart, addToWishlist, isInWishlist } = useShop();
@@ -42,18 +41,22 @@ export default function Collection2026() {
   const [sortBy, setSortBy] = useState("featured");
   const [quickView, setQuickView] = useState<Product | null>(null);
   const [quantity, setQuantity] = useState(1);
+  const categories = useMemo(
+    () => ["Tất Cả", ...Array.from(new Set(initialProducts.map((product) => product.category)))],
+    [initialProducts],
+  );
 
   useEffect(() => {
     const category = searchParams.get("category");
     if (category && categories.includes(category)) setActiveCategory(category);
-  }, [searchParams]);
+  }, [categories, searchParams]);
 
   const products = useMemo(() => {
-    const result = allProducts.filter((product) => activeCategory === "Tất Cả" || product.category === activeCategory);
+    const result = initialProducts.filter((product) => activeCategory === "Tất Cả" || product.category === activeCategory);
     if (sortBy === "price-low-high") return [...result].sort((a, b) => a.rawPrice - b.rawPrice);
     if (sortBy === "price-high-low") return [...result].sort((a, b) => b.rawPrice - a.rawPrice);
     return result;
-  }, [activeCategory, sortBy]);
+  }, [activeCategory, initialProducts, sortBy]);
 
   const addQuantityToCart = (product: Product) => {
     for (let index = 0; index < quantity; index += 1) addToCart(product);
