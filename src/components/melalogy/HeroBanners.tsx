@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import type { HeroSlide } from '@/types/cms';
 
 /*
  * Section 1 of the website-edit deck: "banner chạy".
@@ -9,36 +10,17 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
  * headline, logo and cherry accent — so the carousel deliberately adds no
  * overlay text of its own (guideline 11: one hero, one message).
  */
-const banners = [
-  {
-    src: '/assets/brand-banner-melanin.png',
-    alt: 'MELALOGY — The Science of Melanin. Khoa học bắt đầu từ việc hiểu sắc tố.',
-    label: 'The science of melanin',
-    focus: '60% center',
-  },
-  {
-    src: '/assets/brand-banner-skincare.png',
-    alt: 'Melalogy — thương hiệu khoa học chuyên biệt về sắc tố',
-    label: 'Pigmentation science',
-    focus: 'center',
-  },
-  {
-    src: '/assets/brand-banner-x50.png',
-    alt: 'Melalogy X50 Pure White — công nghệ dẫn truyền đúng đích',
-    label: 'X50® Pure White',
-    focus: 'center',
-  },
-  {
-    src: '/assets/brand-banner-energy-shot.png',
-    alt: 'Melalogy Energy Shot Hydrogel Mask — bộ sưu tập bốn công thức',
-    label: 'Energy Shot Hydrogel',
-    focus: 'center',
-  },
-];
-
 const SLIDE_MS = 6500;
 
-const HeroBanners = () => {
+const HeroBanners = ({ slides }: { slides: HeroSlide[] }) => {
+  const banners = slides.map((slide) => ({
+    id: slide.id,
+    src: slide.image,
+    mobileSrc: slide.mobileImage,
+    alt: [slide.headline.part1, slide.headline.part2, slide.subheadline].filter(Boolean).join(' — '),
+    label: slide.kicker || slide.headline.part1,
+    focus: 'center',
+  }));
   const [active, setActive] = useState(0);
   // The slide leaving the stage stays painted underneath the incoming one, so
   // the crossfade never dips to the background colour.
@@ -69,7 +51,7 @@ const HeroBanners = () => {
       <div className="mlg-hero__viewport">
         {banners.map((banner, index) => (
           <div
-            key={banner.src}
+            key={banner.id}
             className="mlg-hero__slide"
             data-state={
               index === active ? 'current' : index === previous ? 'previous' : 'idle'
@@ -79,14 +61,16 @@ const HeroBanners = () => {
             aria-roledescription="slide"
             aria-label={`${index + 1} / ${banners.length} — ${banner.label}`}
           >
-            <img
-              src={banner.src}
-              alt={banner.alt}
-              style={{ '--slide-focus': banner.focus } as React.CSSProperties}
-              /* The first banner is the LCP element; the rest can wait. */
-              loading={index === 0 ? 'eager' : 'lazy'}
-              fetchPriority={index === 0 ? 'high' : 'auto'}
-            />
+            <picture>
+              {banner.mobileSrc && <source media="(max-width: 767px)" srcSet={banner.mobileSrc} />}
+              <img
+                src={banner.src}
+                alt={banner.alt}
+                style={{ '--slide-focus': banner.focus } as React.CSSProperties}
+                loading={index === 0 ? 'eager' : 'lazy'}
+                fetchPriority={index === 0 ? 'high' : 'auto'}
+              />
+            </picture>
           </div>
         ))}
 
@@ -117,7 +101,7 @@ const HeroBanners = () => {
         <div className="mlg-hero__rail">
           {banners.map((banner, index) => (
             <button
-              key={banner.src}
+              key={banner.id}
               type="button"
               className="mlg-hero__dot"
               data-active={index === active}

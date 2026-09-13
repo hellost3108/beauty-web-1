@@ -205,7 +205,7 @@ export async function getHomepageContent(): Promise<{
           .select(
             "id, eyebrow, title, highlighted_text, subtitle, desktop_image_url, mobile_image_url, button_label, button_url, secondary_button_label, secondary_button_url, sort_order",
           )
-          .eq("placement", "home_hero")
+          .eq("placement", "brand_hero")
           .eq("status", "published")
           .order("sort_order", { ascending: true }),
         supabase
@@ -213,7 +213,7 @@ export async function getHomepageContent(): Promise<{
           .select(
             "id, section_key, eyebrow, title, highlighted_text, subtitle, body, image_url, cta_label, cta_url",
           )
-          .eq("section_key", "why_melalogy")
+          .eq("section_key", "science_portal")
           .eq("status", "published")
           .maybeSingle(),
       ]);

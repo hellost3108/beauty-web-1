@@ -7,17 +7,29 @@ import EnergyShotLineup from '@/components/melalogy/EnergyShotLineup';
 import MelaninJournal from '@/components/melalogy/MelaninJournal';
 import RealSkin from '@/components/melalogy/RealSkin';
 import LetsTalkMelanin from '@/components/melalogy/LetsTalkMelanin';
+import type { MelalogyBlogPost } from '@/data/melalogyBlogPosts';
+import type { HeroSlide, HomepageSection, StorefrontProduct } from '@/types/cms';
 
-const Index = () => (
+const Index = ({
+  heroSlides,
+  whyMelalogy,
+  products,
+  posts,
+}: {
+  heroSlides: HeroSlide[];
+  whyMelalogy: HomepageSection;
+  products: StorefrontProduct[];
+  posts: MelalogyBlogPost[];
+}) => (
   <div className="min-h-screen overflow-x-hidden">
     <BrandNav overlay />
     <main>
       <h1 className="sr-only">Melalogy — khoa học sắc tố và chăm sóc làn da</h1>
-      <HeroBanners />
+      <HeroBanners slides={heroSlides} />
       <BrandFilm />
-      <SciencePortal />
-      <EnergyShotLineup />
-      <MelaninJournal />
+      <SciencePortal content={whyMelalogy} />
+      <EnergyShotLineup products={products} />
+      <MelaninJournal posts={posts} />
       <RealSkin />
       <LetsTalkMelanin />
     </main>

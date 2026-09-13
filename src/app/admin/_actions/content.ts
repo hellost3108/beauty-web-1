@@ -2,7 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import { requireAdminForAction } from "@/lib/auth/admin";
+import { requireAdminForAction, requireSuperAdminForAction } from "@/lib/auth/admin";
 import { createClient } from "@/lib/supabase/server";
 import {
   aboutPageSchema,
@@ -15,6 +15,28 @@ import {
 
 const text = (formData: FormData, key: string) => formData.get(key)?.toString() ?? "";
 const checked = (formData: FormData, key: string) => formData.get(key) === "on";
+
+export async function updateAdminAccess(formData: FormData) {
+  const actor = await requireSuperAdminForAction();
+  const id = text(formData, "id");
+  const role = text(formData, "role");
+  const isActive = checked(formData, "is_active");
+  const allowedRoles = ["customer", "editor", "admin", "super_admin"];
+
+  if (!id || !allowedRoles.includes(role)) {
+    redirect("/admin/users?error=Thông tin phân quyền không hợp lệ");
+  }
+  if (id === actor.id && (role !== "super_admin" || !isActive)) {
+    redirect("/admin/users?error=Bạn không thể tự hạ quyền hoặc khóa tài khoản super admin đang dùng");
+  }
+
+  const supabase = await createClient();
+  const { error } = await supabase.from("profiles").update({ role, is_active: isActive }).eq("id", id);
+  if (error) redirect(`/admin/users?error=${encodeURIComponent(error.message)}`);
+
+  revalidatePath("/admin/users");
+  redirect("/admin/users?success=saved");
+}
 
 export async function upsertProduct(formData: FormData) {
   await requireAdminForAction();
@@ -69,6 +91,8 @@ export async function upsertProduct(formData: FormData) {
 
   revalidatePath("/admin/products");
   revalidatePath("/collection");
+  revalidatePath("/shop");
+  revalidatePath("/");
   redirect(`/admin/products/${result.data.id}/edit?success=saved`);
 }
 
@@ -83,6 +107,8 @@ export async function archiveProduct(formData: FormData) {
 
   revalidatePath("/admin/products");
   revalidatePath("/collection");
+  revalidatePath("/shop");
+  revalidatePath("/");
 }
 
 export async function upsertCategory(formData: FormData) {
@@ -116,6 +142,8 @@ export async function upsertCategory(formData: FormData) {
 
   revalidatePath("/admin/categories");
   revalidatePath("/collection");
+  revalidatePath("/shop");
+  revalidatePath("/");
   redirect("/admin/categories?success=saved");
 }
 
@@ -128,6 +156,8 @@ export async function deactivateCategory(formData: FormData) {
   const { error } = await supabase.from("categories").update({ is_active: false }).eq("id", id);
   if (error) throw error;
   revalidatePath("/admin/categories");
+  revalidatePath("/shop");
+  revalidatePath("/");
 }
 
 export async function upsertBanner(formData: FormData) {
@@ -307,6 +337,7 @@ export async function upsertArticle(formData: FormData) {
 
   revalidatePath(`/admin/${section}`);
   revalidatePath(`/${section}`, "layout");
+  revalidatePath("/");
   redirect(`/admin/${section}/${result.data.id}/edit?success=saved`);
 }
 
@@ -323,6 +354,7 @@ export async function archiveArticle(formData: FormData) {
   if (error) throw error;
   revalidatePath(`/admin/${channel}`);
   revalidatePath(`/${channel}`, "layout");
+  revalidatePath("/");
 }
 
 export async function upsertAboutPage(formData: FormData) {

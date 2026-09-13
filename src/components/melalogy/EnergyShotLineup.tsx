@@ -2,8 +2,8 @@
 
 import Link from 'next/link';
 import { ArrowRight, Heart, Headphones, Plus, RotateCcw, ShieldCheck, Truck } from 'lucide-react';
-import { allProducts } from '@/data/productsData';
 import { useShop } from '@/context/ShopContext';
+import type { StorefrontProduct } from '@/types/cms';
 import styles from './EnergyShotLineup.module.css';
 
 /*
@@ -26,7 +26,7 @@ const assurances = [
   { icon: ShieldCheck, title: 'Thanh toán bảo mật', copy: 'Thông tin giao dịch được bảo vệ' },
 ];
 
-const EnergyShotLineup = () => {
+const EnergyShotLineup = ({ products }: { products: StorefrontProduct[] }) => {
   const { addToCart, addToWishlist, removeFromWishlist, isInWishlist } = useShop();
 
   return (
@@ -57,7 +57,7 @@ const EnergyShotLineup = () => {
           aria-label="Bốn công thức Energy Shot, cuộn ngang để xem từng sản phẩm"
           tabIndex={0}
         >
-          {allProducts.map((product, index) => {
+          {products.map((product, index) => {
             const sku = skuColour[product.category];
             const wished = isInWishlist(product.id);
             const titleId = `mlg-product-title-${product.id}`;
@@ -69,7 +69,7 @@ const EnergyShotLineup = () => {
                 style={{ '--sku': sku?.colour } as React.CSSProperties}
                 aria-labelledby={titleId}
                 aria-posinset={index + 1}
-                aria-setsize={allProducts.length}
+                aria-setsize={products.length}
               >
                 <div className="mlg-product__media">
                   <Link href={`/product/${product.id}`} aria-label={product.name}>

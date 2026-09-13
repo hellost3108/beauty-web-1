@@ -1,5 +1,19 @@
-import { redirect } from 'next/navigation';
+import type { Metadata } from 'next';
+import About from '@/views/About';
+import { getPublicAboutPage } from '@/services/public-content.service';
 
-export default function AboutPage() {
-  redirect('/melanin-science');
+export const revalidate = 60;
+
+export async function generateMetadata(): Promise<Metadata> {
+  const page = await getPublicAboutPage();
+  return {
+    title: page.seoTitle,
+    description: page.seoDescription,
+    alternates: { canonical: '/about' },
+  };
+}
+
+export default async function AboutPage() {
+  const page = await getPublicAboutPage();
+  return <About content={page.content} />;
 }

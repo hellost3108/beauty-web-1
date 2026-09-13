@@ -18,7 +18,7 @@ export default function AdminShell({
           <span className="block text-xs font-semibold uppercase tracking-[0.25em] text-[#ff5a66]">Melalogy</span>
           <span className="mt-2 block font-display text-2xl">Admin Studio</span>
         </Link>
-        <AdminNav />
+        <AdminNav role={profile.role} />
         <div className="mt-auto space-y-3 border-t border-white/10 pt-5">
           <div className="px-3 text-xs leading-5 text-white/55">
             <strong className="block truncate text-white">{profile.fullName || profile.email}</strong>
@@ -49,7 +49,7 @@ export default function AdminShell({
 
         <div className="border-b border-black/10 bg-[#191716] p-3 lg:hidden">
           <div className="flex gap-2 overflow-x-auto">
-            <AdminNav compact />
+            <AdminNav compact role={profile.role} />
           </div>
         </div>
 

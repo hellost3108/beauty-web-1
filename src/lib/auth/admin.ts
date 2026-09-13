@@ -45,3 +45,17 @@ export async function requireAdminForAction() {
   if (!profile) throw new Error("Bạn không có quyền thực hiện thao tác này.");
   return profile;
 }
+
+export async function requireSuperAdmin() {
+  const profile = await requireAdmin();
+  if (profile.role !== "super_admin") redirect("/admin");
+  return profile;
+}
+
+export async function requireSuperAdminForAction() {
+  const profile = await requireAdminForAction();
+  if (profile.role !== "super_admin") {
+    throw new Error("Chỉ tài khoản super admin được thay đổi quyền quản trị.");
+  }
+  return profile;
+}

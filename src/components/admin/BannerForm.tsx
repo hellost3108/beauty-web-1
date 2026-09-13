@@ -19,8 +19,9 @@ export default function BannerForm({ banner }: { banner?: any }) {
           </label>
           <label className={labelClass}>
             Vị trí
-            <select className={inputClass} name="placement" defaultValue={banner?.placement ?? "home_hero"}>
-              <option value="home_hero">Hero trang chủ</option>
+            <select className={inputClass} name="placement" defaultValue={banner?.placement ?? "brand_hero"}>
+              <option value="brand_hero">Hero trang chủ hiện tại</option>
+              <option value="home_hero">Hero giao diện cũ (không còn dùng)</option>
               <option value="home_promo">Khuyến mãi trang chủ</option>
             </select>
           </label>

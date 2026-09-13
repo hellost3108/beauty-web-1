@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { BookOpenText, FileImage, FolderTree, House, Info, LayoutDashboard, Newspaper, Package } from "lucide-react";
+import { BookOpenText, FileImage, FolderTree, House, Info, LayoutDashboard, Newspaper, Package, ShieldCheck } from "lucide-react";
+import type { AdminRole } from "@/types/cms";
 
 const links = [
   { href: "/admin", label: "Tổng quan", icon: LayoutDashboard, exact: true },
@@ -13,14 +14,15 @@ const links = [
   { href: "/admin/blog", label: "Blog", icon: BookOpenText },
   { href: "/admin/magazine", label: "Tạp chí", icon: Newspaper },
   { href: "/admin/about", label: "Giới thiệu", icon: Info },
+  { href: "/admin/users", label: "Phân quyền", icon: ShieldCheck, superAdminOnly: true },
 ];
 
-export default function AdminNav({ compact = false }: { compact?: boolean }) {
+export default function AdminNav({ compact = false, role }: { compact?: boolean; role: AdminRole }) {
   const pathname = usePathname();
 
   return (
     <nav className={compact ? "flex gap-2" : "space-y-1"} aria-label="Điều hướng quản trị">
-      {links.map((item) => {
+      {links.filter((item) => !item.superAdminOnly || role === "super_admin").map((item) => {
         const active = item.exact ? pathname === item.href : pathname.startsWith(item.href);
         return (
           <Link

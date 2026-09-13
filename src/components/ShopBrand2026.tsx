@@ -30,26 +30,14 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useShop } from "@/context/ShopContext";
-import { allProducts } from "@/data/productsData";
 import { cn } from "@/lib/utils";
+import type { StorefrontProduct } from "@/types/cms";
 
 import BeautyDiaries from "./BeautyDiaries";
 
-type Product = (typeof allProducts)[number];
+type Product = StorefrontProduct;
 
 const categoryOrder = ["Cấp Ẩm", "Phục Hồi", "Làm Sáng", "Rạng Rỡ"];
-
-const categories = [
-    "Tất Cả",
-    ...Array.from(new Set(allProducts.map((product) => product.category))).sort((a, b) => {
-        const left = categoryOrder.indexOf(a);
-        const right = categoryOrder.indexOf(b);
-        if (left === -1 && right === -1) return a.localeCompare(b, "vi");
-        if (left === -1) return 1;
-        if (right === -1) return -1;
-        return left - right;
-    }),
-];
 
 const categoryAccents: Record<string, string> = {
     "Cấp Ẩm": "#2f8fc0",
@@ -71,7 +59,7 @@ const formulaNotes: Record<string, string> = {
     "Rạng Rỡ": "Radiance / Firming",
 };
 
-const ShopBrand2026 = () => {
+const ShopBrand2026 = ({ products }: { products: StorefrontProduct[] }) => {
     const router = useRouter();
     const [activeCategory, setActiveCategory] = useState("Tất Cả");
     const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
@@ -79,18 +67,32 @@ const ShopBrand2026 = () => {
     const [sortBy, setSortBy] = useState("featured");
     const { addToCart, addToWishlist, isInWishlist } = useShop();
 
-    const productCountLabel = String(allProducts.length).padStart(2, "0");
-    const heroProducts = allProducts.slice(0, 4);
+    const categories = useMemo(
+        () => [
+            "Tất Cả",
+            ...Array.from(new Set(products.map((product) => product.category))).sort((a, b) => {
+                const left = categoryOrder.indexOf(a);
+                const right = categoryOrder.indexOf(b);
+                if (left === -1 && right === -1) return a.localeCompare(b, "vi");
+                if (left === -1) return 1;
+                if (right === -1) return -1;
+                return left - right;
+            }),
+        ],
+        [products],
+    );
+    const productCountLabel = String(products.length).padStart(2, "0");
+    const heroProducts = products.slice(0, 4);
 
     const filteredProducts = useMemo(() => {
-        return allProducts
+        return products
             .filter((product) => activeCategory === "Tất Cả" || product.category === activeCategory)
             .sort((a, b) => {
                 if (sortBy === "price-low-high") return a.rawPrice - b.rawPrice;
                 if (sortBy === "price-high-low") return b.rawPrice - a.rawPrice;
                 return 0;
             });
-    }, [activeCategory, sortBy]);
+    }, [activeCategory, products, sortBy]);
 
     const shareProduct = async (product: Product) => {
         const shareData = {
@@ -204,8 +206,8 @@ const ShopBrand2026 = () => {
 
                             <div className="flex items-center justify-between gap-4 border-t border-black/10 pt-4 font-body text-[10px] uppercase tracking-[0.15em] text-black/40">
                                 <span>The science of melanin</span>
-                                {allProducts.length > heroProducts.length && (
-                                    <span>+ {allProducts.length - heroProducts.length} công thức trong catalog</span>
+                                {products.length > heroProducts.length && (
+                                    <span>+ {products.length - heroProducts.length} công thức trong catalog</span>
                                 )}
                             </div>
                         </div>

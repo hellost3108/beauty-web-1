@@ -1,14 +1,14 @@
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
-import { blogPosts } from '@/data/melalogyBlogPosts';
+import type { MelalogyBlogPost } from '@/data/melalogyBlogPosts';
 import styles from './MelaninJournal.module.css';
 
 /*
  * Section 4 of the website-edit deck: "Blog", presented as The Melanin
  * Journal — content pillar 01/02 first (guideline 13, Content system).
  */
-const MelaninJournal = () => {
-  const featured = blogPosts.slice(0, 4);
+const MelaninJournal = ({ posts }: { posts: MelalogyBlogPost[] }) => {
+  const featured = posts.slice(0, 4);
 
   return (
     <section
@@ -42,7 +42,7 @@ const MelaninJournal = () => {
           {featured.map((post, index) => (
             <Link
               key={post.id}
-              href={`/blog/${post.id}`}
+              href={`/blog/${post.slug ?? post.id}`}
               className={`mlg-article ${styles.card}`}
               aria-label={`Bài ${index + 1} trên ${featured.length}: ${post.title}`}
             >
