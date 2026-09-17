@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Eye, EyeOff, LoaderCircle, LockKeyhole } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
@@ -71,6 +72,12 @@ export default function AdminLoginForm({ initialError }: { initialError?: string
           </button>
         </span>
       </label>
+
+      <div className="text-right">
+        <Link href="/admin/forgot-password" className="text-sm font-semibold text-[#ff7d86] transition hover:text-white">
+          Quên mật khẩu?
+        </Link>
+      </div>
 
       {error && <p className="rounded-xl bg-red-500/15 px-4 py-3 text-sm text-red-100">{error}</p>}
 

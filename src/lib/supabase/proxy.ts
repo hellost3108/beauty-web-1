@@ -2,7 +2,12 @@ import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 import { isSupabaseConfigured, supabasePublishableKey, supabaseUrl } from "@/lib/supabase/config";
 
-const publicAdminRoutes = ["/admin/login", "/admin/setup"];
+const publicAdminRoutes = [
+  "/admin/login",
+  "/admin/setup",
+  "/admin/forgot-password",
+  "/admin/reset-password",
+];
 
 export async function updateSession(request: NextRequest) {
   if (!isSupabaseConfigured) {
