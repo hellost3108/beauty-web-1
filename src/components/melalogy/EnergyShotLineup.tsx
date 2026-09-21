@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { ArrowRight, Heart, Headphones, Plus, RotateCcw, ShieldCheck, Truck } from 'lucide-react';
+import { ArrowRight, Heart, Plus } from 'lucide-react';
 import { allProducts } from '@/data/productsData';
 import { useShop } from '@/context/ShopContext';
 import styles from './EnergyShotLineup.module.css';
@@ -18,13 +18,6 @@ const skuColour: Record<string, { colour: string; actives: string }> = {
   'Làm Sáng': { colour: 'var(--mlg-sku-brightening)', actives: 'Niacinamide · Rice Bran Extract' },
   'Rạng Rỡ': { colour: 'var(--mlg-sku-radiance)', actives: 'Sodium DNA · Acetyl Hexapeptide-8' },
 };
-
-const assurances = [
-  { icon: Truck, title: 'Giao hàng toàn quốc', copy: 'Miễn phí cho đơn từ 500.000₫' },
-  { icon: RotateCcw, title: 'Đổi trả rõ ràng', copy: 'Hỗ trợ trong vòng 30 ngày' },
-  { icon: Headphones, title: 'Tư vấn theo cơ chế', copy: 'Chọn công thức đúng trạng thái da' },
-  { icon: ShieldCheck, title: 'Thanh toán bảo mật', copy: 'Thông tin giao dịch được bảo vệ' },
-];
 
 const EnergyShotLineup = () => {
   const { addToCart, addToWishlist, removeFromWishlist, isInWishlist } = useShop();
@@ -124,16 +117,6 @@ const EnergyShotLineup = () => {
               </article>
             );
           })}
-        </div>
-
-        <div className="mlg-assurance">
-          {assurances.map(({ icon: Icon, title, copy }) => (
-            <div key={title}>
-              <Icon aria-hidden="true" />
-              <strong>{title}</strong>
-              <span>{copy}</span>
-            </div>
-          ))}
         </div>
 
         <div style={{ display: 'flex', justifyContent: 'center', marginTop: 'clamp(2rem, 4vw, 3rem)' }}>
