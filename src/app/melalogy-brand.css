@@ -1966,7 +1966,14 @@ html {
 }
 
 .mlg-contact-main .mlg-display {
-  font-size: clamp(2.9rem, 5vw, 5.8rem);
+  max-width: 11ch;
+  font-size: clamp(2.6rem, 4.15vw, 4.75rem);
+  letter-spacing: -0.045em;
+  line-height: 0.96;
+}
+
+.mlg-contact-main .mlg-display em {
+  margin-top: 0.08em;
 }
 
 .mlg-contact-main .mlg-card-row {
@@ -2113,6 +2120,12 @@ html {
 @media (max-width: 42rem) {
   .mlg-contact-art {
     display: none;
+  }
+
+  .mlg-contact-main .mlg-display {
+    max-width: 10ch;
+    font-size: clamp(2.25rem, 10.5vw, 2.9rem);
+    line-height: 0.98;
   }
 
   .mlg-contact-main .mlg-card-row {
