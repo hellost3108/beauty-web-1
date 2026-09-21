@@ -16,8 +16,8 @@ const SciencePortal = () => (
           className={`mlg-display mlg-display--sm ${styles.title}`}
           id="mlg-science-portal-title"
         >
-          <span className={styles.titleLead}>Không bắt đầu từ lời hứa trắng nhanh.</span>
-          <em>Bắt đầu từ cơ chế sắc tố.</em>
+          <span className={styles.titleLead}>Không bắt đầu từ lời hứa trắng nhanh</span>
+          <em>Bắt đầu từ cơ chế sắc tố</em>
         </h2>
         <p className={`mlg-copy ${styles.description}`}>
           Khám phá nền tảng Melanin + Dermalogy, ba trụ cột khoa học và công nghệ dẫn truyền
