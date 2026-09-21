@@ -31,8 +31,8 @@ const BrandFilm = () => {
       <div className="mlg-shell mlg-rise">
         <p className="mlg-eyebrow mlg-eyebrow--rule">Brand film</p>
         <h2 className="mlg-display" id="mlg-film-title">
-          Khoa học sắc tố,
-          <em>kể bằng hình ảnh.</em>
+          Khoa học sắc tố
+          <em>kể bằng hình ảnh</em>
         </h2>
 
         <div className="mlg-film__frame">
