@@ -1418,43 +1418,6 @@ html {
   background: var(--mlg-cherry);
 }
 
-/* Purchase reassurance strip */
-.mlg-assurance {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(13rem, 100%), 1fr));
-  gap: 1px;
-  margin-top: clamp(2rem, 4vw, 3rem);
-  overflow: hidden;
-  border: 1px solid color-mix(in oklab, var(--mlg-white) 10%, transparent);
-  border-radius: 1rem;
-  background: color-mix(in oklab, var(--mlg-white) 10%, transparent);
-}
-
-.mlg-assurance > div {
-  display: grid;
-  gap: 0.45rem;
-  align-content: start;
-  padding: clamp(1.1rem, 2vw, 1.6rem);
-  background: var(--mlg-black);
-}
-
-.mlg-assurance svg {
-  width: 1.15rem;
-  height: 1.15rem;
-  color: var(--mlg-cherry);
-}
-
-.mlg-assurance strong {
-  font-size: 0.82rem;
-  font-weight: 700;
-}
-
-.mlg-assurance span {
-  color: color-mix(in oklab, var(--mlg-white) 52%, transparent);
-  font-size: 0.72rem;
-  line-height: 1.6;
-}
-
 /* ================================================================
    Section 4 — The Melanin Journal
    ================================================================ */
@@ -2153,11 +2116,60 @@ html {
   }
 
   .mlg-contact-main .mlg-card-row {
-    grid-template-columns: minmax(0, 1fr);
+    display: flex;
+    align-items: stretch;
+    gap: 0.75rem;
+    margin-top: 1.25rem;
+    padding: 0.1rem 0.1rem 0.85rem;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scroll-padding-inline: 0.1rem;
+    scroll-snap-type: inline mandatory;
+    scrollbar-color: var(--mlg-cherry) color-mix(in oklab, var(--mlg-white) 10%, transparent);
+    scrollbar-width: thin;
+    -webkit-overflow-scrolling: touch;
   }
 
   .mlg-contact-main .mlg-card {
-    min-height: auto;
+    position: relative;
+    display: flex;
+    flex: 0 0 min(72vw, 16rem);
+    align-items: center;
+    min-height: 5.75rem;
+    padding: 1.2rem 1.25rem;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+
+  .mlg-contact-main .mlg-card__icon,
+  .mlg-contact-main .mlg-card__index,
+  .mlg-contact-main .mlg-card p {
+    display: none;
+  }
+
+  .mlg-contact-main .mlg-card h3 {
+    max-width: 18ch;
+    font-size: 0.78rem;
+    line-height: 1.45;
+  }
+
+  .mlg-contact-main .mlg-card .mlg-link {
+    position: absolute;
+    z-index: 2;
+    inset: 0;
+    overflow: hidden;
+    border-radius: inherit;
+    color: transparent;
+    font-size: 0;
+  }
+
+  .mlg-contact-main .mlg-card .mlg-link svg {
+    display: none;
+  }
+
+  .mlg-contact-main .mlg-card .mlg-link:focus-visible {
+    outline: 2px solid var(--mlg-cherry);
+    outline-offset: -3px;
   }
 
   .mlg-contact-detail {

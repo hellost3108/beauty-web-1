@@ -12,7 +12,7 @@ const reviews = [
     name: 'Thu Hà',
     role: 'Khách hàng tại TP. Hồ Chí Minh',
     quote:
-      'Chưa bao giờ mình dùng một em mặt nạ mà phải lên đánh giá như này. Chất thạch ôm sát da, không hề rơi rớt; đắp xong da căng bóng, ẩm mịn và rất mượt.',
+      'Miếng thạch ôm sát, không hề rơi rớt. Đắp xong da căng bóng, ẩm mịn và rất mượt.',
     stars: 5,
     sku: 'Cấp Ẩm',
     skuColour: 'var(--mlg-sku-hydrating)',
@@ -70,6 +70,14 @@ const reviewSummary = { average: 4.8, verifiedCount: 'hơn 1.200' };
 
 type Review = (typeof reviews)[number];
 
+const ReviewStars = ({ value, className = '' }: { value: number; className?: string }) => (
+  <span className={`${styles.reviewStars} ${className}`.trim()} aria-hidden="true">
+    {Array.from({ length: 5 }).map((_, index) => (
+      <Star key={index} data-filled={index < value} strokeWidth={1.7} />
+    ))}
+  </span>
+);
+
 const ReviewCard = ({
   review,
   ordinal,
@@ -100,6 +108,7 @@ const ReviewCard = ({
       <span className="mlg-review__quote" aria-hidden="true">“</span>
       <p>{review.quote}</p>
       <div>
+        <ReviewStars value={review.stars} />
         <strong>{review.name}</strong>
         <em>{review.role}</em>
         <span className="mlg-review__sku">{review.sku} Energy Shot</span>
@@ -147,6 +156,7 @@ const RealSkin = () => (
             “
           </span>
           <blockquote>{lead.quote}</blockquote>
+          <ReviewStars value={lead.stars} className={styles.leadStars} />
           <div className="mlg-review-author">
             <strong>{lead.name}</strong>
             <span>{lead.role}</span>

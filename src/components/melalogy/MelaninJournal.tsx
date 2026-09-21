@@ -24,7 +24,7 @@ const MelaninJournal = () => {
               id="mlg-journal-title"
             >
               <span className={styles.titleLead}>Hiểu cơ chế</span>
-              <em>trước khi thêm một bước chăm sóc.</em>
+              <em>trước khi thêm một bước chăm sóc</em>
             </h2>
           </div>
           <Link href="/blog" className={`mlg-link ${styles.allLink}`}>
