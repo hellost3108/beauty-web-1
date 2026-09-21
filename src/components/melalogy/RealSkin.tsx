@@ -70,6 +70,14 @@ const reviewSummary = { average: 4.8, verifiedCount: 'hơn 1.200' };
 
 type Review = (typeof reviews)[number];
 
+const ReviewStars = ({ value, className = '' }: { value: number; className?: string }) => (
+  <span className={`${styles.reviewStars} ${className}`.trim()} aria-hidden="true">
+    {Array.from({ length: 5 }).map((_, index) => (
+      <Star key={index} data-filled={index < value} strokeWidth={1.7} />
+    ))}
+  </span>
+);
+
 const ReviewCard = ({
   review,
   ordinal,
@@ -102,6 +110,7 @@ const ReviewCard = ({
       <div>
         <strong>{review.name}</strong>
         <em>{review.role}</em>
+        <ReviewStars value={review.stars} />
         <span className="mlg-review__sku">{review.sku} Energy Shot</span>
       </div>
     </div>
@@ -151,6 +160,7 @@ const RealSkin = () => (
             <strong>{lead.name}</strong>
             <span>{lead.role}</span>
           </div>
+          <ReviewStars value={lead.stars} className={styles.leadStars} />
           {lead.tags.length > 0 && (
             <ul className="mlg-pills">
               {lead.tags.map((tag) => (
