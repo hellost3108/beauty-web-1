@@ -43,7 +43,7 @@ const LetsTalkMelanin = () => (
         <p className="mlg-eyebrow mlg-eyebrow--rule">Liên hệ Melalogy</p>
         <h2 className="mlg-display" id="mlg-contact-title">
           Let’s talk
-          <em>melanin.</em>
+          <em>melanin</em>
         </h2>
         <p className="mlg-copy">
           Cần tư vấn sản phẩm, hỗ trợ đơn hàng hoặc muốn hợp tác cùng Melalogy? Chúng tôi luôn sẵn
