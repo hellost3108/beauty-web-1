@@ -8,15 +8,15 @@
 
 .reviewStars {
   display: flex;
-  gap: 0.18rem;
+  gap: 0.22rem;
   width: fit-content;
-  margin-top: 0.48rem;
+  margin-bottom: 0.55rem;
   color: var(--mlg-cherry);
 }
 
 .reviewStars svg {
-  width: 0.78rem;
-  height: 0.78rem;
+  width: 0.92rem;
+  height: 0.92rem;
 }
 
 .reviewStars svg[data-filled='true'] {
@@ -29,7 +29,18 @@
 }
 
 .leadStars {
-  margin-top: 0.75rem;
+  gap: 0.28rem;
+  margin-top: 1.25rem;
+  margin-bottom: 0;
+}
+
+.leadStars svg {
+  width: 1.05rem;
+  height: 1.05rem;
+}
+
+.leadStars + :global(.mlg-review-author) {
+  margin-top: 0.8rem;
 }
 
 @media (max-width: 47.99rem) {

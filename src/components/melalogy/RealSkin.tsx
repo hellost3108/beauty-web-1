@@ -12,7 +12,7 @@ const reviews = [
     name: 'Thu Hà',
     role: 'Khách hàng tại TP. Hồ Chí Minh',
     quote:
-      'Chưa bao giờ mình dùng một em mặt nạ mà phải lên đánh giá như này. Chất thạch ôm sát da, không hề rơi rớt; đắp xong da căng bóng, ẩm mịn và rất mượt.',
+      'Miếng thạch ôm sát, không hề rơi rớt. Đắp xong da căng bóng, ẩm mịn và rất mượt.',
     stars: 5,
     sku: 'Cấp Ẩm',
     skuColour: 'var(--mlg-sku-hydrating)',
@@ -108,9 +108,9 @@ const ReviewCard = ({
       <span className="mlg-review__quote" aria-hidden="true">“</span>
       <p>{review.quote}</p>
       <div>
+        <ReviewStars value={review.stars} />
         <strong>{review.name}</strong>
         <em>{review.role}</em>
-        <ReviewStars value={review.stars} />
         <span className="mlg-review__sku">{review.sku} Energy Shot</span>
       </div>
     </div>
@@ -156,11 +156,11 @@ const RealSkin = () => (
             “
           </span>
           <blockquote>{lead.quote}</blockquote>
+          <ReviewStars value={lead.stars} className={styles.leadStars} />
           <div className="mlg-review-author">
             <strong>{lead.name}</strong>
             <span>{lead.role}</span>
           </div>
-          <ReviewStars value={lead.stars} className={styles.leadStars} />
           {lead.tags.length > 0 && (
             <ul className="mlg-pills">
               {lead.tags.map((tag) => (
