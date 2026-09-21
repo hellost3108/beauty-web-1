@@ -9,9 +9,11 @@ const toolbarButton =
 export default function RichTextEditor({
   name,
   initialValue = "",
+  onChange,
 }: {
   name: string;
   initialValue?: string | null;
+  onChange?: (html: string) => void;
 }) {
   const editorRef = useRef<HTMLDivElement>(null);
   const [html, setHtml] = useState(initialValue ?? "");
@@ -19,7 +21,9 @@ export default function RichTextEditor({
   const run = (command: string, value?: string) => {
     editorRef.current?.focus();
     document.execCommand(command, false, value);
-    setHtml(editorRef.current?.innerHTML ?? "");
+    const nextHtml = editorRef.current?.innerHTML ?? "";
+    setHtml(nextHtml);
+    onChange?.(nextHtml);
   };
 
   const addLink = () => {
@@ -43,11 +47,15 @@ export default function RichTextEditor({
         ref={editorRef}
         contentEditable
         suppressContentEditableWarning
-        onInput={(event) => setHtml(event.currentTarget.innerHTML)}
+        onInput={(event) => {
+          const nextHtml = event.currentTarget.innerHTML;
+          setHtml(nextHtml);
+          onChange?.(nextHtml);
+        }}
         dangerouslySetInnerHTML={{ __html: initialValue ?? "" }}
         className="blog-prose-2026 min-h-96 max-w-none px-5 py-4 text-sm leading-7 outline-none"
       />
-      <textarea name={name} value={html} readOnly required className="sr-only" />
+      <textarea name={name} value={html} readOnly required aria-label="Nội dung bài viết" className="sr-only" />
     </div>
   );
 }

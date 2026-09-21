@@ -268,7 +268,14 @@ export async function upsertHomepageSection(formData: FormData) {
 
 export async function upsertArticle(formData: FormData) {
   await requireAdminForAction();
-  const values = articleSchema.parse({
+  const rawId = text(formData, "id");
+  const rawChannel = text(formData, "channel");
+  const section = rawChannel === "magazine" ? "magazine" : "blog";
+  const editId = Number(rawId);
+  const target = Number.isInteger(editId) && editId > 0
+    ? `/admin/${section}/${editId}/edit`
+    : `/admin/${section}/new`;
+  const parsed = articleSchema.safeParse({
     id: text(formData, "id"),
     channel: text(formData, "channel"),
     title: text(formData, "title"),
@@ -291,6 +298,13 @@ export async function upsertArticle(formData: FormData) {
     featured: checked(formData, "featured"),
     sortOrder: text(formData, "sort_order"),
   });
+
+  if (!parsed.success) {
+    const message = [...new Set(parsed.error.issues.map((issue) => issue.message))].join(" ");
+    redirect(`${target}?error=${encodeURIComponent(message)}`);
+  }
+
+  const values = parsed.data;
 
   const publishedAt = values.publishedAt
     ? new Date(values.publishedAt).toISOString()
@@ -327,11 +341,7 @@ export async function upsertArticle(formData: FormData) {
     ? await supabase.from("articles").update(payload).eq("id", values.id).select("id").single()
     : await supabase.from("articles").insert(payload).select("id").single();
 
-  const section = values.channel === "blog" ? "blog" : "magazine";
   if (result.error) {
-    const target = values.id
-      ? `/admin/${section}/${values.id}/edit`
-      : `/admin/${section}/new`;
     redirect(`${target}?error=${encodeURIComponent(result.error.message)}`);
   }
 

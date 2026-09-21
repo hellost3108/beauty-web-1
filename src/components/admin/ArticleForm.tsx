@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import Link from "next/link";
 import { Save } from "lucide-react";
 import { upsertArticle } from "@/app/admin/_actions/content";
@@ -36,6 +36,8 @@ export default function ArticleForm({
   const [title, setTitle] = useState(article?.title ?? "");
   const [slug, setSlug] = useState(article?.slug ?? "");
   const [slugEdited, setSlugEdited] = useState(Boolean(article?.slug));
+  const [contentHtml, setContentHtml] = useState(article?.content_html ?? "");
+  const [clientError, setClientError] = useState("");
   const section = channel === "blog" ? "Blog" : "Tạp chí";
 
   const updateTitle = (value: string) => {
@@ -43,8 +45,19 @@ export default function ArticleForm({
     if (!slugEdited) setSlug(slugify(value));
   };
 
+  const validateBeforeSubmit = (event: FormEvent<HTMLFormElement>) => {
+    const contentText = contentHtml.replace(/<[^>]*>/g, " ").replace(/&nbsp;/g, " ").trim();
+    if (contentText.length < 20) {
+      event.preventDefault();
+      setClientError("Hãy nhập nội dung bài viết, tối thiểu 20 ký tự, trước khi lưu.");
+      event.currentTarget.querySelector("[aria-label='Nội dung bài viết']")?.scrollIntoView({ behavior: "smooth", block: "center" });
+      return;
+    }
+    setClientError("");
+  };
+
   return (
-    <form action={upsertArticle} className="space-y-6">
+    <form action={upsertArticle} onSubmit={validateBeforeSubmit} className="space-y-6">
       {article?.id && <input type="hidden" name="id" value={article.id} />}
       <input type="hidden" name="channel" value={channel} />
 
@@ -126,7 +139,8 @@ export default function ArticleForm({
       <section className="rounded-3xl border border-black/10 bg-white p-5 shadow-sm sm:p-7">
         <h2 className="font-display text-2xl">Nội dung</h2>
         <p className="mt-2 text-xs leading-5 text-black/45">Bôi đen đoạn chữ rồi chọn định dạng trên thanh công cụ.</p>
-        <RichTextEditor name="content_html" initialValue={article?.content_html} />
+        <RichTextEditor name="content_html" initialValue={article?.content_html} onChange={setContentHtml} />
+        {clientError && <p className="mt-3 rounded-xl bg-red-50 px-4 py-3 text-sm font-medium text-red-700">{clientError}</p>}
       </section>
 
       <section className="rounded-3xl border border-black/10 bg-white p-5 shadow-sm sm:p-7">
