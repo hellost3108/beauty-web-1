@@ -1,15 +1,10 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Quản trị nội dung",
-  description: "Không gian quản trị nội dung cục bộ dành cho Melalogy.",
-  robots: {
-    index: false,
-    follow: false,
-    nocache: true,
-  },
+  title: "Melalogy Admin",
+  robots: { index: false, follow: false },
 };
 
-export default function AdminLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+export default function AdminRootLayout({ children }: { children: React.ReactNode }) {
   return children;
 }
