@@ -7,3 +7,6 @@
 .admin-rich-text blockquote { margin: 0.75rem 0; border-left: 3px solid #f52334; padding-left: 0.9rem; color: rgb(0 0 0 / 0.6); }
 .admin-rich-text a { color: #d91a2b; text-decoration: underline; }
 .admin-rich-text [data-info-callout] { margin: 0.75rem 0; border-radius: 0.9rem; background: #f7f1ee; padding: 0.75rem 1rem; }
+.admin-rich-text figure[data-rt-image] { cursor: pointer; }
+.admin-rich-text figure[data-rt-image][data-selected] img { outline: 3px solid #f52334; outline-offset: 3px; }
+.admin-rich-text figcaption { cursor: text; }

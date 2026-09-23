@@ -3,6 +3,8 @@ import { Mona_Sans } from "next/font/google";
 import "./globals.css";
 // Brand layer loads after globals so Melalogy tokens win over legacy theme values.
 import "./melalogy-brand.css";
+import "./rich-content.css";
+import { richContentFontVariables } from "./rich-content-fonts";
 import Providers from "@/components/Providers";
 import { ProductsProvider } from "@/components/cms/ProductsProvider";
 import { SectionsProvider } from "@/components/cms/SectionsProvider";
@@ -71,7 +73,7 @@ export default async function RootLayout({
   ]);
 
   return (
-    <html lang="vi" className={monaSans.variable}>
+    <html lang="vi" className={`${monaSans.variable} ${richContentFontVariables}`}>
       <body className="antialiased" suppressHydrationWarning>
         <Providers>
           <SectionsProvider value={globalSections}>

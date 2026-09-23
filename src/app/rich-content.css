@@ -1,0 +1,72 @@
+/*
+ * Formatting that editors apply in the Admin rich text editor. Applies to
+ * blog / magazine articles, policy pages and the Admin preview alike.
+ */
+
+[data-font="playfair"] { font-family: var(--font-rt-playfair), Georgia, serif !important; }
+[data-font="lora"] { font-family: var(--font-rt-lora), Georgia, serif !important; }
+[data-font="bevietnam"] { font-family: var(--font-rt-bevietnam), system-ui, sans-serif !important; }
+[data-font="dancing"] { font-family: var(--font-rt-dancing), cursive !important; }
+[data-font="mono"] { font-family: var(--font-rt-mono), ui-monospace, monospace !important; }
+
+[data-size="sm"] { font-size: 0.875em !important; }
+[data-size="lg"] { font-size: 1.25em !important; line-height: 1.5; }
+[data-size="xl"] { font-size: 1.65em !important; line-height: 1.35; }
+
+figure[data-rt-image] {
+  display: block;
+  margin: 2.2rem auto;
+  max-width: 100%;
+}
+
+figure[data-rt-image] img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 1rem;
+}
+
+figure[data-rt-image] figcaption {
+  margin-top: 0.7rem;
+  color: rgb(33 29 29 / 0.55);
+  font-size: 0.85em;
+  line-height: 1.55;
+  text-align: center;
+}
+
+figure[data-rt-image][data-width="medium"] { width: 68%; }
+figure[data-rt-image][data-width="small"] { width: 42%; }
+
+figure[data-rt-image][data-align="left"] {
+  float: left;
+  margin: 0.4rem 1.75rem 1.2rem 0;
+}
+
+figure[data-rt-image][data-align="right"] {
+  float: right;
+  margin: 0.4rem 0 1.2rem 1.75rem;
+}
+
+figure[data-rt-image][data-align="left"][data-width="full"],
+figure[data-rt-image][data-align="right"][data-width="full"] {
+  float: none;
+  margin-inline: auto;
+}
+
+:is(.blog-prose-2026, .magazine-prose-2026, .admin-rich-text)::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+:is(.blog-prose-2026, .magazine-prose-2026, .admin-rich-text) :is(h2, h3, blockquote, ul, ol) {
+  clear: both;
+}
+
+@media (max-width: 47.99rem) {
+  figure[data-rt-image][data-width] {
+    float: none;
+    width: 100%;
+    margin-inline: 0;
+  }
+}
