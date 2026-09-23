@@ -27,7 +27,7 @@ import {
 } from '@/lib/checkoutDelivery';
 import { createClient } from '@/lib/supabase/client';
 import { createOrder } from '@/app/_actions/customer';
-import { bankTransferInfo } from '@/data/bankInfo';
+import { useSection } from '@/components/cms/SectionsProvider';
 
 export const dynamic = 'force-dynamic';
 
@@ -41,6 +41,7 @@ const formatVnd = (value: number) => `${value.toLocaleString('vi-VN')}đ`;
 
 const Checkout2026 = () => {
     const { cart, clearCart } = useShop();
+    const bankTransferInfo = useSection('global.bank');
     const router = useRouter();
     const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>('cod');
     const [isLoading, setIsLoading] = useState(false);

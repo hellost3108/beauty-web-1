@@ -11,18 +11,25 @@ import { Button } from '@/components/ui/button';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { cn } from '@/lib/utils';
-import { allProducts } from '@/data/productsData';
+import { useProducts } from '@/components/cms/ProductsProvider';
+import { useSection } from '@/components/cms/SectionsProvider';
+import type { StorefrontProduct } from '@/lib/cms/types';
 
 const ProductDetail = () => {
     const { id } = useParams();
     const router = useRouter();
     const [quantity, setQuantity] = useState(1);
-    const [quickViewProduct, setQuickViewProduct] = useState<any>(null);
+    const [quickViewProduct, setQuickViewProduct] = useState<StorefrontProduct | null>(null);
     const [quickViewQuantity, setQuickViewQuantity] = useState(1);
     const [isNavigating, setIsNavigating] = useState(false);
     const { addToCart, addToWishlist, isInWishlist } = useShop();
 
-    const productDetails = allProducts.find(p => p.id === Number(id));
+    const allProducts = useProducts();
+    const page = useSection('shop.product');
+    const routeId = Array.isArray(id) ? id[0] : id;
+    const productDetails = allProducts.find(p => String(p.id) === routeId || p.slug === routeId);
+    const ratingLabel = (Number(page.rating) || 0).toFixed(1);
+    const ratingStars = Math.round(Number(page.rating) || 0);
     const [activeImage, setActiveImage] = useState<string | undefined>(productDetails?.images?.[0]);
 
     useEffect(() => {
@@ -87,7 +94,7 @@ const ProductDetail = () => {
                         <div className="space-y-6">
                             <div className="relative aspect-square bg-[#f9f8f7] rounded-[20px] overflow-hidden">
                                 <div className="absolute top-6 left-6 z-10 bg-[#b31324]/10 text-[#b31324] text-xs font-bold px-3 py-1 rounded-sm uppercase tracking-wider border border-[#b31324]/20">
-                                    Bán Chạy Nhất
+                                    {page.badge}
                                 </div>
                                 <img
                                     src={activeImage || productDetails.image}
@@ -121,9 +128,9 @@ const ProductDetail = () => {
                                 {/* Rating Badge */}
                                 <div className="flex items-center gap-1 mt-3">
                                     <div className="flex items-center gap-1 px-2 py-0.5 border border-[#b31324]/50 rounded-full text-[#b31324] text-xs font-bold">
-                                        <span>4.2</span>
+                                        <span>{ratingLabel}</span>
                                         <div className="flex gap-[1px]">
-                                            {[1, 2, 3, 4].map((star) => (
+                                            {Array.from({ length: ratingStars }, (_, index) => index + 1).map((star) => (
                                                 <Star key={star} className="w-3 h-3 fill-transparent stroke-current" />
                                             ))}
                                         </div>
@@ -164,7 +171,7 @@ const ProductDetail = () => {
                                     onClick={() => handleAddToCart(quantity)}
                                     className="h-12 w-full min-w-0 rounded-md border border-[#b31324] bg-white px-4 text-base font-medium text-[#b31324] hover:bg-[#fff5f5] sm:w-auto sm:min-w-[160px] sm:px-8"
                                 >
-                                    Thêm Vào Giỏ
+                                    {page.addToCartLabel}
                                 </Button>
                             </div>
 
@@ -173,7 +180,7 @@ const ProductDetail = () => {
                                     onClick={handleBuyNow}
                                     className="group/btn relative h-12 w-full min-w-0 overflow-hidden whitespace-nowrap rounded-md bg-[#b31324] px-6 text-base font-medium text-white shadow-lg shadow-[#b31324]/20 sm:w-auto sm:min-w-[160px] sm:px-10"
                                 >
-                                    <span className="relative z-10 group-hover/btn:text-[#b31324] transition-colors duration-700">Mua Ngay</span>
+                                    <span className="relative z-10 group-hover/btn:text-[#b31324] transition-colors duration-700">{page.buyNowLabel}</span>
                                     <div className="absolute bottom-0 right-0 w-full h-0 bg-white group-hover/btn:h-full transition-all duration-700 ease-liquid" style={{ transformOrigin: 'bottom right' }} />
                                 </Button>
                                 <button
@@ -181,21 +188,16 @@ const ProductDetail = () => {
                                     className={`flex h-12 w-full items-center justify-center gap-2 rounded-md border px-6 transition-colors sm:w-auto ${isInWishlist(productDetails.id) ? 'border-[#b31324] text-[#b31324] bg-[#fff5f5]' : 'border-gray-200 hover:border-[#b31324] hover:text-[#b31324]'}`}
                                 >
                                     <Heart className={`w-5 h-5 ${isInWishlist(productDetails.id) ? 'fill-[#b31324]' : ''}`} />
-                                    <span className="text-sm font-medium">{isInWishlist(productDetails.id) ? 'Đã Yêu Thích' : 'Thêm Vào Yêu Thích'}</span>
+                                    <span className="text-sm font-medium">{isInWishlist(productDetails.id) ? page.wishlistActiveLabel : page.wishlistLabel}</span>
                                 </button>
                             </div>
 
                             {/* Trust Badges */}
                             <div className="grid grid-cols-2 gap-4 border-t border-gray-100 py-6 sm:grid-cols-4">
-                                {[
-                                    { icon: "/assets/icon1.png", label: "Thành Phần Tự Nhiên" },
-                                    { icon: "/assets/icon2.png", label: "Có Thể Tái Chế" },
-                                    { icon: "/assets/icon3.png", label: "Không Thử Nghiệm Trên Động Vật" },
-                                    { icon: "/assets/icon4.png", label: "Đã Kiểm Nghiệm Da Liễu" },
-                                ].map((item, i) => (
+                                {page.trustBadges.map((item, i) => (
                                     <div key={i} className="text-center space-y-2">
                                         <div className="w-12 h-12 mx-auto flex items-center justify-center">
-                                            <img src={item.icon} alt={item.label} className="w-full h-full object-contain" />
+                                            {item.icon && <img src={item.icon} alt={item.label} className="w-full h-full object-contain" />}
                                         </div>
                                         <p className="text-[10px] font-medium text-gray-600 uppercase tracking-tight">{item.label}</p>
                                     </div>
@@ -211,27 +213,27 @@ const ProductDetail = () => {
                 <div className="w-full mx-auto px-6 md:px-10 lg:px-16 xl:px-24">
                     <Accordion type="single" collapsible className="w-full space-y-4">
                         <AccordionItem value="description" className="border-b border-gray-200">
-                            <AccordionTrigger className="font-display text-xl py-4 hover:text-[#b31324] hover:no-underline">Mô Tả Sản Phẩm</AccordionTrigger>
+                            <AccordionTrigger className="font-display text-xl py-4 hover:text-[#b31324] hover:no-underline">{page.descriptionTitle}</AccordionTrigger>
                             <AccordionContent className="text-gray-600 leading-relaxed pb-6">
                                 {productDetails.description}
                             </AccordionContent>
                         </AccordionItem>
                         <AccordionItem value="ingredients" className="border-b border-gray-200">
-                            <AccordionTrigger className="font-display text-xl py-4 hover:text-[#b31324] hover:no-underline">Thành Phần Chính</AccordionTrigger>
+                            <AccordionTrigger className="font-display text-xl py-4 hover:text-[#b31324] hover:no-underline">{page.ingredientsTitle}</AccordionTrigger>
                             <AccordionContent className="text-gray-600 leading-relaxed pb-6">
                                 {productDetails.ingredients}
                             </AccordionContent>
                         </AccordionItem>
                         <AccordionItem value="usage" className="border-b border-gray-200">
-                            <AccordionTrigger className="font-display text-xl py-4 hover:text-[#b31324] hover:no-underline">Cách Sử Dụng</AccordionTrigger>
+                            <AccordionTrigger className="font-display text-xl py-4 hover:text-[#b31324] hover:no-underline">{page.usageTitle}</AccordionTrigger>
                             <AccordionContent className="text-gray-600 leading-relaxed pb-6">
                                 {productDetails.usage}
                             </AccordionContent>
                         </AccordionItem>
                         <AccordionItem value="shipping" className="border-b border-gray-200">
-                            <AccordionTrigger className="font-display text-xl py-4 hover:text-[#b31324] hover:no-underline">Vận Chuyển & Đổi Trả</AccordionTrigger>
+                            <AccordionTrigger className="font-display text-xl py-4 hover:text-[#b31324] hover:no-underline">{page.shippingTitle}</AccordionTrigger>
                             <AccordionContent className="text-gray-600 leading-relaxed pb-6">
-                                Miễn phí vận chuyển cho đơn hàng từ 500.000đ. Chấp nhận đổi trả trong vòng 7 ngày kể từ ngày nhận hàng nếu sản phẩm chưa sử dụng và còn nguyên bao bì.
+                                {page.shippingText}
                             </AccordionContent>
                         </AccordionItem>
                     </Accordion>
@@ -246,7 +248,7 @@ const ProductDetail = () => {
                 <div className="w-full mx-auto px-6 md:px-10 lg:px-16 xl:px-24">
                     <div className="text-center mb-16">
                         <h2 className="font-display text-[36px] text-[#111111]">
-                            Khám Phá <span className="text-[#b31324]">Các Sản Phẩm Khác</span>
+                            {page.relatedTitle} <span className="text-[#b31324]">{page.relatedAccent}</span>
                         </h2>
                     </div>
 
@@ -307,7 +309,7 @@ const ProductDetail = () => {
                                                 }}
                                                 className="relative w-full bg-[#b31324] text-white py-3 rounded-[12px] font-display font-semibold text-sm overflow-hidden group/btn shadow-lg hover:shadow-xl transition-shadow duration-500"
                                             >
-                                                <span className="relative z-10 group-hover/btn:text-[#b31324] transition-colors duration-700">Thêm Vào Giỏ</span>
+                                                <span className="relative z-10 group-hover/btn:text-[#b31324] transition-colors duration-700">{page.addToCartLabel}</span>
                                                 <div className="absolute bottom-0 right-0 w-full h-0 bg-white group-hover/btn:h-full transition-all duration-700 ease-liquid" style={{ transformOrigin: 'bottom right' }} />
                                             </button>
                                         </div>
@@ -347,7 +349,7 @@ const ProductDetail = () => {
                                     {quickViewProduct?.name}
                                 </h2>
                                 <div className="flex items-center gap-1 border border-[#b31324] rounded-full px-2 py-0.5">
-                                    <span className="text-xs font-bold text-[#b31324]">4.2</span>
+                                    <span className="text-xs font-bold text-[#b31324]">{ratingLabel}</span>
                                     <Star className="w-3 h-3 text-[#b31324] fill-[#b31324]" />
                                 </div>
                             </div>
@@ -393,7 +395,7 @@ const ProductDetail = () => {
                                     }}
                                     className="flex-1 bg-[#b31324] hover:bg-[#d6182d] text-white rounded-[10px] py-6 shadow-lg shadow-[#b31324]/20 text-base font-normal relative overflow-hidden group/btn"
                                 >
-                                    <span className="relative z-10 group-hover/btn:text-[#b31324] transition-colors duration-700">Mua Ngay</span>
+                                    <span className="relative z-10 group-hover/btn:text-[#b31324] transition-colors duration-700">{page.buyNowLabel}</span>
                                     <div className="absolute bottom-0 right-0 w-full h-0 bg-white group-hover/btn:h-full transition-all duration-700 ease-liquid" style={{ transformOrigin: 'bottom right' }} />
                                 </Button>
                                 <Button
@@ -408,7 +410,7 @@ const ProductDetail = () => {
                                     }}
                                     className="flex-1 bg-white hover:bg-[#fff5f5] text-[#b31324] border border-[#b31324] rounded-[10px] py-6 text-base font-normal"
                                 >
-                                    Thêm Vào Giỏ
+                                    {page.addToCartLabel}
                                 </Button>
                                 <Button
                                     onClick={() => {

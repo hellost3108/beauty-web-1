@@ -1,19 +1,27 @@
 import { notFound } from "next/navigation";
-import ArticleForm from "@/components/admin/ArticleForm";
+import ArticleForm, { type ArticleRecord } from "@/components/admin/ArticleForm";
+import { PageHeader } from "@/components/admin/ui";
+import { requireModule } from "@/lib/auth/admin";
 import { createClient } from "@/lib/supabase/server";
 
-export default async function EditBlogArticlePage({ params, searchParams }: { params: Promise<{ id: string }>; searchParams: Promise<{ success?: string; error?: string }> }) {
-  const [{ id }, query, supabase] = await Promise.all([params, searchParams, createClient()]);
+export default async function EditBlogArticlePage({ params }: { params: Promise<{ id: string }> }) {
+  await requireModule("blog");
+  const { id } = await params;
   const articleId = Number(id);
   if (!Number.isInteger(articleId)) notFound();
-  const { data: article } = await supabase.from("articles").select("*").eq("id", articleId).eq("channel", "blog").single();
+
+  const supabase = await createClient();
+  const [{ data: article }, { data: rows }] = await Promise.all([
+    supabase.from("articles").select("*").eq("id", articleId).eq("channel", "blog").maybeSingle(),
+    supabase.from("articles").select("category").eq("channel", "blog"),
+  ]);
   if (!article) notFound();
+  const categories = Array.from(new Set((rows ?? []).map((row) => row.category as string))).sort();
+
   return (
     <div className="space-y-7">
-      <header><p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#f52334]">Blog / Chỉnh sửa</p><h1 className="mt-3 font-display text-4xl sm:text-5xl">Chỉnh sửa bài Blog</h1><p className="mt-2 text-sm text-black/50">{article.title}</p></header>
-      {query.success && <p className="rounded-2xl bg-emerald-100 px-5 py-4 text-sm text-emerald-800">Đã lưu thay đổi.</p>}
-      {query.error && <p className="rounded-2xl bg-red-100 px-5 py-4 text-sm text-red-800">{query.error}</p>}
-      <ArticleForm channel="blog" article={article} />
+      <PageHeader eyebrow="Blog / Chỉnh sửa" title={article.title} />
+      <ArticleForm key={article.updated_at} channel="blog" article={article as ArticleRecord} categories={categories} />
     </div>
   );
 }

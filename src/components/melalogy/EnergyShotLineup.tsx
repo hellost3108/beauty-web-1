@@ -2,8 +2,10 @@
 
 import Link from 'next/link';
 import { ArrowRight, Heart, Plus } from 'lucide-react';
-import { allProducts } from '@/data/productsData';
 import { useShop } from '@/context/ShopContext';
+import { useProducts } from '@/components/cms/ProductsProvider';
+import { useSection } from '@/components/cms/SectionsProvider';
+import { splitLines } from '@/lib/cms/registry';
 import styles from './EnergyShotLineup.module.css';
 
 /*
@@ -21,37 +23,51 @@ const skuColour: Record<string, { colour: string; actives: string }> = {
 
 const EnergyShotLineup = () => {
   const { addToCart, addToWishlist, removeFromWishlist, isInWishlist } = useShop();
+  const allProducts = useProducts();
+  const content = useSection('home.lineup');
 
   return (
     <section className="mlg-section mlg-dark" aria-labelledby="mlg-lineup-title">
       <div className="mlg-shell mlg-rise">
-        <p className="mlg-eyebrow mlg-eyebrow--center">From science to formula</p>
+        <p className="mlg-eyebrow mlg-eyebrow--center">{content.eyebrow}</p>
         <h2
           className={`mlg-display mlg-display--sm ${styles.title}`}
           id="mlg-lineup-title"
           style={{ textAlign: 'center' }}
         >
           <span className={styles.titleLead}>
-            <span>Energy Shot</span>{' '}
-            <span>Hydrogel</span>
+            {splitLines(content.title).map((line, index) => (
+              <span key={index}>
+                {index > 0 && ' '}
+                {line}
+              </span>
+            ))}
           </span>
-          <em className={styles.titleAccent}>
-            <span>Bốn công thức,</span>{' '}
-            <span>bốn trạng thái da</span>
-          </em>
+          {content.titleAccent && (
+            <em className={styles.titleAccent}>
+              {splitLines(content.titleAccent).map((line, index) => (
+                <span key={index}>
+                  {index > 0 && ' '}
+                  {line}
+                </span>
+              ))}
+            </em>
+          )}
         </h2>
         <p className={`mlg-copy mlg-copy--center ${styles.description}`}>
-          Khoa học chỉ có ý nghĩa khi được chuyển hóa thành một trải nghiệm thực tế trên làn da.
+          {content.description}
         </p>
 
         <div
           className={`mlg-lineup ${styles.rail}`}
           role="region"
-          aria-label="Bốn công thức Energy Shot, cuộn ngang để xem từng sản phẩm"
+          aria-label={`${allProducts.length} công thức Energy Shot, cuộn ngang để xem từng sản phẩm`}
           tabIndex={0}
         >
           {allProducts.map((product, index) => {
             const sku = skuColour[product.category];
+            const colour = sku?.colour ?? product.accentColor;
+            const actives = product.actives || sku?.actives || product.ingredients;
             const wished = isInWishlist(product.id);
             const titleId = `mlg-product-title-${product.id}`;
 
@@ -59,7 +75,7 @@ const EnergyShotLineup = () => {
               <article
                 className={`mlg-product ${styles.card}`}
                 key={product.id}
-                style={{ '--sku': sku?.colour } as React.CSSProperties}
+                style={{ '--sku': colour } as React.CSSProperties}
                 aria-labelledby={titleId}
                 aria-posinset={index + 1}
                 aria-setsize={allProducts.length}
@@ -96,7 +112,7 @@ const EnergyShotLineup = () => {
                       {product.subtitle}
                     </Link>
                   </h3>
-                  <p className="mlg-product__actives">{sku?.actives ?? product.ingredients}</p>
+                  <p className="mlg-product__actives">{actives}</p>
 
                   <div className="mlg-product__foot">
                     <span className="mlg-product__price">
@@ -110,7 +126,7 @@ const EnergyShotLineup = () => {
                       aria-label={`Thêm ${product.name} vào giỏ hàng`}
                     >
                       <Plus aria-hidden="true" />
-                      Thêm
+                      {content.addLabel}
                     </button>
                   </div>
                 </div>
@@ -120,8 +136,8 @@ const EnergyShotLineup = () => {
         </div>
 
         <div style={{ display: 'flex', justifyContent: 'center', marginTop: 'clamp(2rem, 4vw, 3rem)' }}>
-          <Link href="/shop" className="mlg-cta">
-            Khám phá Energy Shot
+          <Link href={content.ctaHref || '/shop'} className="mlg-cta">
+            {content.ctaLabel}
             <ArrowRight aria-hidden="true" />
           </Link>
         </div>

@@ -1,12 +1,18 @@
 import ArticleForm from "@/components/admin/ArticleForm";
+import { PageHeader } from "@/components/admin/ui";
+import { requireModule } from "@/lib/auth/admin";
+import { createClient } from "@/lib/supabase/server";
 
-export default async function NewMagazineArticlePage({ searchParams }: { searchParams: Promise<{ error?: string }> }) {
-  const params = await searchParams;
+export default async function NewMagazineArticlePage() {
+  await requireModule("magazine");
+  const supabase = await createClient();
+  const { data } = await supabase.from("articles").select("category").eq("channel", "magazine");
+  const categories = Array.from(new Set((data ?? []).map((row) => row.category as string))).sort();
+
   return (
     <div className="space-y-7">
-      <header><p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#f52334]">Tạp chí / Bài mới</p><h1 className="mt-3 font-display text-4xl sm:text-5xl">Thêm bài Tạp chí</h1></header>
-      {params.error && <p className="rounded-2xl bg-red-100 px-5 py-4 text-sm text-red-800">{params.error}</p>}
-      <ArticleForm channel="magazine" />
+      <PageHeader eyebrow="Tạp chí / Bài mới" title="Viết bài Tạp chí" />
+      <ArticleForm channel="magazine" categories={categories} />
     </div>
   );
 }

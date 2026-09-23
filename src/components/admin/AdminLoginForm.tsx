@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { Eye, EyeOff, LoaderCircle, LockKeyhole } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 
-export default function AdminLoginForm({ initialError }: { initialError?: string }) {
+export default function AdminLoginForm({ initialError, next }: { initialError?: string; next?: string }) {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -26,10 +26,17 @@ export default function AdminLoginForm({ initialError }: { initialError?: string
       const supabase = createClient();
       const { error: signInError } = await supabase.auth.signInWithPassword({ email, password });
       if (signInError) throw signInError;
-      router.replace("/admin");
+      router.replace(next && next.startsWith("/admin") && !next.startsWith("/admin/login") ? next : "/admin");
       router.refresh();
     } catch (signInError) {
-      setError(signInError instanceof Error ? signInError.message : "Không thể đăng nhập.");
+      const message = signInError instanceof Error ? signInError.message : "";
+      setError(
+        /invalid login credentials/i.test(message)
+          ? "Email hoặc mật khẩu không đúng."
+          : /email not confirmed/i.test(message)
+            ? "Email chưa được xác nhận. Kiểm tra hộp thư hoặc nhờ Super Admin xác nhận trong Supabase."
+            : message || "Không thể đăng nhập.",
+      );
     } finally {
       setBusy(false);
     }

@@ -5,12 +5,13 @@ import { useSearchParams } from "next/navigation";
 import { ArrowRight, Banknote, CheckCircle2, Package, Wallet } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { bankTransferInfo } from "@/data/bankInfo";
+import { useSection } from '@/components/cms/SectionsProvider';
 
 const OrderSuccess = () => {
     const searchParams = useSearchParams();
     const orderCode = searchParams.get("code");
     const method = searchParams.get("method");
+    const bankTransferInfo = useSection("global.bank");
 
     return (
         <div className="min-h-screen bg-white">

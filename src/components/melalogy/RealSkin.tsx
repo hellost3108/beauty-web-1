@@ -1,4 +1,8 @@
+'use client';
+
 import { Star } from 'lucide-react';
+import { useSection } from '@/components/cms/SectionsProvider';
+import { splitList } from '@/lib/cms/registry';
 import styles from './RealSkin.module.css';
 
 /*
@@ -7,68 +11,23 @@ import styles from './RealSkin.module.css';
  * The compact cards intentionally mix portraits and text-only stories so the
  * section reads like an editorial review wall rather than a repeated carousel.
  */
-const reviews = [
-  {
-    name: 'Thu Hà',
-    role: 'Khách hàng tại TP. Hồ Chí Minh',
-    quote:
-      'Miếng thạch ôm sát, không hề rơi rớt. Đắp xong da căng bóng, ẩm mịn và rất mượt.',
-    stars: 5,
-    sku: 'Cấp Ẩm',
-    skuColour: 'var(--mlg-sku-hydrating)',
-    image: '/assets/review-thu-ha-hd-2026.png',
-    tags: ['Ôm sát da', 'Dịu nhẹ', 'Đủ ẩm'],
-  },
-  {
-    name: 'Khánh Linh',
-    role: 'Khách hàng tại Hà Nội',
-    quote:
-      'Đắp vào là thấy mát rượi, hạ nhiệt da rất nhanh. Miếng thạch dày dặn nhưng bám chặt, đi lại vẫn không lo rơi trượt.',
-    stars: 5,
-    sku: 'Phục Hồi',
-    skuColour: 'var(--mlg-sku-recovery)',
-    image: '/assets/review-khanh-linh-2026.png',
-    tags: [],
-  },
-  {
-    name: 'Diệu My',
-    role: 'Khách hàng tại Đà Nẵng',
-    quote:
-      'Đắp ngủ qua đêm 3–4 tiếng, sáng ra miếng thạch mỏng trong lại và da nhìn căng bóng, đàn hồi hơn hẳn.',
-    stars: 5,
-    sku: 'Rạng Rỡ',
-    skuColour: 'var(--mlg-sku-radiance)',
-    image: '/assets/review-dieu-my-2026.png',
-    tags: [],
-  },
-  {
-    name: 'Ngọc Anh',
-    role: 'Khách hàng tại TP. Hồ Chí Minh',
-    quote:
-      'Trước giờ mình dùng nhiều mask Hàn, nhưng em này thật sự làm mình bất ngờ. Sáng dậy da căng mọng và mượt hơn rất nhiều.',
-    stars: 5,
-    sku: 'Làm Sáng',
-    skuColour: 'var(--mlg-sku-brightening)',
-    image: '/assets/review-ngoc-anh-2026.png',
-    tags: [],
-  },
-  {
-    name: 'Hương Giang',
-    role: 'Khách hàng tại TP. Hồ Chí Minh',
-    quote:
-      'Giá bằng nửa mask ngoại mà trải nghiệm lại rất thuyết phục. Cảm giác đắp rất đã, da mềm mượt và nhìn có sức sống hơn.',
-    stars: 4,
-    sku: 'Cấp Ẩm',
-    skuColour: 'var(--mlg-sku-hydrating)',
-    image: null,
-    tags: [],
-  },
-];
+const skuColours: Record<string, string> = {
+  'Cấp Ẩm': 'var(--mlg-sku-hydrating)',
+  'Phục Hồi': 'var(--mlg-sku-recovery)',
+  'Làm Sáng': 'var(--mlg-sku-brightening)',
+  'Rạng Rỡ': 'var(--mlg-sku-radiance)',
+};
 
-const [lead, ...rest] = reviews;
-const reviewSummary = { average: 4.8, verifiedCount: 'hơn 1.200' };
-
-type Review = (typeof reviews)[number];
+type Review = {
+  name: string;
+  role: string;
+  quote: string;
+  stars: number;
+  sku: string;
+  skuColour: string;
+  image: string | null;
+  tags: string[];
+};
 
 const ReviewStars = ({ value, className = '' }: { value: number; className?: string }) => (
   <span className={`${styles.reviewStars} ${className}`.trim()} aria-hidden="true">
@@ -83,18 +42,20 @@ const ReviewCard = ({
   ordinal,
   position,
   setSize,
+  total,
   className = '',
 }: {
   review: Review;
   ordinal: number;
   position: number;
   setSize: number;
+  total: number;
   className?: string;
 }) => (
   <article
     className={`mlg-review ${styles.card} ${className}`.trim()}
     style={{ '--sku': review.skuColour } as React.CSSProperties}
-    aria-label={`Đánh giá ${ordinal} trên ${reviews.length}, ${review.stars} trên 5 sao của ${review.name}`}
+    aria-label={`Đánh giá ${ordinal} trên ${total}, ${review.stars} trên 5 sao của ${review.name}`}
     aria-posinset={position}
     aria-setsize={setSize}
   >
@@ -117,25 +78,41 @@ const ReviewCard = ({
   </article>
 );
 
-const RealSkin = () => (
+const RealSkin = () => {
+  const content = useSection('home.reviews');
+  const reviews: Review[] = content.reviews.map((review) => ({
+    name: review.name,
+    role: review.role,
+    quote: review.quote,
+    stars: Math.min(5, Math.max(1, Math.round(review.stars || 5))),
+    sku: review.sku,
+    skuColour: skuColours[review.sku] ?? 'var(--mlg-cherry)',
+    image: review.image || null,
+    tags: splitList(review.tags),
+  }));
+  if (reviews.length === 0) return null;
+  const [lead, ...rest] = reviews;
+  const reviewSummary = { average: Number(content.average) || 0, verifiedCount: content.verifiedCount };
+
+  return (
   <section className="mlg-section mlg-light mlg-testimonials" aria-labelledby="mlg-reviews-title">
     <div className="mlg-shell mlg-rise">
       <header className="mlg-review-heading">
-        <span className="mlg-review-heading__index" aria-hidden="true">05 / REAL SKIN</span>
+        <span className="mlg-review-heading__index" aria-hidden="true">{content.indexLabel}</span>
         <div>
-          <p className="mlg-eyebrow mlg-eyebrow--center">Đánh giá của khách hàng</p>
+          <p className="mlg-eyebrow mlg-eyebrow--center">{content.eyebrow}</p>
           <h2
             className={`mlg-display mlg-display--sm ${styles.title}`}
             id="mlg-reviews-title"
           >
-            <span className={styles.titleLead}>Real skin</span>
-            <em>Real experience</em>
+            <span className={styles.titleLead}>{content.title}</span>
+            {content.titleAccent && <em>{content.titleAccent}</em>}
           </h2>
           <p className={`mlg-copy mlg-copy--center ${styles.description}`}>
-            Trải nghiệm thật từ những làn da đã sử dụng Melalogy Energy Shot Hydrogel.
+            {content.description}
           </p>
         </div>
-        <span className="mlg-review-heading__note">Melalogy / Vietnam / 2026</span>
+        <span className="mlg-review-heading__note">{content.note}</span>
       </header>
 
       <article
@@ -143,15 +120,17 @@ const RealSkin = () => (
         aria-label={`Đánh giá nổi bật ${lead.stars} trên 5 sao của ${lead.name}`}
       >
         <div className={`mlg-review-lead__media ${styles.leadMedia}`}>
-          <img
-            src={lead.image ?? undefined}
-            alt={`Khách hàng ${lead.name} đang dùng Melalogy Energy Shot`}
-            loading="lazy"
-          />
+          {lead.image && (
+            <img
+              src={lead.image}
+              alt={`Khách hàng ${lead.name} đang dùng Melalogy Energy Shot`}
+              loading="lazy"
+            />
+          )}
         </div>
 
         <div className={`mlg-review-lead__quote ${styles.leadQuote}`}>
-          <span className="mlg-review-lead__label">Hydrating Energy Shot</span>
+          <span className="mlg-review-lead__label">{content.leadLabel}</span>
           <span className="mlg-quotemark" aria-hidden="true">
             “
           </span>
@@ -191,16 +170,17 @@ const RealSkin = () => (
       <div
         className={`mlg-review-row ${styles.desktopRail}`}
         role="region"
-        aria-label="Bốn đánh giá khác, cuộn ngang để xem từng đánh giá"
+        aria-label={`${rest.length} đánh giá khác, cuộn ngang để xem từng đánh giá`}
         tabIndex={0}
       >
         {rest.map((review, index) => (
           <ReviewCard
-            key={review.name}
+            key={`${review.name}-${index}`}
             review={review}
             ordinal={index + 2}
             position={index + 1}
             setSize={rest.length}
+            total={reviews.length}
           />
         ))}
       </div>
@@ -225,16 +205,17 @@ const RealSkin = () => (
         <div
           className={styles.mobileRail}
           role="region"
-          aria-label="Năm đánh giá khách hàng, vuốt ngang để xem"
+          aria-label={`${reviews.length} đánh giá khách hàng, vuốt ngang để xem`}
           tabIndex={0}
         >
           {reviews.map((review, index) => (
             <ReviewCard
-              key={review.name}
+              key={`${review.name}-${index}`}
               review={review}
               ordinal={index + 1}
               position={index + 1}
               setSize={reviews.length}
+              total={reviews.length}
               className={styles.mobileCard}
             />
           ))}
@@ -242,10 +223,11 @@ const RealSkin = () => (
       </div>
 
       <p className="mlg-review-disclaimer">
-        Cảm nhận có thể khác nhau tùy tình trạng da và cách sử dụng của mỗi người.
+        {content.disclaimer}
       </p>
     </div>
   </section>
-);
+  );
+};
 
 export default RealSkin;

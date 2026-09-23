@@ -4,6 +4,9 @@ import "./globals.css";
 // Brand layer loads after globals so Melalogy tokens win over legacy theme values.
 import "./melalogy-brand.css";
 import Providers from "@/components/Providers";
+import { ProductsProvider } from "@/components/cms/ProductsProvider";
+import { SectionsProvider } from "@/components/cms/SectionsProvider";
+import { getSection, getSectionRows, getStorefrontProducts } from "@/lib/cms/server";
 
 /*
  * Brand guideline: Mona Sans is the single typeface for the whole Melalogy
@@ -18,50 +21,63 @@ const monaSans = Mona_Sans({
   display: "swap",
 });
 
-export const metadata: Metadata = {
-  metadataBase: new URL("https://melalogy.com"),
-  title: {
-    default: "Melalogy | The Science of Melanin",
-    template: "%s | Melalogy",
-  },
-  description:
-    "Melalogy là thương hiệu skincare khoa học chuyên biệt về sắc tố — được xây dựng từ sự thấu hiểu melanin và khoa học về làn da.",
-  alternates: {
-    canonical: "/",
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
-  openGraph: {
-    type: "website",
-    locale: "vi_VN",
-    siteName: "Melalogy",
-    url: "/",
-    title: "Melalogy | The Science of Melanin",
-    description:
-      "Khoa học sắc tố và các giải pháp chăm sóc làn da được phát triển dựa trên cơ chế.",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Melalogy | The Science of Melanin",
-    description:
-      "Khoa học sắc tố và các giải pháp chăm sóc làn da được phát triển dựa trên cơ chế.",
-  },
-  icons: {
-    icon: "/favicon.png",
-  }
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const seo = await getSection("global.seo");
+  const images = seo.shareImage ? [{ url: seo.shareImage }] : undefined;
 
-export default function RootLayout({
+  return {
+    metadataBase: new URL("https://melalogy.com"),
+    title: {
+      default: seo.siteTitle,
+      template: "%s | Melalogy",
+    },
+    description: seo.description,
+    alternates: {
+      canonical: "/",
+    },
+    robots: {
+      index: true,
+      follow: true,
+    },
+    openGraph: {
+      type: "website",
+      locale: "vi_VN",
+      siteName: "Melalogy",
+      url: "/",
+      title: seo.siteTitle,
+      description: seo.shareDescription || seo.description,
+      images,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: seo.siteTitle,
+      description: seo.shareDescription || seo.description,
+      images: seo.shareImage ? [seo.shareImage] : undefined,
+    },
+    icons: {
+      icon: "/favicon.png",
+    },
+  };
+}
+
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const [globalSections, products] = await Promise.all([
+    getSectionRows(["global"]),
+    getStorefrontProducts(),
+  ]);
+
   return (
     <html lang="vi" className={monaSans.variable}>
       <body className="antialiased" suppressHydrationWarning>
-        <Providers>{children}</Providers>
+        <Providers>
+          <SectionsProvider value={globalSections}>
+            <ProductsProvider products={products}>{children}</ProductsProvider>
+          </SectionsProvider>
+        </Providers>
       </body>
     </html>
   );

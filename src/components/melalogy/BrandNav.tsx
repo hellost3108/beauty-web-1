@@ -6,6 +6,8 @@ import { usePathname } from 'next/navigation';
 import { Menu, Search, ShoppingBag, X } from 'lucide-react';
 import AccountNavLink from './AccountNavLink';
 import { useShop } from '@/context/ShopContext';
+import { useSection } from '@/components/cms/SectionsProvider';
+import { splitLines } from '@/lib/cms/registry';
 
 /*
  * Guideline 04 (Logo system) + 11 (Layout principles): black bar, white logo,
@@ -13,12 +15,6 @@ import { useShop } from '@/context/ShopContext';
  * the consolidated site map: Melanin Science · Journal · Shop. The Energy
  * Shot story and catalog now live together on the Shop page.
  */
-const navLinks = [
-  { href: '/melanin-science', label: 'Melanin Science' },
-  { href: '/blog', label: 'Journal' },
-  { href: '/shop', label: 'Shop' },
-];
-
 type BrandNavProps = {
   /**
    * Pages whose first section is a full-bleed dark hero let the bar float over
@@ -34,6 +30,10 @@ const BrandNav = ({ overlay = false }: BrandNavProps) => {
   const [searchOpen, setSearchOpen] = useState(false);
   const { cart } = useShop();
   const pathname = usePathname();
+  const brand = useSection('global.brand');
+  const navigation = useSection('global.navigation');
+  const navLinks = navigation.mainLinks.filter((link) => link.label && link.href);
+  const drawerExtras = navigation.drawerExtraLinks.filter((link) => link.label && link.href);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -59,18 +59,21 @@ const BrandNav = ({ overlay = false }: BrandNavProps) => {
     >
       <div className="mlg-nav__inner">
         <Link href="/" className="mlg-nav__brand" aria-label="Melalogy — trang chủ">
-          <img src="/assets/logo.png" alt="Melalogy" />
+          <img src={brand.logo || '/assets/logo.png'} alt="Melalogy" />
           <span className="mlg-nav__tagline">
-            The science
-            <br />
-            of melanin
+            {splitLines(brand.navTagline).map((line, index) => (
+              <span key={index}>
+                {index > 0 && <br />}
+                {line}
+              </span>
+            ))}
           </span>
         </Link>
 
         <div className="mlg-nav__links">
-          {navLinks.map((link) => (
+          {navLinks.map((link, index) => (
             <Link
-              key={link.href}
+              key={`${link.href}-${index}`}
               href={link.href}
               className="mlg-nav__link"
               aria-current={isCurrent(link.href) ? 'page' : undefined}
@@ -117,7 +120,7 @@ const BrandNav = ({ overlay = false }: BrandNavProps) => {
             <input
               type="search"
               name="q"
-              placeholder="Tìm công thức, hoạt chất hoặc trạng thái da…"
+              placeholder={navigation.searchPlaceholder}
               autoFocus
             />
           </form>
@@ -126,16 +129,12 @@ const BrandNav = ({ overlay = false }: BrandNavProps) => {
 
       {menuOpen && (
         <div className="mlg-nav__drawer">
-          {navLinks.map((link, index) => (
-            <Link key={link.href} href={link.href}>
+          {[...navLinks, ...drawerExtras].map((link, index) => (
+            <Link key={`${link.href}-${index}`} href={link.href}>
               <span>{String(index + 1).padStart(2, '0')}</span>
               {link.label}
             </Link>
           ))}
-          <Link href="/contact">
-            <span>04</span>
-            Liên hệ
-          </Link>
         </div>
       )}
     </nav>

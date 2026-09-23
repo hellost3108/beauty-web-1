@@ -15,8 +15,8 @@ export default function AdminSetupPage() {
         <ol className="mt-10 grid gap-4 md:grid-cols-2">
           {[
             { icon: Database, title: "1. Tạo project Supabase", text: "Tạo một project mới gần khu vực người dùng chính của Melalogy." },
-            { icon: CheckCircle2, title: "2. Chạy migration và seed", text: "Chạy file migration trước, sau đó seed dữ liệu sản phẩm hiện tại." },
-            { icon: KeyRound, title: "3. Tạo tài khoản Admin", text: "Tạo user email/password rồi cấp role super_admin trong bảng profiles." },
+            { icon: CheckCircle2, title: "2. Chạy migration", text: "Chạy lần lượt các file trong supabase/migrations (cuối cùng là 202609240001_cms_v2.sql) trong SQL Editor." },
+            { icon: KeyRound, title: "3. Tạo Super Admin", text: "Tạo user email/password rồi cấp role super_admin trong bảng profiles (xem docs/SUPABASE_VERCEL_SETUP.md)." },
             { icon: Rocket, title: "4. Thêm biến môi trường", text: "Thêm URL và Publishable Key vào local cùng Vercel rồi redeploy." },
           ].map((step) => (
             <li key={step.title} className="rounded-3xl border border-black/10 bg-white p-6 shadow-sm">

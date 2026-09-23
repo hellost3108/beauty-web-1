@@ -2,15 +2,35 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { useSiteContent } from '@/context/SiteContentContext';
+import { useSection } from '@/components/cms/SectionsProvider';
+
+const FOCUS_PATTERN = (() => {
+  const position = '(?:left|center|right|top|bottom|(?:100|[0-9]{1,2})(?:\\.[0-9]+)?%)';
+  return new RegExp(`^${position}(?:\\s+${position})?$`);
+})();
+
+const cleanFocus = (value: string) => {
+  const focus = value.trim().toLowerCase();
+  return FOCUS_PATTERN.test(focus) ? focus : 'center';
+};
 
 const HeroBanners = () => {
-  const { banners: storedBanners } = useSiteContent();
+  const { banners: storedBanners } = useSection('home.hero');
+  // Order in the Admin list = order on the website; disabled slides are skipped.
   const banners = useMemo(
     () =>
       storedBanners
-        .filter((banner) => banner.enabled)
-        .sort((left, right) => left.order - right.order),
+        .filter((banner) => banner.enabled && banner.image)
+        .map((banner, index) => ({
+          id: `${index}-${banner.image}`,
+          src: banner.image,
+          mobileSrc: banner.mobileImage || undefined,
+          alt: banner.alt || banner.label,
+          label: banner.label || `Banner ${index + 1}`,
+          focus: cleanFocus(banner.focus),
+          durationMs: Math.round(Math.min(30, Math.max(3, banner.durationSeconds || 6.5)) * 1000),
+          href: banner.href || undefined,
+        })),
     [storedBanners],
   );
   const [active, setActive] = useState(0);

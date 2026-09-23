@@ -13,9 +13,11 @@ import {
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FanClubSection from "@/components/FanClubSection";
-import { blogPosts } from "@/data/melalogyBlogPosts";
+import { useSection } from "@/components/cms/SectionsProvider";
+import type { Article } from "@/lib/cms/types";
 
-const categories = ["Tất Cả", "Chăm Sóc Da", "Trang Điểm", "Thương Hiệu"] as const;
+const ALL = "__all__";
+const preferredCategoryOrder = ["Chăm Sóc Da", "Trang Điểm", "Thương Hiệu"];
 
 const cardLayouts = [
   "lg:col-span-7",
@@ -28,16 +30,27 @@ const cardLayouts = [
   "lg:col-span-12",
 ];
 
-const Blog = () => {
-  const [activeCategory, setActiveCategory] = useState<(typeof categories)[number]>("Tất Cả");
+const Blog = ({ posts }: { posts: Article[] }) => {
+  const content = useSection("journal.blog");
+  const blogPosts = posts;
+  const categories = useMemo(() => {
+    const names = Array.from(new Set(blogPosts.map((post) => post.category).filter(Boolean)));
+    names.sort((left, right) => {
+      const a = preferredCategoryOrder.indexOf(left);
+      const b = preferredCategoryOrder.indexOf(right);
+      return (a === -1 ? 99 : a) - (b === -1 ? 99 : b) || left.localeCompare(right, "vi");
+    });
+    return [ALL, ...names];
+  }, [blogPosts]);
+  const [activeCategory, setActiveCategory] = useState<string>(ALL);
   const featuredPost = blogPosts[0];
 
   const visiblePosts = useMemo(
     () =>
       blogPosts
         .slice(1)
-        .filter((post) => activeCategory === "Tất Cả" || post.category === activeCategory),
-    [activeCategory],
+        .filter((post) => activeCategory === ALL || post.category === activeCategory),
+    [activeCategory, blogPosts],
   );
 
   return (
@@ -51,21 +64,20 @@ const Blog = () => {
             <div className="relative z-10 max-w-3xl" data-reveal="left">
               <div className="mb-7 inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/70 px-4 py-2 font-body text-[0.72rem] font-semibold uppercase tracking-[0.2em] backdrop-blur-xl">
                 <Sparkles className="h-3.5 w-3.5 text-[#ee2940]" />
-                Melalogy Journal · Số 08/2026
+                {content.badge}
               </div>
               <h1 className="font-display text-[clamp(3.2rem,6.45vw,6.9rem)] tracking-[-0.025em]">
-                Đọc chậm.
-                <span className="mt-2 block pl-[0.55em] text-[#ee2940]">Đẹp lâu.</span>
+                {content.title}
+                {content.titleAccent && <span className="mt-2 block pl-[0.55em] text-[#ee2940]">{content.titleAccent}</span>}
               </h1>
               <p className="mt-8 max-w-xl font-body text-base leading-8 text-black/60 md:text-lg">
-                Kiến thức chăm sóc da được chắt lọc, những góc nhìn làm đẹp có chiều sâu
-                và câu chuyện thương hiệu dành riêng cho người Việt.
+                {content.intro}
               </p>
               <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4 border-t border-black/10 pt-6 font-body text-sm text-black/65">
-                <span><strong className="mr-2 text-xl text-black">09</strong>bài tuyển chọn</span>
-                <span><strong className="mr-2 text-xl text-black">03</strong>chuyên mục</span>
+                <span><strong className="mr-2 text-xl text-black">{String(blogPosts.length).padStart(2, "0")}</strong>{content.postsStatLabel}</span>
+                <span><strong className="mr-2 text-xl text-black">{String(categories.length - 1).padStart(2, "0")}</strong>{content.categoriesStatLabel}</span>
                 <a href="#bai-moi" className="group inline-flex items-center gap-2 font-semibold text-black">
-                  Khám phá ngay
+                  {content.exploreLabel}
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </a>
               </div>
@@ -73,12 +85,12 @@ const Blog = () => {
 
             <div className="blog-hero-media-2026 relative">
               <div className="absolute -left-5 bottom-12 z-20 hidden -rotate-90 font-body text-[0.64rem] font-semibold uppercase tracking-[0.32em] text-black/45 md:block">
-                Beauty · Science · Culture
+                {content.verticalLabel}
               </div>
               <div className="relative aspect-[4/3] overflow-hidden rounded-[2rem] md:aspect-[16/11] md:rounded-[2.75rem]">
                 <Image
-                  src="/assets/melalogy-blog-hero-2026.png"
-                  alt="Phụ nữ Việt Nam chăm sóc da dưới ánh sáng buổi sáng"
+                  src={content.heroImage || "/assets/melalogy-blog-hero-2026.png"}
+                  alt={content.heroImageAlt}
                   fill
                   priority
                   sizes="(max-width: 1024px) 100vw, 55vw"
@@ -87,8 +99,8 @@ const Blog = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-white/5" />
                 <div className="absolute bottom-5 left-5 right-5 flex items-end justify-between rounded-[1.25rem] border border-white/30 bg-white/16 p-4 text-white backdrop-blur-md md:bottom-7 md:left-7 md:right-7 md:p-5">
                   <div>
-                    <span className="font-body text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-white/75">Chủ đề tháng này</span>
-                    <p className="mt-1 font-display text-2xl">Hiểu làn da của bạn</p>
+                    <span className="font-body text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-white/75">{content.heroCardEyebrow}</span>
+                    <p className="mt-1 font-display text-2xl">{content.heroCardTitle}</p>
                   </div>
                   <span className="grid h-11 w-11 place-items-center rounded-full bg-white text-black">
                     <ArrowUpRight className="h-5 w-5" />
@@ -103,15 +115,16 @@ const Blog = () => {
           <div className="mx-auto w-full max-w-[90rem]">
             <div className="mb-10 flex flex-col justify-between gap-5 border-b border-black/10 pb-7 md:flex-row md:items-end">
               <div data-reveal="up">
-                <p className="mb-3 font-body text-xs font-bold uppercase tracking-[0.22em] text-[#ee2940]">Bài đọc nổi bật</p>
-                <h2 className="font-display text-4xl md:text-6xl">Chọn bởi ban biên tập</h2>
+                <p className="mb-3 font-body text-xs font-bold uppercase tracking-[0.22em] text-[#ee2940]">{content.featuredEyebrow}</p>
+                <h2 className="font-display text-4xl md:text-6xl">{content.featuredTitle}</h2>
               </div>
               <p className="max-w-md font-body text-sm leading-6 text-black/55 md:text-right">
-                Góc nhìn mới nhất về thương hiệu, hoạt chất và những thói quen giúp làn da khỏe đẹp bền vững.
+                {content.featuredDescription}
               </p>
             </div>
 
-            <Link href={`/blog/${featuredPost.id}`} className="blog-feature-2026 group grid overflow-hidden rounded-[2rem] border border-black/10 bg-white md:grid-cols-[1.22fr_0.78fr] md:rounded-[2.75rem]" data-reveal="scale">
+            {featuredPost && (
+            <Link href={`/blog/${featuredPost.slug}`} className="blog-feature-2026 group grid overflow-hidden rounded-[2rem] border border-black/10 bg-white md:grid-cols-[1.22fr_0.78fr] md:rounded-[2.75rem]" data-reveal="scale">
               <div className="relative min-h-[22rem] overflow-hidden md:min-h-[36rem]">
                 <Image
                   src={featuredPost.image}
@@ -146,6 +159,7 @@ const Blog = () => {
                 </div>
               </div>
             </Link>
+            )}
           </div>
         </section>
 
@@ -153,12 +167,12 @@ const Blog = () => {
           <div className="mx-auto w-full max-w-[90rem]">
             <div className="mb-12 flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
               <div data-reveal="up">
-                <p className="mb-3 font-body text-xs font-bold uppercase tracking-[0.22em] text-[#ee2940]">Thư viện kiến thức</p>
-                <h2 className="font-display text-4xl md:text-6xl">Đọc theo nhịp của bạn</h2>
+                <p className="mb-3 font-body text-xs font-bold uppercase tracking-[0.22em] text-[#ee2940]">{content.libraryEyebrow}</p>
+                <h2 className="font-display text-4xl md:text-6xl">{content.libraryTitle}</h2>
               </div>
               <div className="blog-filter-2026 flex max-w-full gap-2 overflow-x-auto pb-1" aria-label="Lọc bài viết theo chuyên mục">
                 {categories.map((category) => {
-                  const count = category === "Tất Cả" ? blogPosts.length : blogPosts.filter((post) => post.category === category).length;
+                  const count = category === ALL ? blogPosts.length : blogPosts.filter((post) => post.category === category).length;
                   const isActive = category === activeCategory;
                   return (
                     <button
@@ -168,7 +182,7 @@ const Blog = () => {
                       aria-pressed={isActive}
                       className={`shrink-0 rounded-full border px-4 py-2.5 font-body text-xs font-semibold transition-all duration-300 ${isActive ? "border-[#ee2940] bg-[#ee2940] text-white" : "border-black/10 bg-white/65 text-black/65 hover:border-black/30 hover:text-black"}`}
                     >
-                      {category} <span className="ml-1 opacity-65">{String(count).padStart(2, "0")}</span>
+                      {category === ALL ? content.allCategoryLabel : category} <span className="ml-1 opacity-65">{String(count).padStart(2, "0")}</span>
                     </button>
                   );
                 })}
@@ -178,8 +192,8 @@ const Blog = () => {
             {visiblePosts.length > 0 ? (
               <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-12" data-motion-stagger>
                 {visiblePosts.map((post, index) => (
-                  <article key={post.id} className={`${cardLayouts[index % cardLayouts.length]} blog-card-2026 group overflow-hidden rounded-[1.7rem] border border-black/10 bg-white`}>
-                    <Link href={`/blog/${post.id}`} className="flex h-full flex-col">
+                  <article key={post.slug} className={`${cardLayouts[index % cardLayouts.length]} blog-card-2026 group overflow-hidden rounded-[1.7rem] border border-black/10 bg-white`}>
+                    <Link href={`/blog/${post.slug}`} className="flex h-full flex-col">
                       <div className={`relative overflow-hidden ${index < 2 ? "aspect-[16/10]" : "aspect-[4/3]"}`}>
                         <Image
                           src={post.image}
@@ -206,7 +220,7 @@ const Blog = () => {
                         <p className="mt-4 line-clamp-3 font-body text-sm leading-6 text-black/55 md:text-base md:leading-7">{post.excerpt}</p>
                         <div className="mt-auto flex items-center justify-between border-t border-black/10 pt-6 font-body text-xs font-semibold">
                           <span>{post.author}</span>
-                          <span className="inline-flex items-center gap-2 text-[#d91f35]">Đọc bài <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" /></span>
+                          <span className="inline-flex items-center gap-2 text-[#d91f35]">{content.readLabel} <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" /></span>
                         </div>
                       </div>
                     </Link>
@@ -215,7 +229,7 @@ const Blog = () => {
               </div>
             ) : (
               <div className="rounded-[2rem] border border-dashed border-black/15 bg-white/60 p-12 text-center font-body text-black/55">
-                Chuyên mục này đang được biên tập. Mời bạn quay lại trong ít phút nữa.
+                {content.emptyMessage}
               </div>
             )}
           </div>

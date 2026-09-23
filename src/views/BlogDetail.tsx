@@ -3,7 +3,6 @@
 import { useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useParams, useRouter } from "next/navigation";
 import {
   ArrowLeft,
   ArrowRight,
@@ -15,22 +14,15 @@ import {
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { blogPosts } from "@/data/melalogyBlogPosts";
+import type { Article } from "@/lib/cms/types";
 
-const BlogDetail = () => {
-  const { id } = useParams();
-  const router = useRouter();
-  const post = blogPosts.find((item) => item.id === Number(id));
-
+const BlogDetail = ({ post, posts }: { post: Article; posts: Article[] }) => {
   useEffect(() => {
-    if (!post) router.push("/blog");
     window.scrollTo(0, 0);
-  }, [post, router]);
+  }, [post.slug]);
 
-  if (!post) return null;
-
-  const relatedPosts = blogPosts
-    .filter((item) => item.id !== post.id)
+  const relatedPosts = posts
+    .filter((item) => item.slug !== post.slug)
     .sort((a, b) => Number(b.category === post.category) - Number(a.category === post.category))
     .slice(0, 3);
 
@@ -151,7 +143,7 @@ const BlogDetail = () => {
 
             <div className="grid gap-6 md:grid-cols-3" data-motion-stagger>
               {relatedPosts.map((relatedPost) => (
-                <Link key={relatedPost.id} href={`/blog/${relatedPost.id}`} className="blog-related-card-2026 group overflow-hidden rounded-[1.5rem] border border-black/10 bg-white">
+                <Link key={relatedPost.slug} href={`/blog/${relatedPost.slug}`} className="blog-related-card-2026 group overflow-hidden rounded-[1.5rem] border border-black/10 bg-white">
                   <div className="relative aspect-[4/3] overflow-hidden">
                     <Image
                       src={relatedPost.image}

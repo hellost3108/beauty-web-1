@@ -3,26 +3,21 @@
 import { useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useParams, useRouter } from "next/navigation";
 import { ArrowLeft, ArrowRight, ArrowUpRight, CalendarDays, Clock3, Facebook, Linkedin, Quote, Twitter, UserRound } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { magazineEditorialPosts } from "@/data/melalogyMagazinePosts";
+import type { Article } from "@/lib/cms/types";
 
-const MagazineDetailEditorial = () => {
-  const { id } = useParams();
-  const router = useRouter();
-  const post = magazineEditorialPosts.find((item) => item.id === Number(id));
+const pad = (value: number) => String(value).padStart(2, "0");
 
+const MagazineDetailEditorial = ({ post, posts }: { post: Article; posts: Article[] }) => {
   useEffect(() => {
-    if (!post) router.push("/magazine");
     window.scrollTo(0, 0);
-  }, [post, router]);
+  }, [post.slug]);
 
-  if (!post) return null;
-
-  const relatedPosts = magazineEditorialPosts
-    .filter((item) => item.id !== post.id)
+  const position = Math.max(1, posts.findIndex((item) => item.slug === post.slug) + 1);
+  const relatedPosts = posts
+    .filter((item) => item.slug !== post.slug)
     .slice(0, 3);
 
   return (
@@ -42,7 +37,7 @@ const MagazineDetailEditorial = () => {
                 <div>
                   <div className="flex items-center justify-between border-b border-black/10 pb-5 font-body text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-black/42">
                     <span>Melalogy · Số 08/2026</span>
-                    <span>0{post.id} — 09</span>
+                    <span>{pad(position)} — {pad(Math.max(posts.length, position))}</span>
                   </div>
                   <span className="mt-10 inline-flex rounded-full bg-[#ee2940] px-4 py-2 font-body text-[0.64rem] font-bold uppercase tracking-[0.15em] text-white">{post.category}</span>
                   <h1 className="mt-6 max-w-3xl font-display text-[clamp(2.85rem,4.9vw,5.65rem)] tracking-[-0.025em]">{post.title}</h1>
@@ -51,7 +46,7 @@ const MagazineDetailEditorial = () => {
 
                 <div className="mt-12 flex flex-wrap gap-x-6 gap-y-3 border-t border-black/10 pt-6 font-body text-[0.68rem] uppercase tracking-[0.12em] text-black/45">
                   <span className="inline-flex items-center gap-2"><CalendarDays className="h-3.5 w-3.5 text-[#ee2940]" />{post.date}</span>
-                  <span className="inline-flex items-center gap-2"><Clock3 className="h-3.5 w-3.5 text-[#ee2940]" />{post.readTime}</span>
+                  <span className="inline-flex items-center gap-2"><Clock3 className="h-3.5 w-3.5 text-[#ee2940]" />{post.readingTime}</span>
                   <span className="inline-flex items-center gap-2"><UserRound className="h-3.5 w-3.5 text-[#ee2940]" />{post.author}</span>
                 </div>
               </div>
@@ -79,7 +74,7 @@ const MagazineDetailEditorial = () => {
               <div className="mt-8 border-t border-black/10 pt-5">
                 <span className="font-body text-[0.62rem] uppercase tracking-[0.14em] text-black/35">Biên tập bởi</span>
                 <strong className="mt-2 block font-display text-xl">{post.author}</strong>
-                <span className="mt-1 block font-body text-xs leading-5 text-black/45">{post.role}</span>
+                <span className="mt-1 block font-body text-xs leading-5 text-black/45">{post.authorRole}</span>
               </div>
             </aside>
 
@@ -123,7 +118,7 @@ const MagazineDetailEditorial = () => {
             </div>
             <div className="grid gap-6 md:grid-cols-3" data-motion-stagger>
               {relatedPosts.map((relatedPost) => (
-                <Link key={relatedPost.id} href={`/magazine/${relatedPost.id}`} className="magazine-related-card-2026 group overflow-hidden rounded-[1.5rem] border border-black/10 bg-white">
+                <Link key={relatedPost.slug} href={`/magazine/${relatedPost.slug}`} className="magazine-related-card-2026 group overflow-hidden rounded-[1.5rem] border border-black/10 bg-white">
                   <div className="magazine-card-media-2026 relative aspect-[4/3] overflow-hidden">
                     <Image src={relatedPost.image} alt={relatedPost.imageAlt} fill loading="lazy" sizes="(max-width: 768px) 100vw, 33vw" className="object-cover transition-transform duration-700 group-hover:scale-[1.04]" />
                   </div>

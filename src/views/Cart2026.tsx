@@ -25,7 +25,7 @@ import { useShop, Product } from '@/context/ShopContext';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { cn } from '@/lib/utils';
-import { allProducts } from '@/data/productsData';
+import { useProducts } from '@/components/cms/ProductsProvider';
 
 export const dynamic = 'force-dynamic';
 
@@ -49,6 +49,7 @@ const Cart2026 = () => {
     const cartItems = Object.values(groupedItems);
     const subtotal = cartItems.reduce((acc, item) => acc + (item.rawPrice ?? 0) * item.quantity, 0);
     const cartIds = new Set(cartItems.map(item => item.id));
+    const allProducts = useProducts();
     const recommendedProducts = allProducts.filter(product => !cartIds.has(product.id)).slice(0, 3);
 
     return (

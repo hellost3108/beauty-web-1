@@ -1,13 +1,21 @@
 import type { Metadata } from 'next';
+import CmsSections from '@/components/cms/CmsSections';
+import { getSection } from '@/lib/cms/server';
 import MelaninScience from '@/views/MelaninScience';
 
-export const metadata: Metadata = {
-  title: 'Melanin Science',
-  description:
-    'Khám phá nền tảng Melanin + Dermalogy, ba trụ cột khoa học và công nghệ dẫn truyền đúng đích định hình Melalogy.',
-  alternates: { canonical: '/melanin-science' },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const seo = await getSection('science.seo');
+  return {
+    title: seo.title,
+    description: seo.description,
+    alternates: { canonical: '/melanin-science' },
+  };
+}
 
 export default function MelaninSciencePage() {
-  return <MelaninScience />;
+  return (
+    <CmsSections modules={['science']}>
+      <MelaninScience />
+    </CmsSections>
+  );
 }
