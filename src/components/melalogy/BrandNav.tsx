@@ -3,7 +3,8 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, Search, ShoppingBag, User, X } from 'lucide-react';
+import { Menu, Search, ShoppingBag, X } from 'lucide-react';
+import AccountNavLink from './AccountNavLink';
 import { useShop } from '@/context/ShopContext';
 
 /*
@@ -90,9 +91,7 @@ const BrandNav = ({ overlay = false }: BrandNavProps) => {
             {searchOpen ? <X /> : <Search />}
           </button>
 
-          <Link href="/login" className="mlg-nav__icon" aria-label="Tài khoản">
-            <User />
-          </Link>
+          <AccountNavLink />
 
           <Link href="/cart" className="mlg-nav__icon" aria-label="Giỏ hàng">
             <ShoppingBag />
