@@ -68,7 +68,7 @@ export function FieldControl({ field, value, onChange, folder, error, errors = {
       return (
         <div className={labelClass}>
           {label}
-          <RichTextInput value={asString(value)} onChange={onChange} />
+          <RichTextInput value={asString(value)} onChange={onChange} uploadFolder={`${folder}/content`} />
           {help}
           {errorText}
         </div>

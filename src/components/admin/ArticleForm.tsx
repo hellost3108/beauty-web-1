@@ -177,7 +177,7 @@ export default function ArticleForm({
 
         <Card>
           <h2 className="font-display text-2xl">Nội dung bài viết</h2>
-          <RichTextInput value={form.contentHtml} onChange={(contentHtml) => set("contentHtml", contentHtml)} minHeight={420} />
+          <RichTextInput value={form.contentHtml} onChange={(contentHtml) => set("contentHtml", contentHtml)} minHeight={420} uploadFolder={`articles/${channel}/content`} />
         </Card>
 
         <Card>
