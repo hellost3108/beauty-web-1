@@ -7,6 +7,7 @@ import EnergyShotLineup from '@/components/melalogy/EnergyShotLineup';
 import MelaninJournal from '@/components/melalogy/MelaninJournal';
 import RealSkin from '@/components/melalogy/RealSkin';
 import LetsTalkMelanin from '@/components/melalogy/LetsTalkMelanin';
+import type { Article } from '@/lib/cms/types';
 
 /*
  * Melalogy homepage 2026 — section order taken from the website-edit deck:
@@ -18,7 +19,7 @@ import LetsTalkMelanin from '@/components/melalogy/LetsTalkMelanin';
  *   5  cảm nhận khách hàng    → RealSkin
  *   6  liên hệ                → LetsTalkMelanin
  */
-const Index = () => (
+const Index = ({ journalPosts }: { journalPosts: Article[] }) => (
   <div className="min-h-screen overflow-x-hidden">
     <BrandNav overlay />
 
@@ -31,7 +32,7 @@ const Index = () => (
       <BrandFilm />
       <SciencePortal />
       <EnergyShotLineup />
-      <MelaninJournal />
+      <MelaninJournal posts={journalPosts} />
       <RealSkin />
       <LetsTalkMelanin />
     </main>

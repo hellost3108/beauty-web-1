@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
+import "./admin.css";
 
 export const metadata: Metadata = {
-  title: "Melalogy Admin",
+  title: { absolute: "Melalogy Admin" },
   robots: { index: false, follow: false },
 };
 

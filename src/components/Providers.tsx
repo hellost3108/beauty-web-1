@@ -7,7 +7,6 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ShopProvider } from "@/context/ShopContext";
-import { SiteContentProvider } from "@/context/SiteContentContext";
 import SplashLoader from "@/components/SplashLoader";
 import ScrollMotion from "@/components/ScrollMotion";
 
@@ -21,7 +20,6 @@ export default function Providers({ children }: { children: React.ReactNode }) {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <SiteContentProvider>
         <ShopProvider>
           <TooltipProvider>
             <Toaster />
@@ -36,7 +34,6 @@ export default function Providers({ children }: { children: React.ReactNode }) {
             </div>
           </TooltipProvider>
         </ShopProvider>
-      </SiteContentProvider>
     </QueryClientProvider>
   );
 }

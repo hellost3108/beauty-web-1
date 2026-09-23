@@ -6,7 +6,7 @@ import { isSupabaseConfigured } from "@/lib/supabase/config";
 export default async function AdminLoginPage({
   searchParams,
 }: {
-  searchParams: Promise<{ error?: string }>;
+  searchParams: Promise<{ error?: string; next?: string }>;
 }) {
   if (!isSupabaseConfigured) redirect("/admin/setup");
   const params = await searchParams;
@@ -26,8 +26,8 @@ export default async function AdminLoginPage({
           <Link href="/" className="text-xs font-semibold uppercase tracking-[0.25em] text-[#ff5a66]">← Melalogy.com</Link>
           <p className="mt-14 text-xs font-semibold uppercase tracking-[0.25em] text-white/40">Admin Studio</p>
           <h2 className="mt-3 font-display text-4xl">Đăng nhập quản trị</h2>
-          <p className="mt-3 text-sm leading-6 text-white/55">Quản lý sản phẩm, hình ảnh, danh mục và nội dung trang chủ.</p>
-          <AdminLoginForm initialError={params.error} />
+          <p className="mt-3 text-sm leading-6 text-white/55">Chỉnh sửa toàn bộ nội dung website, sản phẩm và bài viết Melalogy.</p>
+          <AdminLoginForm initialError={params.error} next={params.next} />
         </div>
       </section>
     </main>

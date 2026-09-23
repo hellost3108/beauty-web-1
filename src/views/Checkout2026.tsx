@@ -8,10 +8,8 @@ import {
     ArrowLeft,
     ArrowRight,
     BadgeCheck,
-    Building2,
+    Banknote,
     Check,
-    CreditCard,
-    Gift,
     Lock,
     MapPin,
     PackageCheck,
@@ -22,18 +20,18 @@ import {
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { useShop, Product } from '@/context/ShopContext';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Checkbox } from '@/components/ui/checkbox';
 import {
     clearDeliveryDetails,
     readDeliveryDetails,
     type DeliveryDetails,
 } from '@/lib/checkoutDelivery';
+import { createClient } from '@/lib/supabase/client';
+import { createOrder } from '@/app/_actions/customer';
+import { useSection } from '@/components/cms/SectionsProvider';
 
 export const dynamic = 'force-dynamic';
 
-type PaymentMethod = 'card' | 'bank_transfer' | 'cod';
+type PaymentMethod = 'bank_transfer' | 'cod';
 
 interface GroupedProduct extends Product {
     quantity: number;
@@ -43,18 +41,12 @@ const formatVnd = (value: number) => `${value.toLocaleString('vi-VN')}đ`;
 
 const Checkout2026 = () => {
     const { cart, clearCart } = useShop();
+    const bankTransferInfo = useSection('global.bank');
     const router = useRouter();
-    const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>('card');
+    const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>('cod');
     const [isLoading, setIsLoading] = useState(false);
-    const [discountCode, setDiscountCode] = useState('');
-    const [discountAmount, setDiscountAmount] = useState(0);
+    const [isCheckingAuth, setIsCheckingAuth] = useState(true);
     const [deliveryDetails, setDeliveryDetails] = useState<DeliveryDetails | null>(null);
-    const [formData, setFormData] = useState({
-        cardNumber: '',
-        expiry: '',
-        cvc: '',
-        cardName: '',
-    });
 
     const groupedItems = cart.reduce((acc, item) => {
         if (!acc[item.id]) acc[item.id] = { ...item, quantity: 0 };
@@ -64,40 +56,31 @@ const Checkout2026 = () => {
 
     const cartItems = Object.values(groupedItems);
     const subtotal = cartItems.reduce((acc, item) => acc + (item.rawPrice ?? 0) * item.quantity, 0);
-    const total = subtotal - discountAmount;
-    const isFormValid = paymentMethod !== 'card' || (
-        formData.cardNumber.trim().length > 0 &&
-        formData.expiry.trim().length > 0 &&
-        formData.cvc.trim().length > 0 &&
-        formData.cardName.trim().length > 0
-    );
+    const total = subtotal;
 
     useEffect(() => {
-        const storedDetails = readDeliveryDetails();
-        if (!storedDetails) {
-            toast.error('Vui lòng nhập thông tin giao nhận trước khi thanh toán.');
-            router.replace('/shipping');
-            return;
-        }
-        setDeliveryDetails(storedDetails);
+        const checkAuthAndDelivery = async () => {
+            const supabase = createClient();
+            const { data: { user } } = await supabase.auth.getUser();
+            if (!user) {
+                toast.error('Vui lòng đăng nhập để tiếp tục thanh toán.');
+                router.replace('/login?next=/checkout');
+                return;
+            }
+
+            const storedDetails = readDeliveryDetails();
+            if (!storedDetails) {
+                toast.error('Vui lòng nhập thông tin giao nhận trước khi thanh toán.');
+                router.replace('/shipping');
+                return;
+            }
+            setDeliveryDetails(storedDetails);
+            setIsCheckingAuth(false);
+        };
+        checkAuthAndDelivery();
     }, [router]);
 
-    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const { id, value } = event.target;
-        setFormData(previous => ({ ...previous, [id]: value }));
-    };
-
-    const handleApplyDiscount = () => {
-        if (discountCode.trim().toUpperCase() === 'SAVE10') {
-            setDiscountAmount(subtotal * 0.1);
-            toast.success('Đã áp dụng SAVE10 — bạn được giảm 10%.');
-            return;
-        }
-        setDiscountAmount(0);
-        toast.error('Mã giảm giá không hợp lệ.');
-    };
-
-    const handleSubmit = (event?: React.SyntheticEvent) => {
+    const handleSubmit = async (event?: React.SyntheticEvent) => {
         event?.preventDefault();
         const storedDetails = readDeliveryDetails();
         if (!storedDetails) {
@@ -105,22 +88,55 @@ const Checkout2026 = () => {
             router.push('/shipping');
             return;
         }
-        if (!isFormValid || cart.length === 0) return;
+        if (cart.length === 0) return;
+
         setIsLoading(true);
-        setTimeout(() => {
-            setIsLoading(false);
+        try {
+            const result = await createOrder({
+                fullName: storedDetails.fullName,
+                phone: storedDetails.phone,
+                address: storedDetails.address,
+                ward: storedDetails.ward,
+                district: storedDetails.district,
+                city: storedDetails.city,
+                note: storedDetails.note,
+                paymentMethod,
+                saveAddress: false,
+                items: cartItems.map((item) => ({ productId: item.id, quantity: item.quantity })),
+            });
+
+            if (!result.ok) {
+                toast.error(result.error);
+                return;
+            }
+
             clearCart();
             clearDeliveryDetails();
             toast.success('Đặt hàng thành công!');
-            router.push('/');
-        }, 2000);
+            router.push(`/checkout/success?code=${result.data.orderCode}&method=${paymentMethod}`);
+        } catch {
+            toast.error('Không thể hoàn tất đơn hàng. Vui lòng thử lại.');
+        } finally {
+            setIsLoading(false);
+        }
     };
 
-    const paymentOptions: Array<{ id: PaymentMethod; title: string; note: string; icon: typeof CreditCard }> = [
-        { id: 'card', title: 'Thẻ ngân hàng', note: 'Visa · Mastercard', icon: CreditCard },
-        { id: 'bank_transfer', title: 'Chuyển khoản', note: 'Xác nhận thủ công', icon: Building2 },
+    const paymentOptions: Array<{ id: PaymentMethod; title: string; note: string; icon: typeof Wallet }> = [
         { id: 'cod', title: 'Thanh toán COD', note: 'Khi nhận hàng', icon: Wallet },
+        { id: 'bank_transfer', title: 'Chuyển khoản', note: 'Xác nhận thủ công', icon: Banknote },
     ];
+
+    if (isCheckingAuth) {
+        return (
+            <div className="commerce-page-2026">
+                <Navbar />
+                <main className="commerce-shell-2026">
+                    <p className="py-24 text-center text-black/50">Đang kiểm tra thông tin...</p>
+                </main>
+                <Footer />
+            </div>
+        );
+    }
 
     return (
         <div className="commerce-page-2026">
@@ -188,35 +204,16 @@ const Checkout2026 = () => {
                             </div>
 
                             <div className="commerce-payment-details-2026" key={paymentMethod}>
-                                {paymentMethod === 'card' && (
-                                    <div className="commerce-card-form-2026">
-                                        <div className="commerce-field-2026 commerce-field-wide-2026">
-                                            <Label htmlFor="cardNumber">Số thẻ</Label>
-                                            <div><CreditCard /><Input id="cardNumber" inputMode="numeric" autoComplete="cc-number" placeholder="0000 0000 0000 0000" value={formData.cardNumber} onChange={handleInputChange} required /><Lock /></div>
-                                        </div>
-                                        <div className="commerce-field-2026">
-                                            <Label htmlFor="expiry">Ngày hết hạn</Label>
-                                            <Input id="expiry" inputMode="numeric" autoComplete="cc-exp" placeholder="MM / YY" value={formData.expiry} onChange={handleInputChange} required />
-                                        </div>
-                                        <div className="commerce-field-2026">
-                                            <Label htmlFor="cvc">CVC / CVV <span title="Mã bảo mật ở mặt sau thẻ">?</span></Label>
-                                            <Input id="cvc" inputMode="numeric" autoComplete="cc-csc" placeholder="123" value={formData.cvc} onChange={handleInputChange} required />
-                                        </div>
-                                        <div className="commerce-field-2026 commerce-field-wide-2026">
-                                            <Label htmlFor="cardName">Tên chủ thẻ</Label>
-                                            <Input id="cardName" autoComplete="cc-name" placeholder="Họ tên như trên thẻ" value={formData.cardName} onChange={handleInputChange} required />
-                                        </div>
-                                        <label className="commerce-billing-check-2026">
-                                            <Checkbox id="billing" defaultChecked />
-                                            <span><strong>Dùng địa chỉ giao hàng làm địa chỉ thanh toán</strong><small>Bạn có thể thay đổi thông tin sau nếu cần.</small></span>
-                                        </label>
-                                    </div>
-                                )}
-
                                 {paymentMethod === 'bank_transfer' && (
                                     <div className="commerce-payment-message-2026">
-                                        <Building2 />
-                                        <div><strong>Chuyển khoản ngân hàng</strong><p>Thông tin tài khoản và nội dung chuyển khoản sẽ được gửi qua email ngay sau khi đặt hàng.</p></div>
+                                        <Banknote />
+                                        <div>
+                                            <strong>Chuyển khoản ngân hàng</strong>
+                                            <p>
+                                                {bankTransferInfo.bankName} · {bankTransferInfo.accountName} · STK {bankTransferInfo.accountNumber}.
+                                                {' '}Chi tiết đầy đủ và mã đơn hàng để ghi nội dung chuyển khoản sẽ hiện ra ngay sau khi bạn đặt hàng.
+                                            </p>
+                                        </div>
                                     </div>
                                 )}
 
@@ -252,18 +249,9 @@ const Checkout2026 = () => {
                             )}
                         </div>
 
-                        <div className="commerce-promo-2026">
-                            <button type="button" onClick={() => setDiscountCode('SAVE10')}><Gift /> Ưu đãi 10% với mã <strong>SAVE10</strong></button>
-                            <div>
-                                <Input aria-label="Mã giảm giá" placeholder="Nhập mã ưu đãi" value={discountCode} onChange={event => setDiscountCode(event.target.value)} />
-                                <button type="button" onClick={handleApplyDiscount}>Áp dụng</button>
-                            </div>
-                        </div>
-
                         <div className="commerce-summary-lines-2026">
                             <div><span>Tạm tính</span><strong>{formatVnd(subtotal)}</strong></div>
                             <div><span>Vận chuyển</span><strong className="is-positive">Miễn phí</strong></div>
-                            {discountAmount > 0 && <div><span>Ưu đãi SAVE10</span><strong className="is-positive">−{formatVnd(discountAmount)}</strong></div>}
                         </div>
 
                         <div className="commerce-summary-total-2026">
@@ -275,9 +263,9 @@ const Checkout2026 = () => {
                             type="button"
                             className="commerce-primary-action-2026"
                             onClick={handleSubmit}
-                            disabled={isLoading || cart.length === 0 || !isFormValid}
+                            disabled={isLoading || cart.length === 0}
                         >
-                            {isLoading ? 'Đang xử lý...' : `Thanh toán ${formatVnd(total)}`} <ArrowRight />
+                            {isLoading ? 'Đang xử lý...' : `Đặt hàng · ${formatVnd(total)}`} <ArrowRight />
                         </button>
                         <p className="commerce-summary-note-2026">
                             Bằng việc đặt hàng, bạn đồng ý với <Link href="/terms">Điều khoản dịch vụ</Link> và <Link href="/privacy">Chính sách bảo mật</Link>.

@@ -1,8 +1,11 @@
+'use client';
+
 import { ArrowUpRight, Mail } from 'lucide-react';
 import Link from 'next/link';
 import type { ReactNode } from 'react';
 
 import BrandFooter from '@/components/melalogy/BrandFooter';
+import { useSection } from '@/components/cms/SectionsProvider';
 import BrandNav from '@/components/melalogy/BrandNav';
 import styles from './InformationLayout.module.css';
 
@@ -24,6 +27,7 @@ type InformationLayoutProps = {
 };
 
 const InformationLayout = ({ children, currentPath, eyebrow, intro, meta, title }: InformationLayoutProps) => {
+    const contact = useSection('global.contact');
     const currentIndex = informationLinks.findIndex((link) => link.href === currentPath) + 1;
     const hasContactDetails = ['/contact', '/privacy', '/shipping-returns', '/terms'].includes(currentPath);
 
@@ -73,7 +77,7 @@ const InformationLayout = ({ children, currentPath, eyebrow, intro, meta, title 
                             </nav>
 
                             {currentPath !== '/contact' && (
-                                <Link href="mailto:melalogyvietnam@gmail.com" className={styles.supportCard}>
+                                <Link href={`mailto:${contact.email}`} className={styles.supportCard}>
                                     <Mail size={19} aria-hidden="true" />
                                     <span>
                                         <small>Cần hỗ trợ thêm?</small>

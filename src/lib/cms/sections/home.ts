@@ -1,0 +1,320 @@
+import { area, bool, defineSection, heading, image, link, linkPair, list, num, select, skuOptions, text } from "../define";
+
+export const homeHero = defineSection({
+  key: "home.hero",
+  module: "home",
+  title: "1 · Banner chạy đầu trang",
+  description: "Các banner tự chuyển ở đầu trang chủ. Kéo thứ tự bằng nút lên/xuống, tắt banner bằng công tắc.",
+  previewPath: "/",
+  fields: [
+    list(
+      "banners",
+      "Danh sách banner",
+      "banner",
+      [
+        text("label", "Tên hiển thị trên thanh chuyển", { required: true, width: "half" }),
+        bool("enabled", "Đang hiển thị", { width: "half", defaultValue: true }),
+        image("image", "Ảnh desktop (khuyên dùng 1920×1080)", { required: true, folder: "banners", width: "half" }),
+        image("mobileImage", "Ảnh điện thoại (tuỳ chọn, dọc)", { folder: "banners", width: "half" }),
+        text("alt", "Mô tả ảnh (SEO/đọc màn hình)"),
+        link("href", "Bấm vào banner sẽ mở (tuỳ chọn)", { width: "half", placeholder: "/shop" }),
+        text("focus", "Điểm lấy nét ảnh", { width: "half", help: "Ví dụ: center, 60% center, left top" }),
+        num("durationSeconds", "Thời gian hiển thị (giây)", { min: 3, max: 30, step: 0.5, width: "half", defaultValue: 6.5 }),
+      ],
+      { titleField: "label", min: 1, max: 10 },
+    ),
+  ],
+  defaults: {
+    banners: [
+      {
+        label: "The science of melanin",
+        enabled: true,
+        image: "/assets/brand-banner-melanin.png",
+        mobileImage: "",
+        alt: "MELALOGY — The Science of Melanin. Khoa học bắt đầu từ việc hiểu sắc tố.",
+        href: "",
+        focus: "60% center",
+        durationSeconds: 6.5,
+      },
+      {
+        label: "Pigmentation science",
+        enabled: true,
+        image: "/assets/brand-banner-skincare.png",
+        mobileImage: "",
+        alt: "Melalogy — thương hiệu khoa học chuyên biệt về sắc tố",
+        href: "",
+        focus: "center",
+        durationSeconds: 6.5,
+      },
+      {
+        label: "X50® Pure White",
+        enabled: true,
+        image: "/assets/brand-banner-x50.png",
+        mobileImage: "",
+        alt: "Melalogy X50 Pure White — công nghệ dẫn truyền đúng đích",
+        href: "",
+        focus: "center",
+        durationSeconds: 6.5,
+      },
+      {
+        label: "Energy Shot Hydrogel",
+        enabled: true,
+        image: "/assets/brand-banner-energy-shot.png",
+        mobileImage: "",
+        alt: "Melalogy Energy Shot Hydrogel Mask — bộ sưu tập bốn công thức",
+        href: "",
+        focus: "center",
+        durationSeconds: 6.5,
+      },
+    ],
+  },
+});
+
+export const homeFilm = defineSection({
+  key: "home.film",
+  module: "home",
+  title: "2 · Brand film (TVC)",
+  description: "Khung video thương hiệu. Dán đường dẫn file MP4 khi có TVC.",
+  previewPath: "/",
+  fields: [
+    ...heading(),
+    link("videoUrl", "Đường dẫn video MP4", { help: "Ví dụ /assets/melalogy-tvc-2026.mp4 hoặc link https://…mp4" }),
+    image("poster", "Ảnh bìa video", { folder: "home" }),
+    text("noteLeft", "Chú thích trái", { width: "half" }),
+    text("noteRight", "Chú thích phải", { width: "half" }),
+    text("noteUnavailable", "Chú thích khi chưa có video"),
+  ],
+  defaults: {
+    eyebrow: "Brand film",
+    title: "Khoa học sắc tố",
+    titleAccent: "kể bằng hình ảnh",
+    videoUrl: "/assets/melalogy-tvc-2026.mp4",
+    poster: "/assets/brand-banner-melanin.png",
+    noteLeft: "Melalogy · Brand film 2026",
+    noteRight: "The science of melanin",
+    noteUnavailable: "TVC sắp ra mắt",
+  },
+});
+
+export const homeScience = defineSection({
+  key: "home.science",
+  module: "home",
+  title: "3 · Cổng Melanin Science",
+  previewPath: "/",
+  fields: [
+    ...heading(),
+    area("description", "Mô tả", { rows: 3 }),
+    ...linkPair("cta", "Nút"),
+    image("image", "Ảnh", { folder: "home", width: "half" }),
+    text("imageAlt", "Mô tả ảnh", { width: "half" }),
+    text("caption", "Chú thích dưới ảnh"),
+  ],
+  defaults: {
+    eyebrow: "Melanin Science",
+    title: "Không bắt đầu từ lời hứa trắng nhanh",
+    titleAccent: "Bắt đầu từ cơ chế sắc tố",
+    description:
+      "Khám phá nền tảng Melanin + Dermalogy, ba trụ cột khoa học và công nghệ dẫn truyền đúng đích phía sau Melalogy.",
+    ctaLabel: "Khám phá Melanin Science",
+    ctaHref: "/melanin-science",
+    image: "/assets/brand-banner-x50.png",
+    imageAlt: "Melalogy X50 Pure White — công nghệ dẫn truyền đúng đích",
+    caption: "Mechanism → Target → Benefit",
+  },
+});
+
+export const homeLineup = defineSection({
+  key: "home.lineup",
+  module: "home",
+  title: "3b · Energy Shot — thông tin mua hàng",
+  description: "Tiêu đề khối sản phẩm. Danh sách sản phẩm, giá và ảnh sửa trong mục Sản phẩm.",
+  previewPath: "/",
+  fields: [
+    ...heading({ lines: true }),
+    area("description", "Mô tả", { rows: 2 }),
+    text("addLabel", "Chữ nút thêm vào giỏ", { width: "half" }),
+    ...linkPair("cta", "Nút cuối khối"),
+  ],
+  defaults: {
+    eyebrow: "From science to formula",
+    title: "Energy Shot\nHydrogel",
+    titleAccent: "Bốn công thức,\nbốn trạng thái da",
+    description: "Khoa học chỉ có ý nghĩa khi được chuyển hóa thành một trải nghiệm thực tế trên làn da.",
+    addLabel: "Thêm",
+    ctaLabel: "Khám phá Energy Shot",
+    ctaHref: "/shop",
+  },
+});
+
+export const homeJournal = defineSection({
+  key: "home.journal",
+  module: "home",
+  title: "4 · The Melanin Journal (blog)",
+  description: "Tiêu đề khối blog. Khối tự lấy các bài Blog mới nhất / nổi bật.",
+  previewPath: "/",
+  fields: [
+    ...heading(),
+    text("allLinkLabel", "Chữ liên kết xem tất cả", { width: "half" }),
+    num("count", "Số bài hiển thị", { min: 1, max: 8, width: "half" }),
+  ],
+  defaults: {
+    eyebrow: "The melanin journal",
+    title: "Hiểu cơ chế",
+    titleAccent: "trước khi thêm một bước chăm sóc",
+    allLinkLabel: "Xem tất cả bài viết",
+    count: 4,
+  },
+});
+
+export const homeReviews = defineSection({
+  key: "home.reviews",
+  module: "home",
+  title: "5 · Cảm nhận khách hàng",
+  description: "Đánh giá đầu tiên là đánh giá nổi bật (ảnh lớn). Các đánh giá sau hiển thị dạng thẻ.",
+  previewPath: "/",
+  fields: [
+    text("indexLabel", "Nhãn góc trái", { width: "half" }),
+    text("note", "Nhãn góc phải", { width: "half" }),
+    ...heading(),
+    area("description", "Mô tả", { rows: 2 }),
+    text("leadLabel", "Nhãn trên đánh giá nổi bật", { width: "half" }),
+    num("average", "Điểm trung bình", { min: 0, max: 5, step: 0.1, width: "half" }),
+    text("verifiedCount", "Số đánh giá đã xác minh", { width: "half", placeholder: "hơn 1.200" }),
+    area("disclaimer", "Lưu ý cuối khối", { rows: 2 }),
+    list(
+      "reviews",
+      "Đánh giá",
+      "đánh giá",
+      [
+        text("name", "Tên khách hàng", { required: true, width: "half" }),
+        text("role", "Nơi ở / mô tả", { width: "half" }),
+        area("quote", "Nội dung đánh giá", { required: true, rows: 3 }),
+        num("stars", "Số sao", { min: 1, max: 5, width: "half", defaultValue: 5 }),
+        select("sku", "Sản phẩm", skuOptions, { width: "half" }),
+        image("image", "Ảnh khách hàng (tuỳ chọn)", { folder: "reviews" }),
+        text("tags", "Thẻ nổi bật (phân cách bằng dấu phẩy)", { help: "Chỉ hiển thị với đánh giá nổi bật." }),
+      ],
+      { titleField: "name", min: 1, max: 12 },
+    ),
+  ],
+  defaults: {
+    indexLabel: "05 / REAL SKIN",
+    note: "Melalogy / Vietnam / 2026",
+    eyebrow: "Đánh giá của khách hàng",
+    title: "Real skin",
+    titleAccent: "Real experience",
+    description: "Trải nghiệm thật từ những làn da đã sử dụng Melalogy Energy Shot Hydrogel.",
+    leadLabel: "Hydrating Energy Shot",
+    average: 4.8,
+    verifiedCount: "hơn 1.200",
+    disclaimer: "Cảm nhận có thể khác nhau tùy tình trạng da và cách sử dụng của mỗi người.",
+    reviews: [
+      {
+        name: "Thu Hà",
+        role: "Khách hàng tại TP. Hồ Chí Minh",
+        quote: "Miếng thạch ôm sát, không hề rơi rớt. Đắp xong da căng bóng, ẩm mịn và rất mượt.",
+        stars: 5,
+        sku: "Cấp Ẩm",
+        image: "/assets/review-thu-ha-hd-2026.png",
+        tags: "Ôm sát da, Dịu nhẹ, Đủ ẩm",
+      },
+      {
+        name: "Khánh Linh",
+        role: "Khách hàng tại Hà Nội",
+        quote:
+          "Đắp vào là thấy mát rượi, hạ nhiệt da rất nhanh. Miếng thạch dày dặn nhưng bám chặt, đi lại vẫn không lo rơi trượt.",
+        stars: 5,
+        sku: "Phục Hồi",
+        image: "/assets/review-khanh-linh-2026.png",
+        tags: "",
+      },
+      {
+        name: "Diệu My",
+        role: "Khách hàng tại Đà Nẵng",
+        quote:
+          "Đắp ngủ qua đêm 3–4 tiếng, sáng ra miếng thạch mỏng trong lại và da nhìn căng bóng, đàn hồi hơn hẳn.",
+        stars: 5,
+        sku: "Rạng Rỡ",
+        image: "/assets/review-dieu-my-2026.png",
+        tags: "",
+      },
+      {
+        name: "Ngọc Anh",
+        role: "Khách hàng tại TP. Hồ Chí Minh",
+        quote:
+          "Trước giờ mình dùng nhiều mask Hàn, nhưng em này thật sự làm mình bất ngờ. Sáng dậy da căng mọng và mượt hơn rất nhiều.",
+        stars: 5,
+        sku: "Làm Sáng",
+        image: "/assets/review-ngoc-anh-2026.png",
+        tags: "",
+      },
+      {
+        name: "Hương Giang",
+        role: "Khách hàng tại TP. Hồ Chí Minh",
+        quote:
+          "Giá bằng nửa mask ngoại mà trải nghiệm lại rất thuyết phục. Cảm giác đắp rất đã, da mềm mượt và nhìn có sức sống hơn.",
+        stars: 4,
+        sku: "Cấp Ẩm",
+        image: "",
+        tags: "",
+      },
+    ],
+  },
+});
+
+export const homeContact = defineSection({
+  key: "home.contact",
+  module: "home",
+  title: "6 · Liên hệ (Let’s talk melanin)",
+  description: "Email, hotline, địa chỉ, mạng xã hội lấy từ mục Header/Footer → Thông tin liên hệ.",
+  previewPath: "/",
+  fields: [
+    image("artImage", "Ảnh bên trái", { folder: "home", width: "half" }),
+    text("artLabel", "Nhãn trên ảnh", { width: "half" }),
+    ...heading(),
+    area("description", "Mô tả", { rows: 3 }),
+    list(
+      "channels",
+      "Kênh liên hệ (3 thẻ)",
+      "kênh",
+      [
+        text("title", "Tiêu đề", { required: true }),
+        area("copy", "Mô tả", { rows: 2 }),
+        text("linkLabel", "Chữ liên kết", { width: "half" }),
+        link("href", "Đường dẫn", { width: "half" }),
+      ],
+      { titleField: "title", max: 3 },
+    ),
+    text("followLabel", "Tiêu đề mục mạng xã hội"),
+  ],
+  defaults: {
+    artImage: "/assets/brand-banner-melanin.png",
+    artLabel: "06 / CONNECT",
+    eyebrow: "Liên hệ Melalogy",
+    title: "Let’s talk",
+    titleAccent: "melanin",
+    description:
+      "Cần tư vấn sản phẩm, hỗ trợ đơn hàng hoặc muốn hợp tác cùng Melalogy? Chúng tôi luôn sẵn sàng lắng nghe.",
+    channels: [
+      {
+        title: "Tư vấn sản phẩm",
+        copy: "Không biết Energy Shot nào phù hợp với trạng thái da hiện tại?",
+        linkLabel: "Nhắn Melalogy",
+        href: "/contact",
+      },
+      {
+        title: "Chăm sóc khách hàng",
+        copy: "Đơn hàng, sử dụng sản phẩm hoặc những vấn đề cần hỗ trợ.",
+        linkLabel: "Liên hệ CSKH",
+        href: "/shipping-returns",
+      },
+      {
+        title: "Hợp tác cùng Melalogy",
+        copy: "Dành cho đối tác phân phối, KOL/KOC, báo chí và cơ hội hợp tác thương hiệu.",
+        linkLabel: "Kết nối với chúng tôi",
+        href: "/contact",
+      },
+    ],
+    followLabel: "Theo dõi Melalogy",
+  },
+});

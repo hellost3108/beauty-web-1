@@ -1,5 +1,5 @@
 "use client";
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import React, { createContext, useCallback, useContext, useState, useEffect, ReactNode } from 'react';
 import { toast } from 'sonner';
 
 export type Product = {
@@ -25,6 +25,8 @@ type ShopContextType = {
     isInCart: (productId: number) => boolean;
     removeOneFromCart: (productId: number) => void;
     clearCart: () => void;
+    /** Refreshes saved cart/wishlist items with the latest published catalog. */
+    syncCatalog: (products: Product[]) => void;
 };
 
 const ShopContext = createContext<ShopContextType | undefined>(undefined);
@@ -33,6 +35,8 @@ export const ShopProvider = ({ children }: { children: ReactNode }) => {
     const [cart, setCart] = useState<Product[]>([]);
     const [wishlist, setWishlist] = useState<Product[]>([]);
     const [isInitialized, setIsInitialized] = useState(false);
+    const [catalog, setCatalog] = useState<Product[] | null>(null);
+    const syncCatalog = useCallback((products: Product[]) => setCatalog(products), []);
 
     // Load from localStorage on mount and sanitize images
     useEffect(() => {
@@ -70,6 +74,33 @@ export const ShopProvider = ({ children }: { children: ReactNode }) => {
             localStorage.setItem('wishlist', JSON.stringify(wishlist));
         }
     }, [wishlist, isInitialized]);
+
+    // Items saved in localStorage keep the name/price they had when added. Once
+    // the published catalog is known, refresh them and drop products that are
+    // no longer sold so the cart always matches what checkout will charge.
+    useEffect(() => {
+        if (!isInitialized || !catalog || catalog.length === 0) return;
+        const byId = new Map(catalog.map((product) => [product.id, product]));
+        const refresh = (items: Product[]) => {
+            const next = items
+                .filter((item) => byId.has(item.id))
+                .map((item) => {
+                    const latest = byId.get(item.id)!;
+                    return {
+                        ...item,
+                        name: latest.name,
+                        price: latest.price,
+                        rawPrice: latest.rawPrice,
+                        image: latest.image,
+                        subtitle: latest.subtitle,
+                        category: latest.category,
+                    };
+                });
+            return JSON.stringify(next) === JSON.stringify(items) ? items : next;
+        };
+        setCart(refresh);
+        setWishlist(refresh);
+    }, [catalog, isInitialized]);
 
     const addToCart = (product: Product) => {
         setCart(prev => [...prev, product]);
@@ -126,7 +157,8 @@ export const ShopProvider = ({ children }: { children: ReactNode }) => {
             addToWishlist,
             removeFromWishlist,
             isInWishlist,
-            isInCart
+            isInCart,
+            syncCatalog
         }}>
             {children}
         </ShopContext.Provider>

@@ -30,50 +30,45 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useShop } from "@/context/ShopContext";
-import { allProducts } from "@/data/productsData";
+import { useProducts } from "@/components/cms/ProductsProvider";
+import { useSection } from "@/components/cms/SectionsProvider";
+import {
+    formulaNoteByCategory as formulaNotes,
+    skuAccentByCategory as categoryAccents,
+    type StorefrontProduct,
+} from "@/lib/cms/types";
 import { cn } from "@/lib/utils";
 
 import BeautyDiaries from "./BeautyDiaries";
 
-type Product = (typeof allProducts)[number];
+type Product = StorefrontProduct;
 
 const categoryOrder = ["Cấp Ẩm", "Phục Hồi", "Làm Sáng", "Rạng Rỡ"];
 
-const categories = [
-    "Tất Cả",
-    ...Array.from(new Set(allProducts.map((product) => product.category))).sort((a, b) => {
+const sortCategories = (names: string[]) =>
+    names.sort((a, b) => {
         const left = categoryOrder.indexOf(a);
         const right = categoryOrder.indexOf(b);
         if (left === -1 && right === -1) return a.localeCompare(b, "vi");
         if (left === -1) return 1;
         if (right === -1) return -1;
         return left - right;
-    }),
-];
+    });
 
-const categoryAccents: Record<string, string> = {
-    "Cấp Ẩm": "#2f8fc0",
-    "Phục Hồi": "#638d39",
-    "Làm Sáng": "#c89500",
-    "Rạng Rỡ": "#8055a6",
-};
+const ALL = "__all__";
 
-const sciencePillars = [
-    { index: "01", title: "Melanin Science", description: "Hiểu cơ chế sắc tố" },
-    { index: "02", title: "Antioxidant Defense", description: "Bảo vệ trước oxy hoá" },
-    { index: "03", title: "Barrier Stability", description: "Ổn định hàng rào da" },
-];
-
-const formulaNotes: Record<string, string> = {
-    "Cấp Ẩm": "Hydration / Barrier",
-    "Phục Hồi": "Recovery / Calm",
-    "Làm Sáng": "Brightening / Tone",
-    "Rạng Rỡ": "Radiance / Firming",
-};
+const withCount = (value: string, count: string) => value.replace(/\{count\}/g, count);
 
 const ShopBrand2026 = () => {
     const router = useRouter();
-    const [activeCategory, setActiveCategory] = useState("Tất Cả");
+    const allProducts = useProducts();
+    const hero = useSection("shop.hero");
+    const catalog = useSection("shop.catalog");
+    const categories = useMemo(
+        () => [ALL, ...sortCategories(Array.from(new Set(allProducts.map((product) => product.category).filter(Boolean))))],
+        [allProducts],
+    );
+    const [activeCategory, setActiveCategory] = useState(ALL);
     const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
     const [quantity, setQuantity] = useState(1);
     const [sortBy, setSortBy] = useState("featured");
@@ -84,13 +79,13 @@ const ShopBrand2026 = () => {
 
     const filteredProducts = useMemo(() => {
         return allProducts
-            .filter((product) => activeCategory === "Tất Cả" || product.category === activeCategory)
+            .filter((product) => activeCategory === ALL || product.category === activeCategory)
             .sort((a, b) => {
                 if (sortBy === "price-low-high") return a.rawPrice - b.rawPrice;
                 if (sortBy === "price-high-low") return b.rawPrice - a.rawPrice;
                 return 0;
             });
-    }, [activeCategory, sortBy]);
+    }, [activeCategory, allProducts, sortBy]);
 
     const shareProduct = async (product: Product) => {
         const shareData = {
@@ -115,44 +110,39 @@ const ShopBrand2026 = () => {
                         <div className="flex items-center justify-between gap-6 border-b border-white/15 pb-5 font-body text-[10px] font-semibold uppercase tracking-[0.22em] text-white/45">
                             <span className="flex items-center gap-2.5">
                                 <span className="h-1.5 w-1.5 rounded-full bg-[#d3172b]" />
-                                Melalogy / Store
+                                {hero.storeLabel}
                             </span>
-                            <span className="whitespace-nowrap">Energy Shot · {productCountLabel}</span>
+                            <span className="whitespace-nowrap">{withCount(hero.countLabel, productCountLabel)}</span>
                         </div>
 
                         <div className="shop-hero-copy py-12 lg:py-10">
                             <p className="mb-6 font-body text-[10px] font-semibold uppercase tracking-[0.28em] text-[#ef3340] sm:text-[11px]">
-                                Chọn theo tín hiệu làn da
+                                {hero.eyebrow}
                             </p>
                             <h1 className="max-w-[38rem] text-balance font-display text-[clamp(2.8rem,4.3vw,5.2rem)] font-normal tracking-[-0.045em]">
-                                Chọn đúng cơ chế. <span className="block pt-2 text-[#ef3340]">Chạm đúng nhu cầu da.</span>
+                                {hero.title}{" "}
+                                {hero.titleAccent && <span className="block pt-2 text-[#ef3340]">{hero.titleAccent}</span>}
                             </h1>
                             <p className="mt-8 max-w-[33rem] font-body text-sm leading-7 text-white/60 sm:text-base">
-                                Không chạy theo “trắng nhanh”. Mỗi Energy Shot bắt đầu từ một tín hiệu da, một cơ chế khoa học và một công thức hydrogel được kiểm soát.
+                                {hero.description}
                             </p>
 
                             <a
                                 href="#shop-products"
                                 className="shop-primary-cta group mt-9 inline-flex items-center gap-4 rounded-full bg-[#d3172b] px-6 py-3.5 font-body text-sm font-semibold text-white transition-[transform,background-color] duration-300 hover:-translate-y-0.5 hover:bg-[#ed1c32]"
                             >
-                                Tìm Energy Shot của bạn
+                                {hero.ctaLabel}
                                 <ArrowDownRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:translate-y-0.5" />
                             </a>
                         </div>
 
                         <div className="grid grid-cols-3 gap-3 border-t border-white/15 pt-5 font-body">
-                            <div>
-                                <strong className="block text-base font-semibold sm:text-lg">{productCountLabel}</strong>
-                                <span className="text-[10px] uppercase tracking-[0.15em] text-white/38">Công thức</span>
-                            </div>
-                            <div>
-                                <strong className="block text-base font-semibold sm:text-lg">2 giờ</strong>
-                                <span className="text-[10px] uppercase tracking-[0.15em] text-white/38">Giải phóng</span>
-                            </div>
-                            <div>
-                                <strong className="block text-base font-semibold sm:text-lg">Kiểm soát</strong>
-                                <span className="text-[10px] uppercase tracking-[0.15em] text-white/38">Hệ dẫn truyền</span>
-                            </div>
+                            {hero.stats.map((stat, index) => (
+                                <div key={index}>
+                                    <strong className="block text-base font-semibold sm:text-lg">{withCount(stat.value, productCountLabel)}</strong>
+                                    <span className="text-[10px] uppercase tracking-[0.15em] text-white/38">{stat.label}</span>
+                                </div>
+                            ))}
                         </div>
                     </div>
 
@@ -165,13 +155,13 @@ const ShopBrand2026 = () => {
 
                         <div className="relative z-[2] flex h-full flex-col justify-between">
                             <div className="flex items-start justify-between gap-4 font-body text-[10px] font-semibold uppercase tracking-[0.17em] text-black/45 sm:text-[11px]">
-                                <span>Melalogy Science / Controlled Delivery</span>
-                                <span className="hidden text-right sm:block">Active Reservoir · Controlled Release</span>
+                                <span>{hero.mediaTopLeft}</span>
+                                <span className="hidden text-right sm:block">{hero.mediaTopRight}</span>
                             </div>
 
                             <div className="shop-formula-stage mx-auto grid w-full max-w-[900px] grid-cols-2 items-end gap-3 py-12 sm:gap-4 lg:grid-cols-4 lg:py-7">
                                 {heroProducts.map((product, index) => {
-                                    const accent = categoryAccents[product.category] ?? "#d3172b";
+                                    const accent = product.accentColor ?? categoryAccents[product.category] ?? "#d3172b";
                                     return (
                                         <Link
                                             key={product.id}
@@ -203,7 +193,7 @@ const ShopBrand2026 = () => {
                             </div>
 
                             <div className="flex items-center justify-between gap-4 border-t border-black/10 pt-4 font-body text-[10px] uppercase tracking-[0.15em] text-black/40">
-                                <span>The science of melanin</span>
+                                <span>{hero.mediaBottom}</span>
                                 {allProducts.length > heroProducts.length && (
                                     <span>+ {allProducts.length - heroProducts.length} công thức trong catalog</span>
                                 )}
@@ -215,9 +205,9 @@ const ShopBrand2026 = () => {
 
             <section className="border-y border-black/10 bg-[#151513] text-white">
                 <div className="mx-auto grid max-w-[1680px] divide-y divide-white/10 px-6 md:grid-cols-3 md:divide-x md:divide-y-0 md:px-10 lg:px-14">
-                    {sciencePillars.map((pillar) => (
-                        <div key={pillar.index} data-reveal="fade" className="flex items-center gap-5 py-6 md:px-7 lg:py-7">
-                            <span className="font-body text-[10px] font-semibold tracking-[0.2em] text-[#ef3340]">{pillar.index}</span>
+                    {catalog.pillars.map((pillar, index) => (
+                        <div key={index} data-reveal="fade" className="flex items-center gap-5 py-6 md:px-7 lg:py-7">
+                            <span className="font-body text-[10px] font-semibold tracking-[0.2em] text-[#ef3340]">{String(index + 1).padStart(2, "0")}</span>
                             <div>
                                 <strong className="block font-body text-sm font-semibold tracking-[0.02em]">{pillar.title}</strong>
                                 <span className="mt-1 block font-body text-xs text-white/42">{pillar.description}</span>
@@ -231,13 +221,13 @@ const ShopBrand2026 = () => {
                 <div className="mx-auto w-full max-w-[1680px] px-5 sm:px-8 md:px-10 lg:px-14">
                     <div className="grid gap-9 border-b border-black/15 pb-9 lg:grid-cols-[1.1fr_.9fr] lg:items-end">
                         <div data-reveal="fade">
-                            <p className="font-body text-[10px] font-semibold uppercase tracking-[0.25em] text-[#c41327]">Energy Shot Hydrogel / Catalog</p>
+                            <p className="font-body text-[10px] font-semibold uppercase tracking-[0.25em] text-[#c41327]">{catalog.eyebrow}</p>
                             <h2 className="mt-4 max-w-3xl text-balance font-display text-[clamp(2.7rem,5vw,5.7rem)] font-normal leading-[0.96] tracking-[-0.04em]">
-                                Mỗi làn da gửi một tín hiệu khác nhau.
+                                {catalog.title}
                             </h2>
                         </div>
                         <p data-reveal="fade" data-reveal-delay="90" className="max-w-xl font-body text-sm leading-7 text-black/56 md:text-base lg:justify-self-end">
-                            Bắt đầu từ trạng thái da hiện tại. Chọn công thức theo cơ chế, không theo lời hứa phóng đại.
+                            {catalog.description}
                         </p>
                     </div>
 
@@ -258,7 +248,7 @@ const ShopBrand2026 = () => {
                                     <span className={activeCategory === category ? "text-[#ef3340]" : "text-black/28"}>
                                         {String(index).padStart(2, "0")}
                                     </span>
-                                    {category}
+                                    {category === ALL ? catalog.allLabel : category}
                                 </button>
                             ))}
                         </div>
@@ -292,7 +282,7 @@ const ShopBrand2026 = () => {
                     <div className="shop-catalog-grid grid gap-x-5 gap-y-9 pt-9 md:gap-x-6 md:gap-y-12">
                         {filteredProducts.map((product, index) => {
                             const hoverImage = product.images?.[1];
-                            const accent = categoryAccents[product.category] ?? "#d3172b";
+                            const accent = product.accentColor ?? categoryAccents[product.category] ?? "#d3172b";
 
                             return (
                                 <article
@@ -377,7 +367,7 @@ const ShopBrand2026 = () => {
                                                 }}
                                                 className="flex min-h-11 w-full items-center justify-between bg-[#151513] px-5 py-3.5 font-body text-sm font-semibold text-white transition-colors hover:bg-[#d3172b]"
                                             >
-                                                Thêm vào giỏ
+                                                {catalog.addToCartLabel}
                                                 <Plus className="h-4 w-4" />
                                             </button>
                                         </div>
@@ -385,7 +375,7 @@ const ShopBrand2026 = () => {
 
                                     <div className="flex flex-1 flex-col pt-5">
                                         <div className="mb-3 flex items-center justify-between gap-4 font-body text-[10px] font-semibold uppercase tracking-[0.13em] text-black/40">
-                                            <span>{formulaNotes[product.category] ?? "Melalogy Formula"}</span>
+                                            <span>{product.formulaNote ?? formulaNotes[product.category] ?? "Melalogy Formula"}</span>
                                             <span>{product.price}đ</span>
                                         </div>
                                         <button
@@ -402,7 +392,7 @@ const ShopBrand2026 = () => {
                                             href={`/product/${product.id}`}
                                             className="mt-6 inline-flex w-fit items-center gap-2 border-b border-black/25 pb-1 font-body text-[10px] font-semibold uppercase tracking-[0.14em] transition-colors hover:border-[#c41327] hover:text-[#c41327]"
                                         >
-                                            Xem cơ chế
+                                            {catalog.detailLabel}
                                             <ArrowUpRight className="h-3.5 w-3.5" />
                                         </Link>
                                     </div>
@@ -457,7 +447,7 @@ const ShopBrand2026 = () => {
                                     }}
                                     className="h-auto rounded-none bg-[#d3172b] py-4 font-body text-sm font-semibold text-white hover:bg-[#151513]"
                                 >
-                                    Mua ngay
+                                    {catalog.buyNowLabel}
                                 </Button>
                                 <Button
                                     onClick={() => {
@@ -469,7 +459,7 @@ const ShopBrand2026 = () => {
                                     }}
                                     className="h-auto rounded-none border border-black/25 bg-transparent py-4 font-body text-sm font-semibold text-black hover:bg-black hover:text-white"
                                 >
-                                    Thêm vào giỏ
+                                    {catalog.addToCartLabel}
                                 </Button>
                             </div>
 

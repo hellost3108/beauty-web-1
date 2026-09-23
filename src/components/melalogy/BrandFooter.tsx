@@ -1,34 +1,29 @@
+'use client';
+
 import Link from 'next/link';
 import { Mail, MapPin, Phone } from 'lucide-react';
-
-const primaryLinks = [
-  { href: '/melanin-science', label: 'Melanin Science' },
-  { href: '/blog', label: 'Journal' },
-  { href: '/shop', label: 'Shop' },
-];
-
-const legalLinks = [
-  { href: '/privacy', label: 'Chính sách bảo mật' },
-  { href: '/terms', label: 'Điều khoản dịch vụ' },
-  { href: '/shipping-returns', label: 'Vận chuyển & đổi trả' },
-  { href: '/contact', label: 'Liên hệ' },
-];
+import { useSection } from '@/components/cms/SectionsProvider';
 
 type BrandFooterProps = {
   compact?: boolean;
 };
 
-const BrandFooter = ({ compact = false }: BrandFooterProps) => (
+const BrandFooter = ({ compact = false }: BrandFooterProps) => {
+  const brand = useSection('global.brand');
+  const navigation = useSection('global.navigation');
+  const contact = useSection('global.contact');
+
+  return (
   <footer className={`mlg-footer${compact ? ' mlg-footer--compact' : ''}`}>
     <div className="mlg-footer__inner">
       <div className="mlg-footer__brand">
-        <img src="/assets/logo.png" alt="Melalogy" />
-        <p>The Science of Melanin.</p>
+        <img src={brand.logo || '/assets/logo.png'} alt="Melalogy" />
+        <p>{brand.footerTagline}</p>
       </div>
 
       <nav className="mlg-footer__nav" aria-label="Điều hướng Melalogy">
-        {primaryLinks.map((link) => (
-          <Link key={link.href} href={link.href}>
+        {navigation.footerLinks.map((link, index) => (
+          <Link key={`${link.href}-${index}`} href={link.href}>
             {link.label}
           </Link>
         ))}
@@ -36,33 +31,40 @@ const BrandFooter = ({ compact = false }: BrandFooterProps) => (
 
       {!compact && (
         <address className="mlg-footer__contact">
-          <a href="tel:+84702899707">
-            <Phone aria-hidden="true" />
-            0702 899 707
-          </a>
-          <a href="mailto:melalogyvietnam@gmail.com">
-            <Mail aria-hidden="true" />
-            melalogyvietnam@gmail.com
-          </a>
-          <span>
-            <MapPin aria-hidden="true" />
-            29D Cộng Hòa 3, P. Phú Thọ Hòa, TP. Hồ Chí Minh
-          </span>
+          {contact.phoneDisplay && (
+            <a href={contact.phoneHref || undefined}>
+              <Phone aria-hidden="true" />
+              {contact.phoneDisplay}
+            </a>
+          )}
+          {contact.email && (
+            <a href={`mailto:${contact.email}`}>
+              <Mail aria-hidden="true" />
+              {contact.email}
+            </a>
+          )}
+          {contact.addressShort && (
+            <span>
+              <MapPin aria-hidden="true" />
+              {contact.addressShort}
+            </span>
+          )}
         </address>
       )}
     </div>
 
     <div className="mlg-footer__legal">
-      <p>© 2026 Melalogy. Đã đăng ký bản quyền.</p>
+      <p>{brand.copyright}</p>
       <nav aria-label="Thông tin pháp lý">
-        {legalLinks.map((link) => (
-          <Link key={link.href} href={link.href}>
+        {navigation.legalLinks.map((link, index) => (
+          <Link key={`${link.href}-${index}`} href={link.href}>
             {link.label}
           </Link>
         ))}
       </nav>
     </div>
   </footer>
-);
+  );
+};
 
 export default BrandFooter;

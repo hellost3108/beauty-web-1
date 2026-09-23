@@ -1,29 +1,36 @@
 import type { Metadata } from "next";
+import CmsSections from "@/components/cms/CmsSections";
+import { getArticles, getSection } from "@/lib/cms/server";
 import Blog from "@/views/Blog";
 
-export const metadata: Metadata = {
-  metadataBase: new URL("https://melalogy.com"),
-  title: "Bí Kíp Làm Đẹp & Chăm Sóc Da",
-  description:
-    "9 bài viết chuyên sâu về Melalogy Energy Shot, bí kíp chăm sóc da và trang điểm phù hợp với người Việt.",
-  keywords: ["Melalogy", "bí kíp làm đẹp", "chăm sóc da", "mặt nạ hydrogel", "Melalogy Energy Shot"],
-  alternates: { canonical: "/blog" },
-  openGraph: {
-    title: "Bí Kíp Làm Đẹp & Chăm Sóc Da | Melalogy Journal",
-    description:
-      "Kiến thức chăm sóc da, trang điểm và cách chọn Melalogy Energy Shot dành cho người Việt.",
-    type: "website",
-    url: "/blog",
-    images: ["/assets/melalogy-blog-hero-2026.png"],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Melalogy Journal | Bí Kíp Làm Đẹp",
-    description: "9 bài chăm da và làm đẹp được biên tập riêng cho người Việt.",
-    images: ["/assets/melalogy-blog-hero-2026.png"],
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const content = await getSection("journal.blog");
+  const image = content.heroImage || "/assets/melalogy-blog-hero-2026.png";
+  return {
+    title: content.seoTitle,
+    description: content.seoDescription,
+    alternates: { canonical: "/blog" },
+    openGraph: {
+      title: `${content.seoTitle} | Melalogy`,
+      description: content.seoDescription,
+      type: "website",
+      url: "/blog",
+      images: [image],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${content.seoTitle} | Melalogy`,
+      description: content.seoDescription,
+      images: [image],
+    },
+  };
+}
 
-export default function Page() {
-  return <Blog />;
+export default async function Page() {
+  const posts = await getArticles("blog");
+  return (
+    <CmsSections modules={["journal"]}>
+      <Blog posts={posts} />
+    </CmsSections>
+  );
 }
