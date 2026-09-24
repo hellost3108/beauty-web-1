@@ -16,7 +16,10 @@ const INLINE = new Set(["STRONG", "EM", "U", "S", "SUB", "SUP", "A", "SPAN", "BR
 const RENAME: Record<string, string> = { B: "STRONG", I: "EM", STRIKE: "S", DEL: "S", INS: "U", FONT: "SPAN", H1: "H2", H5: "H4", H6: "H4", PRE: "P" };
 const DROP = new Set(["SCRIPT", "STYLE", "META", "LINK", "TITLE", "HEAD", "XML", "IFRAME", "OBJECT", "EMBED", "SVG", "BUTTON", "INPUT", "SELECT", "TEXTAREA", "NOSCRIPT", "TEMPLATE"]);
 
-export type PastedImage = { element: HTMLImageElement; originalSrc: string };
+/** An image found in the pasted HTML; `id` matches `data-paste-pending` on the <img>. */
+export type PastedImage = { id: string; originalSrc: string };
+
+let pasteCounter = 0;
 
 function styleFromFont(element: Element) {
   // <font color="#f00" size="5"> → style
@@ -83,9 +86,12 @@ function cleanNode(node: Node, doc: Document, images: PastedImage[]): Node[] {
     image.setAttribute("alt", node.getAttribute("alt") ?? "");
     const width = Number(node.getAttribute("width"));
     if (width > 0 && width < 2000) image.setAttribute("width", String(Math.round(width)));
-    // The real src is resolved (uploaded to storage) after the paste lands.
-    image.setAttribute("data-original-src", src);
-    images.push({ element: image, originalSrc: src });
+    // The real src is resolved (uploaded to storage) after the paste lands;
+    // until then the image shows a "loading" placeholder in the editor.
+    pasteCounter += 1;
+    const id = `p${Date.now().toString(36)}${pasteCounter}`;
+    image.setAttribute("data-paste-pending", id);
+    images.push({ id, originalSrc: src });
     return [image];
   }
   if (tag === "TD" || tag === "TH") {
@@ -153,6 +159,24 @@ export function cleanPastedHtml(html: string) {
   // Remove empty paragraphs Word adds between blocks.
   wrapped.querySelectorAll("p").forEach((p) => {
     if (!p.textContent?.trim() && !p.querySelector("img,br")) p.remove();
+  });
+
+  // A paragraph that only holds an image becomes an editor image block
+  // (resizable / alignable from the image toolbar, like the “Ảnh” button).
+  wrapped.querySelectorAll("p").forEach((p) => {
+    const imagesInside = p.querySelectorAll("img");
+    if (imagesInside.length !== 1 || p.textContent?.trim()) return;
+    const image = imagesInside[0];
+    const width = Number(image.getAttribute("width"));
+    const align = /text-align:\s*(right)/i.test(p.getAttribute("style") ?? "") ? "right" : "center";
+    const figure = target.createElement("figure");
+    figure.setAttribute("data-rt-image", "");
+    figure.setAttribute("data-width", !width || width >= 480 ? "full" : width >= 260 ? "medium" : "small");
+    figure.setAttribute("data-align", align === "right" && width && width < 480 ? "right" : "center");
+    image.removeAttribute("width");
+    image.setAttribute("loading", "lazy");
+    figure.appendChild(image);
+    p.replaceWith(figure);
   });
 
   return { html: wrapped.innerHTML, images };

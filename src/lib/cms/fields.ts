@@ -150,6 +150,9 @@ export function sanitizeHtml(input: string): string {
     "",
   );
   html = html.replace(/<(script|style|iframe|object|embed|link|meta|base|input)\b[^>]*\/?>/gi, "");
+  // Editor-only markers, then images that never got a source (failed paste).
+  html = html.replace(/\s(data-paste-pending|data-original-src|data-selected)\s*=\s*("[^"]*"|'[^']*'|[^\s>]+)/gi, "");
+  html = html.replace(/\s(data-paste-pending|data-selected)(?=[\s>/])/gi, "");
   // Event handlers and presentation classes.
   html = html.replace(/\s(on[a-z]+|class|srcdoc|formaction)\s*=\s*("[^"]*"|'[^']*'|[^\s>]+)/gi, "");
   // Inline styles: keep only the whitelisted, harmless properties.
@@ -167,6 +170,8 @@ export function sanitizeHtml(input: string): string {
       return ` ${attr.toLowerCase()}="${cleaned.replace(/"/g, "&quot;")}"`;
     },
   );
+  html = html.replace(/<img\b(?![^>]*\ssrc=)[^>]*>/gi, "");
+  html = html.replace(/<figure\b[^>]*data-rt-image[^>]*>\s*<\/figure>/gi, "");
   return html.trim();
 }
 

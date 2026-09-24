@@ -25,8 +25,11 @@ import {
   Underline,
   X,
 } from "lucide-react";
+import { importRemoteImage } from "@/app/admin/_actions/media";
+import { prepareImageFile } from "@/lib/admin/image-prep";
 import { cleanPastedHtml, dataUriToFile } from "@/lib/admin/paste-cleaner";
-import { allowedImageTypes, uploadImage } from "@/lib/admin/upload";
+import { extractRtfImages } from "@/lib/admin/rtf-images";
+import { uploadImage } from "@/lib/admin/upload";
 import { imageFigureHtml, richColors, richFonts, richFontSizes, richImageAligns, richImageWidths } from "@/lib/cms/rich-text";
 
 const toolbarButton =
@@ -237,13 +240,13 @@ export default function RichTextInput({
   };
 
   const uploadFiles = async (files: File[], draft?: Partial<ImageDraft>) => {
-    const images = files.filter((file) => allowedImageTypes.includes(file.type));
+    const images = files.filter((file) => file.type.startsWith("image/") && !file.type.includes("svg"));
     if (!images.length) return;
     setUploading(true);
     setUploadError("");
     try {
       for (const file of images) {
-        const { url } = await uploadImage(file, uploadFolder);
+        const { url } = await uploadImage(await prepareImageFile(file), uploadFolder);
         if (draft) {
           setImageDialog((current) => (current ? { ...current, src: url, alt: current.alt || file.name.replace(/\.[^.]+$/, "") } : current));
         } else {
@@ -259,10 +262,14 @@ export default function RichTextInput({
 
   /**
    * Paste from Word / Google Docs / websites keeping headings, bold, colours,
-   * sizes, alignment, lists, tables and images. Images are copied into
-   * Supabase Storage so they keep working after the source changes.
+   * sizes, alignment, lists, tables and images. Every pasted image is copied
+   * into Supabase Storage so it keeps working after the source changes:
+   *  - Word: the pictures come from the clipboard's RTF flavour (the HTML
+   *    flavour only has temporary file:// paths the browser cannot read);
+   *  - Google Docs / websites: downloaded (via the server when CORS blocks it);
+   *  - screenshots / data: URIs: uploaded directly.
    */
-  const pasteRichContent = async (html: string, clipboardFiles: File[]) => {
+  const pasteRichContent = async (html: string, rtf: string, clipboardFiles: File[]) => {
     const { html: cleaned, images } = cleanPastedHtml(html);
     if (!cleaned.trim()) return;
     restoreSelection();
@@ -270,55 +277,83 @@ export default function RichTextInput({
     emit();
     if (!images.length) return;
 
-    const editor = editorRef.current;
-    if (!editor) return;
-    const pending = Array.from(editor.querySelectorAll<HTMLImageElement>("img[data-original-src]"));
-    let fileIndex = 0;
+    const isLocal = (src: string) => !src || /^(file:|blob:|webkit-fake-url:|cid:|ms-appx)/i.test(src);
+    const localCount = images.filter((image) => isLocal(image.originalSrc)).length;
+    const rtfImages = localCount ? extractRtfImages(rtf) : [];
+    const localFiles: Array<File | null> =
+      rtfImages.length >= localCount
+        ? rtfImages.map((entry) => entry.file)
+        : clipboardFiles.length === localCount
+          ? clipboardFiles
+          : [];
+    let localIndex = 0;
+
+    const find = (id: string) => editorRef.current?.querySelector<HTMLImageElement>(`img[data-paste-pending="${id}"]`) ?? null;
+    const finish = (id: string, src: string | null) => {
+      const image = find(id);
+      if (!image) return;
+      image.removeAttribute("data-paste-pending");
+      if (src) {
+        image.setAttribute("src", src);
+      } else {
+        const figure = image.closest("figure[data-rt-image]");
+        (figure && !figure.querySelector("figcaption") ? figure : image).remove();
+      }
+    };
+
+    let uploaded = 0;
     let failed = 0;
     setUploading(true);
-    for (const image of pending) {
-      const original = image.getAttribute("data-original-src") ?? "";
-      image.removeAttribute("data-original-src");
+    for (const { id, originalSrc } of images) {
+      let file: File | null = null;
+      let fallbackSrc: string | null = null;
       try {
-        let file: File | null = null;
-        if (original.startsWith("data:")) {
-          file = dataUriToFile(original, `pasted-${Date.now()}`);
-        } else if (/^(file:|blob:|webkit-fake-url:)/i.test(original) || !original) {
-          file = clipboardFiles[fileIndex] ?? null;
-          fileIndex += 1;
-        } else if (/^https?:/i.test(original)) {
+        if (originalSrc.startsWith("data:")) {
+          file = dataUriToFile(originalSrc, `pasted-${Date.now()}`);
+        } else if (isLocal(originalSrc)) {
+          file = localFiles[localIndex] ?? null;
+          localIndex += 1;
+        } else if (originalSrc.startsWith("/")) {
+          fallbackSrc = originalSrc;
+        } else if (/^https?:/i.test(originalSrc)) {
+          fallbackSrc = originalSrc;
           try {
-            const response = await fetch(original);
-            const blob = await response.blob();
-            if (response.ok && blob.type.startsWith("image/")) {
-              file = new File([blob], `pasted-${Date.now()}.${blob.type.split("/")[1] ?? "jpg"}`, { type: blob.type });
-            }
+            const response = await fetch(originalSrc, { mode: "cors", credentials: "omit" });
+            const blob = response.ok ? await response.blob() : null;
+            if (blob?.type.startsWith("image/")) file = new File([blob], `pasted.${blob.type.split("/")[1] ?? "jpg"}`, { type: blob.type });
           } catch {
-            // Remote host blocks copying: keep linking to the original image.
+            // CORS: let the server download it instead.
           }
           if (!file) {
-            image.setAttribute("src", original);
-            continue;
+            const result = await importRemoteImage(originalSrc);
+            if (result.ok) file = dataUriToFile(result.data.dataUri, `pasted-${Date.now()}`);
           }
-        } else if (original.startsWith("/")) {
-          image.setAttribute("src", original);
-          continue;
         }
 
-        if (!file) throw new Error("missing");
-        const { url } = await uploadImage(file, uploadFolder);
-        image.setAttribute("src", url);
+        if (file) {
+          const { url } = await uploadImage(await prepareImageFile(file), uploadFolder);
+          finish(id, url);
+          uploaded += 1;
+        } else if (fallbackSrc) {
+          finish(id, fallbackSrc);
+        } else {
+          finish(id, null);
+          failed += 1;
+        }
       } catch {
-        failed += 1;
-        image.remove();
+        finish(id, fallbackSrc);
+        if (!fallbackSrc) failed += 1;
       }
+      emit();
     }
     setUploading(false);
     emit();
     setNotice(
       failed
-        ? `Đã dán nội dung. ${failed} ảnh không lấy được từ tài liệu gốc — hãy chèn lại bằng nút “Ảnh” hoặc kéo thả ảnh vào.`
-        : `Đã dán nội dung và tải ${pending.length} ảnh lên kho ảnh Melalogy.`,
+        ? `Đã dán nội dung${uploaded ? ` và tải ${uploaded} ảnh lên` : ""}. ${failed} ảnh không lấy được từ tài liệu gốc — hãy chèn lại bằng nút “Ảnh” hoặc kéo thả ảnh vào vị trí cần đặt.`
+        : uploaded
+          ? `Đã dán nội dung và tải ${uploaded} ảnh lên kho ảnh Melalogy.`
+          : "Đã dán nội dung.",
     );
   };
 
@@ -613,7 +648,7 @@ export default function RichTextInput({
             if (html) {
               event.preventDefault();
               saveSelection();
-              void pasteRichContent(html, files);
+              void pasteRichContent(html, event.clipboardData.getData("text/rtf"), files);
               return;
             }
             if (files.length) {
@@ -687,13 +722,13 @@ export default function RichTextInput({
                 >
                   {uploading ? <LoaderCircle className="h-6 w-6 animate-spin" /> : <ImagePlus className="h-6 w-6 text-black/45" />}
                   <span className="mt-2 font-semibold">{uploading ? "Đang tải ảnh..." : "Chọn ảnh từ máy"}</span>
-                  <span className="mt-0.5 text-xs text-black/40">JPG, PNG, WebP, AVIF · tối đa 5 MB</span>
+                  <span className="mt-0.5 text-xs text-black/40">JPG, PNG, WebP, GIF… · ảnh lớn tự được nén</span>
                 </button>
               )}
               <input
                 ref={fileInputRef}
                 type="file"
-                accept={allowedImageTypes.join(",")}
+                accept="image/*"
                 className="sr-only"
                 onChange={(event) => {
                   void uploadFiles(Array.from(event.target.files ?? []), imageDialog);
