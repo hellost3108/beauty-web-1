@@ -3,9 +3,12 @@
 import { useEffect, useRef, useState } from "react";
 import {
   AlignCenter,
+  AlignJustify,
   AlignLeft,
   AlignRight,
+  Baseline,
   Bold,
+  Highlighter,
   Code2,
   Eraser,
   Heading2,
@@ -19,10 +22,12 @@ import {
   Pilcrow,
   Quote,
   Trash2,
+  Underline,
   X,
 } from "lucide-react";
+import { cleanPastedHtml, dataUriToFile } from "@/lib/admin/paste-cleaner";
 import { allowedImageTypes, uploadImage } from "@/lib/admin/upload";
-import { imageFigureHtml, richFonts, richImageAligns, richImageWidths, richSizes } from "@/lib/cms/rich-text";
+import { imageFigureHtml, richColors, richFonts, richFontSizes, richImageAligns, richImageWidths } from "@/lib/cms/rich-text";
 
 const toolbarButton =
   "inline-flex h-8 min-w-8 items-center justify-center rounded-lg border border-black/10 bg-white px-2 text-xs font-semibold text-black/65 transition hover:border-[#f52334] hover:text-[#f52334] disabled:opacity-40";
@@ -61,6 +66,9 @@ export default function RichTextInput({
   const [uploadError, setUploadError] = useState("");
   const [selectedFigure, setSelectedFigure] = useState<HTMLElement | null>(null);
   const [, forceRender] = useState(0);
+  const [currentSize, setCurrentSize] = useState("");
+  const [colorMenu, setColorMenu] = useState<"color" | "background-color" | null>(null);
+  const [notice, setNotice] = useState("");
 
   // Sync external changes (restore a version, reset, leaving HTML mode) into
   // the editable area. While typing, value === innerHTML so nothing resets.
@@ -76,8 +84,11 @@ export default function RichTextInput({
     const editor = editorRef.current;
     if (!editor) return;
     // Drop wrapper spans that no longer carry any formatting.
+    editor.querySelectorAll("[style]").forEach((element) => {
+      if (!element.getAttribute("style")?.trim()) element.removeAttribute("style");
+    });
     editor.querySelectorAll("span").forEach((span) => {
-      if (!span.getAttribute("data-font") && !span.getAttribute("data-size")) {
+      if (!span.getAttribute("data-font") && !span.getAttribute("data-size") && !span.getAttribute("style")) {
         span.replaceWith(...Array.from(span.childNodes));
       }
     });
@@ -92,7 +103,10 @@ export default function RichTextInput({
   const saveSelection = () => {
     const selection = window.getSelection();
     if (selection && selection.rangeCount > 0 && inEditor(selection.getRangeAt(0).commonAncestorContainer)) {
-      savedRange.current = selection.getRangeAt(0).cloneRange();
+      const range = selection.getRangeAt(0);
+      savedRange.current = range.cloneRange();
+      const node = range.startContainer instanceof Element ? range.startContainer : range.startContainer.parentElement;
+      if (node) setCurrentSize(String(Math.round(parseFloat(window.getComputedStyle(node).fontSize))));
     }
   };
 
@@ -128,47 +142,75 @@ export default function RichTextInput({
     emit();
   };
 
-  /** Applies data-font / data-size to the selection (or the current paragraph). */
-  const applyAttribute = (attribute: "data-font" | "data-size", attrValue: string) => {
+  type Format = { kind: "attr"; name: "data-font"; value: string } | { kind: "style"; name: "font-size" | "color" | "background-color"; value: string };
+
+  const blockSelector = Array.from(BLOCK_TAGS).join(",");
+
+  /** Blocks touched by the range (or the block holding the caret). */
+  const blocksIn = (range: Range) => {
+    const editor = editorRef.current;
+    if (!editor) return [] as HTMLElement[];
+    if (range.collapsed || blockOf(range.startContainer) === blockOf(range.endContainer)) {
+      const block = blockOf(range.startContainer) ?? topLevelOf(range.startContainer);
+      return block instanceof HTMLElement ? [block] : [];
+    }
+    return Array.from(editor.querySelectorAll<HTMLElement>(blockSelector)).filter(
+      (block) => range.intersectsNode(block) && !block.querySelector(blockSelector),
+    );
+  };
+
+  const setFormat = (element: HTMLElement, format: Format) => {
+    if (format.kind === "attr") {
+      if (format.value) element.setAttribute(format.name, format.value);
+      else element.removeAttribute(format.name);
+      element.querySelectorAll(`[${format.name}]`).forEach((child) => child.removeAttribute(format.name));
+      return;
+    }
+    if (format.value) element.style.setProperty(format.name, format.value);
+    else element.style.removeProperty(format.name);
+    element.querySelectorAll<HTMLElement>("[style]").forEach((child) => child.style.removeProperty(format.name));
+    if (format.name === "font-size") {
+      element.removeAttribute("data-size");
+      element.querySelectorAll("[data-size]").forEach((child) => child.removeAttribute("data-size"));
+    }
+  };
+
+  /** Applies a font, size or colour to the selection (or the current paragraph). */
+  const applyFormat = (input: Format | Format[]) => {
+    const formats = Array.isArray(input) ? input : [input];
     const range = restoreSelection();
     const editor = editorRef.current;
     if (!range || !editor) return;
 
-    const setOn = (element: Element) => {
-      if (attrValue) element.setAttribute(attribute, attrValue);
-      else element.removeAttribute(attribute);
-      element.querySelectorAll(`[${attribute}]`).forEach((child) => child.removeAttribute(attribute));
-    };
-
     const startBlock = blockOf(range.startContainer);
     const endBlock = blockOf(range.endContainer);
 
-    if (range.collapsed) {
-      const block = startBlock ?? topLevelOf(range.startContainer);
-      if (block) setOn(block);
-    } else if (startBlock && startBlock === endBlock) {
+    if (!range.collapsed && startBlock && startBlock === endBlock) {
       const fragment = range.extractContents();
-      fragment.querySelectorAll?.(`[${attribute}]`).forEach((child) => child.removeAttribute(attribute));
-      if (attrValue) {
-        const span = document.createElement("span");
-        span.setAttribute(attribute, attrValue);
-        span.appendChild(fragment);
-        range.insertNode(span);
-        const selection = window.getSelection();
-        const next = document.createRange();
-        next.selectNodeContents(span);
-        selection?.removeAllRanges();
-        selection?.addRange(next);
-        savedRange.current = next.cloneRange();
-      } else {
-        range.insertNode(fragment);
-      }
+      const span = document.createElement("span");
+      span.appendChild(fragment);
+      formats.forEach((format) => setFormat(span, format));
+      range.insertNode(span);
+      const selection = window.getSelection();
+      const next = document.createRange();
+      next.selectNodeContents(span);
+      selection?.removeAllRanges();
+      selection?.addRange(next);
+      savedRange.current = next.cloneRange();
     } else {
-      // Selection spans several paragraphs: format each whole paragraph.
-      editor.querySelectorAll(Array.from(BLOCK_TAGS).join(",")).forEach((block) => {
-        if (range.intersectsNode(block) && !block.querySelector(Array.from(BLOCK_TAGS).join(","))) setOn(block);
-      });
+      blocksIn(range).forEach((block) => formats.forEach((format) => setFormat(block, format)));
     }
+    emit();
+    saveSelection();
+  };
+
+  const alignText = (align: "left" | "center" | "right" | "justify") => {
+    const range = restoreSelection();
+    if (!range) return;
+    blocksIn(range).forEach((block) => {
+      if (align === "left") block.style.removeProperty("text-align");
+      else block.style.setProperty("text-align", align);
+    });
     emit();
   };
 
@@ -215,6 +257,71 @@ export default function RichTextInput({
     }
   };
 
+  /**
+   * Paste from Word / Google Docs / websites keeping headings, bold, colours,
+   * sizes, alignment, lists, tables and images. Images are copied into
+   * Supabase Storage so they keep working after the source changes.
+   */
+  const pasteRichContent = async (html: string, clipboardFiles: File[]) => {
+    const { html: cleaned, images } = cleanPastedHtml(html);
+    if (!cleaned.trim()) return;
+    restoreSelection();
+    document.execCommand("insertHTML", false, cleaned);
+    emit();
+    if (!images.length) return;
+
+    const editor = editorRef.current;
+    if (!editor) return;
+    const pending = Array.from(editor.querySelectorAll<HTMLImageElement>("img[data-original-src]"));
+    let fileIndex = 0;
+    let failed = 0;
+    setUploading(true);
+    for (const image of pending) {
+      const original = image.getAttribute("data-original-src") ?? "";
+      image.removeAttribute("data-original-src");
+      try {
+        let file: File | null = null;
+        if (original.startsWith("data:")) {
+          file = dataUriToFile(original, `pasted-${Date.now()}`);
+        } else if (/^(file:|blob:|webkit-fake-url:)/i.test(original) || !original) {
+          file = clipboardFiles[fileIndex] ?? null;
+          fileIndex += 1;
+        } else if (/^https?:/i.test(original)) {
+          try {
+            const response = await fetch(original);
+            const blob = await response.blob();
+            if (response.ok && blob.type.startsWith("image/")) {
+              file = new File([blob], `pasted-${Date.now()}.${blob.type.split("/")[1] ?? "jpg"}`, { type: blob.type });
+            }
+          } catch {
+            // Remote host blocks copying: keep linking to the original image.
+          }
+          if (!file) {
+            image.setAttribute("src", original);
+            continue;
+          }
+        } else if (original.startsWith("/")) {
+          image.setAttribute("src", original);
+          continue;
+        }
+
+        if (!file) throw new Error("missing");
+        const { url } = await uploadImage(file, uploadFolder);
+        image.setAttribute("src", url);
+      } catch {
+        failed += 1;
+        image.remove();
+      }
+    }
+    setUploading(false);
+    emit();
+    setNotice(
+      failed
+        ? `Đã dán nội dung. ${failed} ảnh không lấy được từ tài liệu gốc — hãy chèn lại bằng nút “Ảnh” hoặc kéo thả ảnh vào.`
+        : `Đã dán nội dung và tải ${pending.length} ảnh lên kho ảnh Melalogy.`,
+    );
+  };
+
   const openImageDialog = () => {
     saveSelection();
     setUploadError("");
@@ -258,7 +365,7 @@ export default function RichTextInput({
               onMouseDown={saveSelection}
               onFocus={saveSelection}
               onChange={(event) => {
-                applyAttribute("data-font", event.target.value);
+                applyFormat({ kind: "attr", name: "data-font", value: event.target.value });
                 event.target.value = "";
               }}
               title="Phông chữ cho đoạn đang chọn"
@@ -274,32 +381,111 @@ export default function RichTextInput({
               ))}
             </select>
             <select
-              className={toolbarSelect}
-              defaultValue=""
+              className={`${toolbarSelect} w-[4.6rem]`}
+              value={currentSize}
               onMouseDown={saveSelection}
               onFocus={saveSelection}
               onChange={(event) => {
-                applyAttribute("data-size", event.target.value);
-                event.target.value = "";
+                const size = event.target.value;
+                setCurrentSize(size === "default" ? "" : size);
+                applyFormat({ kind: "style", name: "font-size", value: size === "default" ? "" : `${size}px` });
               }}
-              title="Cỡ chữ cho đoạn đang chọn"
+              title="Cỡ chữ (px) cho chữ đang chọn"
               aria-label="Cỡ chữ"
             >
               <option value="" disabled hidden>
-                Cỡ chữ
+                {currentSize ? `${currentSize}` : "Cỡ"}
               </option>
-              {richSizes.map((size) => (
-                <option key={size.value || "normal"} value={size.value}>
-                  {size.label}
+              <option value="default">Mặc định</option>
+              {currentSize && !richFontSizes.some((size) => String(size) === currentSize) && (
+                <option value={currentSize} disabled>
+                  {currentSize}
+                </option>
+              )}
+              {richFontSizes.map((size) => (
+                <option key={size} value={String(size)}>
+                  {size}
                 </option>
               ))}
             </select>
+            <div className="relative">
+              <button
+                type="button"
+                className={`${toolbarButton} gap-1`}
+                onMouseDown={(event) => {
+                  event.preventDefault();
+                  saveSelection();
+                }}
+                onClick={() => setColorMenu((menu) => (menu === "color" ? null : "color"))}
+                title="Màu chữ"
+              >
+                <Baseline className="h-4 w-4" />
+              </button>
+              {colorMenu === "color" && (
+                <ColorMenu
+                  title="Màu chữ"
+                  onPick={(color) => {
+                    applyFormat({ kind: "style", name: "color", value: color });
+                    setColorMenu(null);
+                  }}
+                  onClose={() => setColorMenu(null)}
+                />
+              )}
+            </div>
+            <div className="relative">
+              <button
+                type="button"
+                className={toolbarButton}
+                onMouseDown={(event) => {
+                  event.preventDefault();
+                  saveSelection();
+                }}
+                onClick={() => setColorMenu((menu) => (menu === "background-color" ? null : "background-color"))}
+                title="Màu nền chữ (tô sáng)"
+              >
+                <Highlighter className="h-4 w-4" />
+              </button>
+              {colorMenu === "background-color" && (
+                <ColorMenu
+                  title="Màu nền chữ"
+                  onPick={(color) => {
+                    applyFormat({ kind: "style", name: "background-color", value: color });
+                    setColorMenu(null);
+                  }}
+                  onClose={() => setColorMenu(null)}
+                />
+              )}
+            </div>
+            <span className="mx-1 h-6 w-px bg-black/10" aria-hidden="true" />
+            {(
+              [
+                ["left", AlignLeft, "Căn trái"],
+                ["center", AlignCenter, "Căn giữa"],
+                ["right", AlignRight, "Căn phải"],
+                ["justify", AlignJustify, "Căn đều hai bên"],
+              ] as const
+            ).map(([align, Icon, label]) => (
+              <button
+                key={align}
+                type="button"
+                className={toolbarButton}
+                onMouseDown={(event) => {
+                  event.preventDefault();
+                  saveSelection();
+                }}
+                onClick={() => alignText(align)}
+                title={label}
+              >
+                <Icon className="h-4 w-4" />
+              </button>
+            ))}
             <span className="mx-1 h-6 w-px bg-black/10" aria-hidden="true" />
             <button type="button" className={toolbarButton} onMouseDown={(event) => event.preventDefault()} onClick={() => run("formatBlock", "p")} title="Đoạn văn"><Pilcrow className="h-4 w-4" /></button>
             <button type="button" className={toolbarButton} onMouseDown={(event) => event.preventDefault()} onClick={() => run("formatBlock", "h2")} title="Tiêu đề lớn"><Heading2 className="h-4 w-4" /></button>
             <button type="button" className={toolbarButton} onMouseDown={(event) => event.preventDefault()} onClick={() => run("formatBlock", "h3")} title="Tiêu đề nhỏ"><Heading3 className="h-4 w-4" /></button>
             <button type="button" className={toolbarButton} onMouseDown={(event) => event.preventDefault()} onClick={() => run("bold")} title="In đậm"><Bold className="h-4 w-4" /></button>
             <button type="button" className={toolbarButton} onMouseDown={(event) => event.preventDefault()} onClick={() => run("italic")} title="In nghiêng"><Italic className="h-4 w-4" /></button>
+            <button type="button" className={toolbarButton} onMouseDown={(event) => event.preventDefault()} onClick={() => run("underline")} title="Gạch chân"><Underline className="h-4 w-4" /></button>
             <button type="button" className={toolbarButton} onMouseDown={(event) => event.preventDefault()} onClick={() => run("insertUnorderedList")} title="Danh sách chấm"><List className="h-4 w-4" /></button>
             <button type="button" className={toolbarButton} onMouseDown={(event) => event.preventDefault()} onClick={() => run("insertOrderedList")} title="Danh sách số"><ListOrdered className="h-4 w-4" /></button>
             <button type="button" className={toolbarButton} onMouseDown={(event) => event.preventDefault()} onClick={() => run("formatBlock", "blockquote")} title="Trích dẫn"><Quote className="h-4 w-4" /></button>
@@ -325,8 +511,12 @@ export default function RichTextInput({
               onClick={() => {
                 run("removeFormat");
                 saveSelection();
-                applyAttribute("data-font", "");
-                applyAttribute("data-size", "");
+                applyFormat([
+                  { kind: "attr", name: "data-font", value: "" },
+                  { kind: "style", name: "font-size", value: "" },
+                  { kind: "style", name: "color", value: "" },
+                  { kind: "style", name: "background-color", value: "" },
+                ]);
               }}
               title="Xoá định dạng"
             >
@@ -418,8 +608,15 @@ export default function RichTextInput({
             setSelectedFigure(figure instanceof HTMLElement && inEditor(figure) ? figure : null);
           }}
           onPaste={(event) => {
-            const files = Array.from(event.clipboardData.files ?? []);
-            if (files.some((file) => file.type.startsWith("image/"))) {
+            const files = Array.from(event.clipboardData.files ?? []).filter((file) => file.type.startsWith("image/"));
+            const html = event.clipboardData.getData("text/html");
+            if (html) {
+              event.preventDefault();
+              saveSelection();
+              void pasteRichContent(html, files);
+              return;
+            }
+            if (files.length) {
               event.preventDefault();
               saveSelection();
               void uploadFiles(files);
@@ -451,6 +648,14 @@ export default function RichTextInput({
         </p>
       )}
       {uploadError && !imageDialog && <p className="border-t border-black/10 px-4 py-2 text-xs font-medium text-red-600">{uploadError}</p>}
+      {notice && (
+        <p className="flex items-start justify-between gap-3 border-t border-black/10 bg-[#f7f4f1] px-4 py-2 text-xs text-black/60">
+          {notice}
+          <button type="button" onClick={() => setNotice("")} className="shrink-0 font-semibold hover:text-[#f52334]">
+            Đóng
+          </button>
+        </p>
+      )}
 
       {imageDialog && (
         <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/40 p-4 sm:items-center" role="dialog" aria-modal="true">
@@ -572,6 +777,42 @@ export default function RichTextInput({
           </div>
         </div>
       )}
+    </div>
+  );
+}
+
+function ColorMenu({ title, onPick, onClose }: { title: string; onPick: (color: string) => void; onClose: () => void }) {
+  const [custom, setCustom] = useState("#d3172b");
+  return (
+    <div className="absolute left-0 top-9 z-30 w-60 rounded-2xl border border-black/10 bg-white p-3 shadow-xl" onMouseDown={(event) => event.stopPropagation()}>
+      <div className="mb-2 flex items-center justify-between text-xs font-semibold text-black/60">
+        {title}
+        <button type="button" onClick={onClose} className="grid h-6 w-6 place-items-center rounded-full hover:bg-black/5" aria-label="Đóng">
+          <X className="h-3.5 w-3.5" />
+        </button>
+      </div>
+      <div className="grid grid-cols-6 gap-1.5">
+        {richColors.map((color) => (
+          <button
+            key={color.value}
+            type="button"
+            title={color.label}
+            onMouseDown={(event) => event.preventDefault()}
+            onClick={() => onPick(color.value)}
+            className="h-7 w-7 rounded-lg ring-1 ring-black/15 transition hover:scale-110"
+            style={{ backgroundColor: color.value }}
+          />
+        ))}
+      </div>
+      <div className="mt-3 flex items-center gap-2">
+        <input type="color" value={custom} onChange={(event) => setCustom(event.target.value)} className="h-8 w-10 cursor-pointer rounded border border-black/15 p-0.5" aria-label="Chọn màu khác" />
+        <button type="button" onClick={() => onPick(custom)} className="flex-1 rounded-lg border border-black/10 px-2 py-1.5 text-xs font-semibold hover:border-[#f52334]">
+          Dùng màu {custom.toUpperCase()}
+        </button>
+      </div>
+      <button type="button" onMouseDown={(event) => event.preventDefault()} onClick={() => onPick("")} className="mt-2 w-full rounded-lg bg-[#f7f4f1] px-2 py-1.5 text-xs font-semibold text-black/60 hover:text-[#f52334]">
+        Bỏ màu (dùng màu mặc định)
+      </button>
     </div>
   );
 }

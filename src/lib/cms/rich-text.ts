@@ -11,11 +11,22 @@ export const richFonts = [
   { value: "mono", label: "Roboto Mono (đơn cách)" },
 ] as const;
 
-export const richSizes = [
-  { value: "", label: "Cỡ thường" },
-  { value: "sm", label: "Nhỏ" },
-  { value: "lg", label: "Lớn" },
-  { value: "xl", label: "Rất lớn" },
+/** Font sizes offered in the editor, in px. */
+export const richFontSizes = [10, 12, 13, 14, 15, 16, 18, 20, 22, 24, 28, 32, 36, 40, 48, 56, 64] as const;
+
+export const richColors = [
+  { value: "#111111", label: "Đen Melalogy" },
+  { value: "#605c59", label: "Xám chữ" },
+  { value: "#9b9590", label: "Xám nhạt" },
+  { value: "#d3172b", label: "Đỏ cherry" },
+  { value: "#8e0f1d", label: "Đỏ đậm" },
+  { value: "#f7d9d9", label: "Hồng nhạt" },
+  { value: "#2f8fc0", label: "Xanh Cấp Ẩm" },
+  { value: "#638d39", label: "Xanh Phục Hồi" },
+  { value: "#c89500", label: "Vàng Làm Sáng" },
+  { value: "#8055a6", label: "Tím Rạng Rỡ" },
+  { value: "#f3f0ea", label: "Kem" },
+  { value: "#ffffff", label: "Trắng" },
 ] as const;
 
 export const richImageWidths = [

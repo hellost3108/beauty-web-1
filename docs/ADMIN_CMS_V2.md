@@ -49,3 +49,10 @@ Supabase ── site_sections ───────────────┤
 - Giỏ hàng cũ trong trình duyệt khách tự cập nhật tên/giá/ảnh theo sản phẩm đang bán; đơn hàng luôn tính giá từ database.
 - Bảng cũ `banners`, `homepage_sections`, `content_pages`, `site_settings` không còn được dùng nhưng được giữ lại (không xoá dữ liệu).
 - Ảnh upload vào bucket `melalogy-media` (JPG/PNG/WebP/AVIF, tối đa 5 MB). Ảnh có sẵn trong `/public/assets` vẫn dùng được bằng cách dán đường dẫn `/assets/...`.
+
+## Trình soạn thảo nội dung bài viết
+
+- Thanh công cụ: phông chữ · cỡ chữ theo số (px) · màu chữ · màu nền chữ · căn trái/giữa/phải/đều · đoạn văn, tiêu đề, đậm, nghiêng, gạch chân, danh sách, trích dẫn, liên kết, ảnh · xoá định dạng.
+- Dán từ Word / Google Docs / website: giữ tiêu đề, đậm/nghiêng/gạch chân, màu chữ, màu nền, cỡ chữ (pt tự đổi sang px), căn lề, danh sách, bảng, liên kết và ảnh. Ảnh được tải lên kho `melalogy-media`.
+- Không giữ: phông chữ của Word (dùng phông của thương hiệu), chữ màu đen/nền trắng mặc định, khoảng cách lề/viền của Word. Ảnh Word trên Mac đôi khi chỉ được sao chép dạng đường dẫn tạm `file://` — khi đó Admin báo số ảnh cần chèn lại bằng nút **Ảnh** hoặc kéo thả.
+- Kiểu CSS được phép nằm trong `src/lib/cms/style-filter.ts` (dùng chung cho lúc dán và lúc lưu trên server).
