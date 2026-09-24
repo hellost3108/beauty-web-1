@@ -87,3 +87,21 @@ export async function setArticleStatus(
     return { ok: false, error: friendlyError(error) };
   }
 }
+
+/** Permanently deletes a blog / magazine article. */
+export async function deleteArticle(id: number, channel: "blog" | "magazine"): Promise<ActionResult> {
+  if (!Number.isInteger(id) || !["blog", "magazine"].includes(channel)) {
+    return { ok: false, error: "Bài viết không hợp lệ." };
+  }
+  try {
+    await requireModuleForAction(channel);
+    const supabase = await createClient();
+    const { data, error } = await supabase.from("articles").delete().eq("id", id).eq("channel", channel).select("id");
+    if (error) throw error;
+    if (!data?.length) return { ok: false, error: "Không xoá được bài viết (không tồn tại hoặc không có quyền)." };
+    refreshPublicSite(["articles"]);
+    return { ok: true, data: undefined, message: "Đã xoá bài viết." };
+  } catch (error) {
+    return { ok: false, error: friendlyError(error) };
+  }
+}

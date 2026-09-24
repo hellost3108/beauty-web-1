@@ -26,6 +26,7 @@ import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { cn } from '@/lib/utils';
 import { useProducts } from '@/components/cms/ProductsProvider';
+import { productPath } from "@/lib/cms/types";
 
 export const dynamic = 'force-dynamic';
 
@@ -228,7 +229,7 @@ const Cart2026 = () => {
                                     aria-label="Thêm vào yêu thích"
                                 ><Heart className={cn(selectedProduct && isInWishlist(selectedProduct.id) && 'fill-current')} /></Button>
                             </div>
-                            <Link href={`/product/${selectedProduct?.id}`}>Xem đầy đủ thông tin <ChevronRight /></Link>
+                            <Link href={productPath(selectedProduct)}>Xem đầy đủ thông tin <ChevronRight /></Link>
                         </div>
                         <div className="commerce-dialog-media-2026">
                             <span><PackageCheck /> Melalogy original</span>

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Edit3, ExternalLink, ImageOff, Plus, Search } from "lucide-react";
-import { setProductStatus } from "@/app/admin/_actions/catalog";
+import { deleteProduct, setProductStatus } from "@/app/admin/_actions/catalog";
+import DeleteButton from "@/components/admin/DeleteButton";
 import StatusSelect from "@/components/admin/StatusSelect";
 import { Notice, PageHeader, buttonClass } from "@/components/admin/ui";
 import { friendlyError } from "@/lib/admin/server-utils";
@@ -93,7 +94,7 @@ export default async function ProductsPage({ searchParams }: { searchParams: Pro
                         <div>
                           <strong className="block max-w-xs hover:text-[#f52334]">{product.name}</strong>
                           <span className="mt-1 block text-xs text-black/40">
-                            {product.sku || "—"} · /product/{product.id}
+                            {product.sku || "—"} · /product/{product.slug || product.id}
                           </span>
                         </div>
                       </Link>
@@ -106,12 +107,18 @@ export default async function ProductsPage({ searchParams }: { searchParams: Pro
                     </td>
                     <td className="px-5 py-4">
                       <div className="flex justify-end gap-2">
-                        <a href={`/product/${product.id}`} target="_blank" rel="noreferrer" className={buttonClass.icon} aria-label="Xem trên website">
+                        <a href={`/product/${product.slug || product.id}`} target="_blank" rel="noreferrer" className={buttonClass.icon} aria-label="Xem trên website">
                           <ExternalLink className="h-4 w-4" />
                         </a>
                         <Link href={`/admin/products/${product.id}/edit`} className={buttonClass.icon} aria-label="Sửa sản phẩm">
                           <Edit3 className="h-4 w-4" />
                         </Link>
+                        <DeleteButton
+                          label="sản phẩm"
+                          itemName={product.name}
+                          hint="Ảnh của sản phẩm cũng bị xoá. Đơn hàng cũ vẫn giữ tên, ảnh và giá đã mua. Muốn tạm ẩn thay vì xoá, hãy chuyển trạng thái sang “Bản nháp” hoặc “Lưu trữ”."
+                          onDelete={deleteProduct.bind(null, product.id)}
+                        />
                       </div>
                     </td>
                   </tr>

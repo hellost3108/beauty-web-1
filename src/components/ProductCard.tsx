@@ -3,21 +3,23 @@
 import { Heart, Share2 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useShop } from '@/context/ShopContext';
+import { productPath } from "@/lib/cms/types";
 
 interface ProductCardProps {
   id?: string | number;
+  slug?: string | null;
   image: string;
   name: string;
   description: string;
   price: string;
 }
 
-const ProductCard = ({ id = 1, image, name, description, price }: ProductCardProps) => {
+const ProductCard = ({ id = 1, slug, image, name, description, price }: ProductCardProps) => {
   const router = useRouter();
   const { addToCart, addToWishlist } = useShop();
 
   const handleCardClick = () => {
-    router.push(`/product/${id}`);
+    router.push(productPath({ id, slug }));
   };
 
   const handleAddToCart = (e: React.MouseEvent) => {

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import CmsSections from "@/components/cms/CmsSections";
 import { getStorefrontProducts } from "@/lib/cms/server";
 import ProductDetail from "@/views/ProductDetail";
+import { productPath } from "@/lib/cms/types";
 
 type ProductPageProps = { params: Promise<{ id: string }> };
 
@@ -20,7 +21,7 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
   return {
     title,
     description,
-    alternates: { canonical: `/product/${product.id}` },
+    alternates: { canonical: productPath(product) },
     openGraph: {
       title,
       description,
@@ -31,7 +32,11 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
 
 export async function generateStaticParams() {
   const products = await getStorefrontProducts();
-  return products.map((product) => ({ id: String(product.id) }));
+  return products.flatMap((product) =>
+    product.slug && product.slug !== String(product.id)
+      ? [{ id: product.slug }, { id: String(product.id) }]
+      : [{ id: String(product.id) }],
+  );
 }
 
 export default function ProductDetailPage() {

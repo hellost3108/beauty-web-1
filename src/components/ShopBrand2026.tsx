@@ -40,6 +40,7 @@ import {
 import { cn } from "@/lib/utils";
 
 import BeautyDiaries from "./BeautyDiaries";
+import { productPath } from "@/lib/cms/types";
 
 type Product = StorefrontProduct;
 
@@ -91,7 +92,7 @@ const ShopBrand2026 = () => {
         const shareData = {
             title: product.name,
             text: product.description,
-            url: `${window.location.origin}/product/${product.id}`,
+            url: `${window.location.origin}${productPath(product)}`,
         };
 
         if (navigator.share) {
@@ -165,7 +166,7 @@ const ShopBrand2026 = () => {
                                     return (
                                         <Link
                                             key={product.id}
-                                            href={`/product/${product.id}`}
+                                            href={productPath(product)}
                                             className="shop-formula-card group relative min-w-0 border border-white/85 bg-white/70 p-2.5 shadow-[0_30px_70px_-45px_rgba(20,18,16,.65)] backdrop-blur-xl transition-[transform,box-shadow,background-color] duration-500 hover:-translate-y-2 hover:bg-white/90 hover:shadow-[0_36px_72px_-38px_rgba(20,18,16,.55)]"
                                             style={{ "--formula-accent": accent } as CSSProperties}
                                         >
@@ -389,7 +390,7 @@ const ShopBrand2026 = () => {
                                             {product.description}
                                         </p>
                                         <Link
-                                            href={`/product/${product.id}`}
+                                            href={productPath(product)}
                                             className="mt-6 inline-flex w-fit items-center gap-2 border-b border-black/25 pb-1 font-body text-[10px] font-semibold uppercase tracking-[0.14em] transition-colors hover:border-[#c41327] hover:text-[#c41327]"
                                         >
                                             {catalog.detailLabel}
@@ -476,9 +477,9 @@ const ShopBrand2026 = () => {
                                     type="button"
                                     onClick={() => {
                                         if (!selectedProduct) return;
-                                        const productId = selectedProduct.id;
+                                        const productHref = productPath(selectedProduct);
                                         setSelectedProduct(null);
-                                        router.push(`/product/${productId}`);
+                                        router.push(productHref);
                                     }}
                                     className="inline-flex items-center gap-2 font-body text-xs font-semibold text-[#c41327]"
                                 >

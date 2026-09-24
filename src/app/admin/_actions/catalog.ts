@@ -102,3 +102,22 @@ export async function saveCategory(input: unknown): Promise<ActionResult<{ id: n
     return { ok: false, error: friendlyError(error) };
   }
 }
+
+/**
+ * Permanently deletes a product and its images. Past orders keep their own
+ * copy of the name, image and price (order_items.product_id becomes null).
+ */
+export async function deleteProduct(id: number): Promise<ActionResult> {
+  if (!Number.isInteger(id)) return { ok: false, error: "Sản phẩm không hợp lệ." };
+  try {
+    await requireModuleForAction("products");
+    const supabase = await createClient();
+    const { data, error } = await supabase.from("products").delete().eq("id", id).select("id");
+    if (error) throw error;
+    if (!data?.length) return { ok: false, error: "Không xoá được sản phẩm (không tồn tại hoặc không có quyền)." };
+    refreshPublicSite(["products"]);
+    return { ok: true, data: undefined, message: "Đã xoá sản phẩm." };
+  } catch (error) {
+    return { ok: false, error: friendlyError(error) };
+  }
+}

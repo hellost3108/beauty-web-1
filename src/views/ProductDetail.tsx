@@ -14,6 +14,8 @@ import { cn } from '@/lib/utils';
 import { useProducts } from '@/components/cms/ProductsProvider';
 import { useSection } from '@/components/cms/SectionsProvider';
 import type { StorefrontProduct } from '@/lib/cms/types';
+import ProductGallery from '@/components/ProductGallery';
+import { productPath } from "@/lib/cms/types";
 
 const ProductDetail = () => {
     const { id } = useParams();
@@ -30,14 +32,12 @@ const ProductDetail = () => {
     const productDetails = allProducts.find(p => String(p.id) === routeId || p.slug === routeId);
     const ratingLabel = (Number(page.rating) || 0).toFixed(1);
     const ratingStars = Math.round(Number(page.rating) || 0);
-    const [activeImage, setActiveImage] = useState<string | undefined>(productDetails?.images?.[0]);
 
     useEffect(() => {
         if (!productDetails) {
             router.push('/shop#shop-products');
         }
         window.scrollTo(0, 0);
-        setActiveImage(productDetails?.images?.[0]);
     }, [productDetails, router]);
 
     if (!productDetails) return null;
@@ -90,31 +90,20 @@ const ProductDetail = () => {
             <section className="py-12 md:py-20">
                 <div className="w-full mx-auto px-6 md:px-10 lg:px-16 xl:px-24">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
-                        {/* Left: Image */}
-                        <div className="space-y-6">
-                            <div className="relative aspect-square bg-[#f9f8f7] rounded-[20px] overflow-hidden">
-                                <div className="absolute top-6 left-6 z-10 bg-[#b31324]/10 text-[#b31324] text-xs font-bold px-3 py-1 rounded-sm uppercase tracking-wider border border-[#b31324]/20">
-                                    {page.badge}
-                                </div>
-                                <img
-                                    src={activeImage || productDetails.image}
-                                    alt={productDetails.name}
-                                    className="w-full h-full object-cover"
-                                />
-                            </div>
-                            {productDetails.images && productDetails.images.length > 1 && (
-                                <div className="grid grid-cols-3 gap-4">
-                                    {productDetails.images.map((img, idx) => (
-                                        <button
-                                            key={idx}
-                                            onClick={() => setActiveImage(img)}
-                                            className={`aspect-square bg-[#f9f8f7] rounded-[12px] overflow-hidden border-2 transition-all ${activeImage === img ? 'border-[#b31324]' : 'border-transparent hover:border-gray-200'}`}
-                                        >
-                                            <img src={img} alt={`${productDetails.name} ${idx + 1}`} className="w-full h-full object-cover" />
-                                        </button>
-                                    ))}
-                                </div>
-                            )}
+                        {/* Left: Image gallery */}
+                        <div className="min-w-0">
+                            <ProductGallery
+                                key={productDetails.id}
+                                images={productDetails.images?.length ? productDetails.images : [productDetails.image]}
+                                alt={productDetails.name}
+                                badge={
+                                    page.badge ? (
+                                        <div className="absolute top-6 left-6 z-10 bg-[#b31324]/10 text-[#b31324] text-xs font-bold px-3 py-1 rounded-sm uppercase tracking-wider border border-[#b31324]/20">
+                                            {page.badge}
+                                        </div>
+                                    ) : null
+                                }
+                            />
                         </div>
 
                         {/* Right: Details */}
@@ -142,7 +131,7 @@ const ProductDetail = () => {
                                 <span className="font-display text-3xl font-bold text-[#b31324]">{productDetails.price}đ</span>
                             </div>
 
-                            <p className="font-body text-[#666666] leading-relaxed">
+                            <p className="font-body text-[#666666] leading-relaxed whitespace-pre-line">
                                 {productDetails.description}
                             </p>
 
@@ -214,19 +203,19 @@ const ProductDetail = () => {
                     <Accordion type="single" collapsible className="w-full space-y-4">
                         <AccordionItem value="description" className="border-b border-gray-200">
                             <AccordionTrigger className="font-display text-xl py-4 hover:text-[#b31324] hover:no-underline">{page.descriptionTitle}</AccordionTrigger>
-                            <AccordionContent className="text-gray-600 leading-relaxed pb-6">
+                            <AccordionContent className="text-gray-600 leading-relaxed pb-6 whitespace-pre-line">
                                 {productDetails.description}
                             </AccordionContent>
                         </AccordionItem>
                         <AccordionItem value="ingredients" className="border-b border-gray-200">
                             <AccordionTrigger className="font-display text-xl py-4 hover:text-[#b31324] hover:no-underline">{page.ingredientsTitle}</AccordionTrigger>
-                            <AccordionContent className="text-gray-600 leading-relaxed pb-6">
+                            <AccordionContent className="text-gray-600 leading-relaxed pb-6 whitespace-pre-line">
                                 {productDetails.ingredients}
                             </AccordionContent>
                         </AccordionItem>
                         <AccordionItem value="usage" className="border-b border-gray-200">
                             <AccordionTrigger className="font-display text-xl py-4 hover:text-[#b31324] hover:no-underline">{page.usageTitle}</AccordionTrigger>
-                            <AccordionContent className="text-gray-600 leading-relaxed pb-6">
+                            <AccordionContent className="text-gray-600 leading-relaxed pb-6 whitespace-pre-line">
                                 {productDetails.usage}
                             </AccordionContent>
                         </AccordionItem>
@@ -358,7 +347,7 @@ const ProductDetail = () => {
                                 <span className="text-[#b31324] font-display text-2xl font-bold">{quickViewProduct?.price}đ</span>
                             </div>
 
-                            <p className="font-body text-[#666666] text-sm leading-relaxed mb-8">
+                            <p className="font-body text-[#666666] text-sm leading-relaxed mb-8 whitespace-pre-line line-clamp-[12]">
                                 {quickViewProduct?.description}
                             </p>
 
@@ -430,11 +419,11 @@ const ProductDetail = () => {
 
                             <button
                                 onClick={() => {
-                                    const productId = quickViewProduct?.id;
+                                    const productHref = productPath(quickViewProduct);
                                     setIsNavigating(true);
                                     setQuickViewProduct(null);
                                     setTimeout(() => {
-                                        router.push(`/product/${productId}`);
+                                        router.push(productHref);
                                     }, 50);
                                 }}
                                 className="inline-flex items-center gap-2 text-[#b31324] text-sm sm:text-base border border-[#b31324]/30 px-6 py-2 rounded-full w-fit hover:bg-[#b31324]/5 transition-colors cursor-pointer"

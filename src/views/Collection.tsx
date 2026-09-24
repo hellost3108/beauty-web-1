@@ -20,6 +20,7 @@ import { ChevronDown, SlidersHorizontal, Minus, Plus, Heart, Star } from 'lucide
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { cn } from '@/lib/utils';
 import { allProducts } from '@/data/productsData';
+import { productPath } from "@/lib/cms/types";
 
 const categories = ['Tất Cả', 'Cấp Ẩm', 'Phục Hồi', 'Làm Sáng', 'Rạng Rỡ'];
 
@@ -348,8 +349,8 @@ const Collection = () => {
 
                             <button
                                 onClick={() => {
-                                    const productId = quickViewProduct?.id;
-                                    router.push(`/product/${productId}`);
+                                    const productHref = productPath(quickViewProduct);
+                                    router.push(productHref);
                                     setQuickViewProduct(null);
                                 }}
                                 className="inline-flex items-center gap-2 text-[#b31324] text-sm sm:text-base border border-[#b31324]/30 px-6 py-2 rounded-full w-fit hover:bg-[#b31324]/5 transition-colors cursor-pointer"
