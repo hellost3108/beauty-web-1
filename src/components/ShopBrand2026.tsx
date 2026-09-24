@@ -424,7 +424,7 @@ const ShopBrand2026 = () => {
                                 </div>
                             </div>
                             <span className="mb-5 font-body text-lg font-semibold text-[#c41327]">{selectedProduct?.price}đ</span>
-                            <p className="mb-7 font-body text-sm leading-7 text-black/55">{selectedProduct?.description}</p>
+                            <p className="mb-7 whitespace-pre-line font-body text-sm leading-7 text-black/55">{selectedProduct?.description}</p>
 
                             <div className="mb-7 flex items-center border-y border-black/10 py-4">
                                 <button type="button" onClick={() => setQuantity(Math.max(1, quantity - 1))} className="flex h-11 w-11 items-center justify-center text-black/50 hover:text-black" aria-label="Giảm số lượng">

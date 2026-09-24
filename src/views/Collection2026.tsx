@@ -214,7 +214,7 @@ export default function Collection2026() {
               <div className={styles.quickCopy}>
                 <p className={styles.kicker}>Energy Shot / {quickView.category}</p>
                 <h2>{quickView.name}</h2>
-                <p>{quickView.description}</p>
+                <p className="whitespace-pre-line">{quickView.description}</p>
                 <div className={styles.quickIngredients}><Check aria-hidden="true" /> {quickView.ingredients}</div>
                 <div className={styles.quickPrice}>{quickView.price}đ</div>
                 <div className={styles.quickBuy}>
