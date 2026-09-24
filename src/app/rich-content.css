@@ -70,3 +70,46 @@ figure[data-rt-image][data-align="right"][data-width="full"] {
     margin-inline: 0;
   }
 }
+
+/* Content pasted from Word / Google Docs: tables, inline images, lists. */
+:is(.blog-prose-2026, .magazine-prose-2026, .admin-rich-text) table {
+  width: 100%;
+  margin: 1.6rem 0;
+  border-collapse: collapse;
+  font-size: 0.92em;
+  line-height: 1.55;
+}
+
+:is(.blog-prose-2026, .magazine-prose-2026, .admin-rich-text) :is(td, th) {
+  border: 1px solid rgb(33 29 29 / 0.16);
+  padding: 0.55rem 0.75rem;
+  vertical-align: top;
+  text-align: left;
+}
+
+:is(.blog-prose-2026, .magazine-prose-2026, .admin-rich-text) th {
+  background: #f7f3ef;
+  font-weight: 600;
+}
+
+:is(.blog-prose-2026, .magazine-prose-2026, .admin-rich-text) :is(td, th) p {
+  margin: 0;
+}
+
+:is(.blog-prose-2026, .magazine-prose-2026, .admin-rich-text) img:not(figure[data-rt-image] img) {
+  display: inline-block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.6rem;
+  vertical-align: middle;
+}
+
+.magazine-prose-2026 ul { list-style: disc; padding-left: 1.4rem; }
+.magazine-prose-2026 ol { list-style: decimal; padding-left: 1.4rem; }
+
+@media (max-width: 47.99rem) {
+  :is(.blog-prose-2026, .magazine-prose-2026) table {
+    display: block;
+    overflow-x: auto;
+  }
+}

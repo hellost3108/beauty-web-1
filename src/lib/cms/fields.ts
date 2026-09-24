@@ -12,6 +12,8 @@
  * actions, server components and client components alike.
  */
 
+import { filterStyle } from "./style-filter";
+
 type BaseField = {
   name: string;
   label: string;
@@ -137,7 +139,8 @@ export function safeUrl(value: string): string {
 /**
  * Conservative HTML clean-up for rich text written by staff: removes active
  * content (scripts, frames, forms, event handlers, javascript: URLs) and
- * inline styling so the brand stylesheet stays in control of the layout.
+ * keeps only whitelisted inline styles (colour, size, weight, alignment…),
+ * see style-filter.ts.
  */
 export function sanitizeHtml(input: string): string {
   let html = input.slice(0, MAX_HTML);
@@ -147,8 +150,16 @@ export function sanitizeHtml(input: string): string {
     "",
   );
   html = html.replace(/<(script|style|iframe|object|embed|link|meta|base|input)\b[^>]*\/?>/gi, "");
-  // Event handlers and inline presentation attributes.
-  html = html.replace(/\s(on[a-z]+|style|class|srcdoc|formaction)\s*=\s*("[^"]*"|'[^']*'|[^\s>]+)/gi, "");
+  // Editor-only markers, then images that never got a source (failed paste).
+  html = html.replace(/\s(data-paste-pending|data-original-src|data-selected)\s*=\s*("[^"]*"|'[^']*'|[^\s>]+)/gi, "");
+  html = html.replace(/\s(data-paste-pending|data-selected)(?=[\s>/])/gi, "");
+  // Event handlers and presentation classes.
+  html = html.replace(/\s(on[a-z]+|class|srcdoc|formaction)\s*=\s*("[^"]*"|'[^']*'|[^\s>]+)/gi, "");
+  // Inline styles: keep only the whitelisted, harmless properties.
+  html = html.replace(/\sstyle\s*=\s*("([^"]*)"|'([^']*)'|([^\s>]+))/gi, (_match, _quoted, dq?: string, sq?: string, bare?: string) => {
+    const cleaned = filterStyle((dq ?? sq ?? bare ?? "").replace(/&quot;/g, '"').replace(/&#39;/g, "'"));
+    return cleaned ? ` style="${cleaned.replace(/"/g, "&quot;")}"` : "";
+  });
   // Dangerous URL schemes in href/src.
   html = html.replace(
     /\s(href|src|xlink:href)\s*=\s*("([^"]*)"|'([^']*)'|([^\s>]+))/gi,
@@ -159,6 +170,8 @@ export function sanitizeHtml(input: string): string {
       return ` ${attr.toLowerCase()}="${cleaned.replace(/"/g, "&quot;")}"`;
     },
   );
+  html = html.replace(/<img\b(?![^>]*\ssrc=)[^>]*>/gi, "");
+  html = html.replace(/<figure\b[^>]*data-rt-image[^>]*>\s*<\/figure>/gi, "");
   return html.trim();
 }
 

@@ -10,3 +10,12 @@
 .admin-rich-text figure[data-rt-image] { cursor: pointer; }
 .admin-rich-text figure[data-rt-image][data-selected] img { outline: 3px solid #f52334; outline-offset: 3px; }
 .admin-rich-text figcaption { cursor: text; }
+.admin-rich-text img[data-paste-pending] {
+  display: block;
+  width: 100%;
+  min-height: 9rem;
+  border-radius: 1rem;
+  background: repeating-linear-gradient(-45deg, #f7f1ee 0 12px, #efe6e1 12px 24px);
+  animation: admin-paste-pulse 1.2s ease-in-out infinite alternate;
+}
+@keyframes admin-paste-pulse { from { opacity: 0.55; } to { opacity: 1; } }
