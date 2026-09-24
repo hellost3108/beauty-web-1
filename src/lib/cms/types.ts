@@ -68,3 +68,10 @@ export const formulaNoteByCategory: Record<string, string> = {
   "Làm Sáng": "Brightening / Tone",
   "Rạng Rỡ": "Radiance / Firming",
 };
+
+/** Public URL of a product: /product/{slug} (old /product/{id} links keep working). */
+export function productPath(product: { id: number | string; slug?: string | null } | null | undefined): string {
+  if (!product) return "/shop#shop-products";
+  const slug = typeof product.slug === "string" ? product.slug.trim() : "";
+  return `/product/${encodeURIComponent(slug || String(product.id))}`;
+}

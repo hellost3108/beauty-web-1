@@ -7,6 +7,7 @@ import { toast } from "sonner";
 import { ExternalLink, LoaderCircle, Save } from "lucide-react";
 import { saveProduct } from "@/app/admin/_actions/catalog";
 import { Card, buttonClass, helpClass, inputClass, labelClass, slugify } from "@/components/admin/ui";
+import { productPath } from "@/lib/cms/types";
 
 export type ProductRecord = {
   id: number;
@@ -258,7 +259,7 @@ export default function ProductForm({
 
       <div className="sticky bottom-4 z-20 flex flex-wrap items-center justify-end gap-3 rounded-full border border-black/10 bg-white/90 p-2 shadow-lg backdrop-blur">
         {product && (
-          <a href={`/product/${product.id}`} target="_blank" rel="noreferrer" className={buttonClass.ghost}>
+          <a href={productPath(product)} target="_blank" rel="noreferrer" className={buttonClass.ghost}>
             <ExternalLink className="h-4 w-4" /> Xem trên web
           </a>
         )}

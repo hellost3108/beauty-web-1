@@ -10,6 +10,7 @@ import { Trash2, Minus, Plus, Lock, ShieldCheck, Truck, ArrowRight, Star, Chevro
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { cn } from '@/lib/utils';
 import { allProducts } from '@/data/productsData';
+import { productPath } from "@/lib/cms/types";
 
 export const dynamic = 'force-dynamic';
 
@@ -336,7 +337,7 @@ const Cart = () => {
                                 </Button>
                             </div>
 
-                            <Link href={`/product/${selectedProduct?.id}`} className="group inline-flex items-center gap-2 text-[#b31324] text-sm font-medium border border-[#b31324]/30 px-6 py-2.5 rounded-full w-fit hover:bg-[#b31324]/5 transition-all">
+                            <Link href={productPath(selectedProduct)} className="group inline-flex items-center gap-2 text-[#b31324] text-sm font-medium border border-[#b31324]/30 px-6 py-2.5 rounded-full w-fit hover:bg-[#b31324]/5 transition-all">
                                 <span>Xem chi tiết</span>
                                 <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                             </Link>

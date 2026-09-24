@@ -21,6 +21,7 @@ import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/compone
 import { allProducts } from "@/data/productsData";
 import { useShop } from "@/context/ShopContext";
 import styles from "./collection-2026.module.css";
+import { productPath } from "@/lib/cms/types";
 
 const categories = ["Tất Cả", "Cấp Ẩm", "Phục Hồi", "Làm Sáng", "Rạng Rỡ"];
 
@@ -213,7 +214,7 @@ export default function Collection2026() {
               <div className={styles.quickCopy}>
                 <p className={styles.kicker}>Energy Shot / {quickView.category}</p>
                 <h2>{quickView.name}</h2>
-                <p>{quickView.description}</p>
+                <p className="whitespace-pre-line">{quickView.description}</p>
                 <div className={styles.quickIngredients}><Check aria-hidden="true" /> {quickView.ingredients}</div>
                 <div className={styles.quickPrice}>{quickView.price}đ</div>
                 <div className={styles.quickBuy}>
@@ -224,7 +225,7 @@ export default function Collection2026() {
                   </div>
                   <button type="button" className={styles.quickCart} onClick={() => addQuantityToCart(quickView)}>Thêm vào giỏ</button>
                 </div>
-                <button type="button" className={styles.detailLink} onClick={() => router.push(`/product/${quickView.id}`)}>Xem đầy đủ <ArrowUpRight /></button>
+                <button type="button" className={styles.detailLink} onClick={() => router.push(productPath(quickView))}>Xem đầy đủ <ArrowUpRight /></button>
               </div>
             </div>
           )}

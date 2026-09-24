@@ -10,6 +10,7 @@ import { ArrowUpRight, Star, ChevronDown, Minus, Plus, Heart } from 'lucide-reac
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { cn } from '@/lib/utils';
 import { allProducts } from '@/data/productsData';
+import { productPath } from "@/lib/cms/types";
 
 const CategoryIcons = () => {
   const router = useRouter();
@@ -242,11 +243,11 @@ const CategoryIcons = () => {
               <button
                 onClick={() => {
                   if (selectedProduct?.id) {
-                    const productId = selectedProduct.id;
+                    const productHref = productPath(selectedProduct);
                     setSelectedProduct(null);
                     setTimeout(() => {
                       window.scrollTo({ top: 0, behavior: 'instant' });
-                      router.push(`/product/${productId}`);
+                      router.push(productHref);
                     }, 0);
                   }
                 }}

@@ -25,6 +25,7 @@ import { cn } from '@/lib/utils';
 import { allProducts } from '@/data/productsData';
 
 import BeautyDiaries from './BeautyDiaries';
+import { productPath } from "@/lib/cms/types";
 
 const categories = ['Tất Cả', 'Cấp Ẩm', 'Phục Hồi', 'Làm Sáng', 'Rạng Rỡ'];
 
@@ -122,7 +123,7 @@ const ShopSection = () => {
                                 return (
                                     <Link
                                         key={product.id}
-                                        href={`/product/${product.id}`}
+                                        href={productPath(product)}
                                         className={`shop-product-card group flex min-w-0 flex-col rounded-[20px] border border-white/75 bg-white/75 p-2 shadow-[0_28px_70px_-45px_rgba(20,18,16,0.8)] backdrop-blur-md transition-[transform,box-shadow] duration-500 hover:!translate-y-0 hover:!rotate-0 hover:shadow-[0_35px_75px_-38px_rgba(20,18,16,0.55)] ${cardStyle}`}
                                     >
                                         <div className="aspect-[0.88] overflow-hidden rounded-[14px] bg-white/70">
@@ -382,11 +383,11 @@ const ShopSection = () => {
                             <button
                                 onClick={() => {
                                     if (selectedProduct?.id) {
-                                        const productId = selectedProduct.id;
+                                        const productHref = productPath(selectedProduct);
                                         setSelectedProduct(null);
                                         setTimeout(() => {
                                             window.scrollTo({ top: 0, behavior: 'instant' });
-                                            router.push(`/product/${productId}`);
+                                            router.push(productHref);
                                         }, 0);
                                     }
                                 }}

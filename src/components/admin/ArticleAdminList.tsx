@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Edit3, ExternalLink, ImageOff, Plus, Star } from "lucide-react";
-import { setArticleStatus } from "@/app/admin/_actions/articles";
+import { deleteArticle, setArticleStatus } from "@/app/admin/_actions/articles";
+import DeleteButton from "@/components/admin/DeleteButton";
 import StatusSelect from "@/components/admin/StatusSelect";
 import { Notice, PageHeader, buttonClass, formatDateTime } from "@/components/admin/ui";
 
@@ -75,6 +76,7 @@ export default function ArticleAdminList({
                 <Link href={`/admin/${channel}/${article.id}/edit`} className={buttonClass.icon} aria-label="Sửa bài viết">
                   <Edit3 className="h-4 w-4" />
                 </Link>
+                <DeleteButton label="bài viết" itemName={article.title} onDelete={deleteArticle.bind(null, article.id, channel)} />
               </div>
             </li>
           ))}

@@ -7,6 +7,7 @@ import { useProducts } from '@/components/cms/ProductsProvider';
 import { useSection } from '@/components/cms/SectionsProvider';
 import { splitLines } from '@/lib/cms/registry';
 import styles from './EnergyShotLineup.module.css';
+import { productPath } from "@/lib/cms/types";
 
 /*
  * Section 3 of the website-edit deck: "Thông tin mua hàng".
@@ -81,7 +82,7 @@ const EnergyShotLineup = () => {
                 aria-setsize={allProducts.length}
               >
                 <div className="mlg-product__media">
-                  <Link href={`/product/${product.id}`} aria-label={product.name}>
+                  <Link href={productPath(product)} aria-label={product.name}>
                     <img src={product.image} alt={product.name} loading="lazy" />
                   </Link>
                   <span className="mlg-product__tag">{product.category}</span>
@@ -106,7 +107,7 @@ const EnergyShotLineup = () => {
                 <div className="mlg-product__body">
                   <h3 className="mlg-product__name" id={titleId}>
                     <Link
-                      href={`/product/${product.id}`}
+                      href={productPath(product)}
                       style={{ color: 'inherit', textDecoration: 'none' }}
                     >
                       {product.subtitle}
